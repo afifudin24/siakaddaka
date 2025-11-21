@@ -3,21 +3,27 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
+use App\Models\Guru;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Guru>
- */
 class GuruFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Guru::class;
+
+    public function definition()
     {
+        $user = User::factory()->create(['role' => 'guru']);
+
         return [
-            //
+            'user_id' => $user->id,
+            'nama' => $user->nama,
+            'bio' => $this->faker->sentence,
+            'nip' => $this->faker->unique()->numerify('##########'),
+            'nuptk' => $this->faker->unique()->numerify('##########'),
+            'email' => $user->email,
+            'no_hp' => $this->faker->phoneNumber,
+            'tgl_lahir' => $this->faker->date(),
+            'alamat' => $this->faker->address,
         ];
     }
 }

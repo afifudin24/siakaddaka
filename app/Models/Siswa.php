@@ -53,4 +53,12 @@ class Siswa extends Model
     return $this->hasMany(Adminkelas::class, 'siswa_id');
 }
 
+    public function tagihan(){
+        return $this->hasMany(Tagihan::class, 'siswa_id');
+    }    
+public function pembayaran(){
+        return $this->hasMany(Pembayaran::class, 'siswa_id');
+    }
+
+
 }

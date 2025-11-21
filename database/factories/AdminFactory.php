@@ -3,21 +3,24 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
+use App\Models\Admin;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Admin>
- */
 class AdminFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Admin::class;
+
+    public function definition()
     {
+        // Pastikan membuat user dengan role admin
+        $user = User::factory()->create(['role' => 'admin']);
+
         return [
-            //
+            'user_id' => $user->id,
+            'nama' => $user->nama,
+            'email' => $user->email,
+            'alamat' => $this->faker->address,
+            'no_hp' => $this->faker->phoneNumber,
         ];
     }
 }
