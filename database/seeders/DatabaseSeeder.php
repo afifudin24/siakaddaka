@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
 \App\Models\Guru::factory()->count(5)->create();
 \App\Models\Siswa::factory()->count(20)->create();
 
+$this->call([
+        DataSekolahSeeder::class,
+    ]);
+
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

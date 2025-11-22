@@ -1,61 +1,172 @@
-<!doctype html>
-<html lang="en" dir="ltr">
+<!-- meta tags and other links -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wowdash - Bootstrap 5 Admin Dashboard HTML Template</title>
+<link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}" sizes="16x16">
 
-<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+<!-- Remix Icon -->
+<link rel="stylesheet" href="{{ asset('assets/css/remixicon.css') }}">
 
-<title>SIAKAD | LOGIN</title>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/bootstrap.min.css') }}">
 
-<!-- Bootstrap Core and vendor -->
-<link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" />
+<!-- Apex Chart -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/apexcharts.css') }}">
 
-<!-- Core css -->
-<link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}" />
+<!-- Data Table -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/dataTables.min.css') }}">
 
+<!-- Text Editor -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/editor-katex.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/lib/editor.atom-one-dark.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/lib/editor.quill.snow.css') }}">
+
+<!-- Date Picker -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/flatpickr.min.css') }}">
+
+<!-- Calendar -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/full-calendar.css') }}">
+
+<!-- Vector Map -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/jquery-jvectormap-2.0.5.css') }}">
+
+<!-- Popup -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/magnific-popup.css') }}">
+
+<!-- Slick Slider -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/slick.css') }}">
+
+<!-- Prism -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/prism.css') }}">
+
+<!-- File Upload -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/file-upload.css') }}">
+
+<!-- Audio Player -->
+<link rel="stylesheet" href="{{ asset('assets/css/lib/audioplayer.css') }}">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
 </head>
-<body class="font-muli theme-blush">
 
-<div class="auth option2">
-    <div class="auth_left">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-center">
-                    <a class="header-brand" href="index.html"><i class="fa fa-graduation-cap brand-logo"></i></a>
-                    <div class="card-title mt-3">Login to your account</div>
-                    <button type="button" class="btn btn-facebook"><i class="fa fa-facebook mr-2"></i>Facebook</button>
-                    <button type="button" class="btn btn-google"><i class="fa fa-google mr-2"></i>Google</button>
-                    <h6 class="mt-3 mb-3">Or</h6>
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><a href="forgot-password.html" class="float-right small">I forgot password</a></label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <label class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" />
-                    <span class="custom-control-label">Remember me</span>
-                    </label>
-                </div>
-                <div class="text-center">
-                    <a href="index.html" class="btn btn-primary btn-block" title="">Sign in</a>
-                    <div class="text-muted mt-4">Don't have account yet? <a href="register.html">Sign up</a></div>
-                </div>
-            </div>
-        </div>        
+<body>
+
+<section class="auth bg-base d-flex flex-wrap">  
+    <div class="auth-left d-lg-block d-none">
+        <div class="d-flex align-items-center flex-column h-100 justify-content-center">
+            <img src="{{asset('assets/images/auth/auth-img.png')}}" alt="">
+        </div>
     </div>
-</div>
+    <div class="auth-right py-32 px-24 d-flex flex-column justify-content-center">
+        <div class="max-w-464-px mx-auto w-100">
+            <div>
+                <a href="/login" class="mb-40 max-w-290-px">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="">
+                </a>
+                <h4 class="mb-12">Log In</h4>
+                <p class="mb-32 text-secondary-light text-lg">Selamat datang dan isi detail form dibawah</p>
+            </div>
+            <form action="#">
+                <div class="icon-field mb-16">
+                    <span class="icon top-50 translate-middle-y">
+                        <iconify-icon icon="mage:email"></iconify-icon>
+                    </span>
+                    <input type="email" class="form-control h-56-px bg-neutral-50 radius-12" placeholder="Email atau Username">
+                </div>
+                <div class="position-relative mb-20">
+                    <div class="icon-field">
+                        <span class="icon top-50 translate-middle-y">
+                            <iconify-icon icon="solar:lock-password-outline"></iconify-icon>
+                        </span> 
+                        <input type="password" class="form-control h-56-px bg-neutral-50 radius-12" id="your-password" placeholder="Password">
+                    </div>
+                    <span class="toggle-password ri-eye-line cursor-pointer position-absolute end-0 top-50 translate-middle-y me-16 text-secondary-light" data-toggle="#your-password"></span>
+                </div>
+                <div class="">
+                    <div class="d-flex justify-content-between gap-2">
+                        <div class="form-check style-check d-flex align-items-center">
+                            <input class="form-check-input border border-neutral-300" type="checkbox" value="" id="remeber">
+                            <label class="form-check-label" for="remeber">Remember me </label>
+                        </div>
+                        <a href="javascript:void(0)" class="text-primary-600 fw-medium">Lupa Password?</a>
+                    </div>
+                </div>
 
-<!-- Start Main project js, jQuery, Bootstrap -->
-<script src="{{ asset('assets/bundles/lib.vendor.bundle.js') }}"></script>
+                <button type="submit" class="btn btn-primary text-sm btn-sm px-12 py-16 w-100 radius-12 mt-32"> Sign In</button>
 
-<!-- Start project main js and page js -->
-<script src="{{ asset('assets/js/core.js') }}"></script>
+                {{-- <div class="mt-32 center-border-horizontal text-center">
+                    <span class="bg-base z-1 px-4">Or sign in with</span>
+                </div>
+                <div class="mt-32 d-flex align-items-center gap-3">
+                    <button type="button" class="fw-semibold text-primary-light py-16 px-24 w-50 border radius-12 text-md d-flex align-items-center justify-content-center gap-12 line-height-1 bg-hover-primary-50"> 
+                        <iconify-icon icon="ic:baseline-facebook" class="text-primary-600 text-xl line-height-1"></iconify-icon>
+                        Google
+                    </button>
+                    <button type="button" class="fw-semibold text-primary-light py-16 px-24 w-50 border radius-12 text-md d-flex align-items-center justify-content-center gap-12 line-height-1 bg-hover-primary-50"> 
+                        <iconify-icon icon="logos:google-icon" class="text-primary-600 text-xl line-height-1"></iconify-icon>
+                        Google
+                    </button>
+                </div>
+                <div class="mt-32 text-center text-sm">
+                    <p class="mb-0">Don’t have an account? <a href="sign-up.html" class="text-primary-600 fw-semibold">Sign Up</a></p>
+                </div> --}}
+                <p class="mb-0 text-center mt-4"> <a href="/" class="text-primary-600 text-center">Kembali Ke Halaman Utama</a></p>
+                
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- jQuery library js -->
+<script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>
+<!-- Bootstrap js -->
+<script src="{{ asset('assets/js/lib/bootstrap.bundle.min.js') }}"></script>
+<!-- Apex Chart js -->
+<script src="{{ asset('assets/js/lib/apexcharts.min.js') }}"></script>
+<!-- Data Table js -->
+<script src="{{ asset('assets/js/lib/dataTables.min.js') }}"></script>
+<!-- Iconify Font js -->
+<script src="{{ asset('assets/js/lib/iconify-icon.min.js') }}"></script>
+<!-- jQuery UI js -->
+<script src="{{ asset('assets/js/lib/jquery-ui.min.js') }}"></script>
+<!-- Vector Map js -->
+<script src="{{ asset('assets/js/lib/jquery-jvectormap-2.0.5.min.js') }}"></script>
+<script src="{{ asset('assets/js/lib/jquery-jvectormap-world-mill-en.js') }}"></script>
+<!-- Popup js -->
+<script src="{{ asset('assets/js/lib/magnifc-popup.min.js') }}"></script>
+<!-- Slick Slider js -->
+<script src="{{ asset('assets/js/lib/slick.min.js') }}"></script>
+<!-- prism js -->
+<script src="{{ asset('assets/js/lib/prism.js') }}"></script>
+<!-- file upload js -->
+<script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
+<!-- audioplayer -->
+<script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
+<!-- main js -->
+<script src="{{ asset('assets/js/app.js') }}"></script>
+
+<script>
+      // ================== Password Show Hide Js Start ==========
+      function initializePasswordToggle(toggleSelector) {
+        $(toggleSelector).on('click', function() {
+            $(this).toggleClass("ri-eye-off-line");
+            var input = $($(this).attr("data-toggle"));
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    }
+    // Call the function
+    initializePasswordToggle('.toggle-password');
+  // ========================= Password Show Hide Js End ===========================
+</script>
+
 </body>
 </html>

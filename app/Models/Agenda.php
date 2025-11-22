@@ -19,6 +19,7 @@ class Agenda extends Model
         'lokasi',
         'status',
     ];
+    protected $table = 'agenda';
 
     /**
      * Scope untuk kegiatan yang akan datang
