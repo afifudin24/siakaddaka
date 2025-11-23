@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->string('ikon')->nullable();
             $table->string('gambar_unggulan')->nullable();
+            $table->string('gambar_unggulan_2')->nullable();
+            $table->string('gambar_unggulan_3')->nullable();
             $table->string('banner')->nullable();
 
             // Kepala Sekolah

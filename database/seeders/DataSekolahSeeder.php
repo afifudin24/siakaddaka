@@ -18,6 +18,8 @@ class DataSekolahSeeder extends Seeder
             'ikon'             => 'ikon.png',
             'logo'             => 'logo.png',
             'gambar_unggulan'  => 'header.jpg',
+            'gambar_unggulan_2'  => 'header.jpg',
+            'gambar_unggulan_3'  => 'header.jpg',
             'kepala_sekolah'   => 'Drs. Andi Wijaya',
             'visi'             => 'Menjadi sekolah unggul yang berkarakter dan berprestasi.',
             'misi'             => 'Mencetak lulusan yang kompeten, berakhlak mulia, dan siap kerja.',

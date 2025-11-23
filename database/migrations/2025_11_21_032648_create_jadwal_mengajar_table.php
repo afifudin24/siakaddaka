@@ -19,15 +19,13 @@ return new class extends Migration
                   ->constrained('data_mengajar')
                   ->onDelete('cascade');
 
-            // Relasi ke jam mengajar (mulai)
-            $table->foreignId('jam_mulai_id')
-                  ->constrained('jam_mengajar')
-                  ->onDelete('cascade');
+              $table->foreignId('hari_id')
+          ->constrained('hari_aktif')
+          ->onDelete('cascade');
 
-            // Relasi ke jam mengajar (selesai)
-            $table->foreignId('jam_selesai_id')
-                  ->constrained('jam_mengajar')
-                  ->onDelete('cascade');
+    $table->foreignId('jam_pelajaran_id')
+          ->constrained('jam_pelajaran')
+          ->onDelete('cascade');
 
             $table->timestamps();
         });

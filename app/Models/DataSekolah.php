@@ -19,6 +19,9 @@ class DataSekolah extends Model
         'logo',
         'ikon',
         'gambar_unggulan',
+        'gambar_unggulan_2',
+        'gambar_unggulan_3',
+
         'banner',
         'kepala_sekolah',
         'nip_kepala_sekolah',

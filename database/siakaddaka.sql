@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Waktu pembuatan: 22 Nov 2025 pada 09.59
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 23 Nov 2025 pada 13.52
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -125,6 +125,7 @@ INSERT INTO `agenda` (`id`, `judul`, `deskripsi`, `tgl_mulai`, `tgl_selesai`, `w
 CREATE TABLE `data_mengajar` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `guru_id` bigint(20) UNSIGNED NOT NULL,
+  `kelas_id` bigint(20) UNSIGNED NOT NULL,
   `mapel_id` bigint(20) UNSIGNED NOT NULL,
   `jam_mengajar` int(11) NOT NULL,
   `pertemuan_per_minggu` int(11) NOT NULL,
@@ -248,6 +249,20 @@ INSERT INTO `guru` (`id`, `user_id`, `nama`, `bio`, `nip`, `nuptk`, `email`, `no
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `hari_aktif`
+--
+
+CREATE TABLE `hari_aktif` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama_hari` varchar(255) NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `jadwal_mengajar`
 --
 
@@ -270,6 +285,21 @@ CREATE TABLE `jam_mengajar` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `jam_ke` int(11) NOT NULL,
   `pukul` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jam_pelajaran`
+--
+
+CREATE TABLE `jam_pelajaran` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `jam_ke` int(11) NOT NULL,
+  `mulai` time NOT NULL,
+  `selesai` time NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -448,7 +478,9 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (75, 75, 'created', 'User baru dibuat: Myron Mohr (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:36:40', '2025-11-21 20:36:40'),
 (76, 76, 'created', 'User baru dibuat: Zora Russel (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:36:40', '2025-11-21 20:36:40'),
 (77, 77, 'created', 'User baru dibuat: Blanche Schoen (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:36:41', '2025-11-21 20:36:41'),
-(78, 78, 'created', 'User baru dibuat: Prof. Alva Ryan (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:36:42', '2025-11-21 20:36:42');
+(78, 78, 'created', 'User baru dibuat: Prof. Alva Ryan (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:36:42', '2025-11-21 20:36:42'),
+(79, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-22 07:18:36', '2025-11-22 07:18:36'),
+(80, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-23 00:33:19', '2025-11-23 00:33:19');
 
 -- --------------------------------------------------------
 
@@ -531,7 +563,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (29, '2025_11_21_115503_tagihan', 1),
 (30, '2025_11_21_115931_pembayaran', 1),
 (31, '2025_11_21_120651_agenda', 1),
-(32, '2025_11_22_022903_create_data_sekolah_table', 1);
+(32, '2025_11_22_022903_create_data_sekolah_table', 1),
+(33, '2025_11_23_083149_create_tahun_pelajaran_table', 2),
+(34, '2025_11_23_083336_create_semesters_table', 2),
+(35, '2025_11_21_032646_jam_pelajaran', 3),
+(36, '2025_11_23_114730_hari_aktif', 3);
 
 -- --------------------------------------------------------
 
@@ -614,6 +650,23 @@ CREATE TABLE `personal_access_tokens` (
   `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `semesters`
+--
+
+CREATE TABLE `semesters` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tahun_pelajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `nama` enum('Ganjil','Genap') NOT NULL,
+  `tanggal_mulai` date DEFAULT NULL,
+  `tanggal_selesai` date DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -751,6 +804,20 @@ CREATE TABLE `tagihan` (
   `jumlah` decimal(12,2) NOT NULL,
   `tgl_tagihan` date NOT NULL,
   `status` enum('belum_lunas','lunas') NOT NULL DEFAULT 'belum_lunas',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tahun_pelajaran`
+--
+
+CREATE TABLE `tahun_pelajaran` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -948,7 +1015,8 @@ ALTER TABLE `agenda`
 ALTER TABLE `data_mengajar`
   ADD PRIMARY KEY (`id`),
   ADD KEY `data_mengajar_guru_id_foreign` (`guru_id`),
-  ADD KEY `data_mengajar_mapel_id_foreign` (`mapel_id`);
+  ADD KEY `data_mengajar_mapel_id_foreign` (`mapel_id`),
+  ADD KEY `kelas_id` (`kelas_id`);
 
 --
 -- Indeks untuk tabel `data_sekolah`
@@ -982,6 +1050,12 @@ ALTER TABLE `guru`
   ADD KEY `guru_user_id_foreign` (`user_id`);
 
 --
+-- Indeks untuk tabel `hari_aktif`
+--
+ALTER TABLE `hari_aktif`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `jadwal_mengajar`
 --
 ALTER TABLE `jadwal_mengajar`
@@ -994,6 +1068,12 @@ ALTER TABLE `jadwal_mengajar`
 -- Indeks untuk tabel `jam_mengajar`
 --
 ALTER TABLE `jam_mengajar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `jam_pelajaran`
+--
+ALTER TABLE `jam_pelajaran`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1097,6 +1177,13 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indeks untuk tabel `semesters`
+--
+ALTER TABLE `semesters`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `semesters_tahun_pelajaran_id_foreign` (`tahun_pelajaran_id`);
+
+--
 -- Indeks untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
@@ -1126,6 +1213,13 @@ ALTER TABLE `status_notifikasi`
 ALTER TABLE `tagihan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `tagihan_siswa_id_foreign` (`siswa_id`);
+
+--
+-- Indeks untuk tabel `tahun_pelajaran`
+--
+ALTER TABLE `tahun_pelajaran`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `tahun_pelajaran_nama_unique` (`nama`);
 
 --
 -- Indeks untuk tabel `tugas`
@@ -1217,6 +1311,12 @@ ALTER TABLE `guru`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT untuk tabel `hari_aktif`
+--
+ALTER TABLE `hari_aktif`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `jadwal_mengajar`
 --
 ALTER TABLE `jadwal_mengajar`
@@ -1226,6 +1326,12 @@ ALTER TABLE `jadwal_mengajar`
 -- AUTO_INCREMENT untuk tabel `jam_mengajar`
 --
 ALTER TABLE `jam_mengajar`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `jam_pelajaran`
+--
+ALTER TABLE `jam_pelajaran`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -1262,7 +1368,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
@@ -1280,7 +1386,7 @@ ALTER TABLE `materi`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT untuk tabel `notifikasi`
@@ -1307,6 +1413,12 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `semesters`
+--
+ALTER TABLE `semesters`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
@@ -1329,6 +1441,12 @@ ALTER TABLE `status_notifikasi`
 --
 ALTER TABLE `tagihan`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tahun_pelajaran`
+--
+ALTER TABLE `tahun_pelajaran`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tugas`
@@ -1381,6 +1499,7 @@ ALTER TABLE `adminkelas`
 --
 ALTER TABLE `data_mengajar`
   ADD CONSTRAINT `data_mengajar_guru_id_foreign` FOREIGN KEY (`guru_id`) REFERENCES `guru` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `data_mengajar_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`),
   ADD CONSTRAINT `data_mengajar_mapel_id_foreign` FOREIGN KEY (`mapel_id`) REFERENCES `mapel` (`id`) ON DELETE CASCADE;
 
 --
@@ -1460,6 +1579,12 @@ ALTER TABLE `pembayaran`
 ALTER TABLE `pengumpulan_tugas`
   ADD CONSTRAINT `pengumpulan_tugas_siswa_id_foreign` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `pengumpulan_tugas_tugas_id_foreign` FOREIGN KEY (`tugas_id`) REFERENCES `tugas` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `semesters`
+--
+ALTER TABLE `semesters`
+  ADD CONSTRAINT `semesters_tahun_pelajaran_id_foreign` FOREIGN KEY (`tahun_pelajaran_id`) REFERENCES `tahun_pelajaran` (`id`) ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `siswa`

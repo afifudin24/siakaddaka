@@ -39,4 +39,8 @@ class DataMengajar extends Model
     public function logKehadiran(){
         return $this->hasMany(LogKehadiran::class, 'mengajar_id');
     }
+
+    public function kelas(){
+        return $this->belongsTo(Kelas::class);
+    }
 }
