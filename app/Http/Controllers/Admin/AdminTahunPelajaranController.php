@@ -27,11 +27,14 @@ class AdminTahunPelajaranController extends Controller
             'nama' => 'required|unique:tahun_pelajaran,nama',
             'status' => 'required'
         ]);
+   
 
-        TahunPelajaran::create([
+        $tahunpelajaranbaru = TahunPelajaran::create([
             'nama' => $request->nama,
-            'status' => $request->status
+            'is_active' => $request->status
         ]);
+
+       
 
         return redirect()->back()
                          ->with('success', 'Tahun pelajaran berhasil ditambahkan');
@@ -46,15 +49,17 @@ class AdminTahunPelajaranController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'tahun' => 'required|unique:tahun_pelajaran,tahun,' . $id
+            'nama' => 'required|unique:tahun_pelajaran,nama,' . $id,
+            'is_active' => 'required'
         ]);
 
         $data = TahunPelajaran::findOrFail($id);
         $data->update([
-            'tahun' => $request->tahun
+            'nama' => $request->nama,
+            'is_active' => $request->is_active
         ]);
 
-        return redirect()->route('tahun-pelajaran.index')
+        return redirect()->back()
                          ->with('success', 'Tahun pelajaran berhasil diupdate');
     }
 

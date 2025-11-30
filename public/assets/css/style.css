@@ -15655,4 +15655,9 @@ td.fc-header-center {
   margin-block-start: auto;
 }
 
+.swal-title-small {
+    font-size: 16px !important; /* bebas ubah sesuai kebutuhan */
+}
+
+
 /* === footer css end === */

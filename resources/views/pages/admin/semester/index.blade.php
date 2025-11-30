@@ -96,22 +96,23 @@
     </thead>
 
     <tbody>
-        @foreach($tahun_pelajaran as $tp)
+        @foreach($data as $s)
         <tr>
             <td>
-                <!-- <input type="checkbox" name="selected[]" class="row-check" value="{{ $tp->id }}"> -->
-                  <input class="form-check-input check-data" type="checkbox" name="selected[]" value="{{ $tp->id }}">
+             
+                  <input class="form-check-input check-data" type="checkbox" name="selected[]" value="{{ $s->id }}">
                 <span class="ms-2">{{ $loop->iteration }}</span>
             </td>
-            <td>{{ $tp->nama }}</td>
-            <td>{{ $tp->status ? 'Aktif' : 'Tidak Aktif' }}</td>
+            <td>{{ $s->nama }}</td>
+            <td>{{ $s->tahunPelajaran->nama }}</td>
+            <td>{{ $s->is_active ? 'Aktif' : 'Tidak Aktif' }}</td>
             <td>
                 <a href="javascript:void(0)" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">
                     <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
                 </a>
                  <a href="javascript:void(0)" 
            data-bs-toggle="modal" 
-           data-bs-target="#modalEdit{{ $tp->id }}"
+           data-bs-target="#modalEditS{{ $s->id }}"
            class="w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
             <iconify-icon icon="lucide:edit"></iconify-icon>
         </a>
@@ -121,16 +122,21 @@
             </td>
         </tr>
 
-        {{-- INCLUDE MODAL EDIT UNTUK DATA INI --}}
-@include('partials.modal_edit', ['tp' => $tp])
+
         @endforeach
     </tbody>
 </table>
 
 </form>
 
+@foreach($data as $s)
+        {{-- INCLUDE MODAL EDIT UNTUK DATA INI --}}
+@include('pages.admin.semester.partials.modal_edit', ['s' => $s])
+@endforeach
+
        <!-- start modal Tambah -->
-          @include('pages.admin.tahun_pelajaran.partials.modal_tambah')
+         @include('pages.admin.semester.partials.modal_tambah', compact('tahun_pelajaran'))
+
           <!-- end modal tambah -->
         </tbody>
         </table>

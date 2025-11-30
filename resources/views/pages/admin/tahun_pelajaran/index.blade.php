@@ -5,7 +5,7 @@
   <div class="dashboard-main-body">
 
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-  <h6 class="fw-semibold mb-0">Basic Table</h6>
+  <h6 class="fw-semibold mb-0">Tahun Pelajaran</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
       <a href="index.html" class="d-flex align-items-center gap-1 hover-text-primary">
@@ -14,13 +14,13 @@
       </a>
     </li>
     <li>-</li>
-    <li class="fw-medium">Basic Table</li>
+    <li class="fw-medium">Tahun Pelajaran</li>
   </ul>
 </div>
     
     <div class="card basic-data-table">
       <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="card-title mb-0">Tahun pelajaran</h5>
+            <h5 class="card-title mb-0">Data Tahun pelajaran</h5>
         <div>
 
             <button data-bs-toggle="modal" data-bs-target="#tambahTahunPelajaran" type="button" class="btn btn-sm btn-primary d-flex align-items-center gap-2"> 
@@ -94,33 +94,45 @@
         </tr>
     </thead>
 
-    <tbody>
-        @foreach($tahun_pelajaran as $tp)
-        <tr>
-            <td>
-                <!-- <input type="checkbox" name="selected[]" class="row-check" value="{{ $tp->id }}"> -->
-                  <input class="form-check-input check-data" type="checkbox" name="selected[]" value="{{ $tp->id }}">
-                <span class="ms-2">{{ $loop->iteration }}</span>
-            </td>
-            <td>{{ $tp->nama }}</td>
-            <td>{{ $tp->status ? 'Aktif' : 'Tidak Aktif' }}</td>
-            <td>
-                <a href="javascript:void(0)" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">
-                    <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
-                </a>
-                <a href="javascript:void(0)" class="w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
-                    <iconify-icon icon="lucide:edit"></iconify-icon>
-                </a>
-                <a href="javascript:void(0)" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
-                    <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
-                </a>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
+   <tbody>
+    @foreach($tahun_pelajaran as $tp)
+    <tr>
+        <td>
+            <input class="form-check-input check-data" type="checkbox" name="selected[]" value="{{ $tp->id }}">
+            <span class="ms-2">{{ $loop->iteration }}</span>
+        </td>
+
+        <td>{{ $tp->nama }}</td>
+        <td>{{ $tp->is_active ? 'Aktif' : 'Tidak Aktif' }}</td>
+
+        <td>
+            {{-- tombol edit --}}
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalEditTP{{ $tp->id }}"
+               class="w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                <iconify-icon icon="lucide:edit"></iconify-icon>
+            </a>
+
+            {{-- tombol delete --}}
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalDeleteTP{{ $tp->id }}"
+               class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
+            </a>
+        </td>
+    </tr>
+
+    @endforeach
+
+   
+</tbody>
 </table>
 
 </form>
+
+ {{-- MODAL EDIT & DELETE (BEADA DI LUAR FORM) --}}
+@foreach($tahun_pelajaran as $tp)
+    @include('pages.admin.tahun_pelajaran.partials.modal_edit', ['tp' => $tp])
+    @include('pages.admin.tahun_pelajaran.partials.modal_delete', ['tp' => $tp])
+@endforeach
 
        <!-- start modal Tambah -->
           @include('pages.admin.tahun_pelajaran.partials.modal_tambah')
@@ -171,6 +183,9 @@
         });
     });
 </script>
+
+
+<!-- modal edit  -->
 
   @endpush
 @endsection
