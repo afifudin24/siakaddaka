@@ -10,6 +10,7 @@ class DataSekolah extends Model
 
     protected $fillable = [
         'nama_sekolah',
+        'nama_singkatan',
         'npsn',
         'status',
         'jenjang',

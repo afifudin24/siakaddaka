@@ -16,6 +16,7 @@ return new class extends Migration
 
             // Informasi Umum
             $table->string('nama_sekolah')->nullable();
+            $table->string('nama_singkatan')->nullable();
             $table->string('npsn')->nullable()->unique();
             $table->string('status')->nullable(); // Negeri / Swasta
             $table->string('jenjang')->nullable(); // SMK / SMA / dll

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminTahunPelajaranController;
 use App\Http\Controllers\Admin\AdminSemesterController;
+use App\Http\Controllers\Admin\AdminKelasController;
+
 
 Route::middleware(['auth', 'role:admin'])
    
@@ -23,5 +25,10 @@ Route::middleware(['auth', 'role:admin'])
 
     // Semester
     Route::resource('/semester', AdminSemesterController::class);
+
+    // Kelas
+    Route:resource('/kelas', AdminKelasController::class);
+        Route::delete('/kelas/massdelete', [AdminTahunPelajaranController::class, 'massdelete'])
+    ->name('kelas.massdelete');
 
     });

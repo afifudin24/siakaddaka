@@ -46,12 +46,28 @@
                 <span>Semester</span>
             </a>
         </li>
+          {{-- Jurusan --}}
+        <li>
+            <a href="/admin/jurusan"
+               class="{{ Request::is('admin/jurusan*') ? 'active' : '' }}">
+                <iconify-icon icon="mdi:flask" class="menu-icon"></iconify-icon>
+                <span>Jurusan</span>
+            </a>
+        </li>
+          {{-- Kelas --}}
+        <li>
+            <a href="/admin/kelas"
+               class="{{ Request::is('admin/kelas*') ? 'active' : '' }}">
+                <iconify-icon icon="mdi:google-classroom" class="menu-icon"></iconify-icon>
+                <span>Jurusan</span>
+            </a>
+        </li>
 
         {{-- Mapel --}}
         <li>
             <a href="/admin/mapel"
                class="{{ Request::is('admin/mapel*') ? 'active' : '' }}">
-                <iconify-icon icon="solar:book-outline" class="menu-icon"></iconify-icon>
+                <iconify-icon icon="mdi:notebook" class="menu-icon"></iconify-icon>
                 <span>Mata Pelajaran</span>
             </a>
         </li>
@@ -60,8 +76,17 @@
         <li>
             <a href="/admin/guru"
                class="{{ Request::is('admin/guru*') ? 'active' : '' }}">
-                <iconify-icon icon="solar:user-id-outline" class="menu-icon"></iconify-icon>
-                <span>Data Guru</span>
+                <iconify-icon icon="mdi:teach" class="menu-icon"></iconify-icon>
+                <span>Guru</span>
+            </a>
+        </li>
+
+            {{-- Data Siswa --}}
+        <li>
+            <a href="/admin/siswa"
+               class="{{ Request::is('admin/siswa*') ? 'active' : '' }}">
+                <iconify-icon icon="mdi:account-student-outline" class="menu-icon"></iconify-icon>
+                <span>Siswa</span>
             </a>
         </li>
 
