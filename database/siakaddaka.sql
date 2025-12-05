@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Nov 2025 pada 13.52
+-- Waktu pembuatan: 05 Des 2025 pada 15.21
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -142,6 +142,7 @@ CREATE TABLE `data_mengajar` (
 CREATE TABLE `data_sekolah` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nama_sekolah` varchar(255) DEFAULT NULL,
+  `nama_singkatan` varchar(100) NOT NULL,
   `npsn` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   `jenjang` varchar(255) DEFAULT NULL,
@@ -166,8 +167,8 @@ CREATE TABLE `data_sekolah` (
 -- Dumping data untuk tabel `data_sekolah`
 --
 
-INSERT INTO `data_sekolah` (`id`, `nama_sekolah`, `npsn`, `status`, `jenjang`, `alamat`, `email_sekolah`, `telepon`, `logo`, `ikon`, `gambar_unggulan`, `website`, `banner`, `kepala_sekolah`, `nip_kepala_sekolah`, `deskripsi_singkat`, `visi`, `misi`, `created_at`, `updated_at`) VALUES
-(1, 'SMK Contoh Nusantara', NULL, NULL, NULL, 'Jl. Pendidikan No. 123, Purwokerto', 'info@smkcontoh.sch.id', '0281-123456', 'logo.png', 'ikon.png', NULL, 'https://www.smkcontoh.sch.id', NULL, 'Drs. Andi Wijaya', NULL, NULL, 'Menjadi sekolah unggul yang berkarakter dan berprestasi.', 'Mencetak lulusan yang kompeten, berakhlak mulia, dan siap kerja.', '2025-11-21 20:36:44', '2025-11-21 20:36:44');
+INSERT INTO `data_sekolah` (`id`, `nama_sekolah`, `nama_singkatan`, `npsn`, `status`, `jenjang`, `alamat`, `email_sekolah`, `telepon`, `logo`, `ikon`, `gambar_unggulan`, `website`, `banner`, `kepala_sekolah`, `nip_kepala_sekolah`, `deskripsi_singkat`, `visi`, `misi`, `created_at`, `updated_at`) VALUES
+(1, 'SMK Contoh Nusantara', 'SMK DAKA', NULL, NULL, NULL, 'Jl. Pendidikan No. 123, Purwokerto', 'info@smkcontoh.sch.id', '0281-123456', 'logo.png', NULL, NULL, 'https://www.smkcontoh.sch.id', NULL, 'Drs. Andi Wijaya', NULL, NULL, 'Menjadi sekolah unggul yang berkarakter dan berprestasi.', 'Mencetak lulusan yang kompeten, berakhlak mulia, dan siap kerja.', '2025-11-21 20:36:44', '2025-11-21 20:36:44');
 
 -- --------------------------------------------------------
 
@@ -480,7 +481,9 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (77, 77, 'created', 'User baru dibuat: Blanche Schoen (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:36:41', '2025-11-21 20:36:41'),
 (78, 78, 'created', 'User baru dibuat: Prof. Alva Ryan (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:36:42', '2025-11-21 20:36:42'),
 (79, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-22 07:18:36', '2025-11-22 07:18:36'),
-(80, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-23 00:33:19', '2025-11-23 00:33:19');
+(80, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-23 00:33:19', '2025-11-23 00:33:19'),
+(81, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-11-29 23:40:30', '2025-11-29 23:40:30'),
+(82, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-04 05:59:06', '2025-12-04 05:59:06');
 
 -- --------------------------------------------------------
 
@@ -663,13 +666,20 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `semesters` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `tahun_pelajaran_id` bigint(20) UNSIGNED NOT NULL,
-  `nama` enum('Ganjil','Genap') NOT NULL,
+  `nama` enum('Gasal','Genap') NOT NULL,
   `tanggal_mulai` date DEFAULT NULL,
   `tanggal_selesai` date DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `semesters`
+--
+
+INSERT INTO `semesters` (`id`, `tahun_pelajaran_id`, `nama`, `tanggal_mulai`, `tanggal_selesai`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 6, 'Gasal', '2025-11-07', '2025-11-29', 1, '2025-11-30 00:55:31', '2025-11-30 00:55:31');
 
 -- --------------------------------------------------------
 
@@ -821,6 +831,14 @@ CREATE TABLE `tahun_pelajaran` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tahun_pelajaran`
+--
+
+INSERT INTO `tahun_pelajaran` (`id`, `nama`, `is_active`, `created_at`, `updated_at`) VALUES
+(6, '2026/2027', 1, '2025-11-29 23:56:24', '2025-11-30 00:25:30'),
+(7, 'Gasal', 1, '2025-11-30 00:52:59', '2025-11-30 00:52:59');
 
 -- --------------------------------------------------------
 
@@ -1368,7 +1386,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
@@ -1416,7 +1434,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `semesters`
 --
 ALTER TABLE `semesters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
@@ -1446,7 +1464,7 @@ ALTER TABLE `tagihan`
 -- AUTO_INCREMENT untuk tabel `tahun_pelajaran`
 --
 ALTER TABLE `tahun_pelajaran`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `tugas`
