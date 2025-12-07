@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminTahunPelajaranController;
 use App\Http\Controllers\Admin\AdminSemesterController;
 use App\Http\Controllers\Admin\AdminKelasController;
+use App\Http\Controllers\Admin\AdminJurusanController;
 
 
 Route::middleware(['auth', 'role:admin'])
@@ -27,8 +28,11 @@ Route::middleware(['auth', 'role:admin'])
     Route::resource('/semester', AdminSemesterController::class);
 
     // Kelas
-    Route:resource('/kelas', AdminKelasController::class);
+    Route::resource('/kelas', AdminKelasController::class);
         Route::delete('/kelas/massdelete', [AdminTahunPelajaranController::class, 'massdelete'])
     ->name('kelas.massdelete');
+
+    // Jurusan
+    Route::resource('/jurusan', AdminJurusanController::class);
 
     });

@@ -1,5 +1,5 @@
 <!-- Modal Tambah Tahun Pelajaran -->
-<div class="modal fade" id="tambahTahunPelajaran" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="tambahSemester" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content radius-16 bg-base">
 

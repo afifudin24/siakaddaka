@@ -39,4 +39,32 @@ class AdminSemesterController extends Controller
 
         return redirect()->back()->with('success', 'Semester berhasil ditambahkan');
     }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'tahun_pelajaran_id' => 'required',
+            'nama' => 'required',
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
+            'is_active' => 'required'
+        ]);
+
+        $data = Semester::findOrFail($id);
+        $data->update([
+            'tahun_pelajaran_id' => $request->tahun_pelajaran_id,
+            'nama' => $request->nama,
+            'is_active' => $request->is_active,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai
+
+        ]);
+
+        return redirect()->back()->with('success', 'Semester berhasil diupdate');
+    }
+
+    public function destroy($id)
+    {
+        Semester::destroy($id);
+        return back()->with('success', 'Semester berhasil dihapus');
+    }
 }

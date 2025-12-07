@@ -15,6 +15,7 @@ class Jurusan extends Model
     // Field yang boleh diisi
     protected $fillable = [
         'nama_jurusan',
+        'kode_jurusan'
     ];
 
     /**

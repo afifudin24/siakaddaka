@@ -11,12 +11,15 @@ return new class extends Migration
      */
       public function up(): void
     {
-        Schema::create('adminkelas', function (Blueprint $table) {
+        Schema::create('ketua_kelas', function (Blueprint $table) {
             $table->id();
 
             // Relasi ke siswa
             $table->foreignId('siswa_id')
                   ->constrained('siswa')
+                  ->onDelete('cascade');
+                  $table->foreignId('kelas_id')
+                  ->constrained('kelas')
                   ->onDelete('cascade');
 
             $table->timestamps();

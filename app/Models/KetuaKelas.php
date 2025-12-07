@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Adminkelas extends Model
+class KetuaKelas extends Model
 {
     use HasFactory;
-
+    protected $table = 'ketua_kelas';
     protected $fillable = [
-        'admin_id',
+        
         'siswa_id',
+        'kelas_id'
     ];
 
    
@@ -19,5 +20,8 @@ class Adminkelas extends Model
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'siswa_id');
+    }
+    public function kelas(){
+        return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 }

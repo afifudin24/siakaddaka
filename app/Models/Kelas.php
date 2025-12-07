@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Kelas extends Model
 {
     use HasFactory;
@@ -16,6 +17,7 @@ class Kelas extends Model
     protected $fillable = [
         'nama_kelas',
         'tingkat',
+        'kode_kelas',
         'jurusan_id',
     ];
 
@@ -36,5 +38,9 @@ public function waliKelas()
     return $this->hasOne(WaliKelas::class, 'kelas_id');
 }
 
+public function ketuaKelas()
+{
+    return $this->hasOne(KetuaKelas::class, 'kelas_id');
 
+}
 }

@@ -23,6 +23,9 @@ return new class extends Migration
        $table->string('foto_profil')
       ->nullable()
       ->default('profile.png'); // default foto profil
+       $table->string('foto_unggulan')
+      ->nullable()
+      ->default('profile.png'); // default foto profil
 
         // reset password token
         $table->string('reset_password_token')->nullable();

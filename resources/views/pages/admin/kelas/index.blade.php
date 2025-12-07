@@ -23,9 +23,9 @@
             <h5 class="card-title mb-0">Data Kelas</h5>
         <div>
 
-            <button data-bs-toggle="modal" data-bs-target="#tambahTahunPelajaran" type="button" class="btn btn-sm btn-primary d-flex align-items-center gap-2"> 
+            <a href="{{route('admin.kelas.create')}}" class="btn btn-sm btn-primary d-flex align-items-center gap-2"> 
                 <iconify-icon icon="lucide:plus" class="text-xl"></iconify-icon> Tambah
-            </button>
+</a>
         </div>
 
       </div>
@@ -48,50 +48,39 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 @endif
+
+<!-- error single -->
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+@endif
          
-     <div class="d-flex justify-content-between mb-3">
 
-    <!-- Checkbox Select All -->
-    <div class="form-check style-check d-flex align-items-center">
-        <input class="form-check-input" type="checkbox" id="checkAll">
-        <label class="form-check-label ms-2">Pilih Semua</label>
-    </div>
+<div class="">
 
-    <!-- Dropdown Aksi Massal -->
-    <div>
-        <div class="dropdown">
-            <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                Aksi
-            </button>
-            <ul class="dropdown-menu">
-                <li>
-                    <a class="dropdown-item text-danger" href="javascript:void(0)" id="deleteSelectedBtn">
-                        Hapus Terpilih
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
 
-</div>
-
-<form id="massActionForm" method="POST" action="{{route('admin.kelas.massdelete')}}">
-    @csrf
-    @method('DELETE')
-
-<table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
+<table class="table basic-border-table mb-0" id="dataTableKelas" style="width:100%">
     <thead>
         <tr>
             <th scope="col">
                 <div class="d-flex align-items-center">
-                    <input class="form-check-input " type="checkbox" id="checkAll2">
+                 
                     <label class="ms-2">NO</label>
                 </div>
             </th>
             <th scope="col">Nama Kelas</th>
-            <th scope="col">Jurusan</th>
-            <th scope="col">Walikelas</th>
-            <th scope="col">Jumlah Siswa</th>
+            <!-- Kode kelas (hilang di mobile) -->
+        <th scope="col" class="d-none d-md-table-cell">Kode Kelas</th>
+
+        <!-- Jurusan (hilang di mobile) -->
+        <th scope="col" class="d-none d-md-table-cell">Jurusan</th>
+
+        <!-- Walikelas (hilang di mobile) -->
+        <th scope="col" class="d-none d-md-table-cell">Walikelas</th>
+            <th scope="col" class="d-none d-md-table-cell">Jumlah Siswa</th>
+            <th scope="col" class="d-table-cell d-md-none"> Siswa</th>
             <th scope="col">Aksi</th>
         </tr>
     </thead>
@@ -100,27 +89,37 @@
         @foreach($kelas as $kls)
         <tr>
             <td>
-             
-                  <input class="form-check-input check-data" type="checkbox" name="selected[]" value="{{ $s->id }}">
+
                 <span class="ms-2">{{ $loop->iteration }}</span>
             </td>
-            <td>{{ $kls->nama }}</td>
-            <td>{{ $kls->jurusan->nama }}</td>
-            <td>{{ $kls->walikelas->guru->nama }}</td>
-            <td>{{ $kls->siswa_count }}</td>
+            <td>{{ $kls->nama_kelas }}</td>
+             <!-- Kolom disembunyikan di mobile -->
+        <td class="d-none d-md-table-cell">{{ $kls->kode_kelas }}</td>
+        <td class="d-none d-md-table-cell">{{ $kls->jurusan->nama_jurusan }}</td>
+        <td class="d-none d-md-table-cell">{{ $kls->walikelas->guru->nama }}</td>
+
+            <td class="d-none d-md-table-cell">{{ $kls->siswa_count }} Siswa</td>
+            <td class="d-table-cell d-md-none">{{ $kls->siswa_count }}</td>
             <td>
-                <a href="javascript:void(0)" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">
+                <a href="{{route('admin.kelas.show', $kls->id)}}" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">
                     <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
                 </a>
-                 <a href="javascript:void(0)" 
-           data-bs-toggle="modal" 
-           data-bs-target="#modalEditS{{ $s->id }}"
+                 <a href="{{route('admin.kelas.edit', $kls->id)}}" 
+          
            class="w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
             <iconify-icon icon="lucide:edit"></iconify-icon>
         </a>
-                <a href="javascript:void(0)" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
-                    <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
-                </a>
+               <form action="{{ route('admin.kelas.destroy', $kls->id) }}" method="POST" class="delete-form d-inline">
+    @csrf
+    @method('DELETE')
+
+    <a href="javascript:void(0)" class="btn-delete w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle 
+        d-inline-flex align-items-center justify-content-center">
+
+        <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
+    </a>
+</form>
+
             </td>
         </tr>
 
@@ -128,18 +127,8 @@
         @endforeach
     </tbody>
 </table>
+</div>
 
-</form>
-
-@foreach($data as $s)
-        {{-- INCLUDE MODAL EDIT UNTUK DATA INI --}}
-@include('pages.admin.semester.partials.modal_edit', ['s' => $s])
-@endforeach
-
-       <!-- start modal Tambah -->
-         @include('pages.admin.semester.partials.modal_tambah', compact('tahun_pelajaran'))
-
-          <!-- end modal tambah -->
         </tbody>
         </table>
       </div>
@@ -185,6 +174,48 @@
             }
         });
     });
+</script>
+<script>
+    $('#dataTableKelas').DataTable({
+          responsive: true,
+    autoWidth: false,
+    // scrollX: true,
+    language: {
+        "emptyTable": "Tidak ada data",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+        "lengthMenu": "Tampilkan _MENU_ data",
+        "loadingRecords": "Memuat...",
+        "processing": "Memproses...",
+        "search": "Cari:",
+        "zeroRecords": "Tidak ditemukan data yang cocok",
+       
+    }
+});
+
+</script>
+
+<script>
+$(document).on('click', '.btn-delete', function(e) {
+    e.preventDefault();
+
+    const form = $(this).closest('form');
+
+    Swal.fire({
+        title: "Yakin ingin menghapus?",
+        text: "Data yang dihapus tidak bisa dikembalikan!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#6c757d",
+        confirmButtonText: "Ya, hapus!",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+});
 </script>
 
   @endpush

@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Guru;
 use App\Models\TahunPelajaran;
+use App\Models\Semester;
 
 class AdminTahunPelajaranController extends Controller
 {
    public function index()
     {
         $tahun_pelajaran = TahunPelajaran::all();
-        return view('pages.admin.tahun_pelajaran.index', compact('tahun_pelajaran'));
+          $data = Semester::with('tahunPelajaran')->get();
+        return view('pages.admin.tahun_pelajaran.index', compact('tahun_pelajaran', 'data'));
     }
 
     public function create()

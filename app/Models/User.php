@@ -21,6 +21,7 @@ class User extends Authenticatable
         'password',
         'role',
         'foto_profil',
+        'foto_unggulan',
         'reset_password_token',
     ];
 

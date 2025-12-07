@@ -48,9 +48,9 @@ class Siswa extends Model
     public function logKehadiranKelas(){
         return $this->hasMany(LogKehadiranKelas::class);
     }
-    public function adminKelas()
+    public function ketuaKelas()
 {
-    return $this->hasMany(Adminkelas::class, 'siswa_id');
+    return $this->hasOne(KetuaKelas::class, 'siswa_id');
 }
 
     public function tagihan(){
