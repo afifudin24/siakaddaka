@@ -21,6 +21,6 @@ class KategoriMapel extends Model
      */
     public function mapel()
     {
-        return $this->hasMany(Mapel::class);
+        return $this->hasMany(Mapel::class, 'kategori_mapel_id');
     }
 }

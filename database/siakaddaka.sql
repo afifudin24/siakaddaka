@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 07 Des 2025 pada 14.02
+-- Host: 127.0.0.1:3306
+-- Waktu pembuatan: 08 Des 2025 pada 10.30
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -119,6 +119,14 @@ CREATE TABLE `data_mengajar` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `data_mengajar`
+--
+
+INSERT INTO `data_mengajar` (`id`, `guru_id`, `kelas_id`, `mapel_id`, `jam_mengajar`, `pertemuan_per_minggu`, `created_at`, `updated_at`) VALUES
+(1, 1, 9, 6, 8, 2, NULL, NULL),
+(2, 1, 8, 6, 8, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -326,6 +334,13 @@ CREATE TABLE `kategori_mapel` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `kategori_mapel`
+--
+
+INSERT INTO `kategori_mapel` (`id`, `nama_kategori_mapel`, `created_at`, `updated_at`) VALUES
+(1, 'Kejuruan', '2025-12-07 23:46:47', '2025-12-08 00:02:25');
+
 -- --------------------------------------------------------
 
 --
@@ -347,7 +362,8 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id`, `tingkat`, `nama_kelas`, `kode_kelas`, `jurusan_id`, `created_at`, `updated_at`) VALUES
-(8, 'XI', '11 TKJ 2', '11TKJ2', 2, '2025-12-06 21:37:03', '2025-12-06 21:37:03');
+(8, 'XI', '11 TKJ 2', '11TKJ2', 2, '2025-12-06 21:37:03', '2025-12-06 21:37:03'),
+(9, 'XII', '12 TKJ 2', '12TKJ2', 2, '2025-12-08 01:58:48', '2025-12-08 01:58:48');
 
 -- --------------------------------------------------------
 
@@ -368,7 +384,8 @@ CREATE TABLE `ketua_kelas` (
 --
 
 INSERT INTO `ketua_kelas` (`id`, `kelas_id`, `siswa_id`, `created_at`, `updated_at`) VALUES
-(3, 8, 2, '2025-12-06 21:37:03', '2025-12-06 21:37:03');
+(3, 8, 2, '2025-12-06 21:37:03', '2025-12-06 21:37:03'),
+(6, 9, 4, '2025-12-08 01:58:48', '2025-12-08 01:58:48');
 
 -- --------------------------------------------------------
 
@@ -509,7 +526,16 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (82, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-04 05:59:06', '2025-12-04 05:59:06'),
 (83, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-06 17:31:54', '2025-12-06 17:31:54'),
 (84, 79, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-07 02:59:49', '2025-12-07 02:59:49'),
-(85, 79, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-07 03:09:56', '2025-12-07 03:09:56');
+(85, 79, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-07 03:09:56', '2025-12-07 03:09:56'),
+(86, 1, 'created', 'Mapel baru dibuat: Kompetensi Kejuruan TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 00:14:36', '2025-12-08 00:14:36'),
+(87, 1, 'created', 'Mapel baru dibuat: Kompetensi Kejuruan TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 00:21:30', '2025-12-08 00:21:30'),
+(88, 1, 'created', 'Mapel baru dibuat: Kompetensi Kejuruan TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 00:26:12', '2025-12-08 00:26:12'),
+(89, 1, 'created', 'Mapel baru dibuat: Kompetensi Kejuruan TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 00:26:47', '2025-12-08 00:26:47'),
+(90, 1, 'updated', 'Mapel diperbarui: Kompetensi Kejuruan TKR (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 00:38:26', '2025-12-08 00:38:26'),
+(91, 1, 'created', 'Mapel baru dibuat: Kompetensi Kejuruan TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 00:38:57', '2025-12-08 00:38:57'),
+(92, 1, 'updated', 'Mapel diperbarui: Kompetensi Kejuruan TKR (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 00:39:36', '2025-12-08 00:39:36'),
+(93, 1, 'deleted', 'Mapel dihapus: Kompetensi Kejuruan TKR (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 00:39:50', '2025-12-08 00:39:50'),
+(94, 1, 'created', 'Mapel baru dibuat: Kompetensi Kejuruan TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 02:05:41', '2025-12-08 02:05:41');
 
 -- --------------------------------------------------------
 
@@ -524,6 +550,13 @@ CREATE TABLE `mapel` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `mapel`
+--
+
+INSERT INTO `mapel` (`id`, `nama_mapel`, `kategori_mapel_id`, `created_at`, `updated_at`) VALUES
+(6, 'Kompetensi Kejuruan TKJ', 1, '2025-12-08 02:05:41', '2025-12-08 02:05:41');
 
 -- --------------------------------------------------------
 
@@ -733,14 +766,14 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id`, `user_id`, `nama`, `nis`, `nisn`, `tgl_lahir`, `no_hp`, `no_hp_ortu`, `alamat`, `kelas_id`, `created_at`, `updated_at`) VALUES
-(1, 7, 'Prof. Archibald Langosh DDS', 'SIS596127', 'NISN940160', '2016-01-09', '1-630-409-4242', '682-218-5763', '7320 Mathias Unions Apt. 966\nLittelville, PA 81555-4696', NULL, '2025-11-21 20:32:59', '2025-12-07 02:41:11'),
+(1, 7, 'Prof. Archibald Langosh DDS', 'SIS596127', 'NISN940160', '2016-01-09', '1-630-409-4242', '682-218-5763', '7320 Mathias Unions Apt. 966\nLittelville, PA 81555-4696', 9, '2025-11-21 20:32:59', '2025-12-08 01:58:48'),
 (2, 8, 'Prof. Mayra Heathcote PhD', 'SIS962960', 'NISN598168', '2025-01-13', '+1-212-315-7308', '1-432-520-8058', '50127 Veum Manor\nRueckerton, VT 38251', 8, '2025-11-21 20:32:59', '2025-12-06 21:37:03'),
 (3, 9, 'Elmore Jones', 'SIS764058', 'NISN490254', '2013-04-23', '(667) 658-8818', '562-642-1872', '50071 Krajcik Row Suite 237\nEast Timmothystad, KS 47179-9101', NULL, '2025-11-21 20:32:59', '2025-12-07 04:36:34'),
-(4, 10, 'Mekhi Raynor', 'SIS287979', 'NISN052471', '2023-11-14', '769.455.0679', '(847) 660-5830', '840 Senger Oval\nElwynhaven, SD 39403', NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
+(4, 10, 'Mekhi Raynor', 'SIS287979', 'NISN052471', '2023-11-14', '769.455.0679', '(847) 660-5830', '840 Senger Oval\nElwynhaven, SD 39403', 9, '2025-11-21 20:32:59', '2025-12-08 01:58:48'),
 (5, 11, 'Kenneth Ward', 'SIS575141', 'NISN967540', '2013-04-18', '847.630.4813', '423.320.4828', '84995 Schumm Street Suite 118\nJuliusburgh, VA 73107', 8, '2025-11-21 20:32:59', '2025-12-06 21:37:03'),
 (6, 12, 'Candice Fay', 'SIS655550', 'NISN546551', '1970-09-19', '561.749.2136', '+1 (407) 561-5686', '8029 Senger Land\nBodeland, WV 57774', 8, '2025-11-21 20:32:59', '2025-12-06 21:37:03'),
 (7, 13, 'Annamarie Ernser I', 'SIS780854', 'NISN616408', '2008-07-31', '919.239.0967', '+1-407-829-3854', '39487 Hodkiewicz Mews\nReillyview, VT 19285', NULL, '2025-11-21 20:32:59', '2025-12-07 02:41:11'),
-(8, 14, 'Rosalind Kertzmann Sr.', 'SIS359559', 'NISN112949', '2008-05-25', '1-478-331-8220', '1-708-783-4326', '743 Elenor Corners\nEast Jennyfer, VT 83097-6807', NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
+(8, 14, 'Rosalind Kertzmann Sr.', 'SIS359559', 'NISN112949', '2008-05-25', '1-478-331-8220', '1-708-783-4326', '743 Elenor Corners\nEast Jennyfer, VT 83097-6807', 9, '2025-11-21 20:32:59', '2025-12-08 01:58:48'),
 (9, 15, 'Kip Willms', 'SIS861225', 'NISN808943', '2025-07-10', '512-458-2024', '+1-539-738-1578', '2187 Josie Forge\nOlsonmouth, IN 82182-5992', NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
 (10, 16, 'Adrien Beier', 'SIS785461', 'NISN677914', '2016-11-01', '1-478-695-9109', '+17019699805', '446 Shanon Hollow Apt. 966\nO\'Connerhaven, WV 09788', NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
 (11, 17, 'Darien Emard I', 'SIS022016', 'NISN844416', '1995-09-15', '+1-630-964-9188', '+1-240-990-2828', '7875 Pierce Crossroad\nVirgiefurt, MD 77399', NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
@@ -1034,7 +1067,8 @@ CREATE TABLE `walikelas` (
 --
 
 INSERT INTO `walikelas` (`id`, `guru_id`, `kelas_id`, `created_at`, `updated_at`) VALUES
-(6, 11, 8, '2025-12-06 21:37:03', '2025-12-06 21:37:03');
+(6, 11, 8, '2025-12-06 21:37:03', '2025-12-06 21:37:03'),
+(7, 3, 9, '2025-12-08 01:58:48', '2025-12-08 01:58:48');
 
 --
 -- Indexes for dumped tables
@@ -1331,7 +1365,7 @@ ALTER TABLE `agenda`
 -- AUTO_INCREMENT untuk tabel `data_mengajar`
 --
 ALTER TABLE `data_mengajar`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_sekolah`
@@ -1391,19 +1425,19 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT untuk tabel `kategori_mapel`
 --
 ALTER TABLE `kategori_mapel`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `ketua_kelas`
 --
 ALTER TABLE `ketua_kelas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `log_kehadiran`
@@ -1421,13 +1455,13 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
 --
 ALTER TABLE `mapel`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `materi`
@@ -1529,7 +1563,7 @@ ALTER TABLE `waka_kurikulum`
 -- AUTO_INCREMENT untuk tabel `walikelas`
 --
 ALTER TABLE `walikelas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

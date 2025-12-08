@@ -14,7 +14,7 @@ use App\Observers\MapelObserver;
 use App\Observers\MateriObserver;
 use App\Models\DataSekolah;
 use Illuminate\Support\Facades\View;
-
+use Illuminate\Pagination\Paginator;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -33,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        //pagination
+        Paginator::useBootstrap();
          User::observe(UserObserver::class);
          DataMengajar::observe(DataMengajarObserver::class);
          Ejurnal::observe(EjurnalObserver::class);

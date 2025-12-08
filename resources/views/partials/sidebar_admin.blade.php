@@ -9,6 +9,7 @@
   </div>
   <div class="sidebar-menu-area">
     <ul class="sidebar-menu" id="sidebar-menu">
+         <li class="sidebar-menu-group-title">Home</li>
       <li class="my-1">
         <a href="/admin/dashboard" class="{{ request()->is('admin/dashboard') ? 'active' : '' }}">
           <iconify-icon icon="mage:home" class="menu-icon"></iconify-icon>

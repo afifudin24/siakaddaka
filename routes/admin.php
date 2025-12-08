@@ -6,6 +6,10 @@ use App\Http\Controllers\Admin\AdminTahunPelajaranController;
 use App\Http\Controllers\Admin\AdminSemesterController;
 use App\Http\Controllers\Admin\AdminKelasController;
 use App\Http\Controllers\Admin\AdminJurusanController;
+use App\Http\Controllers\Admin\AdminMapelController;
+use App\Http\Controllers\Admin\AdminKategoriMapelController;
+use App\Http\Controllers\Admin\AdminGuruController;
+
 
 
 Route::middleware(['auth', 'role:admin'])
@@ -34,5 +38,11 @@ Route::middleware(['auth', 'role:admin'])
 
     // Jurusan
     Route::resource('/jurusan', AdminJurusanController::class);
+    // Mapel
+    Route::resource('/mapel', AdminMapelController::class);
+    // Kategori Mapel
+    Route::resource('/kategori-mapel', AdminKategoriMapelController::class);
+    // guuru
+    Route::resource('/guru', AdminGuruController::class);
 
     });
