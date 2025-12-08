@@ -21,6 +21,7 @@ class GuruFactory extends Factory
             'nip' => $this->faker->unique()->numerify('##########'),
             'nuptk' => $this->faker->unique()->numerify('##########'),
             'email' => $user->email,
+            'jenis_kelamin' => $this->faker->randomElement(['L', 'P']),
             'no_hp' => $this->faker->phoneNumber,
             'tgl_lahir' => $this->faker->date(),
             'alamat' => $this->faker->address,

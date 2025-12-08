@@ -22,7 +22,9 @@
     },
     "autoload": {
         "files": [
-            "app/Helpers/helpers.php"
+            "app/Helpers/helpers.php",
+             "app/Helpers/RandomImageHelper.php",
+            "app/Helpers/ProfileHelper.php"
         ],
         "psr-4": {
             "App\\": "app/",

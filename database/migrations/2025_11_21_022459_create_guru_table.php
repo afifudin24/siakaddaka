@@ -21,6 +21,7 @@ return new class extends Migration
         $table->string('nip')->unique()->nullable();     // NIP bisa kosong (honorer)
         $table->string('nuptk')->unique()->nullable();   // opsional
         $table->string('email')->unique();
+        $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
         $table->string('no_hp')->nullable();
         $table->date('tgl_lahir')->nullable();
 

@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Waktu pembuatan: 08 Des 2025 pada 10.30
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 08 Des 2025 pada 15.34
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -216,6 +216,7 @@ CREATE TABLE `guru` (
   `email` varchar(255) NOT NULL,
   `no_hp` varchar(255) DEFAULT NULL,
   `tgl_lahir` date DEFAULT NULL,
+  `jenis_kelamin` enum('L','P') DEFAULT 'P',
   `alamat` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -225,22 +226,22 @@ CREATE TABLE `guru` (
 -- Dumping data untuk tabel `guru`
 --
 
-INSERT INTO `guru` (`id`, `user_id`, `nama`, `bio`, `nip`, `nuptk`, `email`, `no_hp`, `tgl_lahir`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Mr. Alek Kunze', 'Nam in sint atque ex qui enim a deserunt.', '7205564583', '2749431145', 'bins.thad@example.com', '(351) 262-1976', '2010-08-13', '729 Myrna Place Suite 577\nAleenville, CA 32225', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
-(2, 3, 'Khalil Gerlach', 'Qui optio sunt libero nobis.', '7719806920', '8775296709', 'collier.raquel@example.org', '(212) 390-1435', '1982-07-23', '623 Stark Track\nKleinfort, RI 47459-5955', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
-(3, 4, 'Kimberly Reichel', 'Et modi doloribus cupiditate voluptatibus consequatur non facere.', '4881167998', '9721376793', 'hoppe.george@example.org', '772.336.5162', '1971-04-25', '3327 Stephen Coves\nLake Camilleshire, KY 09335-0684', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
-(4, 5, 'Coby Beahan', 'Sequi impedit qui mollitia fugit doloribus.', '7841974130', '7901528296', 'gvolkman@example.com', '409.715.9141', '1987-03-17', '3202 Bartell Knolls Apt. 408\nSouth Melbahaven, FL 25084', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
-(5, 6, 'Fae Prosacco', 'Similique architecto soluta dignissimos laborum suscipit fuga et.', '5899409039', '4870226365', 'price00@example.net', '+1 (936) 254-2763', '1993-12-24', '802 Boehm Via\nGreenholtstad, WI 69882', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
-(6, 28, 'Ryann Heller PhD', 'Sed harum iste dolorem totam ullam.', '1688961728', '6240731225', 'njacobi@example.com', '930.873.5699', '1985-03-31', '697 Keon Haven\nJeromechester, SD 17745-5660', '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
-(7, 29, 'Cristobal Kling', 'Qui assumenda fugit pariatur ex.', '1180070116', '8852470181', 'schultz.carolyne@example.org', '1-803-413-5366', '2005-10-17', '146 Jed Keys Suite 848\nAlbinaton, WA 82982', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
-(8, 30, 'Kayla Jacobs', 'Veniam omnis voluptas repudiandae dolorum aliquid.', '4962156306', '8968984254', 'akuhlman@example.org', '(534) 976-9686', '2025-05-01', '263 Tromp Cape\nDooleyfurt, NJ 12415-2578', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
-(9, 31, 'Wanda Simonis I', 'Laudantium distinctio fugiat accusantium reiciendis sapiente ut.', '4371981429', '5497741093', 'sarai.walter@example.com', '+1 (925) 807-7968', '1998-12-31', '604 Schultz Meadow\nNew Orlo, MA 26967', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
-(10, 32, 'Dr. Ariane Bosco Jr.', 'Vitae possimus facilis dignissimos temporibus vel ea.', '7200947223', '8855350180', 'xwintheiser@example.org', '(816) 444-2392', '2012-09-01', '58594 Auer Trafficway Suite 915\nWolfmouth, NE 97638-9621', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
-(11, 54, 'Aniya Swift', 'Nemo et ut qui corrupti.', '8355274213', '8892781934', 'ibernier@example.net', '1-757-371-6151', '2009-02-15', '9368 Dicki Wells Suite 041\nNew Teresabury, KY 15632', '2025-11-21 20:36:29', '2025-11-21 20:36:29'),
-(12, 55, 'Lukas Douglas', 'Nulla est est ex accusamus.', '5020137654', '0764997175', 'pouros.santa@example.org', '251.903.8594', '1991-05-18', '4320 King Center\nPort Jasenside, NJ 98536-5099', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
-(13, 56, 'Landen Hegmann', 'Ut non temporibus dignissimos est fugiat commodi.', '7862062173', '6513709001', 'reilly.wehner@example.org', '+1-252-699-9147', '2014-07-30', '1515 Maximilian Points\nEmardshire, WV 25895', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
-(14, 57, 'Greg Crist', 'Distinctio quia mollitia modi eveniet.', '1147338264', '3893018613', 'annalise.stokes@example.net', '(678) 540-1260', '2024-11-12', '370 Nathaniel Way Suite 672\nBergeland, OK 09518', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
-(15, 58, 'Prof. Elinor Hudson', 'Nostrum rerum nobis et quia.', '5880948654', '9481109539', 'ucarroll@example.org', '1-351-867-7771', '1988-04-02', '14951 Prohaska Summit Apt. 049\nWest Kattieview, PA 22398-0044', '2025-11-21 20:36:30', '2025-11-21 20:36:30');
+INSERT INTO `guru` (`id`, `user_id`, `nama`, `bio`, `nip`, `nuptk`, `email`, `no_hp`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Mr. Alek Kunze', 'Nam in sint atque ex qui enim a deserunt.', '7205564583', '2749431145', 'bins.thad@example.com', '(351) 262-1976', '2010-08-13', 'P', '729 Myrna Place Suite 577\nAleenville, CA 32225', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
+(2, 3, 'Khalil Gerlach', 'Qui optio sunt libero nobis.', '7719806920', '8775296709', 'collier.raquel@example.org', '(212) 390-1435', '1982-07-23', 'L', '623 Stark Track\nKleinfort, RI 47459-5955', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
+(3, 4, 'Kimberly Reichel', 'Et modi doloribus cupiditate voluptatibus consequatur non facere.', '4881167998', '9721376793', 'hoppe.george@example.org', '772.336.5162', '1971-04-25', 'P', '3327 Stephen Coves\nLake Camilleshire, KY 09335-0684', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
+(4, 5, 'Coby Beahan', 'Sequi impedit qui mollitia fugit doloribus.', '7841974130', '7901528296', 'gvolkman@example.com', '409.715.9141', '1987-03-17', '', '3202 Bartell Knolls Apt. 408\nSouth Melbahaven, FL 25084', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
+(5, 6, 'Fae Prosacco', 'Similique architecto soluta dignissimos laborum suscipit fuga et.', '5899409039', '4870226365', 'price00@example.net', '+1 (936) 254-2763', '1993-12-24', '', '802 Boehm Via\nGreenholtstad, WI 69882', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
+(6, 28, 'Ryann Heller PhD', 'Sed harum iste dolorem totam ullam.', '1688961728', '6240731225', 'njacobi@example.com', '930.873.5699', '1985-03-31', '', '697 Keon Haven\nJeromechester, SD 17745-5660', '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
+(7, 29, 'Cristobal Kling', 'Qui assumenda fugit pariatur ex.', '1180070116', '8852470181', 'schultz.carolyne@example.org', '1-803-413-5366', '2005-10-17', '', '146 Jed Keys Suite 848\nAlbinaton, WA 82982', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
+(8, 30, 'Kayla Jacobs', 'Veniam omnis voluptas repudiandae dolorum aliquid.', '4962156306', '8968984254', 'akuhlman@example.org', '(534) 976-9686', '2025-05-01', '', '263 Tromp Cape\nDooleyfurt, NJ 12415-2578', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
+(9, 31, 'Wanda Simonis I', 'Laudantium distinctio fugiat accusantium reiciendis sapiente ut.', '4371981429', '5497741093', 'sarai.walter@example.com', '+1 (925) 807-7968', '1998-12-31', '', '604 Schultz Meadow\nNew Orlo, MA 26967', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
+(10, 32, 'Dr. Ariane Bosco Jr.', 'Vitae possimus facilis dignissimos temporibus vel ea.', '7200947223', '8855350180', 'xwintheiser@example.org', '(816) 444-2392', '2012-09-01', '', '58594 Auer Trafficway Suite 915\nWolfmouth, NE 97638-9621', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
+(11, 54, 'Aniya Swift', 'Nemo et ut qui corrupti.', '8355274213', '8892781934', 'ibernier@example.net', '1-757-371-6151', '2009-02-15', '', '9368 Dicki Wells Suite 041\nNew Teresabury, KY 15632', '2025-11-21 20:36:29', '2025-11-21 20:36:29'),
+(12, 55, 'Lukas Douglas', 'Nulla est est ex accusamus.', '5020137654', '0764997175', 'pouros.santa@example.org', '251.903.8594', '1991-05-18', '', '4320 King Center\nPort Jasenside, NJ 98536-5099', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
+(13, 56, 'Landen Hegmann', 'Ut non temporibus dignissimos est fugiat commodi.', '7862062173', '6513709001', 'reilly.wehner@example.org', '+1-252-699-9147', '2014-07-30', '', '1515 Maximilian Points\nEmardshire, WV 25895', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
+(14, 57, 'Greg Crist', 'Distinctio quia mollitia modi eveniet.', '1147338264', '3893018613', 'annalise.stokes@example.net', '(678) 540-1260', '2024-11-12', '', '370 Nathaniel Way Suite 672\nBergeland, OK 09518', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
+(15, 58, 'Prof. Elinor Hudson', 'Nostrum rerum nobis et quia.', '5880948654', '9481109539', 'ucarroll@example.org', '1-351-867-7771', '1988-04-02', '', '14951 Prohaska Summit Apt. 049\nWest Kattieview, PA 22398-0044', '2025-11-21 20:36:30', '2025-11-21 20:36:30');
 
 -- --------------------------------------------------------
 
@@ -535,7 +536,8 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (91, 1, 'created', 'Mapel baru dibuat: Kompetensi Kejuruan TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 00:38:57', '2025-12-08 00:38:57'),
 (92, 1, 'updated', 'Mapel diperbarui: Kompetensi Kejuruan TKR (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 00:39:36', '2025-12-08 00:39:36'),
 (93, 1, 'deleted', 'Mapel dihapus: Kompetensi Kejuruan TKR (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 00:39:50', '2025-12-08 00:39:50'),
-(94, 1, 'created', 'Mapel baru dibuat: Kompetensi Kejuruan TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 02:05:41', '2025-12-08 02:05:41');
+(94, 1, 'created', 'Mapel baru dibuat: Kompetensi Kejuruan TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 02:05:41', '2025-12-08 02:05:41'),
+(95, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 06:37:45', '2025-12-08 06:37:45');
 
 -- --------------------------------------------------------
 
@@ -1455,7 +1457,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`

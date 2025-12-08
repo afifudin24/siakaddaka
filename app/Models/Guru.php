@@ -19,6 +19,7 @@ class Guru extends Model
         'bio',
         'nip',
         'nuptk',
+        'jenis_kelamin',
         'email',
         'no_hp',
         'tgl_lahir',

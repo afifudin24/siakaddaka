@@ -20,7 +20,7 @@
         <div class="card h-100 p-0 radius-12">
             <div class="card-header border-bottom bg-base py-16 px-24 d-flex align-items-center flex-wrap gap-3 justify-content-between">
                 <div class="d-flex align-items-center flex-wrap gap-3">
-                    <span class="text-md fw-medium text-secondary-light mb-0">Show</span>
+                    <!-- <span class="text-md fw-medium text-secondary-light mb-0">Show</span> -->
                   <form id="perPageForm" method="GET">
     <select name="paginate" class="form-select form-select-sm w-auto ps-12 py-6 radius-12 h-40-px"
         onchange="document.getElementById('perPageForm').submit();">
@@ -44,10 +44,17 @@
     <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
 </form>
                 </div>
-                <a href="view-profile.html" class="btn btn-primary text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2"> 
+                <div class="d-flex align-items-center  gap-2">
+                  <a href="view-profile.html" class="btn btn-primary text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2"> 
                     <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
-                    Add New User
+                    Tambah Guru
                 </a>
+                <a href="view-profile.html" class="btn btn-success text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2"> 
+                    <iconify-icon icon="ic:baseline-download" class="icon text-xl line-height-1"></iconify-icon>
+                   Import Guru
+                </a>
+                </div>
+              
             </div>
             <div class="card-body p-24">
                 <div class="row gy-4">
@@ -56,10 +63,26 @@
                    
                     <div class="col-xxl-3 col-md-4 user-grid-card ">
                         <div class="position-relative border radius-16 overflow-hidden">
-                            <img src="{{ asset('assets/images/user-grid/user-grid-bg1.png')}}" alt="" class="w-100 object-fit-cover">
-                            
+                          @php
+    $foto = $gr->user->foto_unggulan;
+
+    $validFoto = $foto &&
+                 $foto !== "profile.png" &&
+                 Storage::disk('public')->exists($foto);
+@endphp
+
+@if ($validFoto)
+    <img src="{{ asset('storage/'.$foto) }}" class="w-100 object-fit-cover" alt="">
+@else
+@php
+    $img = random_featured_image();
+@endphp
+
+<img src="{{ asset('assets/images/feature/' . $img) }}" class="w-100 object-fit-cover" alt="">
+  
+@endif
                             <div class="dropdown position-absolute top-0 end-0 me-16 mt-16">
-                                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="bg-white-gradient-light w-32-px h-32-px radius-8 border border-light-white d-flex justify-content-center align-items-center text-white"> 
+                                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="bg-neutral-700 w-32-px h-32-px radius-8 border border-light-white d-flex justify-content-center align-items-center text-white"> 
                                   <iconify-icon icon="entypo:dots-three-vertical" class="icon "></iconify-icon> 
                                 </button>
                                 <ul class="dropdown-menu p-12 border bg-base shadow">
@@ -77,7 +100,9 @@
                             </div>
                             
                             <div class="ps-16 pb-16 pe-16 text-center mt--50">
-                                <img src="{{ asset('assets/images/user-grid/user-grid-img1.png')}}" alt="" class="border br-white border-width-2-px w-100-px h-100-px rounded-circle object-fit-cover">
+                                <!-- <img src="{{ asset('assets/images/user-grid/user-grid-img1.png')}}" alt="" class="border br-white border-width-2-px w-100-px h-100-px rounded-circle object-fit-cover"> -->
+                                <img src="{{ foto_profil($gr) }}" class="border br-white border-width-2-px w-100-px h-100-px rounded-circle object-fit-cover">
+                             
                                 <h6 class="text-lg mb-0 mt-4">{{ $gr->nama }}</h6>
                                 <span class="text-secondary-light mb-16">{{ $gr->email }}</span>
                                 <div>
