@@ -669,6 +669,8 @@
             </div>
         </div>
 
+       
+ 
         <div class="col-xxl-4">
             <div class="card h-100">
                 <div class="card-header">
@@ -705,7 +707,22 @@
 
   </div>
 
+
+
   @push('scripts')
+    @if(session('login_success'))
+<script>
+    console.log('{{ session("login_success") }}');
+    Swal.fire({
+        title: 'Berhasil Login!',
+        text: 'Selamat datang {{auth()->user()->nama}}',
+        icon: 'success',
+        timer: 3000,
+        showConfirmButton: false
+    });
+</script>
+@endif
+   
     <script>
           function createChartTwo(chartId, color1, color2) {
         var options = {

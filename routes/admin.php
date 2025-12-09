@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminJurusanController;
 use App\Http\Controllers\Admin\AdminMapelController;
 use App\Http\Controllers\Admin\AdminKategoriMapelController;
 use App\Http\Controllers\Admin\AdminGuruController;
+use App\Http\Controllers\Admin\AdminSiswaController;
 
 
 
@@ -42,7 +43,12 @@ Route::middleware(['auth', 'role:admin'])
     Route::resource('/mapel', AdminMapelController::class);
     // Kategori Mapel
     Route::resource('/kategori-mapel', AdminKategoriMapelController::class);
-    // guuru
+    // guru
     Route::resource('/guru', AdminGuruController::class);
-
+    // siswa
+    // Route::post('/siswa/aksi/massaction', [AdminSiswaController::class, 'massaction'])->name('siswa.massaction');
+    Route::delete('/siswa/aksi/massdelete', [AdminSiswaController::class, 'massdelet'])->name('siswa.massdelete');
+    Route::post('/siswa/aksi/massleave', [AdminSiswaController::class, 'massleave'])->name('siswa.massleave');
+    Route::resource('/siswa', AdminSiswaController::class);
+    
     });

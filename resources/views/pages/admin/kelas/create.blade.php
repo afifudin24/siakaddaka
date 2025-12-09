@@ -5,7 +5,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h5>Tambah Kelas</h5>
-        <a href="{{ route('admin.kelas.index') }}" class="btn btn-danger d-flex align-items-center gap-2">
+        <a href="{{ route('admin.kelas.index') }}" class="btn btn-danger btn-sm d-flex align-items-center gap-2">
              <iconify-icon icon="lucide:arrow-left" class="text-xl"></iconify-icon> Kembali
         </a>
     </div>
@@ -15,7 +15,7 @@
         
       <div class="card basic-data-table">
       <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="card-title mb-0">Data Kelas</h5>
+            <h5 class="card-title mb-0">Tambah Kelas</h5>
         <div>
 
             <button type="submit" class="btn btn-sm btn-primary d-flex align-items-center gap-2"> 
@@ -175,13 +175,23 @@ $(document).ready(function() {
         //   closeOnSelect : false,
            placeholder: "Pilih Wali Kelas",
             width: '100%',
+             language: {
+        noResults: function () {
+            return "Tidak ada data";
+        }
+    }
             
     });
     $('#ketua_kelas').select2({
           theme: "bootstrap-5",
         //   closeOnSelect : false,
-           placeholder: "Pilih Wali Kelas",
+           placeholder: "Pilih Ketua Kelas",
             width: '100%',
+             language: {
+        noResults: function () {
+            return "Tidak ada data";
+        }
+    }
             
     });
 });

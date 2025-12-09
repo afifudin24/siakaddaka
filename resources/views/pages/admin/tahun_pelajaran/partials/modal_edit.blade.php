@@ -2,11 +2,12 @@
 <div class="modal fade" id="modalEditTP{{ $tp->id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-
-            <div class="modal-header">
-                <h6 class="modal-title">Edit Tahun Pelajaran</h6>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
+ <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Edit Tahun Pelajaran</h5>
+                        <div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                    </div>
 
             <form action="/admin/tahun-pelajaran/{{ $tp->id }}" method="POST">
                 @csrf

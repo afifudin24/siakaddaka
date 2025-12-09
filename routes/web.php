@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\DashboardController;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +16,12 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', [LandingPageController::class, 'index'])->name('home');
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect('/dashboard');
+    }
+    return app(\App\Http\Controllers\LandingPageController::class)->index();
+})->name('home');
 
 // Guest
 Route::get('/login', [AuthController::class, 'login'])
@@ -26,7 +31,7 @@ Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('register.post');
 Route::get('/lupa-password', [AuthController::class, 'lupaPassword'])->name('lupa-password');
-
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 

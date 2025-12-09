@@ -111,5 +111,22 @@
   let table = new DataTable('#dataTable');
   let tableoke = new DataTable('#dataTableSemester');
 </script>
+<script>
+document.getElementById('btnLogout').addEventListener('click', function() {
+    Swal.fire({
+        title: "Yakin ingin logout?",
+        text: "Anda akan keluar dari sesi ini.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Ya, Logout",
+        confirmButtonColor: "#d33",
+        cancelButtonText: "Batal"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('logoutForm').submit();
+        }
+    });
+});
+</script>
 </body>
 </html>

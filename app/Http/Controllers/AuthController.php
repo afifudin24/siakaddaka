@@ -35,9 +35,29 @@ class AuthController extends Controller
         $remember = $request->has('remember');
 
         // Attempt login + remember me
-        if (Auth::attempt($credentials, $remember)) {
-            return redirect()->intended('/dashboard');
+       if (Auth::attempt($credentials, $remember)) {
+         $user = Auth::user();
+     
+        switch ($user->role) {
+            case 'admin':
+              
+            return redirect('admin/dashboard')->with('login_success', true);
+
+            case 'guru':
+               return redirect('/guru/dashboard')->with('login_success', true);
+
+            case 'siswa':
+              return  redirect('/siswa/dashboard');
+
+            case 'staff':
+               return redirect('/staff/dashboard');
+
+            default:
+                abort(403, 'Akses tidak diizinkan');
         }
+    
+}
+
 
         return back()->withErrors([
             'email' => 'Email/Username atau password salah.',

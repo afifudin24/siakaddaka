@@ -555,7 +555,7 @@ body.dark-mode .navbar-toggler-icon {
     <section id="beranda" class="hero-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 fade-in">
+                <div class="col-lg-6 fade-in mt-5">
                     <div class="hero-content">
                         <h1>Sistem Akademik SMK Terpadu & Modern</h1>
                         @if($datasekolah && $datasekolah->nama_sekolah)

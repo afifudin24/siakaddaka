@@ -15699,3 +15699,41 @@ td.fc-header-center {
   border-radius: 3px !important;
 } */
 }
+
+
+.select2-container--bootstrap-5.select2-container--focus .select2-selection,
+.select2-container--bootstrap-5.select2-container--open .select2-selection {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Kadang wrapper-nya tetap nambah shadow dari bootstrap */
+.select2-container--bootstrap-5 .select2-selection {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+
+
+@media (max-width: 768px) {
+    div.dataTables_wrapper div.dataTables_filter,
+    div.dataTables_wrapper div.dataTables_length {
+        text-align: center !important;
+        width: 100% !important;
+    }
+
+    /* Biar elemen di dalam ikut ke tengah */
+  .basic-data-table .dt-layout-row .dt-search{
+    justify-content: center !important;
+  }
+  .basic-data-table .dt-layout-row .dt-length{
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+    /* Input search ke tengah */
+    div.dataTables_wrapper div.dataTables_filter input {
+        margin-left: 0 !important;
+        text-align: center;
+    }
+}
