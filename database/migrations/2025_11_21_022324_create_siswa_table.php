@@ -26,6 +26,7 @@ return new class extends Migration
         $table->string('no_hp_ortu')->nullable(); // Nomor HP orang tua
 
         $table->string('alamat')->nullable();
+        $table->string('jenis_kelamin')->enum('L', 'P')->nullable()->default('L');
 
         // Relasi ke tabel kelas
         $table->foreignId('kelas_id')

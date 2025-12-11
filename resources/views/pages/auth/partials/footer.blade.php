@@ -28,6 +28,9 @@
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script src="{{ asset('assets/js/ajax/auth.js') }}"></script>
 
+{{-- swal --}}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
       // ================== Password Show Hide Js Start ==========
       function initializePasswordToggle(toggleSelector) {
@@ -50,6 +53,8 @@
         $(this).closest('.alert').addClass('d-none')
     }); 
 </script>
+
+@stack('scripts')
 
 </body>
 </html>

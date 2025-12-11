@@ -21,7 +21,8 @@
 
        Request::is('admin/mapel*') ||
        Request::is('admin/guru*') ||
-       Request::is('admin/kelas*')
+       Request::is('admin/kelas*') ||
+       Request::is('admin/siswa*')
        ? 'active open' : '' }}">
 
     <a href="javascript:void(0)">

@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Imports\SiswaImport;
+use App\Exports\SiswaTemplateExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Models\Admin;
 use App\Models\Kelas;
 use App\Models\Siswa;
@@ -11,37 +15,36 @@ use App\Models\Guru;
 
 class AdminSiswaController extends Controller
  {
-    public function index( Request $request )
- {
-        // Ambil semua kelas ( untuk dropdown filter )
-        $kelas = Kelas::all();
-        // Query awal
-        $query = Siswa::with( 'kelas' );
-        // Jika ada filter kelas
-        if ( $request->kelas_id ) {
-            // Tampilkan siswa tanpa kelas
-            if ( $request->kelas_id === 'null' ) {
-                $query->whereNull( 'kelas_id' );
-            }
-            // Jika 'all' → jangan beri filter kelas sama sekali
-            else if ( $request->kelas_id === 'all' ) {
-                // Tidak memberikan where → tampilkan semua siswa
-            }
+    public function index(Request $request)
+{
+    $kelas = Kelas::all();
 
-            // Filter sesuai kelas tertentu
-            else {
-                $query->where( 'kelas_id', $request->kelas_id );
-            }
+    $query = Siswa::with('kelas');
 
-        }
-
-        // Ambil data siswa ( filtered atau all )
-        // sort by asc nama
-
-        $siswa = $query->orderBy('nama')->get();
-
-        return view( 'pages.admin.siswa.index', compact( 'siswa', 'kelas' ) );
+    // FILTER SEARCH
+    if ($request->search) {
+        $query->where('nama', 'like', '%' . $request->search . '%');
     }
+
+    // FILTER KELAS
+    if ($request->kelas_id) {
+        if ($request->kelas_id === 'null') {
+            $query->whereNull('kelas_id');
+        } elseif ($request->kelas_id !== 'all') {
+            $query->where('kelas_id', $request->kelas_id);
+        }
+    }
+
+    // PAGINATION
+    $perPage = $request->paginate ?? 10;
+
+    $siswa = $query->orderBy('nama')
+                   ->paginate($perPage)
+                   ->appends($request->query());
+
+    return view('pages.admin.siswa.index', compact('siswa', 'kelas'));
+}
+
 
     public function destroy( $id ) {
         $siswa = Siswa::findOrFail( $id );
@@ -73,5 +76,52 @@ class AdminSiswaController extends Controller
     
         return redirect()->back()->with('success', 'Berhasil mengeluarkan dari kelas.');
     }
+
+    public function importView() {
+        return view('pages.admin.siswa.import');
+    }
+    public function downloadTemplate()
+{
+    return Excel::download(new SiswaTemplateExport, 'Template-Siswa.xlsx');
+}
+
+public function previewExcel(Request $request)
+{
+    $request->validate([
+        'file' => 'required|mimes:xls,xlsx'
+    ]);
+
+    $data = Excel::toArray([], $request->file('file'));
+
+    // Ambil sheet pertama
+    $rows = $data[0];
+
+    return response()->json([
+        'status' => 'success',
+        'rows' => $rows
+    ]);
+}
+
+public function importExcel(Request $request)
+{
+    $request->validate([
+        'file' => 'required|mimes:xlsx,xls'
+    ]);
+
+    try {
+        Excel::import(new SiswaImport, $request->file('file'));
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Import data siswa berhasil!'
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+        ], 500);
+    }
+}
+
 
 }

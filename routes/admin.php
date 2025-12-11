@@ -47,8 +47,11 @@ Route::middleware(['auth', 'role:admin'])
     Route::resource('/guru', AdminGuruController::class);
     // siswa
     // Route::post('/siswa/aksi/massaction', [AdminSiswaController::class, 'massaction'])->name('siswa.massaction');
-    Route::delete('/siswa/aksi/massdelete', [AdminSiswaController::class, 'massdelet'])->name('siswa.massdelete');
+    Route::post('/siswa/aksi/preview', [AdminSiswaController::class, 'previewExcel'])->name('admin.siswa.preview');
+    Route::delete('/siswa/aksi/massdelete', [AdminSiswaController::class, 'massdelete'])->name('siswa.massdelete');
+    Route::get('/siswa/aksi/importview', [AdminSiswaController::class, 'importView'])->name('siswa.importview');
     Route::post('/siswa/aksi/massleave', [AdminSiswaController::class, 'massleave'])->name('siswa.massleave');
+    Route::get('/siswa/template', [AdminSiswaController::class, 'downloadTemplate'])->name('siswa.template');
+    Route::post('/siswa/aksi/import', [AdminSiswaController::class, 'importExcel'])->name('siswa.import');
     Route::resource('/siswa', AdminSiswaController::class);
-    
     });

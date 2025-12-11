@@ -19,6 +19,7 @@ class User extends Authenticatable
         'nama',
         'email',
         'password',
+        'password_text',
         'role',
         'foto_profil',
         'foto_unggulan',

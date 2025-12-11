@@ -45,7 +45,7 @@
 </form>
                 </div>
                 <div class="d-flex align-items-center  gap-2">
-                  <a href="view-profile.html" class="btn btn-primary text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2"> 
+                  <a href="{{ route('admin.guru.create') }}" class="btn btn-primary text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2"> 
                     <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                     Tambah Guru
                 </a>
@@ -57,6 +57,33 @@
               
             </div>
             <div class="card-body p-24">
+                     @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Sukses!</strong> {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+@endif
+
+@if ($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Terjadi kesalahan!</strong>
+        <ul class="mt-2 mb-0 ps-3">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+@endif
+
+<!-- error single -->
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+@endif
+         
                 <div class="row gy-4">
                     @foreach($guru as $key => $gr)
                         
@@ -120,7 +147,7 @@
 @if ($groups->isEmpty())
     <tr>
         
-        <td colspan="3" class="text-center">
+        <td colspan="3" class="text-cen ter">
             Tidak ada data mengajar
         </td>
     </tr>

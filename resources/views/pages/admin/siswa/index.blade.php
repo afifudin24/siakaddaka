@@ -29,7 +29,7 @@
                             <span class="d-none d-md-inline">Tambah</span>
                         </a>
 
-                        <a href="view-profile.html"
+                        <a href="{{ route('admin.siswa.importview') }}"
                             class="btn btn-success text-sm btn-sm p-1 radius-4 d-flex align-items-center gap-2">
                             <iconify-icon icon="ic:baseline-download" class="text-xl"></iconify-icon>
                             <span class="d-none d-md-inline">Import Siswa</span>
@@ -118,28 +118,40 @@
                             </div>
 
                         </div>
+                        <div class="d-flex gap-2">
                                    <form id="perPageForm" method="GET">
+
+    {{-- Pertahankan parameter search --}}
+    <input type="hidden" name="search" value="{{ request('search') }}">
+
     <select name="paginate" class="form-select form-select-sm w-auto ps-12 py-6 radius-12 h-40-px"
         onchange="document.getElementById('perPageForm').submit();">
-        
+
         @for ($i = 10; $i <= 100; $i += 10)
             <option value="{{ $i }}" {{ request('paginate', 10) == $i ? 'selected' : '' }}>
                 {{ $i }}
             </option>
         @endfor
     </select>
+
 </form>
-                   <form method="GET" class="navbar-search">
+                  <form method="GET" class="navbar-search d-flex gap-2 align-items-center">
+
     {{-- Pertahankan paginate saat melakukan search --}}
     <input type="hidden" name="paginate" value="{{ request('paginate', 10) }}">
 
     <input type="text" class="bg-base h-40-px w-auto" 
            name="search" 
-           placeholder="Search"
+           placeholder="Cari siswa"
            value="{{ request('search') }}">
-           
-    <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
+ <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
+    <button class="btn btn-primary  btn-sm h-40-px px-12 radius-12">
+        <iconify-icon icon="ion:search-outline"></iconify-icon>
+    </button>
+
 </form>
+</div>
+
                     
 
                   <form id="massActionForm" method="POST">
@@ -265,7 +277,19 @@
                         </table>
                     </form>
                 </div>
+   <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mt-24">
+                 <span>
+    Showing 
+    {{ $siswa->firstItem() ?? 0 }} 
+    to 
+    {{ $siswa->lastItem() ?? 0 }} 
+    of 
+    {{ $siswa->total() }} 
+    entries
+</span>
 
+                    {{ $siswa->links() }}
+                </div>
             </div>
         </div>
     </div>
