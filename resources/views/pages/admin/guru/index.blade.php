@@ -49,7 +49,7 @@
                     <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                     Tambah Guru
                 </a>
-                <a href="view-profile.html" class="btn btn-success text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2"> 
+                <a href="{{ route('admin.guru.importview') }}" class="btn btn-success text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2"> 
                     <iconify-icon icon="ic:baseline-download" class="icon text-xl line-height-1"></iconify-icon>
                    Import Guru
                 </a>
@@ -114,14 +114,22 @@
                                 </button>
                                 <ul class="dropdown-menu p-12 border bg-base shadow">
                                     <li>
-                                        <a class="dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10" href="#">
+                                        <a class="dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10" href="{{ route('admin.guru.edit', $gr->id) }}">
                                             Profil  <iconify-icon icon="solar:user-linear" class="icon text-xl line-height-1"></iconify-icon>
                                         </a>
                                     </li>
                                     <li>
-                                        <button type="button" class="delete-btn dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-danger-100 text-hover-danger-600 d-flex align-items-center gap-10">
-                                            Hapus  <iconify-icon icon="solar:trash-bin-trash-linear" class="icon text-xl line-height-1"></iconify-icon>
-                                        </button>
+                                       <button 
+    type="button"
+    class="delete-btn dropdown-item px-16 py-8 rounded 
+           text-secondary-light bg-hover-danger-100 
+           text-hover-danger-600 d-flex align-items-center gap-10"
+    data-id="{{ $gr->id }}"
+>
+    Hapus
+    <iconify-icon icon="solar:trash-bin-trash-linear"
+        class="icon text-xl line-height-1"></iconify-icon>
+</button>
                                     </li>
                                 </ul>
                             </div>
@@ -218,6 +226,75 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+   <script>
+document.addEventListener('click', function (e) {
+
+    if (e.target.closest('.delete-btn')) {
+
+        let btn = e.target.closest('.delete-btn');
+        let guruId = btn.dataset.id;
+        let token = document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute('content');
+
+        Swal.fire({
+            title: 'Yakin ingin menghapus?',
+            text: 'Data guru akan dihapus permanen',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                // 🔄 LOADING
+                Swal.fire({
+                    title: 'Menghapus data...',
+                    html: 'Mohon tunggu sebentar',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                // AJAX DELETE
+                $.ajax({
+                    url: "{{ route('admin.guru.hapus') }}",
+                    type: "POST",
+                    data: {
+                        _token: token,
+                        id: guruId
+                    },
+                    success: function (res) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: res.message
+                        }).then(() => {
+                            location.reload(); // atau remove row
+                        });
+                    },
+                    error: function (xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: xhr.responseJSON?.message || 'Terjadi kesalahan'
+                        });
+                    }
+                });
+            }
+        });
+    }
+});
+</script>
+
+
+    @endpush
   
    
 @endsection

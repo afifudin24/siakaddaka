@@ -45,13 +45,20 @@ Route::middleware(['auth', 'role:admin'])
     Route::resource('/kategori-mapel', AdminKategoriMapelController::class);
     // guru
     Route::resource('/guru', AdminGuruController::class);
+       Route::get('/guru/aksi/importview', [AdminGuruController::class, 'importView'])->name('guru.importview');
+     Route::get('/guru/aksi/template', [AdminGuruController::class, 'downloadTemplate'])->name('guru.template');
+      Route::post('/guru/aksi/import', [AdminGuruController::class, 'importGuru'])->name('guru.import');
+       Route::post('/guru/aksi/preview', [AdminSiswaController::class, 'previewExcel'])->name('admin.guru.preview');
+       Route::post('/guru/aksi/hapus', [AdminGuruController::class, 'hapus'])->name('guru.hapus');
     // siswa
     // Route::post('/siswa/aksi/massaction', [AdminSiswaController::class, 'massaction'])->name('siswa.massaction');
     Route::post('/siswa/aksi/preview', [AdminSiswaController::class, 'previewExcel'])->name('admin.siswa.preview');
     Route::delete('/siswa/aksi/massdelete', [AdminSiswaController::class, 'massdelete'])->name('siswa.massdelete');
     Route::get('/siswa/aksi/importview', [AdminSiswaController::class, 'importView'])->name('siswa.importview');
     Route::post('/siswa/aksi/massleave', [AdminSiswaController::class, 'massleave'])->name('siswa.massleave');
-    Route::get('/siswa/template', [AdminSiswaController::class, 'downloadTemplate'])->name('siswa.template');
+    Route::get('/siswa/aksi/template', [AdminSiswaController::class, 'downloadTemplate'])->name('siswa.template');
     Route::post('/siswa/aksi/import', [AdminSiswaController::class, 'importExcel'])->name('siswa.import');
     Route::resource('/siswa', AdminSiswaController::class);
+
+    
     });

@@ -120,6 +120,8 @@
                 title: 'Gagal Login',
                 text: err.responseJSON?.message || 'Terjadi kesalahan.',
             });
+              $('#signInBtn').prop('disabled', false);
+    $('#signInBtn').text('Sign In');
         }
     });
 });
