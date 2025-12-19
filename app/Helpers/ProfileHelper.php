@@ -7,7 +7,11 @@ if (!function_exists('foto_profil')) {
     function foto_profil($user)
     {
         // Ambil foto dari database
-        $foto = $user->user->foto_profil || $guru->user->foto !== 'profile.png' ?? null;
+      $foto = (!empty($user->user->foto_profil) && $user->user->foto_profil !== 'profile.png')
+    ? $user->user->foto_profil
+    : null;
+
+     
 
         // Jika foto ada dan file benar-benar exist di storage
         if ($foto && Storage::disk('public')->exists($foto)) {

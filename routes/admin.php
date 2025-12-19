@@ -14,13 +14,11 @@ use App\Http\Controllers\Admin\AdminSiswaController;
 
 
 Route::middleware(['auth', 'role:admin'])
-   
     ->name('admin.')
     ->group(function () {
         // dashboard
         Route::get('dashboard', [AdminDashboardController::class, 'index'])
             ->name('dashboard');
-        
         // Tambahkan route lain khusus admin
         // Route::resource('/users', \App\Http\Controllers\Admin\UserController::class);
 
@@ -50,6 +48,10 @@ Route::middleware(['auth', 'role:admin'])
       Route::post('/guru/aksi/import', [AdminGuruController::class, 'importGuru'])->name('guru.import');
        Route::post('/guru/aksi/preview', [AdminSiswaController::class, 'previewExcel'])->name('admin.guru.preview');
        Route::post('/guru/aksi/hapus', [AdminGuruController::class, 'hapus'])->name('guru.hapus');
+       Route::post('/guru/aksi/{id}/fotoprofil', [AdminGuruController::class, 'updateFotoProfil'])->name('guru.updateFotoProfil');
+       Route::post('/guru/aksi/{id}/foto-unggulan',[AdminGuruController::class, 'updateFotoUnggulan'])->name('guru.updateFotoUnggulan');
+       Route::post('/guru/aksi/{id}/update-password',[AdminGuruController::class, 'updatePassword'])->name('guru.updatePassword');
+
     // siswa
     // Route::post('/siswa/aksi/massaction', [AdminSiswaController::class, 'massaction'])->name('siswa.massaction');
     Route::post('/siswa/aksi/preview', [AdminSiswaController::class, 'previewExcel'])->name('admin.siswa.preview');
