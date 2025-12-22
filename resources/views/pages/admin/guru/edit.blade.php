@@ -63,7 +63,7 @@
 
                             <div class="row  mt-16 text-center d-flex justify-content-center">
 
-                                <button
+                                <button id="btnHapusFoto"
                                     class="col-md-10 btn btn-danger btn-sm d-flex align-items-center justify-content-center gap-2">
                                     <iconify-icon icon="lucide:trash" class="text-xl"></iconify-icon>
                                     <span>Hapus Foto</span>
@@ -684,9 +684,57 @@ function updatePassword(password) {
 }
 </script>
 
+<script>
+$('#btnHapusFoto').on('click', function () {
+    Swal.fire({
+        title: 'Hapus Foto?',
+        text: 'Foto profil dan foto unggulan akan dihapus.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            hapusFoto();
+        }
+    });
+});
 
-
-
-
+function hapusFoto() {
+    $.ajax({
+        url: "{{ route('admin.guru.hapusFoto', $guru->id) }}",
+        type: "POST",
+        data: {
+            _token: "{{ csrf_token() }}"
+        },
+        beforeSend: function () {
+            Swal.fire({
+                title: 'Menghapus...',
+                allowOutsideClick: false,
+                didOpen: () => Swal.showLoading()
+            });
+        },
+        success: function (res) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: res.message,
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                location.reload(); // opsional
+            });
+        },
+        error: function (xhr) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: xhr.responseJSON?.message ?? 'Gagal menghapus foto'
+            });
+        }
+    });
+}
+</script>
     @endpush
 @endsection

@@ -3,65 +3,25 @@
     <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
   </button>
   <div>
+   
      @include('partials.logo')
+  
   </div>
   <div class="sidebar-menu-area">
     <ul class="sidebar-menu" id="sidebar-menu">
-      <li class="dropdown">
-        <a href="javascript:void(0)">
-          <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
+         <li class="sidebar-menu-group-title">Home</li>
+      <li  class="{{ request()->is('staff/dashboard') ? 'active-page' : '' }}">
+        <a href="/staff/dashboard" class="{{ request()->is('staff/dashboard') ? 'active' : '' }}">
+          <iconify-icon icon="mage:home" class="menu-icon"></iconify-icon>
           <span>Dashboard</span>
         </a>
-        <ul class="sidebar-submenu">
-          <li>
-            <a href="index.html"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> AI</a>
-          </li>
-          <li>
-            <a href="index-2.html"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i> CRM</a>
-          </li>
-          <li>
-            <a href="index-3.html"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i> eCommerce</a>
-          </li>
-          <li>
-            <a href="index-4.html"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i> Cryptocurrency</a>
-          </li>
-          <li>
-            <a href="index-5.html"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i> Investment</a>
-          </li>
-          <li>
-            <a href="index-6.html"><i class="ri-circle-fill circle-icon text-purple w-auto"></i> LMS</a>
-          </li>
-          <li>
-            <a href="index-7.html"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i> NFT & Gaming</a>
-          </li>
-          <li>
-            <a href="index-8.html"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i> Medical</a>
-          </li>
-          <li>
-            <a href="index-9.html"><i class="ri-circle-fill circle-icon text-purple w-auto"></i> Analytics</a>
-          </li>
-          <li>
-            <a href="index-10.html"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i> POS & Inventory </a>
-          </li>
-          <li>
-            <a href="index-11.html"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i> Finance & Banking </a>
-          </li>
-          <li>
-            <a href="index-12.html"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i> Booking System</a>
-          </li>
-          <li>
-            <a href="index-13.html"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i> Help Desk</a>
-          </li>
-          <li>
-            <a href="index-14.html"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i> Podcast </a>
-          </li>
-          <li>
-            <a href="index-15.html"><i class="ri-circle-fill circle-icon text-purple w-auto"></i> Project Management </a>
-          </li>
-          <li>
-            <a href="index-16.html"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i> Call Center</a>
-          </li>
-        </ul>
+      </li>
+      <!-- List Tagihan -->
+        <li class="{{ request()->is('staff/tagihan') ? 'active-page' : '' }} ">
+        <a href="/staff/tagihan" class="{{ request()->is('staff/tagihan') ? 'active' : '' }}">
+         <iconify-icon icon="mdi:invoice-outline" class="menu-icon"></iconify-icon>
+          <span>Tagihan</span>
+        </a>
       </li>
       <li class="sidebar-menu-group-title">Application</li>
       <li>

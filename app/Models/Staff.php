@@ -17,6 +17,7 @@ class Staff extends Model
         'email',
         'jabatan',
         'no_hp',
+        'jenis_kelamin',
         'alamat',
     ];
 

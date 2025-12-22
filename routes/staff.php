@@ -1,14 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Guru\GuruDashboardController;
+use App\Http\Controllers\Staff\StaffDashboardController;
+use App\Http\Controllers\Staff\StaffTagihanController;
 
-Route::middleware(['auth', 'role:guru'])
-    ->prefix('guru')
-    ->name('guru.')
+Route::middleware(['auth', 'role:staff'])
+    ->name('staff.')
     ->group(function () {
-
-        Route::get('/dashboard', [DashboardGuruController::class, 'index'])
+        // dashboard
+        Route::get('dashboard', [StaffDashboardController::class, 'index'])
             ->name('dashboard');
 
-    }); 
+        // Tagihan
+        Route::resource('/tagihan', StaffTagihanController::class);
+
+    });

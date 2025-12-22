@@ -10,7 +10,7 @@ class StaffDashboardController extends Controller
 {
     public function index()
     {
-        //
+        return view('pages.staff.dashboard.index');
     }
 
     public function create()

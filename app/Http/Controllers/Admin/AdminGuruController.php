@@ -317,5 +317,37 @@ public function updatePassword(Request $request, $id)
         'message' => 'Password berhasil diperbarui'
     ]);
 }
+public function hapusFoto($id)
+{
+    $guru = Guru::findOrFail($id);
+    $user = $guru->user;
 
+    // hapus foto profil
+    if ($user->foto_profil && Storage::disk('public')->exists($user->foto_profil)) {
+        Storage::disk('public')->delete($user->foto_profil);
+    }
+
+    // hapus foto unggulan (jika ada)
+    if ($user->foto_unggulan && Storage::disk('public')->exists($user->foto_unggulan)) {
+        Storage::disk('public')->delete($user->foto_unggulan);
+    }
+
+    $user->update([
+        'foto_profil' => null,
+        'foto_unggulan' => null
+    ]);
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Foto profil dan foto unggulan berhasil dihapus'
+    ]);
+}
+
+public function editJabatanView($id)
+{
+    $guru = Guru::with('user', 'wakaKurikulum', 'wakaKesiswaan')
+        ->findOrFail($id);
+
+    return view('pages.admin.guru.jabatan', compact('guru'));
+}
 }
