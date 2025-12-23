@@ -109,9 +109,7 @@
                     <table class="table basic-border-table" style="width:100%">
                         <thead>
                             <tr>
-                             <th scope="col" style="width : 5px !important; padding: 0.9rem 1px; text-align: center" >
-                                #
-                             </th>
+                         
 
                                 <th scope="col" style="width : 10px !important; padding: 0.9rem 7px; text-align: center">
                                     NO
@@ -121,6 +119,7 @@
                                 <th scope="col" class="">Tagihan</th>
                              
                                 <th scope="col" class="">Nominal</th>
+                                <th scope="col" class="">Tahun Pelajaran</th>
 
                               
 
@@ -134,11 +133,7 @@
                         @if(count($tagihan) > 0)
                             @foreach ($tagihan as $t)
                                 <tr>
-                                <td style="width : 5px !important; padding: 0.9rem 4px; text-align: center">
-                                  <a class="btn btn-sm btn-small btn-warning" href="/">
-                                        <iconify-icon icon="mdi:edit"></iconify-icon>
-                                       </a>
-                                </td>
+                              
 
                                     <td class="text-center"
                                         style="width : 10px !important; padding: 0.9rem 7px; text-align: center">
@@ -163,30 +158,58 @@
                           
                                     <!-- Kolom disembunyikan di mobile -->
                                     <td class="" >
-                                      {{ $t->jumlah ?? '-' }}
+                                      {{ rupiah($t->jumlah) ?? '-' }}
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-info">
+                                            {{ $t->tahunPelajaran->nama ?? '-' }}
+                                        </span>
+                                        <br>
+                                        <span class="badge bg-secondary">
+                                            {{$t->semester->nama ?? '-'}}
+                                        </span>
+
                                     </td>
                               
 
                                     <td>
 
-                                        <a href="{{ route('staff.tagihan.tampilkantagihan', $t->id) }}"
+                                        <a href="{{ route('staff.tagihan.detailTagihan', $t->id) }}"
                                             class="d-none d-md-inline-flex p-1 btn btn-small btn-sm btn-success d-inline-flex align-items-center gap-1 justify-content-center">
                                             <iconify-icon icon="mdi:cash"></iconify-icon>
                                         Bayar
                                         </a>
                                         <a href="{{ route('staff.tagihan.tampilkantagihan', $t->id) }}"
-                                            class="d-none d-md-inline-flex p-1 btn btn-small btn-sm btn-success d-inline-flex align-items-center gap-1 justify-content-center">
-                                            <iconify-icon icon="mdi:cash"></iconify-icon>
-                                        Bayar
+                                            class="d-none d-md-inline-flex p-1 btn btn-small btn-sm btn-warning d-inline-flex align-items-center gap-1 justify-content-center">
+                                            <iconify-icon icon="mdi:edit"></iconify-icon>
+                                        Edit
                                         </a>
-{{-- 
-                                         <a href="{{ route('staff.tagihan.edit', $t->id) }}"
-                                            class="d-md-none d-md-inline-flex p-1 btn btn-small btn-sm btn-info d-inline-flex align-items-center gap-1 justify-content-center">
-                                            <iconify-icon icon="mdi:eye"></iconify-icon>
-                                            Tagihan
-                                        </a> --}}
+                                        <a href="{{ route('staff.tagihan.tampilkantagihan', $t->id) }}"
+                                            class="d-none d-md-inline-flex p-1 btn btn-small btn-sm btn-danger d-inline-flex align-items-center gap-1 justify-content-center">
+                                            <iconify-icon icon="mdi:trash"></iconify-icon>
+                                        Hapus
+                                        </a>
 
-                                 
+                                        <a href="{{ route('staff.tagihan.tampilkantagihan', $t->id) }}"
+                                            class="d-inline-flex d-md-none p-1 btn btn-small btn-sm btn-success d-inline-flex align-items-center gap-1 justify-content-center">
+                                            <iconify-icon icon="mdi:cash" class="text-xl"></iconify-icon>
+                                        
+                                        </a>
+                                        {{-- <a href="{{ route('staff.tagihan.tampilkantagihan', $t->id) }}"
+                                            class="d-none d-md-inline-flex p-1 btn btn-small btn-sm btn-success d-inline-flex align-items-center gap-1 justify-content-center">
+                                            <iconify-icon icon="mdi:cash"></iconify-icon>
+                                        Bayar
+                                        </a> --}}
+                                            <a class="btn btn-sm  btn-warning d-flex d-md-none p-1  radius-4   d-inline-flex align-items-center justify-content-center" href="/">
+                                        <iconify-icon class="text-xl" icon="mdi:edit"></iconify-icon>
+                                       </a>
+
+                                       <a class="btn btn-sm btn-small btn-danger d-inline-flex d-md-none p-1  btn-small btn-sm  d-inline-flex align-items-center gap-1 justify-content-center" href="/">
+                                        <iconify-icon class="text-xl" icon="mdi:trash"></iconify-icon>
+                                       </a>
+
+
 
 
                                     </td>
@@ -202,15 +225,15 @@
                     </div>
               
             </div>
-            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 px-24 mt-24">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 px-24 pb-24 mt-24">
                 <span>
-                    Showing
+                    Menampilkan
                     {{ $tagihan->firstItem() ?? 0 }}
-                    to
+                    sampai
                     {{ $tagihan->lastItem() ?? 0 }}
-                    of
+                    dari
                     {{ $tagihan->total() }}
-                    entries
+                    data
                 </span>
 
                 {{ $tagihan->links() }}

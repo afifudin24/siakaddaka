@@ -101,8 +101,8 @@
             <div class="col-md-3 col-4">
                 <select name="status" class="form-select" onchange="this.form.submit()">
                     <option value="">Status Tagihan</option>
-                    <option value="Lunas" {{ request('status') == 'Lunas' ? 'selected' : '' }}>Lunas</option>
-                    <option value="Belum Lunas" {{ request('status') == 'Belum Lunas' ? 'selected' : '' }}>Belum Lunas</option>
+                    <option value="lunas" {{ request('status') == 'lunas' ? 'selected' : '' }}>Lunas</option>
+                    <option value="belum lunas" {{ request('status') == 'belum lunas' ? 'selected' : '' }}>Belum Lunas</option>
                 </select>
             </div>
 

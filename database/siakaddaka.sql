@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Des 2025 pada 09.43
+-- Waktu pembuatan: 23 Des 2025 pada 16.52
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -597,7 +597,9 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (129, 1, 'updated', 'User diperbarui: Mr. Alek Kunze (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:45:50', '2025-12-22 20:45:50'),
 (130, 1, 'updated', 'User diperbarui: Darwin Kuvalis (admin)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:23', '2025-12-22 20:47:23'),
 (131, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:23', '2025-12-22 20:47:23'),
-(132, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:34', '2025-12-22 20:47:34');
+(132, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:34', '2025-12-22 20:47:34'),
+(133, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 03:57:01', '2025-12-23 03:57:01'),
+(134, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 03:57:01', '2025-12-23 03:57:01');
 
 -- --------------------------------------------------------
 
@@ -733,12 +735,25 @@ CREATE TABLE `password_reset_tokens` (
 CREATE TABLE `pembayaran` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `tagihan_id` bigint(20) UNSIGNED NOT NULL,
+  `tahun_pelajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `semester_id` bigint(20) UNSIGNED NOT NULL,
   `jumlah_bayar` decimal(12,2) NOT NULL,
   `tgl_bayar` date NOT NULL,
   `keterangan` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id`, `tagihan_id`, `tahun_pelajaran_id`, `semester_id`, `jumlah_bayar`, `tgl_bayar`, `keterangan`, `created_at`, `updated_at`) VALUES
+(1, 1, 6, 1, 1000.00, '2025-12-23', 'Bayar cicil', '2025-12-23 06:51:57', '2025-12-23 06:51:57'),
+(2, 1, 6, 1, 10000.00, '2025-12-23', 'Bayar Cicil Lagi', '2025-12-23 07:02:09', '2025-12-23 07:02:09'),
+(3, 1, 6, 1, 100000.00, '2025-12-23', 'Lagi-lagi nyicil', '2025-12-23 07:02:30', '2025-12-23 07:02:30'),
+(4, 1, 6, 1, 64000.00, '2025-12-23', 'Pelunasan Akhirnya', '2025-12-23 07:14:44', '2025-12-23 07:14:44'),
+(5, 2, 6, 1, 900000.00, '2025-12-23', 'Langsung lunas', '2025-12-23 08:17:37', '2025-12-23 08:17:37');
 
 -- --------------------------------------------------------
 
@@ -849,7 +864,7 @@ INSERT INTO `siswa` (`id`, `user_id`, `nama`, `nis`, `nisn`, `tgl_lahir`, `no_hp
 (21, 33, 'Dovie Lynch', 'SIS769732', 'NISN778267', '2001-10-03', '+1 (478) 396-2932', 'P', '541-477-4658', '707 Jakubowski Roads\nNorth Lou, IN 55398-2832', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
 (22, 34, 'Elton Bayer Jr.', 'SIS272448', 'NISN938901', '1988-02-19', '570-310-5430', 'P', '(575) 595-8074', '300 McCullough Wells\nKreigerton, NE 46646-3826', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
 (23, 35, 'Prof. Ollie Bartell', 'SIS059729', 'NISN436708', '2013-04-06', '517.564.6345', 'P', '1-650-968-5159', '879 Stroman Fall\nCarmellafort, RI 95066', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
-(24, 36, 'Abdiel Daniel', 'SIS286533', 'NISN901822', '1999-07-01', '+1.320.956.3912', 'P', '325.232.7379', '641 Enoch Ferry Apt. 279\nLeanneborough, MA 00597-1802', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
+(24, 36, 'Pemuda Biasa', 'SIS286533', 'NISN901822', '1999-07-01', '+1.320.956.3912', 'P', '325.232.7379', '641 Enoch Ferry Apt. 279\nLeanneborough, MA 00597-1802', 8, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
 (25, 37, 'Dr. Amely Kuphal', 'SIS355756', 'NISN374337', '1979-10-27', '+1.917.961.8202', 'P', '1-364-257-7601', '6817 Bayer Landing Suite 175\nNorth Rodrickborough, ME 29278', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
 (26, 38, 'Tyra Purdy', 'SIS700464', 'NISN795645', '1980-01-05', '+1-743-580-8411', 'P', '(919) 655-0852', '538 Trace Extensions\nEast Norwood, DE 41503', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
 (27, 39, 'Aron Leannon', 'SIS585723', 'NISN732543', '1993-04-22', '1-901-831-9843', 'P', '+16039560245', '61124 Imogene Crossing\nElbertmouth, MA 26321-5557', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
@@ -953,8 +968,8 @@ CREATE TABLE `tagihan` (
 --
 
 INSERT INTO `tagihan` (`id`, `siswa_id`, `nama_tagihan`, `jenis_tagihan_id`, `jumlah`, `tgl_tagihan`, `status`, `tahun_pelajaran_id`, `semester_id`, `created_at`, `updated_at`) VALUES
-(1, 24, 'SPP Februari', 1, 175000.00, '2025-12-23', 'belum lunas', 6, 1, '2025-12-23 00:45:05', '2025-12-23 00:45:05'),
-(2, 24, 'Uang Gedung', 3, 900000.00, '2025-12-23', 'belum lunas', 6, 1, '2025-12-23 01:43:14', '2025-12-23 01:43:14');
+(1, 24, 'SPP Februari', 1, 175000.00, '2025-12-23', 'lunas', 6, 1, '2025-12-23 00:45:05', '2025-12-23 07:14:44'),
+(2, 24, 'Uang Gedung', 3, 900000.00, '2025-12-23', 'lunas', 6, 1, '2025-12-23 01:43:14', '2025-12-23 08:17:37');
 
 -- --------------------------------------------------------
 
@@ -1103,7 +1118,7 @@ INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_te
 (77, 'art.dubuque', 'Blanche Schoen', 'kovacek.brandyn@example.org', '$2y$12$YiwcsRT9ILlof5oALreI3OKw2GUQ8wsU6qhtwPvo0EIXjyGWlU40q', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:41', '2025-11-21 20:36:41'),
 (78, 'tillman.harvey', 'Prof. Alva Ryan', 'haley.marshall@example.com', '$2y$12$6qlZ5PGVseM/ZfXJYrhua.3XOPPu3PUnXG40ZRePw9TW4lvCeoL.G', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:42', '2025-11-21 20:36:42'),
 (79, 'okesaja', 'kokokoko', 'okesaja@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
-(80, 'tatausaha', 'Tata Usaha', 'tatausaha@gmail.com', '$2y$10$YLK8cg2s3xRI17zXrc1QquI7XoIMvSRAs0sJMnrY9PtlCoHChX4A.', 'tatausaha', 'staff', 'profile.png', NULL, 1, NULL, NULL, '2025-12-22 12:52:25', NULL);
+(80, 'tatausaha', 'Tata Usaha', 'tatausaha@gmail.com', '$2y$10$YLK8cg2s3xRI17zXrc1QquI7XoIMvSRAs0sJMnrY9PtlCoHChX4A.', 'tatausaha', 'staff', 'profile.png', NULL, 1, NULL, 'vJqRPqLo3OkiUnSvPvnPq8D8H1bN3TplodgU2iMRFixL7b9U4A8MhYMBdszk', '2025-12-22 12:52:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -1334,7 +1349,9 @@ ALTER TABLE `password_reset_tokens`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `pembayaran_tagihan_id_foreign` (`tagihan_id`);
+  ADD KEY `pembayaran_tagihan_id_foreign` (`tagihan_id`),
+  ADD KEY `tahun_pelajaran_id` (`tahun_pelajaran_id`),
+  ADD KEY `semester_id` (`semester_id`);
 
 --
 -- Indeks untuk tabel `pengumpulan_tugas`
@@ -1553,7 +1570,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
@@ -1583,7 +1600,7 @@ ALTER TABLE `notifikasi`
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengumpulan_tugas`
@@ -1757,6 +1774,8 @@ ALTER TABLE `notifikasi`
 -- Ketidakleluasaan untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
+  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`tahun_pelajaran_id`) REFERENCES `tahun_pelajaran` (`id`),
+  ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`),
   ADD CONSTRAINT `pembayaran_tagihan_id_foreign` FOREIGN KEY (`tagihan_id`) REFERENCES `tagihan` (`id`) ON DELETE CASCADE;
 
 --

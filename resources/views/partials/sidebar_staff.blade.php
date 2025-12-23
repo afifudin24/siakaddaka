@@ -24,8 +24,8 @@
           <span>Jenis Tagihan</span>
         </a>
       </li>
-        <li class="{{ request()->is('staff/tagihan') ? 'active-page' : '' }} ">
-        <a href="/staff/tagihan" class="{{ request()->is('staff/tagihan') ? 'active' : '' }}">
+        <li class="{{ request()->is('staff/tagihan') || request()->is('staff/tagihan/tampilkantagihan*') ? 'active-page active' : '' }}">
+        <a href="/staff/tagihan" class={{ request()->is('staff/tagihan') || request()->is('staff/tagihan*') ? 'active-page active' : '' }}">
          <iconify-icon icon="mdi:cash" class="menu-icon"></iconify-icon>
           <span>Tagihan</span>
         </a>

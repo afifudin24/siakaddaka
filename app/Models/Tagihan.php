@@ -63,7 +63,16 @@ class Tagihan extends Model
      */
     public function updateStatus()
     {
-        $this->status = $this->sisaTagihan() <= 0 ? 'lunas' : 'belum_lunas';
+        $this->status = $this->sisaTagihan() <= 0 ? 'lunas' : 'belum lunas';
         $this->save();
+    }
+
+    public function tahunPelajaran()
+    {
+        return $this->belongsTo(TahunPelajaran::class);
+    }
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class);
     }
 }

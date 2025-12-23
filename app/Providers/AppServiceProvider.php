@@ -15,7 +15,7 @@ use App\Observers\MateriObserver;
 use App\Models\DataSekolah;
 use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
-
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,12 +27,15 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+    
 
     /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
+        // carbon
+        Carbon::setLocale('id');
         //pagination
         Paginator::useBootstrap();
          User::observe(UserObserver::class);

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\JenisTagihan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Tagihan;
 use App\Models\Siswa;
 use App\Models\Kelas;
@@ -43,15 +44,15 @@ class StaffTagihanController extends Controller
 
         // Filter status tagihan keseluruhan
         if ($request->filled('status')) {
-            if ($request->status === 'Lunas') {
+            if ($request->status === 'lunas') {
                 // Hanya siswa yang semua tagihannya sudah Lunas
                 $query->whereDoesntHave('tagihan', function ($q) {
-                    $q->where('status', '!=', 'Lunas');
+                    $q->where('status', '!=', 'lunas');
                 });
-            } elseif ($request->status === 'Belum Lunas') {
+            } elseif ($request->status === 'belum lunas') {
                 // Siswa yang punya setidaknya 1 tagihan belum lunas
                 $query->whereHas('tagihan', function ($q) {
-                    $q->where('status', '!=', 'Lunas');
+                    $q->where('status', '!=', 'lunas');
                 });
             }
         }
@@ -71,7 +72,7 @@ class StaffTagihanController extends Controller
         $perPage = $request->paginate ?? 10;
         $status = $request->status; // lunas | belum
 
-        $query = Tagihan::with('siswa')
+        $query = Tagihan::with('siswa.kelas', 'jenisTagihan', 'pembayaran', 'semester', 'tahunPelajaran')
             ->where('siswa_id', $siswaId);
 
         // 🔎 Filter status tagihan
@@ -84,7 +85,8 @@ class StaffTagihanController extends Controller
         $siswa = Siswa::find($siswaId);
         $jenistagihan = JenisTagihan::all();
         $tagihan = $query->paginate($perPage)->withQueryString();
-
+      
+        
 
         return view('pages.staff.tagihan.daftar_tagihan', compact('tagihan', 'siswaId', 'siswa', 'jenistagihan'));
     }
@@ -139,6 +141,27 @@ public function store(Request $request)
         'status' => true,
         'message' => 'Tagihan berhasil ditambahkan'
     ], 201);
+}
+
+public function detailTagihan($id){
+    $tagihan = Tagihan::with('siswa.kelas', 'jenisTagihan', 'pembayaran', 'semester', 'tahunPelajaran')->find($id);
+
+    return view('pages.staff.tagihan.detail_tagihan', compact('tagihan'));
+}
+public function cetakTagihan(Tagihan $tagihan)
+{
+    $tagihan->load([
+        'siswa.kelas',
+        'jenisTagihan',
+        'pembayaran'
+    ]);
+
+    $pdf = Pdf::loadView('pages.staff.tagihan.cetak', [
+        'tagihan' => $tagihan
+    ])->setPaper('A4', 'portrait');
+
+    // 🔥 PREVIEW di browser
+    return $pdf->stream('tagihan-'.$tagihan->id.'.pdf');
 }
 
     public function show($id)

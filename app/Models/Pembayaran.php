@@ -8,12 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Pembayaran extends Model
 {
     use HasFactory;
+    protected $table = 'pembayaran';
 
     protected $fillable = [
         'tagihan_id',
         'jumlah_bayar',
         'tgl_bayar',
         'keterangan',
+        'semester_id',
+        'tahun_pelajaran_id'
     ];
 
     /**
@@ -32,5 +35,13 @@ class Pembayaran extends Model
         static::saved(function ($pembayaran) {
             $pembayaran->tagihan->updateStatus();
         });
+    }
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class);
+    }
+    public function tahunPelajaran()
+    {
+        return $this->belongsTo(TahunPelajaran::class);
     }
 }
