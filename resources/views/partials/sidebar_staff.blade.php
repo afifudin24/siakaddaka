@@ -16,13 +16,21 @@
           <span>Dashboard</span>
         </a>
       </li>
+      @if(auth()->user()->staff->jabatan == 'Staff Keuangan')
       <!-- List Tagihan -->
+        <li class="{{ request()->is('staff/jenistagihan*') ? 'active-page' : '' }} ">
+        <a href="/staff/jenistagihan" class="{{ request()->is('staff/jenistagihan*') ? 'active' : '' }}">
+         <iconify-icon icon="mdi:receipt-outline" class="menu-icon"></iconify-icon>
+          <span>Jenis Tagihan</span>
+        </a>
+      </li>
         <li class="{{ request()->is('staff/tagihan') ? 'active-page' : '' }} ">
         <a href="/staff/tagihan" class="{{ request()->is('staff/tagihan') ? 'active' : '' }}">
-         <iconify-icon icon="mdi:invoice-outline" class="menu-icon"></iconify-icon>
+         <iconify-icon icon="mdi:cash" class="menu-icon"></iconify-icon>
           <span>Tagihan</span>
         </a>
       </li>
+      @endif
       <li class="sidebar-menu-group-title">Application</li>
       <li>
         <a href="email.html">

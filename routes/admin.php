@@ -51,7 +51,7 @@ Route::middleware(['auth', 'role:admin'])
        Route::post('/guru/aksi/{id}/fotoprofil', [AdminGuruController::class, 'updateFotoProfil'])->name('guru.updateFotoProfil');
        Route::post('/guru/aksi/{id}/foto-unggulan',[AdminGuruController::class, 'updateFotoUnggulan'])->name('guru.updateFotoUnggulan');
        Route::post('/guru/aksi/{id}/update-password',[AdminGuruController::class, 'updatePassword'])->name('guru.updatePassword');
-       Route::post('/guru/aksi/{id}/hapus-foto', [AdminGuruController::class, 'hapusFoto']);
+       Route::post('/guru/aksi/{id}/hapus-foto', [AdminGuruController::class, 'hapusFoto'])->name('guru.hapusFoto');
        Route::get('/guru/aksi/{id}/editJabatan', [AdminGuruController::class, 'editJabatanView'])->name('guru.editJabatan');
 
 

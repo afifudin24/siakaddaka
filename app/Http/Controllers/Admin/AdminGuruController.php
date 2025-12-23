@@ -13,6 +13,8 @@ use App\Imports\GuruImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
+
 class AdminGuruController extends Controller
 {
   public function index(Request $request)

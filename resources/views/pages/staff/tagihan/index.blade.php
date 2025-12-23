@@ -69,12 +69,12 @@
 
                <div class="">
     <form method="GET" class="mb-3">
-        <div class="d-flex align-items-center justify-content-between gap-2">
+        <div class="d-flex align-items-center justify-content-start gap-2">
             
             <!-- Filter Kelas -->
             <div class="col-md-3 col-4">
                 <select name="kelas_id" class="form-select" onchange="this.form.submit()">
-                    <option value="">Pilih Kelas</option>
+                    <option value="">Kelas</option>
                     <option value="all" {{ request('kelas_id') == 'all' ? 'selected' : '' }}>Semua</option>
                     <option value="null" {{ request('kelas_id') == 'null' ? 'selected' : '' }}>Tanpa Kelas</option>
                     @foreach ($kelas as $k)
@@ -88,7 +88,7 @@
             <!-- Filter Tingkat Kelas -->
             <div class="col-md-3 col-4">
                 <select name="tingkat" class="form-select" onchange="this.form.submit()">
-                    <option value="">Pilih Tingkat</option>
+                    <option value="">Tingkat</option>
                     @foreach ([10,11,12] as $t)
                         <option value="{{ $t }}" {{ request('tingkat') == $t ? 'selected' : '' }}>
                             {{ $t }}
@@ -100,7 +100,7 @@
             <!-- Filter Status Tagihan -->
             <div class="col-md-3 col-4">
                 <select name="status" class="form-select" onchange="this.form.submit()">
-                    <option value="">Pilih Status Tagihan</option>
+                    <option value="">Status Tagihan</option>
                     <option value="Lunas" {{ request('status') == 'Lunas' ? 'selected' : '' }}>Lunas</option>
                     <option value="Belum Lunas" {{ request('status') == 'Belum Lunas' ? 'selected' : '' }}>Belum Lunas</option>
                 </select>
@@ -229,7 +229,7 @@
 
                                     <td style="width : 120px !important;">
 
-                                        <a href="{{ route('staff.tagihan.edit', $s->id) }}"
+                                        <a href="{{ route('staff.tagihan.tampilkantagihan', $s->id) }}"
                                             class="d-none d-md-inline-flex p-1 btn btn-small btn-sm btn-info d-inline-flex align-items-center gap-1 justify-content-center">
                                             <iconify-icon icon="mdi:eye"></iconify-icon>
                                             Lihat Tagihan

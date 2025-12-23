@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Des 2025 pada 00.16
+-- Waktu pembuatan: 23 Des 2025 pada 09.43
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -304,6 +304,29 @@ CREATE TABLE `jam_pelajaran` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `jenis_tagihan`
+--
+
+CREATE TABLE `jenis_tagihan` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama_jenis` varchar(30) NOT NULL,
+  `deskripsi` varchar(255) DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `jenis_tagihan`
+--
+
+INSERT INTO `jenis_tagihan` (`id`, `nama_jenis`, `deskripsi`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'SPP', 'Pembayaran SPP Bulanan', 1, '2025-12-22 21:41:54', '2025-12-22 22:40:56'),
+(3, 'Umum', 'Tagihan Untuk Umum', 1, '2025-12-22 22:48:03', '2025-12-22 22:48:03');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `jurusan`
 --
 
@@ -567,7 +590,14 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (122, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 05:52:21', '2025-12-22 05:52:21'),
 (123, 1, 'updated', 'User diperbarui: Darwin Kuvalis (admin)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 06:11:59', '2025-12-22 06:11:59'),
 (124, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 06:11:59', '2025-12-22 06:11:59'),
-(125, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 06:12:13', '2025-12-22 06:12:13');
+(125, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 06:12:13', '2025-12-22 06:12:13'),
+(126, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:29:57', '2025-12-22 20:29:57'),
+(127, 80, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:44:06', '2025-12-22 20:44:06'),
+(128, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:44:26', '2025-12-22 20:44:26'),
+(129, 1, 'updated', 'User diperbarui: Mr. Alek Kunze (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:45:50', '2025-12-22 20:45:50'),
+(130, 1, 'updated', 'User diperbarui: Darwin Kuvalis (admin)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:23', '2025-12-22 20:47:23'),
+(131, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:23', '2025-12-22 20:47:23'),
+(132, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:34', '2025-12-22 20:47:34');
 
 -- --------------------------------------------------------
 
@@ -881,7 +911,7 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id`, `user_id`, `nama`, `email`, `jabatan`, `jenis_kelamin`, `no_hp`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, 80, 'Tata Usaha', 'tatausaha@gmail.com', 'Tata Usaha', 'P', '6281548769365', 'Desa Saja', NULL, NULL);
+(1, 80, 'Tata Usaha', 'tatausaha@gmail.com', 'Staff Keuangan', 'P', '6281548769365', 'Desa Saja', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -907,13 +937,24 @@ CREATE TABLE `status_notifikasi` (
 CREATE TABLE `tagihan` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `siswa_id` bigint(20) UNSIGNED NOT NULL,
-  `jenis` varchar(255) NOT NULL,
+  `nama_tagihan` varchar(255) NOT NULL,
+  `jenis_tagihan_id` bigint(20) UNSIGNED NOT NULL,
   `jumlah` decimal(12,2) NOT NULL,
   `tgl_tagihan` date NOT NULL,
-  `status` enum('belum_lunas','lunas') NOT NULL DEFAULT 'belum_lunas',
+  `status` enum('belum lunas','lunas') NOT NULL DEFAULT 'belum lunas',
+  `tahun_pelajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `semester_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tagihan`
+--
+
+INSERT INTO `tagihan` (`id`, `siswa_id`, `nama_tagihan`, `jenis_tagihan_id`, `jumlah`, `tgl_tagihan`, `status`, `tahun_pelajaran_id`, `semester_id`, `created_at`, `updated_at`) VALUES
+(1, 24, 'SPP Februari', 1, 175000.00, '2025-12-23', 'belum lunas', 6, 1, '2025-12-23 00:45:05', '2025-12-23 00:45:05'),
+(2, 24, 'Uang Gedung', 3, 900000.00, '2025-12-23', 'belum lunas', 6, 1, '2025-12-23 01:43:14', '2025-12-23 01:43:14');
 
 -- --------------------------------------------------------
 
@@ -983,8 +1024,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'newell.kirlin', 'Darwin Kuvalis', 'jlarson@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, '0E93rTcjSl6Q1Df5e8g9Nx5NxJrrWCAUd5eRRPxIgUB6q2PNkXZ7TxFBmvcL', '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
-(2, 'afifsaja', 'Mr. Alek Kunze', 'afifsaja@gmail.com', '$2y$12$3C2v7WdtMS5EwuJpNe3OsezGNfg.VhLaPX6Bza/4b/QpDVEOG7lt6', 'akukeren', 'guru', NULL, 'foto-unggulan/v4QtbPMQYvVy5Clyg26wK0sKH7qu5qQLsT3q4ScA.jpg', 1, NULL, '', '2025-11-21 20:32:50', '2025-12-20 06:11:41'),
+(1, 'newell.kirlin', 'Darwin Kuvalis', 'jlarson@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, '97XgfVgt5vQkOA0elFt0fDPf8w3q6SfxPFWYv2QiHXiqF42aGzah2rOMrrR1', '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
+(2, 'afifsaja', 'Mr. Alek Kunze', 'afifsaja@gmail.com', '$2y$12$3C2v7WdtMS5EwuJpNe3OsezGNfg.VhLaPX6Bza/4b/QpDVEOG7lt6', 'akukeren', 'guru', 'foto-guru/w5DvIX1o5FxyuyINfJHxC9DWJ2g1JbBLLB7oSWxh.jpg', 'foto-unggulan/v4QtbPMQYvVy5Clyg26wK0sKH7qu5qQLsT3q4ScA.jpg', 1, NULL, '', '2025-11-21 20:32:50', '2025-12-22 20:45:50'),
 (3, 'hauck.elouise', 'Khalil Gerlach', 'collier.raquel@example.org', '$2y$12$6v29/DD9FgFupmUudJaqUeKLcB1IpH2FKYfDOn6XH5mrqdK.v5rmG', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:50', '2025-11-21 20:32:50'),
 (4, 'yaopoci', 'Kimberly Reichel', 'yaopoci@gmail.com', '$2y$12$1YoNGozGkJJoVhmw2CscR.M.yiDzYT89zI8v1MeiKGBMZUcqBkBZG', '', 'guru', 'foto-guru/muIhj2sO6uJedUQv05950CzxEqeBIMAtQJNhkBlN.jpg', '', 1, NULL, '', '2025-11-21 20:32:50', '2025-12-20 06:13:24'),
 (5, 'tbins', 'Coby Beahan', 'gvolkman@example.com', '$2y$12$4jy3JwleOVAog1fO/ynlYutWZxsuJ0XGs28oTPUTmyC/RrvVo7rxu', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
@@ -1198,6 +1239,12 @@ ALTER TABLE `jam_pelajaran`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `jenis_tagihan`
+--
+ALTER TABLE `jenis_tagihan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `jurusan`
 --
 ALTER TABLE `jurusan`
@@ -1341,7 +1388,10 @@ ALTER TABLE `status_notifikasi`
 --
 ALTER TABLE `tagihan`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `tagihan_siswa_id_foreign` (`siswa_id`);
+  ADD KEY `tagihan_siswa_id_foreign` (`siswa_id`),
+  ADD KEY `jenis_tagihan_id` (`jenis_tagihan_id`),
+  ADD KEY `tahun_pelajaran_id` (`tahun_pelajaran_id`),
+  ADD KEY `semester_id` (`semester_id`);
 
 --
 -- Indeks untuk tabel `tahun_pelajaran`
@@ -1458,6 +1508,12 @@ ALTER TABLE `jam_pelajaran`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `jenis_tagihan`
+--
+ALTER TABLE `jenis_tagihan`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `jurusan`
 --
 ALTER TABLE `jurusan`
@@ -1497,7 +1553,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
@@ -1569,7 +1625,7 @@ ALTER TABLE `status_notifikasi`
 -- AUTO_INCREMENT untuk tabel `tagihan`
 --
 ALTER TABLE `tagihan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tahun_pelajaran`
@@ -1733,6 +1789,9 @@ ALTER TABLE `staff`
 -- Ketidakleluasaan untuk tabel `tagihan`
 --
 ALTER TABLE `tagihan`
+  ADD CONSTRAINT `tagihan_ibfk_1` FOREIGN KEY (`jenis_tagihan_id`) REFERENCES `jenis_tagihan` (`id`),
+  ADD CONSTRAINT `tagihan_ibfk_2` FOREIGN KEY (`tahun_pelajaran_id`) REFERENCES `tahun_pelajaran` (`id`),
+  ADD CONSTRAINT `tagihan_ibfk_3` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`),
   ADD CONSTRAINT `tagihan_siswa_id_foreign` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`id`) ON DELETE CASCADE;
 
 --
