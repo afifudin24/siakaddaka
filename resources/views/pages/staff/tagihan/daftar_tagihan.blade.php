@@ -149,6 +149,7 @@
                                 <th scope="col" class="">Tagihan</th>
 
                                 <th scope="col" class="">Nominal</th>
+                                <th scope="col" class="">Sisa Tagihan</th>
                                 <th scope="col" class="">Tahun Pelajaran</th>
 
 
@@ -190,6 +191,9 @@
                                         <td class="">
                                             {{ rupiah($t->jumlah) ?? '-' }}
                                         </td>
+                                        <td>
+                                            {{ rupiah($t->sisaTagihan()) ?? '-' }}
+                                        </td>
 
                                         <td>
                                             <span class="badge bg-info">
@@ -218,7 +222,7 @@
                                                 Edit
                                             </a>
                                             <a href="javascript:void(0)"
-                                                class="btn p-1 btn-sm btn-danger d-inline-flex align-items-center gap-1 hapus-tagihan"
+                                                class="btn p-1 btn-sm btn-danger d-none d-md-inline-flex align-items-center gap-1 hapus-tagihan"
                                                 data-id="{{ $t->id }}" data-nama="{{ $t->nama_tagihan }}">
                                                 <iconify-icon icon="mdi:trash"></iconify-icon>
                                                 Hapus
