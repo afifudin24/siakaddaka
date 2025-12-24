@@ -11,7 +11,7 @@ use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Semester;
 use App\Models\TahunPelajaran;
-
+use Illuminate\Support\Facades\DB;
 class StaffTagihanController extends Controller
 {
     public function index(Request $request)
@@ -67,29 +67,66 @@ class StaffTagihanController extends Controller
         return view('pages.staff.tagihan.index', compact('siswa', 'kelas'));
     }
 
-    public function tampilkanTagihan(Request $request, $siswaId)
-    {
-        $perPage = $request->paginate ?? 10;
-        $status = $request->status; // lunas | belum
+   public function tampilkanTagihan(Request $request, $siswaId)
+{
+    $perPage = $request->paginate ?? 10;
+    $status  = $request->status; // lunas | belum
 
-        $query = Tagihan::with('siswa.kelas', 'jenisTagihan', 'pembayaran', 'semester', 'tahunPelajaran')
-            ->where('siswa_id', $siswaId);
+    // 🔎 Ambil Tahun Pelajaran & Semester aktif
+    $tahunAktif   = TahunPelajaran::where('is_active', 1)->first();
+    $semesterAktif = Semester::where('is_active', 1)->first();
 
-        // 🔎 Filter status tagihan
-        if ($status === 'lunas') {
-            $query->where('status', 'lunas');
-        } elseif ($status === 'belum') {
-            $query->where('status', 'belum');
-        }
+    // 👉 Bisa override lewat request (opsional)
+    $tahunPelajaranId = $request->tahun_pelajaran_id ?? $tahunAktif?->id;
+    $semesterId       = $request->semester_id ?? $semesterAktif?->id;
 
-        $siswa = Siswa::find($siswaId);
-        $jenistagihan = JenisTagihan::all();
-        $tagihan = $query->paginate($perPage)->withQueryString();
-      
-        
+    $query = Tagihan::with([
+            'siswa.kelas',
+            'jenisTagihan',
+            'pembayaran',
+            'semester',
+            'tahunPelajaran'
+        ])
+        ->where('siswa_id', $siswaId);
 
-        return view('pages.staff.tagihan.daftar_tagihan', compact('tagihan', 'siswaId', 'siswa', 'jenistagihan'));
+    // 🔎 Filter status tagihan
+    if ($status === 'lunas') {
+        $query->where('status', 'lunas');
+    } elseif ($status === 'belum') {
+        $query->where('status', 'belum');
     }
+
+    // 📌 Filter Tahun Pelajaran & Semester (default aktif)
+    if ($tahunPelajaranId) {
+        $query->where('tahun_pelajaran_id', $tahunPelajaranId);
+    }
+
+    if ($semesterId) {
+        $query->where('semester_id', $semesterId);
+    }
+
+    $tagihan = $query->paginate($perPage)->withQueryString();
+
+    $siswa        = Siswa::with('kelas')->findOrFail($siswaId);
+    $jenistagihan = JenisTagihan::all();
+    $tahunPelajaran = TahunPelajaran::all();
+    $semesterList = Semester::where('tahun_pelajaran_id', $tahunPelajaranId)->get();
+
+    return view(
+        'pages.staff.tagihan.daftar_tagihan',
+        compact(
+            'tagihan',
+            'siswaId',
+            'siswa',
+            'jenistagihan',
+            'tahunAktif',
+            'semesterAktif',
+            'tahunPelajaran',
+            'semesterList'
+        )
+    );
+}
+
     public function create()
     {
 
@@ -97,72 +134,73 @@ class StaffTagihanController extends Controller
     }
 
 
-  
-public function store(Request $request)
-{
-    // Ambil semester & tahun pelajaran aktif
-    $semester = Semester::where('is_active', 1)->first();
-    $tahunPelajaran = TahunPelajaran::where('is_active', 1)->first();
 
-    if (!$semester || !$tahunPelajaran) {
+    public function store(Request $request)
+    {
+        // Ambil semester & tahun pelajaran aktif
+        $semester = Semester::where('is_active', 1)->first();
+        $tahunPelajaran = TahunPelajaran::where('is_active', 1)->first();
+
+        if (!$semester || !$tahunPelajaran) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Semester atau Tahun Pelajaran aktif belum diset'
+            ], 422);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'siswa_id' => 'required|exists:siswa,id',
+            'nama_tagihan' => 'required|string|max:255',
+            'jenis_tagihan_id' => 'required|exists:jenis_tagihan,id',
+            'jumlah' => 'required|numeric|min:0',
+            'tgl_tagihan' => 'required|date',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        Tagihan::create([
+            'siswa_id' => $request->siswa_id,
+            'nama_tagihan' => $request->nama_tagihan,
+            'jenis_tagihan_id' => $request->jenis_tagihan_id,
+            'jumlah' => $request->jumlah,
+            'tgl_tagihan' => $request->tgl_tagihan,
+            'status' => 'belum lunas',
+            'semester_id' => $semester->id,
+            'tahun_pelajaran_id' => $tahunPelajaran->id,
+        ]);
+
         return response()->json([
-            'status' => false,
-            'message' => 'Semester atau Tahun Pelajaran aktif belum diset'
-        ], 422);
+            'status' => true,
+            'message' => 'Tagihan berhasil ditambahkan'
+        ], 201);
     }
 
-    $validator = Validator::make($request->all(), [
-        'siswa_id'         => 'required|exists:siswa,id',
-        'nama_tagihan'     => 'required|string|max:255',
-        'jenis_tagihan_id' => 'required|exists:jenis_tagihan,id',
-        'jumlah'           => 'required|numeric|min:0',
-        'tgl_tagihan'      => 'required|date',
-    ]);
+    public function detailTagihan($id)
+    {
+        $tagihan = Tagihan::with('siswa.kelas', 'jenisTagihan', 'pembayaran', 'semester', 'tahunPelajaran')->find($id);
 
-    if ($validator->fails()) {
-        return response()->json([
-            'status' => false,
-            'errors' => $validator->errors()
-        ], 422);
+        return view('pages.staff.tagihan.detail_tagihan', compact('tagihan'));
     }
+    public function cetakTagihan(Tagihan $tagihan)
+    {
+        $tagihan->load([
+            'siswa.kelas',
+            'jenisTagihan',
+            'pembayaran'
+        ]);
 
-    Tagihan::create([
-        'siswa_id'           => $request->siswa_id,
-        'nama_tagihan'       => $request->nama_tagihan,
-        'jenis_tagihan_id'   => $request->jenis_tagihan_id,
-        'jumlah'             => $request->jumlah,
-        'tgl_tagihan'        => $request->tgl_tagihan,
-        'status'             => 'belum lunas',
-        'semester_id'        => $semester->id,
-        'tahun_pelajaran_id' => $tahunPelajaran->id,
-    ]);
+        $pdf = Pdf::loadView('pages.staff.tagihan.cetak', [
+            'tagihan' => $tagihan
+        ])->setPaper('A4', 'portrait');
 
-    return response()->json([
-        'status' => true,
-        'message' => 'Tagihan berhasil ditambahkan'
-    ], 201);
-}
-
-public function detailTagihan($id){
-    $tagihan = Tagihan::with('siswa.kelas', 'jenisTagihan', 'pembayaran', 'semester', 'tahunPelajaran')->find($id);
-
-    return view('pages.staff.tagihan.detail_tagihan', compact('tagihan'));
-}
-public function cetakTagihan(Tagihan $tagihan)
-{
-    $tagihan->load([
-        'siswa.kelas',
-        'jenisTagihan',
-        'pembayaran'
-    ]);
-
-    $pdf = Pdf::loadView('pages.staff.tagihan.cetak', [
-        'tagihan' => $tagihan
-    ])->setPaper('A4', 'portrait');
-
-    // 🔥 PREVIEW di browser
-    return $pdf->stream('tagihan-'.$tagihan->id.'.pdf');
-}
+        // 🔥 PREVIEW di browser
+        return $pdf->stream('tagihan-' . $tagihan->id . '.pdf');
+    }
 
     public function show($id)
     {
@@ -174,13 +212,186 @@ public function cetakTagihan(Tagihan $tagihan)
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Tagihan $tagihan)
     {
-        //
+        $validated = $request->validate([
+            'nama_tagihan' => 'required|string|max:255',
+            'jumlah' => 'required|numeric|min:0',
+            'status' => 'required|in:lunas,belum lunas'
+        ]);
+
+        $tagihan->update($validated);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Tagihan berhasil diperbarui'
+        ]);
     }
 
-    public function destroy($id)
+
+
+    public function destroy(Tagihan $tagihan)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            // 1. Hapus semua pembayaran terkait
+            $tagihan->pembayaran()->delete();
+
+            // 2. Hapus tagihan
+            $tagihan->delete();
+
+            DB::commit();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Tagihan dan pembayaran berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Gagal menghapus tagihan'
+            ], 500);
+        }
     }
+
+          public function massalForm()
+    {
+     
+        $kelas = Kelas::orderBy('nama_kelas')->get();
+        $jenistagihan = JenisTagihan::all();
+     
+
+        return view('pages.staff.tagihan.massal', compact('kelas', 'jenistagihan'));
+    }
+
+    
+    public function massalStore(Request $request)
+    {
+        $request->validate([
+            'target' => 'required|in:semua,tingkat,kelas',
+            'nama_tagihan' => 'required|string|max:255',
+            'jenis_tagihan_id' => 'required',
+            'jumlah' => 'required|numeric|min:0',
+            'tgl_tagihan' => 'required|date',
+        ]);
+
+        $semester = Semester::where('is_active', 1)->firstOrFail();
+        $tahunPelajaran = TahunPelajaran::where('is_active', 1)->firstOrFail();
+
+        // === AMBIL SISWA SESUAI TARGET ===
+        if ($request->target === 'semua') {
+            $siswaList = Siswa::all();
+
+        } elseif ($request->target === 'tingkat') {
+            $request->validate([
+                'tingkat' => 'required|in:10,11,12'
+            ]);
+
+            $siswaList = Siswa::whereHas('kelas', function ($q) use ($request) {
+                $q->where('tingkat', $request->tingkat);
+            })->get();
+
+        } else { // kelas
+            $request->validate([
+                'kelas_id' => 'required|exists:kelas,id'
+            ]);
+
+            $siswaList = Siswa::where('kelas_id', $request->kelas_id)->get();
+        }
+
+        DB::beginTransaction();
+
+        try {
+            foreach ($siswaList as $siswa) {
+                Tagihan::create([
+                    'siswa_id' => $siswa->id,
+                    'nama_tagihan' => $request->nama_tagihan,
+                    'jenis_tagihan_id' => $request->jenis_tagihan_id,
+                    'jumlah' => $request->jumlah,
+                    'tgl_tagihan' => $request->tgl_tagihan,
+                    'semester_id' => $semester->id,
+                    'tahun_pelajaran_id' => $tahunPelajaran->id,
+                    'status' => 'belum lunas',
+                ]);
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Tagihan massal berhasil ditambahkan',
+                'total_siswa' => $siswaList->count()
+            ]);
+        }catch (\Exception $e) {
+    DB::rollBack();
+
+    return response()->json([
+        'status'  => false,
+        'message' => "Gagal menambahkan tagihan massal", // tampilkan error asli
+        'file'    => $e->getFile(),
+        'line'    => $e->getLine(),
+    ], 500);
+}
+    }
+
+    public function cetakMassalForm(){
+          $kelas = Kelas::orderBy('tingkat')->orderBy('nama_kelas')->get();
+
+    $semesterAktif = Semester::where('is_active', 1)->first();
+    $tahunPelajaranAktif = TahunPelajaran::where('is_active', 1)->first();
+    $tahunPelajaran = TahunPelajaran::all();
+    $semesterTahunPelajaran = Semester::where('tahun_pelajaran_id', $tahunPelajaranAktif->id)->get();
+        return view('pages.staff.tagihan.cetak-tagihan-massal-form', compact('kelas', 'tahunPelajaran', 'semesterTahunPelajaran','semesterAktif', 'tahunPelajaranAktif'));
+    }
+  
+
+public function cetakMassalStore(Request $request)
+{
+    $request->validate([
+        'semester_id' => 'required',
+        'tahun_pelajaran_id' => 'required',
+        'tingkat' => 'required_if:target,tingkat',
+        'kelas_id' => 'required_if:target,kelas',
+    ]);
+
+    $query = Siswa::with(['kelas', 'tagihan' => function ($q) use ($request) {
+        $q->where('semester_id', $request->semester_id)
+          ->where('tahun_pelajaran_id', $request->tahun_pelajaran_id)
+          ->where('status', 'belum lunas');
+
+        if ($request->tanggal_mulai && $request->tanggal_selesai) {
+            $q->whereBetween('tgl_tagihan', [
+                $request->tanggal_mulai,
+                $request->tanggal_selesai
+            ]);
+        }
+    }]);
+
+    if ($request->target === 'tingkat') {
+        $query->whereHas('kelas', fn ($q) =>
+            $q->where('tingkat', $request->tingkat)
+        );
+    } elseif ($request->target === 'kelas') {
+        $query->where('kelas_id', $request->kelas_id);
+    }
+
+    $data = $query->get()->filter(fn ($s) => $s->tagihan->count() > 0);
+
+    $tahunPelajaran = TahunPelajaran::find($request->tahun_pelajaran_id);
+    $semester = Semester::find($request->semester_id);
+
+    $pdf = Pdf::loadView(
+        'pages.staff.tagihan.cetak_massal_tagihan',
+        compact('data', 'tahunPelajaran', 'semester')
+    )->setPaper('A4', 'portrait');
+
+    // preview (TIDAK DOWNLOAD)
+    return $pdf->stream('cetak-tagihan-massal.pdf');
+}
+
+
+   
 }

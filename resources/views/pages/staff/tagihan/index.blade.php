@@ -23,7 +23,7 @@
                 <h5 class="card-title mb-0">Data Tagihan Siswa</h5>
                 <div>
                     <div class="d-flex gap-2">
-                        <a href="{{ route('admin.kelas.create') }}"
+                        <a href="{{ route('staff.tagihan.massal.form') }}"
                             class="btn btn-primary text-sm btn-sm p-1 radius-4 d-flex align-items-center gap-2">
                             <iconify-icon icon="lucide:plus" class="text-xl"></iconify-icon>
                             <span class="d-none d-md-inline">Tambah Tagihan Massal</span>
@@ -73,7 +73,7 @@
             
             <!-- Filter Kelas -->
             <div class="col-md-3 col-4">
-                <select name="kelas_id" class="form-select" onchange="this.form.submit()">
+                <select name="kelas_id" id="select_kelas" class="form-select" onchange="this.form.submit()">
                     <option value="">Kelas</option>
                     <option value="all" {{ request('kelas_id') == 'all' ? 'selected' : '' }}>Semua</option>
                     <option value="null" {{ request('kelas_id') == 'null' ? 'selected' : '' }}>Tanpa Kelas</option>
@@ -87,7 +87,7 @@
 
             <!-- Filter Tingkat Kelas -->
             <div class="col-md-3 col-4">
-                <select name="tingkat" class="form-select" onchange="this.form.submit()">
+                <select name="tingkat" id="select_tingkat" class="form-select" onchange="this.form.submit()">
                     <option value="">Tingkat</option>
                     @foreach ([10,11,12] as $t)
                         <option value="{{ $t }}" {{ request('tingkat') == $t ? 'selected' : '' }}>
@@ -99,7 +99,7 @@
 
             <!-- Filter Status Tagihan -->
             <div class="col-md-3 col-4">
-                <select name="status" class="form-select" onchange="this.form.submit()">
+                <select name="status" id="select_status" class="form-select" onchange="this.form.submit()">
                     <option value="">Status Tagihan</option>
                     <option value="lunas" {{ request('status') == 'lunas' ? 'selected' : '' }}>Lunas</option>
                     <option value="belum lunas" {{ request('status') == 'belum lunas' ? 'selected' : '' }}>Belum Lunas</option>
@@ -273,7 +273,31 @@
             $('#select_kelas').select2({
                 theme: "bootstrap-5",
                 //   closeOnSelect : false,
-                placeholder: "Pilih Kelas",
+                placeholder: "Kelas",
+                width: '100%',
+                language: {
+                    noResults: function() {
+                        return "Tidak ada data";
+                    }
+                }
+
+            });
+            $('#select_tingkat').select2({
+                theme: "bootstrap-5",
+                //   closeOnSelect : false,
+                placeholder: "Tingkat",
+                width: '100%',
+                language: {
+                    noResults: function() {
+                        return "Tidak ada data";
+                    }
+                }
+
+            });
+            $('#select_status').select2({
+                theme: "bootstrap-5",
+                //   closeOnSelect : false,
+                placeholder: "Status",
                 width: '100%',
                 language: {
                     noResults: function() {

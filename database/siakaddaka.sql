@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Des 2025 pada 16.52
+-- Waktu pembuatan: 24 Des 2025 pada 09.30
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -348,6 +348,33 @@ INSERT INTO `jurusan` (`id`, `nama_jurusan`, `kode_jurusan`, `created_at`, `upda
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `kaskeluar`
+--
+
+CREATE TABLE `kaskeluar` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `kode_pengeluaran` varchar(255) NOT NULL,
+  `tanggal` date NOT NULL,
+  `kategori` varchar(255) NOT NULL,
+  `keterangan` text DEFAULT NULL,
+  `jumlah` decimal(15,2) NOT NULL,
+  `petugas_id` bigint(20) UNSIGNED NOT NULL,
+  `semester_id` bigint(20) UNSIGNED NOT NULL,
+  `tahun_pelajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `kaskeluar`
+--
+
+INSERT INTO `kaskeluar` (`id`, `kode_pengeluaran`, `tanggal`, `kategori`, `keterangan`, `jumlah`, `petugas_id`, `semester_id`, `tahun_pelajaran_id`, `created_at`, `updated_at`) VALUES
+(2, 'KK-1766558165', '2025-12-24', 'ATK', 'Beli alat tulis kantor', 90000.00, 1, 1, 6, '2025-12-23 23:36:05', '2025-12-23 23:36:05');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `kategori_mapel`
 --
 
@@ -387,7 +414,9 @@ CREATE TABLE `kelas` (
 
 INSERT INTO `kelas` (`id`, `tingkat`, `nama_kelas`, `kode_kelas`, `jurusan_id`, `created_at`, `updated_at`) VALUES
 (8, '11', '11 TKJ 2', '11TKJ2', 2, '2025-12-06 21:37:03', '2025-12-06 21:37:03'),
-(9, '12', '12 TKJ 2', '12TKJ2', 2, '2025-12-08 01:58:48', '2025-12-08 01:58:48');
+(9, '12', '12 TKJ 2', '12TKJ2', 2, '2025-12-08 01:58:48', '2025-12-08 01:58:48'),
+(10, '11', '11 TKJ 3', '11TKJ3', 2, '2025-12-23 19:33:15', '2025-12-23 19:33:15'),
+(11, '12', '12 TKJ 3', '12TKJ3', 2, '2025-12-23 19:33:43', '2025-12-23 19:33:43');
 
 -- --------------------------------------------------------
 
@@ -409,7 +438,9 @@ CREATE TABLE `ketua_kelas` (
 
 INSERT INTO `ketua_kelas` (`id`, `kelas_id`, `siswa_id`, `created_at`, `updated_at`) VALUES
 (3, 8, 2, '2025-12-06 21:37:03', '2025-12-06 21:37:03'),
-(6, 9, 4, '2025-12-08 01:58:48', '2025-12-08 01:58:48');
+(6, 9, 4, '2025-12-08 01:58:48', '2025-12-08 01:58:48'),
+(7, 10, 12, '2025-12-23 19:33:15', '2025-12-23 19:33:15'),
+(8, 11, 7, '2025-12-23 19:33:43', '2025-12-23 19:33:43');
 
 -- --------------------------------------------------------
 
@@ -599,7 +630,9 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (131, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:23', '2025-12-22 20:47:23'),
 (132, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:34', '2025-12-22 20:47:34'),
 (133, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 03:57:01', '2025-12-23 03:57:01'),
-(134, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 03:57:01', '2025-12-23 03:57:01');
+(134, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 03:57:01', '2025-12-23 03:57:01'),
+(135, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 18:12:37', '2025-12-23 18:12:37'),
+(136, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0', '2025-12-23 19:32:05', '2025-12-23 19:32:05');
 
 -- --------------------------------------------------------
 
@@ -749,11 +782,8 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id`, `tagihan_id`, `tahun_pelajaran_id`, `semester_id`, `jumlah_bayar`, `tgl_bayar`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 1, 6, 1, 1000.00, '2025-12-23', 'Bayar cicil', '2025-12-23 06:51:57', '2025-12-23 06:51:57'),
-(2, 1, 6, 1, 10000.00, '2025-12-23', 'Bayar Cicil Lagi', '2025-12-23 07:02:09', '2025-12-23 07:02:09'),
-(3, 1, 6, 1, 100000.00, '2025-12-23', 'Lagi-lagi nyicil', '2025-12-23 07:02:30', '2025-12-23 07:02:30'),
-(4, 1, 6, 1, 64000.00, '2025-12-23', 'Pelunasan Akhirnya', '2025-12-23 07:14:44', '2025-12-23 07:14:44'),
-(5, 2, 6, 1, 900000.00, '2025-12-23', 'Langsung lunas', '2025-12-23 08:17:37', '2025-12-23 08:17:37');
+(5, 2, 6, 1, 900000.00, '2025-12-23', 'Langsung lunas', '2025-12-23 08:17:37', '2025-12-23 08:17:37'),
+(6, 4, 6, 1, 175000.00, '2025-12-24', 'Langsung lunas', '2025-12-23 19:26:17', '2025-12-23 19:26:17');
 
 -- --------------------------------------------------------
 
@@ -815,7 +845,8 @@ CREATE TABLE `semesters` (
 --
 
 INSERT INTO `semesters` (`id`, `tahun_pelajaran_id`, `nama`, `tanggal_mulai`, `tanggal_selesai`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 6, 'Gasal', '2025-11-07', '2025-11-29', 1, '2025-11-30 00:55:31', '2025-11-30 00:55:31');
+(1, 6, 'Gasal', '2025-11-07', '2025-11-29', 1, '2025-11-30 00:55:31', '2025-12-23 20:36:40'),
+(6, 11, 'Gasal', '2025-12-25', '2025-12-26', 0, '2025-12-23 20:14:02', '2025-12-23 20:36:40');
 
 -- --------------------------------------------------------
 
@@ -845,24 +876,24 @@ CREATE TABLE `siswa` (
 
 INSERT INTO `siswa` (`id`, `user_id`, `nama`, `nis`, `nisn`, `tgl_lahir`, `no_hp`, `jenis_kelamin`, `no_hp_ortu`, `alamat`, `kelas_id`, `created_at`, `updated_at`) VALUES
 (1, 7, 'Prof. Archibald Langosh DDS', 'SIS596127', 'NISN940160', '2016-01-09', '1-630-409-4242', 'P', '682-218-5763', '7320 Mathias Unions Apt. 966\nLittelville, PA 81555-4696', 9, '2025-11-21 20:32:59', '2025-12-08 01:58:48'),
-(2, 8, 'Prof. Mayra Heathcote PhD', 'SIS962960', 'NISN598168', '2025-01-13', '+1-212-315-7308', 'P', '1-432-520-8058', '50127 Veum Manor\nRueckerton, VT 38251', NULL, '2025-11-21 20:32:59', '2025-12-09 01:51:24'),
-(4, 10, 'Mekhi Raynor', 'SIS287979', 'NISN052471', '2023-11-14', '769.455.0679', 'P', '(847) 660-5830', '840 Senger Oval\nElwynhaven, SD 39403', NULL, '2025-11-21 20:32:59', '2025-12-09 01:50:33'),
+(2, 8, 'Prof. Mayra Heathcote PhD', 'SIS962960', 'NISN598168', '2025-01-13', '+1-212-315-7308', 'P', '1-432-520-8058', '50127 Veum Manor\nRueckerton, VT 38251', 11, '2025-11-21 20:32:59', '2025-12-23 19:33:43'),
+(4, 10, 'Mekhi Raynor', 'SIS287979', 'NISN052471', '2023-11-14', '769.455.0679', 'P', '(847) 660-5830', '840 Senger Oval\nElwynhaven, SD 39403', 11, '2025-11-21 20:32:59', '2025-12-23 19:33:43'),
 (5, 11, 'Kenneth Ward', 'SIS575141', 'NISN967540', '2013-04-18', '847.630.4813', 'P', '423.320.4828', '84995 Schumm Street Suite 118\nJuliusburgh, VA 73107', 8, '2025-11-21 20:32:59', '2025-12-06 21:37:03'),
 (6, 12, 'Candice Fay', 'SIS655550', 'NISN546551', '1970-09-19', '561.749.2136', 'P', '+1 (407) 561-5686', '8029 Senger Land\nBodeland, WV 57774', 8, '2025-11-21 20:32:59', '2025-12-06 21:37:03'),
-(7, 13, 'Annamarie Ernser I', 'SIS780854', 'NISN616408', '2008-07-31', '919.239.0967', 'P', '+1-407-829-3854', '39487 Hodkiewicz Mews\nReillyview, VT 19285', NULL, '2025-11-21 20:32:59', '2025-12-07 02:41:11'),
+(7, 13, 'Annamarie Ernser I', 'SIS780854', 'NISN616408', '2008-07-31', '919.239.0967', 'P', '+1-407-829-3854', '39487 Hodkiewicz Mews\nReillyview, VT 19285', 11, '2025-11-21 20:32:59', '2025-12-23 19:33:43'),
 (8, 14, 'Rosalind Kertzmann Sr.', 'SIS359559', 'NISN112949', '2008-05-25', '1-478-331-8220', 'P', '1-708-783-4326', '743 Elenor Corners\nEast Jennyfer, VT 83097-6807', 9, '2025-11-21 20:32:59', '2025-12-08 01:58:48'),
-(11, 17, 'Darien Emard I', 'SIS022016', 'NISN844416', '1995-09-15', '+1-630-964-9188', 'P', '+1-240-990-2828', '7875 Pierce Crossroad\nVirgiefurt, MD 77399', NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
-(12, 18, 'Arnulfo Rolfson', 'SIS605487', 'NISN220211', '1970-01-06', '769-595-5637', 'P', '440.496.1571', '73967 Hartmann Lodge Apt. 111\nNew Lloydbury, NH 94004', NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
+(11, 17, 'Darien Emard I', 'SIS022016', 'NISN844416', '1995-09-15', '+1-630-964-9188', 'P', '+1-240-990-2828', '7875 Pierce Crossroad\nVirgiefurt, MD 77399', 10, '2025-11-21 20:32:59', '2025-12-23 19:33:15'),
+(12, 18, 'Arnulfo Rolfson', 'SIS605487', 'NISN220211', '1970-01-06', '769-595-5637', 'P', '440.496.1571', '73967 Hartmann Lodge Apt. 111\nNew Lloydbury, NH 94004', 10, '2025-11-21 20:32:59', '2025-12-23 19:33:15'),
 (13, 19, 'Dr. Davin Bechtelar', 'SIS663960', 'NISN531580', '2009-12-02', '+12342580382', 'P', '540-272-8647', '3699 Stamm Lake\nEast Malvina, VA 95193-2136', NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
-(14, 20, 'Antwan Heathcote DDS', 'SIS695732', 'NISN825636', '1993-10-14', '774-882-1320', 'P', '727-228-4889', '6798 Kreiger Isle Suite 298\nEast Ianmouth, AZ 99862-4765', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
-(15, 21, 'Geovany Lehner', 'SIS414664', 'NISN298115', '1974-11-01', '+1.304.809.0038', 'P', '564-726-8542', '851 Elaina Islands\nCandidochester, NJ 95788-3105', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
-(16, 22, 'Jermaine Huels', 'SIS753778', 'NISN808136', '1987-12-13', '+1 (240) 429-2855', 'P', '904.713.6749', '311 Stephania Rue\nBernicemouth, NJ 98427', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
-(17, 23, 'Dr. Sienna Jast', 'SIS347187', 'NISN731015', '1996-11-05', '1-571-402-8156', 'P', '+1.319.878.7221', '21468 Gutkowski Centers\nEast Cindyfurt, AL 94734-6527', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
+(14, 20, 'Antwan Heathcote DDS', 'SIS695732', 'NISN825636', '1993-10-14', '774-882-1320', 'P', '727-228-4889', '6798 Kreiger Isle Suite 298\nEast Ianmouth, AZ 99862-4765', 10, '2025-11-21 20:33:00', '2025-12-23 19:33:15'),
+(15, 21, 'Geovany Lehner', 'SIS414664', 'NISN298115', '1974-11-01', '+1.304.809.0038', 'P', '564-726-8542', '851 Elaina Islands\nCandidochester, NJ 95788-3105', 11, '2025-11-21 20:33:00', '2025-12-23 19:33:43'),
+(16, 22, 'Jermaine Huels', 'SIS753778', 'NISN808136', '1987-12-13', '+1 (240) 429-2855', 'P', '904.713.6749', '311 Stephania Rue\nBernicemouth, NJ 98427', 10, '2025-11-21 20:33:00', '2025-12-23 19:33:15'),
+(17, 23, 'Dr. Sienna Jast', 'SIS347187', 'NISN731015', '1996-11-05', '1-571-402-8156', 'P', '+1.319.878.7221', '21468 Gutkowski Centers\nEast Cindyfurt, AL 94734-6527', 11, '2025-11-21 20:33:00', '2025-12-23 19:33:43'),
 (18, 24, 'Emiliano Blanda', 'SIS193376', 'NISN315237', '2005-04-07', '620-663-4088', 'P', '+1-970-773-3208', '71638 Nadia Via\nNew Hertha, TN 51244-7593', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
 (19, 25, 'Mafalda Gulgowski', 'SIS049677', 'NISN400197', '2014-08-02', '+19498370245', 'P', '(979) 600-2808', '6441 Carmen Branch\nPort Jasen, UT 80774', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
 (20, 26, 'Darion Ondricka', 'SIS039197', 'NISN291067', '2018-11-04', '(360) 644-0557', 'P', '347-599-3686', '2831 Bette Neck\nPort Dianna, OR 50943-5359', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
 (21, 33, 'Dovie Lynch', 'SIS769732', 'NISN778267', '2001-10-03', '+1 (478) 396-2932', 'P', '541-477-4658', '707 Jakubowski Roads\nNorth Lou, IN 55398-2832', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
-(22, 34, 'Elton Bayer Jr.', 'SIS272448', 'NISN938901', '1988-02-19', '570-310-5430', 'P', '(575) 595-8074', '300 McCullough Wells\nKreigerton, NE 46646-3826', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
+(22, 34, 'Elton Bayer Jr.', 'SIS272448', 'NISN938901', '1988-02-19', '570-310-5430', 'P', '(575) 595-8074', '300 McCullough Wells\nKreigerton, NE 46646-3826', 10, '2025-11-21 20:33:59', '2025-12-23 19:33:15'),
 (23, 35, 'Prof. Ollie Bartell', 'SIS059729', 'NISN436708', '2013-04-06', '517.564.6345', 'P', '1-650-968-5159', '879 Stroman Fall\nCarmellafort, RI 95066', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
 (24, 36, 'Pemuda Biasa', 'SIS286533', 'NISN901822', '1999-07-01', '+1.320.956.3912', 'P', '325.232.7379', '641 Enoch Ferry Apt. 279\nLeanneborough, MA 00597-1802', 8, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
 (25, 37, 'Dr. Amely Kuphal', 'SIS355756', 'NISN374337', '1979-10-27', '+1.917.961.8202', 'P', '1-364-257-7601', '6817 Bayer Landing Suite 175\nNorth Rodrickborough, ME 29278', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
@@ -968,8 +999,25 @@ CREATE TABLE `tagihan` (
 --
 
 INSERT INTO `tagihan` (`id`, `siswa_id`, `nama_tagihan`, `jenis_tagihan_id`, `jumlah`, `tgl_tagihan`, `status`, `tahun_pelajaran_id`, `semester_id`, `created_at`, `updated_at`) VALUES
-(1, 24, 'SPP Februari', 1, 175000.00, '2025-12-23', 'lunas', 6, 1, '2025-12-23 00:45:05', '2025-12-23 07:14:44'),
-(2, 24, 'Uang Gedung', 3, 900000.00, '2025-12-23', 'lunas', 6, 1, '2025-12-23 01:43:14', '2025-12-23 08:17:37');
+(2, 24, 'Uang Gedung', 3, 900000.00, '2025-12-23', 'lunas', 6, 1, '2025-12-23 01:43:14', '2025-12-23 08:17:37'),
+(3, 5, 'SPP Maret', 1, 175000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:22:44', '2025-12-23 19:22:44'),
+(4, 6, 'SPP Maret', 1, 175000.00, '2025-12-24', 'lunas', 6, 1, '2025-12-23 19:22:44', '2025-12-23 19:26:17'),
+(5, 24, 'SPP Maret', 1, 175000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:22:44', '2025-12-23 19:22:44'),
+(6, 1, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(7, 8, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(8, 2, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(9, 4, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(10, 7, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(11, 15, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(12, 17, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(13, 5, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(14, 6, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(15, 24, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(16, 11, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(17, 12, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(18, 14, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(19, 16, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(20, 22, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06');
 
 -- --------------------------------------------------------
 
@@ -990,7 +1038,8 @@ CREATE TABLE `tahun_pelajaran` (
 --
 
 INSERT INTO `tahun_pelajaran` (`id`, `nama`, `is_active`, `created_at`, `updated_at`) VALUES
-(6, '2026/2027', 1, '2025-11-29 23:56:24', '2025-12-08 21:25:43');
+(6, '2026/2027', 1, '2025-11-29 23:56:24', '2025-12-23 20:36:23'),
+(11, '2024/2025', 0, '2025-12-23 20:09:56', '2025-12-23 20:33:51');
 
 -- --------------------------------------------------------
 
@@ -1166,7 +1215,9 @@ CREATE TABLE `walikelas` (
 
 INSERT INTO `walikelas` (`id`, `guru_id`, `kelas_id`, `created_at`, `updated_at`) VALUES
 (6, 11, 8, '2025-12-06 21:37:03', '2025-12-06 21:37:03'),
-(7, 3, 9, '2025-12-08 01:58:48', '2025-12-08 01:58:48');
+(7, 3, 9, '2025-12-08 01:58:48', '2025-12-08 01:58:48'),
+(8, 2, 10, '2025-12-23 19:33:15', '2025-12-23 19:33:15'),
+(9, 1, 11, '2025-12-23 19:33:43', '2025-12-23 19:33:43');
 
 --
 -- Indexes for dumped tables
@@ -1265,6 +1316,16 @@ ALTER TABLE `jenis_tagihan`
 ALTER TABLE `jurusan`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `jurusan_kode_jurusan_unique` (`kode_jurusan`);
+
+--
+-- Indeks untuk tabel `kaskeluar`
+--
+ALTER TABLE `kaskeluar`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `kode_pengeluaran` (`kode_pengeluaran`),
+  ADD KEY `kaskeluar_petugas_id_foreign` (`petugas_id`),
+  ADD KEY `kaskeluar_semester_id_foreign` (`semester_id`),
+  ADD KEY `kaskeluar_tahun_pelajaran_id_foreign` (`tahun_pelajaran_id`);
 
 --
 -- Indeks untuk tabel `kategori_mapel`
@@ -1537,6 +1598,12 @@ ALTER TABLE `jurusan`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT untuk tabel `kaskeluar`
+--
+ALTER TABLE `kaskeluar`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `kategori_mapel`
 --
 ALTER TABLE `kategori_mapel`
@@ -1546,13 +1613,13 @@ ALTER TABLE `kategori_mapel`
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `ketua_kelas`
 --
 ALTER TABLE `ketua_kelas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `log_kehadiran`
@@ -1570,7 +1637,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
@@ -1600,7 +1667,7 @@ ALTER TABLE `notifikasi`
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengumpulan_tugas`
@@ -1618,7 +1685,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `semesters`
 --
 ALTER TABLE `semesters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
@@ -1642,13 +1709,13 @@ ALTER TABLE `status_notifikasi`
 -- AUTO_INCREMENT untuk tabel `tagihan`
 --
 ALTER TABLE `tagihan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `tahun_pelajaran`
 --
 ALTER TABLE `tahun_pelajaran`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tugas`
@@ -1678,7 +1745,7 @@ ALTER TABLE `waka_kurikulum`
 -- AUTO_INCREMENT untuk tabel `walikelas`
 --
 ALTER TABLE `walikelas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -1717,6 +1784,14 @@ ALTER TABLE `jadwal_mengajar`
   ADD CONSTRAINT `jadwal_mengajar_data_mengajar_id_foreign` FOREIGN KEY (`data_mengajar_id`) REFERENCES `data_mengajar` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `jadwal_mengajar_jam_mulai_id_foreign` FOREIGN KEY (`jam_mulai_id`) REFERENCES `jam_mengajar` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `jadwal_mengajar_jam_selesai_id_foreign` FOREIGN KEY (`jam_selesai_id`) REFERENCES `jam_mengajar` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `kaskeluar`
+--
+ALTER TABLE `kaskeluar`
+  ADD CONSTRAINT `kaskeluar_petugas_id_foreign` FOREIGN KEY (`petugas_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `kaskeluar_semester_id_foreign` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `kaskeluar_tahun_pelajaran_id_foreign` FOREIGN KEY (`tahun_pelajaran_id`) REFERENCES `tahun_pelajaran` (`id`) ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `kelas`

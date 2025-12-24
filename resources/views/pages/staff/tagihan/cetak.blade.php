@@ -110,8 +110,12 @@
             {{ $tagihan->siswa->kelas->nama_kelas ?? '-' }}
         </p>
         <p>
-            <span class="label">Jenis Tagihan</span> :
+            <span class="label">Nama Tagihan</span> :
             {{ $tagihan->nama_tagihan }}
+        </p>
+        <p>
+            <span class="label">Jenis Tagihan</span> :
+            {{ $tagihan->jenisTagihan->nama_jenis }}
         </p>
         <p>
             <span class="label">Tanggal Tagihan</span> :
