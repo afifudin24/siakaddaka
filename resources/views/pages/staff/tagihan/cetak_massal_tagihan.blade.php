@@ -129,28 +129,69 @@
     </div>
 
     {{-- TAGIHAN --}}
-    <div class="tagihan">
-        <table>
-            <thead>
-                <tr>
-                    <th width="5%">No</th>
-                    <th>Nama Tagihan</th>
-                    <th width="25%">Nominal</th>
-                    <th width="20%">Tanggal</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($siswa->tagihan as $i => $t)
-                    <tr>
-                        <td align="center">{{ $i + 1 }}</td>
-                        <td>{{ $t->nama_tagihan }}</td>
-                        <td align="right">Rp {{ number_format($t->jumlah, 0, ',', '.') }}</td>
-                        <td align="center">{{ \Carbon\Carbon::parse($t->tgl_tagihan)->translatedFormat('d F Y') }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+<div class="tagihan">
+    @php
+        // total sisa tagihan siswa
+        $totalSisa = $siswa->tagihan->sum(fn($t) => $t->sisaTagihan());
+    @endphp
+
+    @foreach ($siswa->tagihan as $t)
+        @php
+            $sisa = $t->sisaTagihan();
+        @endphp
+        <div style="
+            border-left: 4px solid {{ $sisa == 0 ? '#4caf50' : '#ff9800' }};
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+        ">
+            <div style="font-weight: bold; font-size: 14px; margin-bottom: 4px;">
+                {{ $t->nama_tagihan }}
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #555;">
+              
+                <div style="text-align: left;">
+                    <div>
+                        <span style="font-weight: bold; color: #d32f2f;">
+                            Rp {{ number_format($sisa, 0, ',', '.') }}
+                        </span>
+                        <span style="
+                            margin-left: 8px;
+                            font-size: 11px;
+                            padding: 2px 6px;
+                            border-radius: 4px;
+                            background-color: {{ $sisa == 0 ? '#4caf50' : '#ff9800' }};
+                            color: white;
+                        ">
+                            {{ $sisa == 0 ? 'Lunas' : 'Belum Lunas' }}
+                        </span>
+                    </div>
+                    @if($sisa < $t->jumlah)
+                        <div style="font-size: 11px; color: #555;">
+                            (Sudah dibayar: Rp {{ number_format($t->jumlah - $sisa,0,',','.') }})
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+    {{-- Total sisa --}}
+    <div style="
+        margin-top: 15px;
+        padding: 12px 16px;
+        background-color: #e0f7fa;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: right;
+    ">
+        Total Sisa Tagihan: Rp {{ number_format($totalSisa, 0, ',', '.') }}
     </div>
+</div>
+
+
 
     {{-- PENUTUP --}}
     <div class="penutup">

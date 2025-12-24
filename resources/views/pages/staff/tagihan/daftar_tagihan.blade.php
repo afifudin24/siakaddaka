@@ -28,13 +28,14 @@
                             <iconify-icon icon="lucide:plus" class="text-xl"></iconify-icon>
                             <span class="d-none d-md-inline">Tambah</span>
                         </a>
+                     <a target="_blank" class="btn btn-danger text-sm btn-sm p-1 radius-4 d-flex align-items-center gap-2" 
+   href="{{ route('staff.tagihan.cetak.tagihan.bySiswa', ['siswaId' => $siswa->id]) }}">
+    <iconify-icon icon="lucide:printer" class="text-xl"></iconify-icon>
+    <span class="d-none d-md-inline">Cetak Semua Tagihan</span>
+</a>
 
-                        <!--
-                                <a href="{{ route('admin.siswa.importview') }}"
-                                    class="btn btn-success text-sm btn-sm p-1 radius-4 d-flex align-items-center gap-2">
-                                    <iconify-icon icon="ic:baseline-download" class="text-xl"></iconify-icon>
-                                    <span class="d-none d-md-inline">Import Siswa</span>
-                                </a> -->
+
+                   
                     </div>
 
                 </div>

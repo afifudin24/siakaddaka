@@ -14,15 +14,15 @@
                     </a>
                 </li>
                 <li>-</li>
-                <li class="fw-medium">Daftar Tagihan</li>
+                <li class="fw-medium">Cetak Riwayat Pembayaran Massal </li>
             </ul>
         </div>
 
            <div class="card basic-data-table">
-            <form action="{{ route('staff.tagihan.cetakMassalStore') }}" method="GET" target="_blank">
+            <form action="{{ route('staff.pembayaran.cetakMassalStore') }}" method="GET" target="_blank">
             @csrf
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Cetak Tagihan Massal</h5>
+                <h5 class="card-title mb-0">Cetak Riwayat Pembayaran Massal</h5>
                 <div>
                     <div class="d-flex gap-2">
                     <button type="submit"

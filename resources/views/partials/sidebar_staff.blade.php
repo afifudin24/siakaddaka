@@ -53,9 +53,9 @@
     <ul class="sidebar-submenu">
 
         {{-- Tahun Pelajaran --}}
-        <li class="{{Request::is('staff/tagihan/cetakmassal*') ? 'active-page' : ''}} ">
-            <a href="/staff/tagihan/aksi/cetakmassal"
-               class="{{ Request::is('staff/tagihan/cetakmassal*') ? 'active' : '' }}">
+        <li class="{{Request::is('staff/cetakmassal/tagihan*') ? 'active-page' : ''}} ">
+            <a href="/staff/cetakmassal/tagihan"
+               class="{{ Request::is('staff/cetakmassal/tagihan*') ? 'active' : '' }}">
                <iconify-icon icon="mdi:file-multiple-outline" class="menu-icon"></iconify-icon>
 
                 <span>Tagihan</span>

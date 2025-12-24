@@ -340,11 +340,20 @@ class StaffTagihanController extends Controller
     public function cetakMassalForm(){
           $kelas = Kelas::orderBy('tingkat')->orderBy('nama_kelas')->get();
 
+
+
+    
+
+    $jenisTagihan = JenisTagihan::all();
     $semesterAktif = Semester::where('is_active', 1)->first();
     $tahunPelajaranAktif = TahunPelajaran::where('is_active', 1)->first();
+    $tagihan = Tagihan::with(['tahunPelajaran', 'semester'])
+    ->select('nama_tagihan', 'tahun_pelajaran_id', 'semester_id')
+    ->groupBy('nama_tagihan', 'tahun_pelajaran_id', 'semester_id')->where('tahun_pelajaran_id', $tahunPelajaranAktif->id)->where('semester_id', $semesterAktif->id)
+    ->get();
     $tahunPelajaran = TahunPelajaran::all();
     $semesterTahunPelajaran = Semester::where('tahun_pelajaran_id', $tahunPelajaranAktif->id)->get();
-        return view('pages.staff.tagihan.cetak-tagihan-massal-form', compact('kelas', 'tahunPelajaran', 'semesterTahunPelajaran','semesterAktif', 'tahunPelajaranAktif'));
+        return view('pages.staff.tagihan.cetak-tagihan-massal-form', compact('kelas', 'tahunPelajaran', 'semesterTahunPelajaran','semesterAktif', 'tahunPelajaranAktif', 'tagihan', 'jenisTagihan'));
     }
   
 
@@ -357,18 +366,28 @@ public function cetakMassalStore(Request $request)
         'kelas_id' => 'required_if:target,kelas',
     ]);
 
-    $query = Siswa::with(['kelas', 'tagihan' => function ($q) use ($request) {
-        $q->where('semester_id', $request->semester_id)
-          ->where('tahun_pelajaran_id', $request->tahun_pelajaran_id)
-          ->where('status', 'belum lunas');
+  $query = Siswa::with(['kelas', 'tagihan' => function ($q) use ($request) {
+    $q->where('semester_id', $request->semester_id)
+      ->where('tahun_pelajaran_id', $request->tahun_pelajaran_id)
+      ->where('status', 'belum lunas');
 
-        if ($request->tanggal_mulai && $request->tanggal_selesai) {
-            $q->whereBetween('tgl_tagihan', [
-                $request->tanggal_mulai,
-                $request->tanggal_selesai
-            ]);
-        }
-    }]);
+    if ($request->tanggal_mulai && $request->tanggal_selesai) {
+        $q->whereBetween('tgl_tagihan', [
+            $request->tanggal_mulai,
+            $request->tanggal_selesai
+        ]);
+    }
+
+    if ($request->jenis_tagihan_id) {
+        $q->where('jenis_tagihan_id', $request->jenis_tagihan_id);
+    }
+
+    if ($request->nama_tagihan) {
+        $q->where('nama_tagihan', $request->nama_tagihan);
+    }
+}]);
+
+
 
     if ($request->target === 'tingkat') {
         $query->whereHas('kelas', fn ($q) =>
@@ -390,6 +409,49 @@ public function cetakMassalStore(Request $request)
 
     // preview (TIDAK DOWNLOAD)
     return $pdf->stream('cetak-tagihan-massal.pdf');
+}
+
+public function getByTahunSemester(Request $request)
+{
+    // Ambil tagihan berdasarkan tahun & semester, distinct nama_tagihan
+    $tagihan = Tagihan::with(['tahunPelajaran', 'semester'])
+        ->when($request->tahun_pelajaran_id, fn($q) => $q->where('tahun_pelajaran_id', $request->tahun_pelajaran_id))
+        ->when($request->semester_id, fn($q) => $q->where('semester_id', $request->semester_id))
+        ->where('status', 'belum lunas')
+        ->get()
+        ->unique('nama_tagihan'); // ambil unik berdasarkan nama_tagihan
+
+    $options = '<option value="">Pilih Tagihan</option>';
+
+    foreach ($tagihan as $t) {
+        $options .= "<option value='{$t->nama_tagihan}'>
+                        {$t->nama_tagihan} 
+                    </option>";
+    }
+
+    return response()->json(['options' => $options]);
+}
+
+public function cetakTagihanByIdSiswa($id_siswa)
+{
+    // Ambil data siswa
+    $siswa = Siswa::with([
+        'kelas',
+        'tagihan' => function ($q) {
+            $q->where('status', 'belum lunas')
+              ->with('tahunPelajaran', 'semester'); // ambil relasi tahun & semester
+        }
+    ])->findOrFail($id_siswa);
+
+    // Hitung total sisa tagihan
+    $totalSisa = $siswa->tagihan->sum(fn($t) => $t->sisaTagihan());
+
+    $pdf = Pdf::loadView(
+        'pages.staff.tagihan.cetak_tagihan_siswa',
+        compact('siswa', 'totalSisa')
+    )->setPaper('A4', 'portrait');
+
+    return $pdf->stream("tagihan-{$siswa->nama}.pdf");
 }
 
 
