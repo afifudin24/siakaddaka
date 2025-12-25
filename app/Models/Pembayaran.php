@@ -44,4 +44,6 @@ class Pembayaran extends Model
     {
         return $this->belongsTo(TahunPelajaran::class);
     }
+
+  
 }

@@ -235,7 +235,7 @@
                                             Lihat Tagihan
                                         </a>
 
-                                         <a href="{{ route('staff.tagihan.edit', $s->id) }}"
+                                          <a href="{{ route('staff.tagihan.tampilkantagihan', $s->id) }}"
                                             class="d-md-none d-md-inline-flex p-1 btn btn-small btn-sm btn-info d-inline-flex align-items-center gap-1 justify-content-center">
                                             <iconify-icon icon="mdi:eye"></iconify-icon>
                                             Tagihan

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Des 2025 pada 09.30
+-- Waktu pembuatan: 25 Des 2025 pada 08.23
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -370,7 +370,8 @@ CREATE TABLE `kaskeluar` (
 --
 
 INSERT INTO `kaskeluar` (`id`, `kode_pengeluaran`, `tanggal`, `kategori`, `keterangan`, `jumlah`, `petugas_id`, `semester_id`, `tahun_pelajaran_id`, `created_at`, `updated_at`) VALUES
-(2, 'KK-1766558165', '2025-12-24', 'ATK', 'Beli alat tulis kantor', 90000.00, 1, 1, 6, '2025-12-23 23:36:05', '2025-12-23 23:36:05');
+(2, 'KK-1766558165', '2025-12-24', 'ATK', 'Beli alat tulis kantor', 90000.00, 1, 1, 6, '2025-12-23 23:36:05', '2025-12-23 23:36:05'),
+(3, 'KK-1766636347', '2025-12-25', 'Transport', 'Transport guru MGMP', 150000.00, 1, 6, 11, '2025-12-24 21:19:07', '2025-12-24 21:19:07');
 
 -- --------------------------------------------------------
 
@@ -441,6 +442,59 @@ INSERT INTO `ketua_kelas` (`id`, `kelas_id`, `siswa_id`, `created_at`, `updated_
 (6, 9, 4, '2025-12-08 01:58:48', '2025-12-08 01:58:48'),
 (7, 10, 12, '2025-12-23 19:33:15', '2025-12-23 19:33:15'),
 (8, 11, 7, '2025-12-23 19:33:43', '2025-12-23 19:33:43');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `laporan_keuangan`
+--
+
+CREATE TABLE `laporan_keuangan` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tanggal_mulai` date DEFAULT NULL,
+  `tanggal_selesai` date DEFAULT NULL,
+  `semester_id` bigint(20) UNSIGNED NOT NULL,
+  `tahun_pelajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `status_rekap` tinyint(4) DEFAULT 0 COMMENT '0 = belum direkap, 1 = sudah direkap',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `laporan_keuangan`
+--
+
+INSERT INTO `laporan_keuangan` (`id`, `tanggal_mulai`, `tanggal_selesai`, `semester_id`, `tahun_pelajaran_id`, `status_rekap`, `created_at`, `updated_at`) VALUES
+(17, NULL, NULL, 1, 6, 1, '2025-12-24 20:07:05', '2025-12-24 20:37:54'),
+(19, NULL, NULL, 6, 11, 0, '2025-12-24 21:29:26', '2025-12-24 21:29:26'),
+(21, NULL, NULL, 6, 11, 0, '2025-12-24 21:36:34', '2025-12-24 21:36:34');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `laporan_keuangan_detail`
+--
+
+CREATE TABLE `laporan_keuangan_detail` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `laporan_id` bigint(20) UNSIGNED NOT NULL,
+  `jenis` enum('pemasukan','pengeluaran') NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `tanggal` date NOT NULL,
+  `nominal` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `laporan_keuangan_detail`
+--
+
+INSERT INTO `laporan_keuangan_detail` (`id`, `laporan_id`, `jenis`, `keterangan`, `tanggal`, `nominal`, `created_at`, `updated_at`) VALUES
+(4, 17, 'pemasukan', 'Pembayaran Tagihan Uang Gedung oleh Pemuda Biasa', '2025-12-23', 900000, '2025-12-24 20:07:05', '2025-12-24 20:07:05'),
+(5, 17, 'pemasukan', 'Pembayaran Tagihan SPP Maret oleh Candice Fay', '2025-12-24', 175000, '2025-12-24 20:07:05', '2025-12-24 20:07:05'),
+(6, 17, 'pengeluaran', 'Beli alat tulis kantor', '2025-12-24', 90000, '2025-12-24 20:07:05', '2025-12-24 20:07:05'),
+(7, 21, 'pengeluaran', 'Transport guru MGMP', '2025-12-25', 150000, '2025-12-24 21:36:34', '2025-12-24 21:36:34');
 
 -- --------------------------------------------------------
 
@@ -632,7 +686,9 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (133, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 03:57:01', '2025-12-23 03:57:01'),
 (134, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 03:57:01', '2025-12-23 03:57:01'),
 (135, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 18:12:37', '2025-12-23 18:12:37'),
-(136, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0', '2025-12-23 19:32:05', '2025-12-23 19:32:05');
+(136, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0', '2025-12-23 19:32:05', '2025-12-23 19:32:05'),
+(137, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 17:21:32', '2025-12-24 17:21:32'),
+(138, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0', '2025-12-24 21:15:13', '2025-12-24 21:15:13');
 
 -- --------------------------------------------------------
 
@@ -845,8 +901,8 @@ CREATE TABLE `semesters` (
 --
 
 INSERT INTO `semesters` (`id`, `tahun_pelajaran_id`, `nama`, `tanggal_mulai`, `tanggal_selesai`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 6, 'Gasal', '2025-11-07', '2025-11-29', 1, '2025-11-30 00:55:31', '2025-12-23 20:36:40'),
-(6, 11, 'Gasal', '2025-12-25', '2025-12-26', 0, '2025-12-23 20:14:02', '2025-12-23 20:36:40');
+(1, 6, 'Gasal', '2025-11-07', '2025-11-29', 1, '2025-11-30 00:55:31', '2025-12-25 00:03:46'),
+(6, 11, 'Gasal', '2025-12-25', '2025-12-26', 0, '2025-12-23 20:14:02', '2025-12-25 00:03:46');
 
 -- --------------------------------------------------------
 
@@ -1038,8 +1094,8 @@ CREATE TABLE `tahun_pelajaran` (
 --
 
 INSERT INTO `tahun_pelajaran` (`id`, `nama`, `is_active`, `created_at`, `updated_at`) VALUES
-(6, '2026/2027', 1, '2025-11-29 23:56:24', '2025-12-23 20:36:23'),
-(11, '2024/2025', 0, '2025-12-23 20:09:56', '2025-12-23 20:33:51');
+(6, '2026/2027', 1, '2025-11-29 23:56:24', '2025-12-25 00:03:46'),
+(11, '2024/2025', 0, '2025-12-23 20:09:56', '2025-12-25 00:03:46');
 
 -- --------------------------------------------------------
 
@@ -1349,6 +1405,21 @@ ALTER TABLE `ketua_kelas`
   ADD KEY `ketua_kelas_ibfk_1` (`kelas_id`);
 
 --
+-- Indeks untuk tabel `laporan_keuangan`
+--
+ALTER TABLE `laporan_keuangan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_laporan_semester` (`semester_id`),
+  ADD KEY `fk_laporan_tahun_pelajaran` (`tahun_pelajaran_id`);
+
+--
+-- Indeks untuk tabel `laporan_keuangan_detail`
+--
+ALTER TABLE `laporan_keuangan_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_laporan_detail_laporan` (`laporan_id`);
+
+--
 -- Indeks untuk tabel `log_kehadiran`
 --
 ALTER TABLE `log_kehadiran`
@@ -1601,7 +1672,7 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT untuk tabel `kaskeluar`
 --
 ALTER TABLE `kaskeluar`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori_mapel`
@@ -1622,6 +1693,18 @@ ALTER TABLE `ketua_kelas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT untuk tabel `laporan_keuangan`
+--
+ALTER TABLE `laporan_keuangan`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT untuk tabel `laporan_keuangan_detail`
+--
+ALTER TABLE `laporan_keuangan_detail`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT untuk tabel `log_kehadiran`
 --
 ALTER TABLE `log_kehadiran`
@@ -1637,7 +1720,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
@@ -1805,6 +1888,19 @@ ALTER TABLE `kelas`
 ALTER TABLE `ketua_kelas`
   ADD CONSTRAINT `adminkelas_siswa_id_foreign` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `ketua_kelas_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `laporan_keuangan`
+--
+ALTER TABLE `laporan_keuangan`
+  ADD CONSTRAINT `fk_laporan_semester` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_laporan_tahun_pelajaran` FOREIGN KEY (`tahun_pelajaran_id`) REFERENCES `tahun_pelajaran` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `laporan_keuangan_detail`
+--
+ALTER TABLE `laporan_keuangan_detail`
+  ADD CONSTRAINT `fk_laporan_detail_laporan` FOREIGN KEY (`laporan_id`) REFERENCES `laporan_keuangan` (`id`) ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `log_kehadiran`

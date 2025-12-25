@@ -6,6 +6,7 @@ use App\Http\Controllers\Staff\StaffTagihanController;
 use App\Http\Controllers\Staff\StaffJenisTagihanController;
 use App\Http\Controllers\Staff\StaffPembayaranController;
 use App\Http\Controllers\Staff\StaffKasKeluarController;
+use App\Http\Controllers\Staff\StaffLaporanKeuanganController;
 use App\Models\Staff;
 
 Route::middleware(['auth', 'role:staff'])
@@ -70,4 +71,31 @@ Route::middleware(['auth', 'role:staff'])
 
         Route::get('/kaskeluar/aksi/cetak', [StaffKasKeluarController::class, 'cetak'])
             ->name('kaskeluar.cetak');
-    });
+
+        // laporan keuangan
+        Route::get('/laporankeuangan', [StaffLaporanKeuanganController::class, 'index'])->name('laporankeuangan.index');
+        Route::get('/laporankeuangan/tambah', [StaffLaporanKeuanganController::class, 'tambahLaporanKeuangan'])->name('laporankeuangan.tambah');
+        Route::post('/laporankeuangan/generate', [StaffLaporanKeuanganController::class, 'generateLaporanKeuangan'])->name('laporankeuangan.generate');
+        Route::get(
+    '/laporankeuangan/cetak/{id}',
+    [StaffLaporanKeuanganController::class, 'cetak']
+)->name('staff.laporankeuangan.cetak');
+Route::post(
+    '/laporankeuangan/aksi/rekap',
+    [StaffLaporanKeuanganController::class, 'rekap']
+)->name('laporankeuangan.rekap');
+
+Route::get(
+    '/laporankeuangan/export/{id}',
+    [StaffLaporanKeuanganController::class, 'cetakExcel']
+)->name('laporankeuangan.export');
+// web.php
+Route::delete(
+    '/laporankeuangan/{id}/hapus',
+    [StaffLaporanKeuanganController::class, 'hapus']
+)->name('laporankeuangan.hapus');
+
+
+
+
+    }); 

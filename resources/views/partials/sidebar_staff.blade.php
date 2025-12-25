@@ -77,6 +77,13 @@
     </ul>
 
 </li>
+  <li class="{{ request()->is('staff/laporankeuangan*') ? 'active-page active' : '' }}">
+        <a href="/staff/laporankeuangan" class="{{ request()->is('staff/laporankeuangan*') ? 'active-page  active' : '' }}">
+     <iconify-icon icon="mdi:finance" class="menu-icon"></iconify-icon>
+
+          <span>Laporan Keuangan</span>
+        </a>
+      </li>
       @endif
     
     </ul>

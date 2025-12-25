@@ -14,7 +14,8 @@ class AdminTahunPelajaranController extends Controller
    public function index()
     {
         $tahun_pelajaran = TahunPelajaran::all();
-          $data = Semester::with('tahunPelajaran')->get();
+        $tahun_pelajaran_aktif = TahunPelajaran::where('is_active', 1)->first();
+          $data = Semester::with('tahunPelajaran')->where('tahun_pelajaran_id', $tahun_pelajaran_aktif->id)->get();
         return view('pages.admin.tahun_pelajaran.index', compact('tahun_pelajaran', 'data'));
     }
 
@@ -65,11 +66,29 @@ public function update(Request $request, $id)
 
     DB::transaction(function () use ($request, $id) {
 
-        // 🔴 Jika tahun pelajaran ini diaktifkan
+        // 🔴 Jika tahun pelajaran diaktifkan
         if ($request->is_active == 1) {
+
+            // Nonaktifkan tahun pelajaran lain
             TahunPelajaran::where('id', '!=', $id)
                 ->where('is_active', 1)
                 ->update(['is_active' => 0]);
+
+            // 🔍 Ambil semua semester milik tahun pelajaran ini
+            $semesterList = Semester::where('tahun_pelajaran_id', $id)->get();
+
+            if ($semesterList->count() > 0) {
+
+                // 🟢 Ambil semester pertama
+                $semesterAktif = $semesterList->first();
+
+                // Nonaktifkan semua semester tahun pelajaran ini
+                Semester::where('tahun_pelajaran_id', '!=' , $id)
+                    ->update(['is_active' => 0]);
+
+                // Aktifkan semester pertama
+                $semesterAktif->update(['is_active' => 1]);
+            }
         }
 
         // 🟢 Update data tahun pelajaran
