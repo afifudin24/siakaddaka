@@ -58,66 +58,60 @@
 </form>
 
                     <div class="row gy-4">
-                        <div class="col-xxl-4 d-flex flex-wrap justify-content-between">
-                            <div class="card p-3 radius-8 col-12 col-md-5 shadow-none bg-gradient-dark-start-3 mb-12">
-                                <div class="card-body p-0 ">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-0">
-                                        <div class="d-flex  col-md-3 align-items-center gap-2 mb-12">
-                                            <span class="mb-0 w-48-px h-48-px bg-base text-pink text-2xl flex-shrink-0 d-flex justify-content-center align-items-center rounded-circle h6">
-                                                <iconify-icon icon="mdi:cash-plus" class="text-xl"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-0 fw-medium text-secondary-light text-lg">Saldo</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                      <div class="col-12 d-flex flex-wrap justify-content-start gap-3">
 
-                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-8">
-                                        <h5 class="fw-semibold mb-0">{{ rupiah($saldo) }}</h5>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card p-3 radius-8 col-md-3 col-12 shadow-none bg-gradient-dark-start-3 mb-12">
-                                <div class="card-body p-0 ">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-0">
-                                        <div class="d-flex  col-md-3 align-items-center gap-2 mb-12">
-                                            <span class="mb-0 w-48-px h-48-px bg-base text-pink text-2xl flex-shrink-0 d-flex justify-content-center align-items-center rounded-circle h6">
-                                                <iconify-icon icon="mdi:cash-plus" class="text-xl"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-0 fw-medium text-secondary-light text-lg">Total Pemasukan</span>
-                                            </div>
-                                        </div>
-                                    </div>
+    {{-- SALDO --}}
+    <div class="card col-12 col-md-3 border-0 shadow-lg radius-12 bg-white">
+        <div class="card-body p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <small class="text-muted fw-medium">Saldo</small>
+                    <h5 class="fw-bold mt-1 mb-0 text-success">
+                        {{ rupiah($saldo) }}
+                    </h5>
+                </div>
+                <span class="icon-circle bg-success-soft text-success">
+                    <iconify-icon icon="mdi:wallet"></iconify-icon>
+                </span>
+            </div>
+        </div>
+    </div>
 
-                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-8">
-                                        <h5 class="fw-semibold mb-0">{{ rupiah($totalPemasukan) }}</h5>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card p-3 radius-8 col-md-3 col-12 shadow-none bg-gradient-dark-start-1 mb-12">
-                                <div class="card-body p-0 ">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-0">
-                                        <div class="d-flex  col-md-3 align-items-center gap-2 mb-12">
-                                            <span class="mb-0 w-48-px h-48-px bg-base text-pink text-2xl flex-shrink-0 d-flex justify-content-center align-items-center rounded-circle h6">
-                                                <iconify-icon icon="mdi:cash-minus" class="text-xl"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="mb-0 fw-medium text-secondary-light text-lg">Total Pengeluaran</span>
-                                            </div>
-                                        </div>
-                                    </div>
+    {{-- PEMASUKAN --}}
+    <div class="card col-12 col-md-4 border-0 shadow-lg radius-12 bg-white">
+        <div class="card-body p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <small class="text-muted fw-medium">Total Pemasukan</small>
+                    <h5 class="fw-bold mt-1 mb-0 text-primary">
+                        {{ rupiah($totalPemasukan) }}
+                    </h5>
+                </div>
+                <span class="icon-circle bg-primary-soft text-primary">
+                    <iconify-icon icon="mdi:cash-plus"></iconify-icon>
+                </span>
+            </div>
+        </div>
+    </div>
 
-                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-8">
-                                        <h5 class="fw-semibold mb-0">{{ rupiah($totalPengeluaran) }}</h5>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                         
-                        </div>
+    {{-- PENGELUARAN --}}
+    <div class="card col-12 col-md-4 border-0 shadow-lg radius-12 bg-white">
+        <div class="card-body p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <small class="text-muted fw-medium">Total Pengeluaran</small>
+                    <h5 class="fw-bold mt-1 mb-0 text-danger">
+                        {{ rupiah($totalPengeluaran) }}
+                    </h5>
+                </div>
+                <span class="icon-circle bg-danger-soft text-danger">
+                    <iconify-icon icon="mdi:cash-minus"></iconify-icon>
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>
                         <div class="col-xxl-8">
                             <div class="card-body p-0">
                                 <div class="d-flex col-md-3 align-items-center flex-wrap gap-2 justify-content-between">
