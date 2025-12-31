@@ -57,112 +57,137 @@
 
 </form>
 
-                    <div class="row gy-4">
-                      <div class="col-12 d-flex flex-wrap justify-content-start gap-3">
+                   <div class="row g-3">
 
     {{-- SALDO --}}
-    <div class="card col-12 col-md-3 border-0 shadow-lg radius-12 bg-white">
-        <div class="card-body p-3">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <small class="text-muted fw-medium">Saldo</small>
-                    <h5 class="fw-bold mt-1 mb-0 text-success">
-                        {{ rupiah($saldo) }}
-                    </h5>
+    <div class="col-12 col-md-4">
+        <div class="card border-0 shadow-lg radius-12 bg-white">
+            <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <small class="text-muted fw-medium">Saldo</small>
+                        <h5 class="fw-bold mt-1 mb-0 text-success">
+                            {{ rupiah($saldo) }}
+                        </h5>
+                    </div>
+                    <span class="icon-circle bg-success-soft text-success">
+                        <iconify-icon icon="mdi:wallet"></iconify-icon>
+                    </span>
                 </div>
-                <span class="icon-circle bg-success-soft text-success">
-                    <iconify-icon icon="mdi:wallet"></iconify-icon>
-                </span>
             </div>
         </div>
     </div>
 
     {{-- PEMASUKAN --}}
-    <div class="card col-12 col-md-4 border-0 shadow-lg radius-12 bg-white">
-        <div class="card-body p-3">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <small class="text-muted fw-medium">Total Pemasukan</small>
-                    <h5 class="fw-bold mt-1 mb-0 text-primary">
-                        {{ rupiah($totalPemasukan) }}
-                    </h5>
+    <div class="col-12 col-md-4">
+        <div class="card border-0 shadow-lg radius-12 bg-white">
+            <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <small class="text-muted fw-medium">Total Pemasukan</small>
+                        <h5 class="fw-bold mt-1 mb-0 text-primary">
+                            {{ rupiah($totalPemasukan) }}
+                        </h5>
+                    </div>
+                    <span class="icon-circle bg-primary-soft text-primary">
+                        <iconify-icon icon="mdi:cash-plus"></iconify-icon>
+                    </span>
                 </div>
-                <span class="icon-circle bg-primary-soft text-primary">
-                    <iconify-icon icon="mdi:cash-plus"></iconify-icon>
-                </span>
             </div>
         </div>
     </div>
 
     {{-- PENGELUARAN --}}
-    <div class="card col-12 col-md-4 border-0 shadow-lg radius-12 bg-white">
-        <div class="card-body p-3">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <small class="text-muted fw-medium">Total Pengeluaran</small>
-                    <h5 class="fw-bold mt-1 mb-0 text-danger">
-                        {{ rupiah($totalPengeluaran) }}
-                    </h5>
+    <div class="col-12 col-md-4">
+        <div class="card border-0 shadow-lg radius-12 bg-white">
+            <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <small class="text-muted fw-medium">Total Pengeluaran</small>
+                        <h5 class="fw-bold mt-1 mb-0 text-danger">
+                            {{ rupiah($totalPengeluaran) }}
+                        </h5>
+                    </div>
+                    <span class="icon-circle bg-danger-soft text-danger">
+                        <iconify-icon icon="mdi:cash-minus"></iconify-icon>
+                    </span>
                 </div>
-                <span class="icon-circle bg-danger-soft text-danger">
-                    <iconify-icon icon="mdi:cash-minus"></iconify-icon>
-                </span>
             </div>
         </div>
     </div>
 
+    {{-- Transaksi Terakhir --}}
+    <br>
+    
+      <p class="fw-semibold mb-0 mt-3">Transaksi Terbaru</p>
+      <div class="table-responsive">
+        <table class="table basic-border-table">
+            <thead>
+                <th>
+                    Tanggal Bayar
+                </th>
+                <th>
+                    Tagihan
+                </th>
+                <th>
+                    Jumlah Bayar
+                </th>
+                <th>
+                    Siswa
+                </th>
+                <th>
+                    Keterangan
+                </th>
+            </thead>
+            <tbody>
+                @if($transaksiTerbaru->isEmpty())
+                    <tr>
+                        <td colspan="4" class="text-center">Belum ada transaksi</td>
+                    </tr>
+                @endif
+                @foreach ($transaksiTerbaru as $tt)
+                    <tr>
+                        <td>
+                            {{ \Carbon\Carbon::parse($tt->tanggal_bayar)->translatedFormat('d F Y') }}
+                        </td>
+                        <td>
+                            {{ $tt->tagihan->nama_tagihan }}
+                        </td>
+                        <td>
+                            {{ rupiah($tt->jumlah_bayar) }}
+                        </td>
+                        <td>
+                            {{ $tt->tagihan->siswa->nama }}
+                        </td>
+                        <td>
+                            {{ $tt->keterangan }}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+      </div>
 </div>
-                        <div class="col-xxl-8">
-                            <div class="card-body p-0">
-                                <div class="d-flex col-md-3 align-items-center flex-wrap gap-2 justify-content-between">
-                                    <h6 class="mb-2 fw-bold text-lg">Average Enrollment Rate
-                                    </h6>
-                                    <div class="">
-                                    <select class="form-select form-select-sm w-auto bg-base border text-secondary-light radius-8">
-                                        <option>Yearly</option>
-                                        <option>Monthly</option>
-                                        <option>Weekly</option>
-                                        <option>Today</option>
-                                    </select>
-                                    </div>
-                                </div>
-                                <ul class="d-flex flex-wrap align-items-center justify-content-center mt-3 gap-3">
-                                    <li class="d-flex align-items-center gap-2">
-                                        <span class="w-12-px h-12-px rounded-circle bg-primary-600"></span>
-                                        <span class="text-secondary-light text-sm fw-semibold">Paid Course:
-                                            <span class="text-primary-light fw-bold">350</span>
-                                        </span>
-                                    </li>
-                                    <li class="d-flex align-items-center gap-2">
-                                        <span class="w-12-px h-12-px rounded-circle bg-success-main"></span>
-                                        <span class="text-secondary-light text-sm fw-semibold">Free Course: 
-                                            <span class="text-primary-light fw-bold">70</span>
-                                        </span>
-                                    </li>
-                                </ul>
-                                <div class="mt-40">
-                                    <div id="enrollmentChart" class="apexcharts-tooltip-style-1"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
             <div class="col-xxl-4 col-md-6">
                 <div class="card h-100 radius-8 border-0">
                     <div class="card-body p-24 d-flex flex-column justify-content-between gap-8">
                         <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between mb-20">
-                            <h6 class="mb-2 fw-bold text-lg mb-0">Traffic Sources</h6>
-                            <select class="form-select form-select-sm w-auto bg-base border text-secondary-light radius-8">
-                                <option>Yearly</option>
-                                <option>Monthly</option>
-                                <option>Weekly</option>
-                                <option>Today</option>
-                            </select>
+                            <h6 class="mb-2 fw-bold text-lg mb-0">Komposisi Pemasukan</h6>
+                          
+                            <select id="filterTahunPelajaran" class="form-select form-select-sm w-auto bg-base border text-secondary-light radius-8">
+    @foreach ($allTahunPelajaran as $tp)
+        <option value="{{ $tp->id }}">{{ $tp->nama }}</option>
+    @endforeach
+</select>
                         </div>
-                        <div id="userOverviewDonutChart" class="margin-16-minus y-value-left apexcharts-tooltip-z-none"></div>
-                        
-                        <ul class="d-flex flex-wrap align-items-center justify-content-between mt-3 gap-3">
+                 
+                        <div id="pemasukanDonutChart" class="y-value-left apexcharts-tooltip-z-none"></div>
+
+                        {{-- <ul class="d-flex flex-wrap align-items-center justify-content-between mt-3 gap-3">
                             <li class="d-flex flex-column gap-8">
                                 <div class="d-flex align-items-center gap-2">
                                     <span class="w-12-px h-12-px rounded-circle bg-warning-600"></span>
@@ -184,7 +209,7 @@
                                 </div>
                                 <span class="text-primary-light fw-bold">4,305</span>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
             </div>
@@ -1062,6 +1087,81 @@ semesterSelect.addEventListener('change', function () {
 });
 </script>
 
+<script>
+let pemasukanChart;
+
+function loadPemasukanChart(tahunPelajaranId) {
+    $.ajax({
+        url: '/staff/dashboard/keuangan/pemasukan-per-jenis',
+        method: 'GET',
+        data: {
+            tahun_pelajaran_id: tahunPelajaranId
+        },
+        success: function (res) {
+          
+    console.log('RAW SERIES:', res.series);
+
+    let series = [];
+    let labels = [];
+
+    res.series.forEach((val, i) => {
+        val = Number(val);
+        if (!isNaN(val) && val > 0) {
+            series.push(val);
+            labels.push(res.labels[i]);
+        }
+    });
+
+    if (series.length === 0) {
+        document.querySelector('#pemasukanDonutChart').innerHTML =
+            '<p class="text-center text-muted">Tidak ada data pemasukan</p>';
+        return;
+    }
+
+    const options = {
+        series: series,
+        labels: labels,
+        chart: {
+            type: 'donut',
+            height: 400
+        },
+        dataLabels: { enabled: false },
+        legend: { position: 'bottom' },
+        tooltip: {
+            y: {
+                formatter: val =>
+                    'Rp ' + val.toLocaleString('id-ID')
+            }
+        }
+    };
+
+    if (window.pemasukanChart) {
+        window.pemasukanChart.destroy();
+    }
+
+    window.pemasukanChart = new ApexCharts(
+        document.querySelector("#pemasukanDonutChart"),
+        options
+    );
+
+    window.pemasukanChart.render();
+            
+        },
+        error: function (err) {
+            console.error('Error fetching pemasukan data:', err);
+        }
+    });
+}
+</script>
+<script>
+loadPemasukanChart({{ $tahunPelajaranAktif->id }});
+</script>
+
+<script>
+$('#filterTahunPelajaran').on('change', function () {
+    loadPemasukanChart($(this).val());
+});
+</script>
 
 
   @endpush

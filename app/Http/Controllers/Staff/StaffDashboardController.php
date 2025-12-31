@@ -10,6 +10,7 @@ use App\Models\Semester;
 use App\Models\KasKeluar;
 use App\Models\Kelas;
 use App\Models\Pembayaran;
+use Illuminate\Support\Facades\DB;
 
 class StaffDashboardController extends Controller
 {
@@ -110,6 +111,7 @@ if ($request->filled('semester_id')) {
         }else{
             $semesterList = Semester::where('tahun_pelajaran_id', $tahunPelajaranAktif->id)->get();
         }
+      
 
     return view('pages.staff.dashboard.index', compact(
         'totalPemasukan',
@@ -125,6 +127,28 @@ if ($request->filled('semester_id')) {
         }
        
     }
+
+    
+public function pemasukanPerJenis(Request $request)
+{
+    $tahunPelajaranId = $request->tahun_pelajaran_id;
+
+    $data = DB::table('pembayaran')
+        ->join('tagihan', 'pembayaran.tagihan_id', '=', 'tagihan.id')
+        ->join('jenis_tagihan', 'tagihan.jenis_tagihan_id', '=', 'jenis_tagihan.id')
+        ->where('tagihan.tahun_pelajaran_id', $tahunPelajaranId)
+        ->select(
+            'jenis_tagihan.nama_jenis',
+            DB::raw('SUM(pembayaran.jumlah_bayar) as total')
+        )
+        ->groupBy('jenis_tagihan.nama_jenis')
+        ->get();
+
+    return response()->json([
+        'labels' => $data->pluck('nama_jenis'),
+        'series' => $data->pluck('total'),
+    ]);
+}
 
     public function create()
     {

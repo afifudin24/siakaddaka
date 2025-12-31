@@ -15,6 +15,11 @@ Route::middleware(['auth', 'role:staff'])
         // dashboard
         Route::get('dashboard', [StaffDashboardController::class, 'index'])
             ->name('dashboard');
+            // routes/web.php atau api.php
+Route::get('/dashboard/keuangan/pemasukan-per-jenis', 
+    [StaffDashboardController::class, 'pemasukanPerJenis']
+);
+
         // Jenis Tagihan
         Route::resource('/jenistagihan', StaffJenisTagihanController::class);
         Route::patch(

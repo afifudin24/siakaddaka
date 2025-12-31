@@ -251,7 +251,7 @@
                     </table>
                 </form>
             </div>
-            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mt-24">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mt-24 px-3 pb-3">
                 <span>
                     Showing
                     {{ $siswa->firstItem() ?? 0 }}
