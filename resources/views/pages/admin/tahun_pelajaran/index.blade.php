@@ -17,6 +17,19 @@
     <li class="fw-medium">Tahun Pelajaran</li>
   </ul>
 </div>
+<div>
+@if ($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Terjadi kesalahan!</strong>
+        <ul class="mt-2 mb-0 ps-3">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+@endif
+</div>
     <div class="row">
     <div class="col-md-6">
  
@@ -39,17 +52,7 @@
     </div>
 @endif
 
-@if ($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Terjadi kesalahan!</strong>
-        <ul class="mt-2 mb-0 ps-3">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-@endif
+
          
      <div class="d-flex justify-content-between mb-3">
 
@@ -157,24 +160,14 @@
 
       </div>
       <div class="card-body">
-        @if (session('success'))
+        @if (session('successsemester'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Sukses!</strong> {{ session('success') }}
+        <strong>Sukses!</strong> {{ session('successsemester') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 @endif
 
-@if ($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Terjadi kesalahan!</strong>
-        <ul class="mt-2 mb-0 ps-3">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-@endif
+
          
      <div class="d-flex justify-content-between mb-3">
 

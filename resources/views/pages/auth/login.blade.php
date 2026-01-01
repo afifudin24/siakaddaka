@@ -62,14 +62,31 @@
         <input type="text" class="form-control h-56-px bg-neutral-50 radius-12" name="email" required placeholder="Email atau Username">
     </div>
 
-    <div class="position-relative mb-20">
-        <div class="icon-field">
-            <span class="icon top-50 translate-middle-y">
-                <iconify-icon icon="solar:lock-password-outline"></iconify-icon>
-            </span>
-            <input type="password" name="password" required class="form-control h-56-px bg-neutral-50 radius-12" id="your-password" placeholder="Password">
-        </div>
+   <div class="position-relative mb-20">
+    <div class="icon-field position-relative">
+
+        <!-- Icon kiri -->
+        <span class="icon top-50 translate-middle-y">
+            <iconify-icon icon="solar:lock-password-outline"></iconify-icon>
+        </span>
+
+        <!-- Input -->
+        <input type="password"
+               name="password"
+               required
+               class="form-control h-56-px bg-neutral-50 radius-12 pe-5"
+               id="your-password"
+               placeholder="Password">
+
+        <!-- Eye button -->
+        <span class="position-absolute top-50 end-0 translate-middle-y me-3 cursor-pointer"
+              id="togglePassword">
+            <iconify-icon id="eyeIcon" icon="solar:eye-outline" class="text-xl"></iconify-icon>
+        </span>
+
     </div>
+</div>
+
 
     <div class="">
         <div class="d-flex justify-content-between gap-2">
@@ -127,5 +144,23 @@
 });
 
     </script>
+
+    <script>
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('your-password');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    togglePassword.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        eyeIcon.setAttribute(
+            'icon',
+            type === 'password'
+                ? 'solar:eye-outline'
+                : 'solar:eye-closed-outline'
+        );
+    });
+</script>
 @endpush
 @endsection

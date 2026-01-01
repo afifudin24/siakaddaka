@@ -14,7 +14,11 @@ return new class extends Migration
      Schema::create('tagihan', function (Blueprint $table) {
     $table->id();
     $table->foreignId('siswa_id')->constrained('siswa')->onDelete('cascade');
-    $table->string('jenis'); // contoh: SPP, Uang Gedung, Ekstrakurikuler
+    $table->string('nama_tagihan');
+   $table->foreignId('jenis_tagihan_id')
+      ->constrained('jenis_tagihan')
+      ->cascadeOnDelete();
+
     $table->decimal('jumlah', 12, 2); 
     $table->date('tgl_tagihan');
     $table->enum('status', ['belum_lunas','lunas'])->default('belum_lunas');

@@ -10,7 +10,7 @@
                         </div>
                     </div>
 
-            <form action="/admin/tahun-pelajaran/{{ $s->id }}" method="POST">
+            <form action="/admin/semester/{{ $s->id }}" method="POST">
                 @csrf
                 @method('PUT')
 

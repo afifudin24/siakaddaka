@@ -20,4 +20,8 @@ class TahunPelajaran extends Model
     {
         return $this->hasOne(Semester::class);
     }
+    public function tagihan()
+    {
+        return $this->hasMany(Tagihan::class);
+    }
 }

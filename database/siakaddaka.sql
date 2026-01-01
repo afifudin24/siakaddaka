@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Waktu pembuatan: 11 Des 2025 pada 10.03
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 25 Des 2025 pada 08.23
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -227,9 +227,9 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id`, `user_id`, `nama`, `bio`, `nip`, `nuptk`, `email`, `no_hp`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Mr. Alek Kunze', 'Nam in sint atque ex qui enim a deserunt.', '7205564583', '2749431145', 'bins.thad@example.com', '(351) 262-1976', '2010-08-13', 'P', '729 Myrna Place Suite 577\nAleenville, CA 32225', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
+(1, 2, 'Afif Waliyudin', 'Nam in sint atque ex qui enim a deserunt.', '7205564583', '2749431145', 'afifsaja@gmail.com', '6281548769365', '2010-08-13', 'P', 'Desa Surusunda Rt 01 Rw 03', '2025-11-21 20:32:51', '2025-12-19 07:47:24'),
 (2, 3, 'Achmad Faozi', 'Qui optio sunt libero nobis.', '7719806920', '8775296709', 'collier.raquel@example.org', '(212) 390-1435', '1982-07-23', 'L', '623 Stark Track\nKleinfort, RI 47459-5955', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
-(3, 4, 'Kimberly Reichel', 'Et modi doloribus cupiditate voluptatibus consequatur non facere.', '4881167998', '9721376793', 'hoppe.george@example.org', '772.336.5162', '1971-04-25', 'P', '3327 Stephen Coves\nLake Camilleshire, KY 09335-0684', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
+(3, 4, 'Yao Poci', 'Et modi doloribus cupiditate voluptatibus consequatur non facere.', '4881167998', '9721376793', 'yaopoci@gmail.com', '772.336.5162', '1971-04-25', 'P', '3327 Stephen Coves\r\nLake Camilleshire, KY 09335-0684', '2025-11-21 20:32:51', '2025-12-20 06:12:47'),
 (4, 5, 'Coby Beahan', 'Sequi impedit qui mollitia fugit doloribus.', '7841974130', '7901528296', 'gvolkman@example.com', '409.715.9141', '1987-03-17', '', '3202 Bartell Knolls Apt. 408\nSouth Melbahaven, FL 25084', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
 (5, 6, 'Fae Prosacco', 'Similique architecto soluta dignissimos laborum suscipit fuga et.', '5899409039', '4870226365', 'price00@example.net', '+1 (936) 254-2763', '1993-12-24', '', '802 Boehm Via\nGreenholtstad, WI 69882', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
 (6, 28, 'Ryann Heller PhD', 'Sed harum iste dolorem totam ullam.', '1688961728', '6240731225', 'njacobi@example.com', '930.873.5699', '1985-03-31', '', '697 Keon Haven\nJeromechester, SD 17745-5660', '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
@@ -241,9 +241,7 @@ INSERT INTO `guru` (`id`, `user_id`, `nama`, `bio`, `nip`, `nuptk`, `email`, `no
 (12, 55, 'Lukas Douglas', 'Nulla est est ex accusamus.', '5020137654', '0764997175', 'pouros.santa@example.org', '251.903.8594', '1991-05-18', '', '4320 King Center\nPort Jasenside, NJ 98536-5099', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
 (13, 56, 'Landen Hegmann', 'Ut non temporibus dignissimos est fugiat commodi.', '7862062173', '6513709001', 'reilly.wehner@example.org', '+1-252-699-9147', '2014-07-30', '', '1515 Maximilian Points\nEmardshire, WV 25895', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
 (14, 57, 'Greg Crist', 'Distinctio quia mollitia modi eveniet.', '1147338264', '3893018613', 'annalise.stokes@example.net', '(678) 540-1260', '2024-11-12', '', '370 Nathaniel Way Suite 672\nBergeland, OK 09518', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
-(15, 58, 'Prof. Elinor Hudson', 'Nostrum rerum nobis et quia.', '5880948654', '9481109539', 'ucarroll@example.org', '1-351-867-7771', '1988-04-02', '', '14951 Prohaska Summit Apt. 049\nWest Kattieview, PA 22398-0044', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
-(16, 85, 'Afif Waliyudin', NULL, NULL, NULL, 'afifrider507@gmail.com', NULL, NULL, 'P', NULL, '2025-12-11 01:37:55', '2025-12-11 01:37:55'),
-(17, 86, 'asikjuga', NULL, NULL, NULL, 'jagodigital65@gmail.com', NULL, NULL, 'P', NULL, '2025-12-11 01:41:24', '2025-12-11 01:41:24');
+(15, 58, 'Prof. Elinor Hudson', 'Nostrum rerum nobis et quia.', '5880948654', '9481109539', 'ucarroll@example.org', '1-351-867-7771', '1988-04-02', '', '14951 Prohaska Summit Apt. 049\nWest Kattieview, PA 22398-0044', '2025-11-21 20:36:30', '2025-11-21 20:36:30');
 
 -- --------------------------------------------------------
 
@@ -306,6 +304,29 @@ CREATE TABLE `jam_pelajaran` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `jenis_tagihan`
+--
+
+CREATE TABLE `jenis_tagihan` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama_jenis` varchar(30) NOT NULL,
+  `deskripsi` varchar(255) DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `jenis_tagihan`
+--
+
+INSERT INTO `jenis_tagihan` (`id`, `nama_jenis`, `deskripsi`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'SPP', 'Pembayaran SPP Bulanan', 1, '2025-12-22 21:41:54', '2025-12-22 22:40:56'),
+(3, 'Umum', 'Tagihan Untuk Umum', 1, '2025-12-22 22:48:03', '2025-12-22 22:48:03');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `jurusan`
 --
 
@@ -323,6 +344,34 @@ CREATE TABLE `jurusan` (
 
 INSERT INTO `jurusan` (`id`, `nama_jurusan`, `kode_jurusan`, `created_at`, `updated_at`) VALUES
 (2, 'Teknik Komputer dan Jaringan', 'TKJ', '2025-12-06 20:01:18', '2025-12-06 20:01:18');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kaskeluar`
+--
+
+CREATE TABLE `kaskeluar` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `kode_pengeluaran` varchar(255) NOT NULL,
+  `tanggal` date NOT NULL,
+  `kategori` varchar(255) NOT NULL,
+  `keterangan` text DEFAULT NULL,
+  `jumlah` decimal(15,2) NOT NULL,
+  `petugas_id` bigint(20) UNSIGNED NOT NULL,
+  `semester_id` bigint(20) UNSIGNED NOT NULL,
+  `tahun_pelajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `kaskeluar`
+--
+
+INSERT INTO `kaskeluar` (`id`, `kode_pengeluaran`, `tanggal`, `kategori`, `keterangan`, `jumlah`, `petugas_id`, `semester_id`, `tahun_pelajaran_id`, `created_at`, `updated_at`) VALUES
+(2, 'KK-1766558165', '2025-12-24', 'ATK', 'Beli alat tulis kantor', 90000.00, 1, 1, 6, '2025-12-23 23:36:05', '2025-12-23 23:36:05'),
+(3, 'KK-1766636347', '2025-12-25', 'Transport', 'Transport guru MGMP', 150000.00, 1, 6, 11, '2025-12-24 21:19:07', '2025-12-24 21:19:07');
 
 -- --------------------------------------------------------
 
@@ -365,8 +414,10 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id`, `tingkat`, `nama_kelas`, `kode_kelas`, `jurusan_id`, `created_at`, `updated_at`) VALUES
-(8, 'XI', '11 TKJ 2', '11TKJ2', 2, '2025-12-06 21:37:03', '2025-12-06 21:37:03'),
-(9, 'XII', '12 TKJ 2', '12TKJ2', 2, '2025-12-08 01:58:48', '2025-12-08 01:58:48');
+(8, '11', '11 TKJ 2', '11TKJ2', 2, '2025-12-06 21:37:03', '2025-12-06 21:37:03'),
+(9, '12', '12 TKJ 2', '12TKJ2', 2, '2025-12-08 01:58:48', '2025-12-08 01:58:48'),
+(10, '11', '11 TKJ 3', '11TKJ3', 2, '2025-12-23 19:33:15', '2025-12-23 19:33:15'),
+(11, '12', '12 TKJ 3', '12TKJ3', 2, '2025-12-23 19:33:43', '2025-12-23 19:33:43');
 
 -- --------------------------------------------------------
 
@@ -388,7 +439,62 @@ CREATE TABLE `ketua_kelas` (
 
 INSERT INTO `ketua_kelas` (`id`, `kelas_id`, `siswa_id`, `created_at`, `updated_at`) VALUES
 (3, 8, 2, '2025-12-06 21:37:03', '2025-12-06 21:37:03'),
-(6, 9, 61, '2025-12-08 01:58:48', '2025-12-10 23:25:18');
+(6, 9, 4, '2025-12-08 01:58:48', '2025-12-08 01:58:48'),
+(7, 10, 12, '2025-12-23 19:33:15', '2025-12-23 19:33:15'),
+(8, 11, 7, '2025-12-23 19:33:43', '2025-12-23 19:33:43');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `laporan_keuangan`
+--
+
+CREATE TABLE `laporan_keuangan` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tanggal_mulai` date DEFAULT NULL,
+  `tanggal_selesai` date DEFAULT NULL,
+  `semester_id` bigint(20) UNSIGNED NOT NULL,
+  `tahun_pelajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `status_rekap` tinyint(4) DEFAULT 0 COMMENT '0 = belum direkap, 1 = sudah direkap',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `laporan_keuangan`
+--
+
+INSERT INTO `laporan_keuangan` (`id`, `tanggal_mulai`, `tanggal_selesai`, `semester_id`, `tahun_pelajaran_id`, `status_rekap`, `created_at`, `updated_at`) VALUES
+(17, NULL, NULL, 1, 6, 1, '2025-12-24 20:07:05', '2025-12-24 20:37:54'),
+(19, NULL, NULL, 6, 11, 0, '2025-12-24 21:29:26', '2025-12-24 21:29:26'),
+(21, NULL, NULL, 6, 11, 0, '2025-12-24 21:36:34', '2025-12-24 21:36:34');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `laporan_keuangan_detail`
+--
+
+CREATE TABLE `laporan_keuangan_detail` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `laporan_id` bigint(20) UNSIGNED NOT NULL,
+  `jenis` enum('pemasukan','pengeluaran') NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `tanggal` date NOT NULL,
+  `nominal` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `laporan_keuangan_detail`
+--
+
+INSERT INTO `laporan_keuangan_detail` (`id`, `laporan_id`, `jenis`, `keterangan`, `tanggal`, `nominal`, `created_at`, `updated_at`) VALUES
+(4, 17, 'pemasukan', 'Pembayaran Tagihan Uang Gedung oleh Pemuda Biasa', '2025-12-23', 900000, '2025-12-24 20:07:05', '2025-12-24 20:07:05'),
+(5, 17, 'pemasukan', 'Pembayaran Tagihan SPP Maret oleh Candice Fay', '2025-12-24', 175000, '2025-12-24 20:07:05', '2025-12-24 20:07:05'),
+(6, 17, 'pengeluaran', 'Beli alat tulis kantor', '2025-12-24', 90000, '2025-12-24 20:07:05', '2025-12-24 20:07:05'),
+(7, 21, 'pengeluaran', 'Transport guru MGMP', '2025-12-25', 150000, '2025-12-24 21:36:34', '2025-12-24 21:36:34');
 
 -- --------------------------------------------------------
 
@@ -550,12 +656,39 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (103, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 21:23:34', '2025-12-08 21:23:34'),
 (104, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 21:23:46', '2025-12-08 21:23:46'),
 (105, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-08 21:24:31', '2025-12-08 21:24:31'),
-(106, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-10 19:54:25', '2025-12-10 19:54:25'),
-(107, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-10 19:54:39', '2025-12-10 19:54:39'),
-(108, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-10 19:56:05', '2025-12-10 19:56:05'),
-(111, 1, 'created', 'User baru dibuat: Contoh: Budi Setiawan (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-10 23:20:04', '2025-12-10 23:20:04'),
-(112, 1, 'created', 'User baru dibuat: Afif Waliyudin (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-11 01:37:55', '2025-12-11 01:37:55'),
-(113, 1, 'created', 'User baru dibuat: asikjuga (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-11 01:41:24', '2025-12-11 01:41:24');
+(106, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-19 05:49:53', '2025-12-19 05:49:53'),
+(107, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-19 05:50:12', '2025-12-19 05:50:12'),
+(108, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-19 05:54:35', '2025-12-19 05:54:35'),
+(109, 1, 'updated', 'User diperbarui: Darwin Kuvalis (admin)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-19 05:57:23', '2025-12-19 05:57:23'),
+(110, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-19 05:57:23', '2025-12-19 05:57:23'),
+(111, 1, 'updated', 'User diperbarui: Mr. Alek Kunze (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-19 07:03:51', '2025-12-19 07:03:51'),
+(112, 1, 'updated', 'User diperbarui: Mr. Alek Kunze (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-19 07:26:06', '2025-12-19 07:26:06'),
+(113, 1, 'updated', 'User diperbarui: Mr. Alek Kunze (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-19 07:38:54', '2025-12-19 07:38:54'),
+(114, 1, 'updated', 'User diperbarui: Mr. Alek Kunze (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-19 07:41:35', '2025-12-19 07:41:35'),
+(115, 1, 'updated', 'User diperbarui: Mr. Alek Kunze (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-19 07:45:44', '2025-12-19 07:45:44'),
+(116, 1, 'updated', 'User diperbarui: Mr. Alek Kunze (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-19 08:00:48', '2025-12-19 08:00:48'),
+(117, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-20 06:02:38', '2025-12-20 06:02:38'),
+(118, 1, 'updated', 'User diperbarui: Mr. Alek Kunze (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-20 06:10:56', '2025-12-20 06:10:56'),
+(119, 1, 'updated', 'User diperbarui: Mr. Alek Kunze (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-20 06:11:41', '2025-12-20 06:11:41'),
+(120, 1, 'updated', 'User diperbarui: Kimberly Reichel (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-20 06:12:47', '2025-12-20 06:12:47'),
+(121, 1, 'updated', 'User diperbarui: Kimberly Reichel (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-20 06:13:24', '2025-12-20 06:13:24'),
+(122, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 05:52:21', '2025-12-22 05:52:21'),
+(123, 1, 'updated', 'User diperbarui: Darwin Kuvalis (admin)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 06:11:59', '2025-12-22 06:11:59'),
+(124, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 06:11:59', '2025-12-22 06:11:59'),
+(125, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 06:12:13', '2025-12-22 06:12:13'),
+(126, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:29:57', '2025-12-22 20:29:57'),
+(127, 80, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:44:06', '2025-12-22 20:44:06'),
+(128, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:44:26', '2025-12-22 20:44:26'),
+(129, 1, 'updated', 'User diperbarui: Mr. Alek Kunze (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:45:50', '2025-12-22 20:45:50'),
+(130, 1, 'updated', 'User diperbarui: Darwin Kuvalis (admin)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:23', '2025-12-22 20:47:23'),
+(131, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:23', '2025-12-22 20:47:23'),
+(132, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-22 20:47:34', '2025-12-22 20:47:34'),
+(133, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 03:57:01', '2025-12-23 03:57:01'),
+(134, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 03:57:01', '2025-12-23 03:57:01'),
+(135, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 18:12:37', '2025-12-23 18:12:37'),
+(136, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0', '2025-12-23 19:32:05', '2025-12-23 19:32:05'),
+(137, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 17:21:32', '2025-12-24 17:21:32'),
+(138, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0', '2025-12-24 21:15:13', '2025-12-24 21:15:13');
 
 -- --------------------------------------------------------
 
@@ -691,12 +824,22 @@ CREATE TABLE `password_reset_tokens` (
 CREATE TABLE `pembayaran` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `tagihan_id` bigint(20) UNSIGNED NOT NULL,
+  `tahun_pelajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `semester_id` bigint(20) UNSIGNED NOT NULL,
   `jumlah_bayar` decimal(12,2) NOT NULL,
   `tgl_bayar` date NOT NULL,
   `keterangan` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id`, `tagihan_id`, `tahun_pelajaran_id`, `semester_id`, `jumlah_bayar`, `tgl_bayar`, `keterangan`, `created_at`, `updated_at`) VALUES
+(5, 2, 6, 1, 900000.00, '2025-12-23', 'Langsung lunas', '2025-12-23 08:17:37', '2025-12-23 08:17:37'),
+(6, 4, 6, 1, 175000.00, '2025-12-24', 'Langsung lunas', '2025-12-23 19:26:17', '2025-12-23 19:26:17');
 
 -- --------------------------------------------------------
 
@@ -758,7 +901,8 @@ CREATE TABLE `semesters` (
 --
 
 INSERT INTO `semesters` (`id`, `tahun_pelajaran_id`, `nama`, `tanggal_mulai`, `tanggal_selesai`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 6, 'Gasal', '2025-11-07', '2025-11-29', 1, '2025-11-30 00:55:31', '2025-11-30 00:55:31');
+(1, 6, 'Gasal', '2025-11-07', '2025-11-29', 1, '2025-11-30 00:55:31', '2025-12-25 00:03:46'),
+(6, 11, 'Gasal', '2025-12-25', '2025-12-26', 0, '2025-12-23 20:14:02', '2025-12-25 00:03:46');
 
 -- --------------------------------------------------------
 
@@ -787,27 +931,27 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id`, `user_id`, `nama`, `nis`, `nisn`, `tgl_lahir`, `no_hp`, `jenis_kelamin`, `no_hp_ortu`, `alamat`, `kelas_id`, `created_at`, `updated_at`) VALUES
-(1, 7, 'Prof. Archibald Langosh DDS', 'SIS596127', 'NISN940160', '2016-01-09', '1-630-409-4242', 'P', '682-218-5763', '7320 Mathias Unions Apt. 966\nLittelville, PA 81555-4696', 9, '2025-11-21 20:32:59', '2025-12-10 23:25:18'),
-(2, 8, 'Prof. Mayra Heathcote PhD', 'SIS962960', 'NISN598168', '2025-01-13', '+1-212-315-7308', 'P', '1-432-520-8058', '50127 Veum Manor\nRueckerton, VT 38251', NULL, '2025-11-21 20:32:59', '2025-12-09 01:51:24'),
-(4, 10, 'Mekhi Raynor', 'SIS287979', 'NISN052471', '2023-11-14', '769.455.0679', 'P', '(847) 660-5830', '840 Senger Oval\nElwynhaven, SD 39403', NULL, '2025-11-21 20:32:59', '2025-12-09 01:50:33'),
+(1, 7, 'Prof. Archibald Langosh DDS', 'SIS596127', 'NISN940160', '2016-01-09', '1-630-409-4242', 'P', '682-218-5763', '7320 Mathias Unions Apt. 966\nLittelville, PA 81555-4696', 9, '2025-11-21 20:32:59', '2025-12-08 01:58:48'),
+(2, 8, 'Prof. Mayra Heathcote PhD', 'SIS962960', 'NISN598168', '2025-01-13', '+1-212-315-7308', 'P', '1-432-520-8058', '50127 Veum Manor\nRueckerton, VT 38251', 11, '2025-11-21 20:32:59', '2025-12-23 19:33:43'),
+(4, 10, 'Mekhi Raynor', 'SIS287979', 'NISN052471', '2023-11-14', '769.455.0679', 'P', '(847) 660-5830', '840 Senger Oval\nElwynhaven, SD 39403', 11, '2025-11-21 20:32:59', '2025-12-23 19:33:43'),
 (5, 11, 'Kenneth Ward', 'SIS575141', 'NISN967540', '2013-04-18', '847.630.4813', 'P', '423.320.4828', '84995 Schumm Street Suite 118\nJuliusburgh, VA 73107', 8, '2025-11-21 20:32:59', '2025-12-06 21:37:03'),
 (6, 12, 'Candice Fay', 'SIS655550', 'NISN546551', '1970-09-19', '561.749.2136', 'P', '+1 (407) 561-5686', '8029 Senger Land\nBodeland, WV 57774', 8, '2025-11-21 20:32:59', '2025-12-06 21:37:03'),
-(7, 13, 'Annamarie Ernser I', 'SIS780854', 'NISN616408', '2008-07-31', '919.239.0967', 'P', '+1-407-829-3854', '39487 Hodkiewicz Mews\nReillyview, VT 19285', NULL, '2025-11-21 20:32:59', '2025-12-07 02:41:11'),
-(8, 14, 'Rosalind Kertzmann Sr.', 'SIS359559', 'NISN112949', '2008-05-25', '1-478-331-8220', 'P', '1-708-783-4326', '743 Elenor Corners\nEast Jennyfer, VT 83097-6807', 9, '2025-11-21 20:32:59', '2025-12-10 23:25:18'),
-(11, 17, 'Darien Emard I', 'SIS022016', 'NISN844416', '1995-09-15', '+1-630-964-9188', 'P', '+1-240-990-2828', '7875 Pierce Crossroad\nVirgiefurt, MD 77399', NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
-(12, 18, 'Arnulfo Rolfson', 'SIS605487', 'NISN220211', '1970-01-06', '769-595-5637', 'P', '440.496.1571', '73967 Hartmann Lodge Apt. 111\nNew Lloydbury, NH 94004', NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
+(7, 13, 'Annamarie Ernser I', 'SIS780854', 'NISN616408', '2008-07-31', '919.239.0967', 'P', '+1-407-829-3854', '39487 Hodkiewicz Mews\nReillyview, VT 19285', 11, '2025-11-21 20:32:59', '2025-12-23 19:33:43'),
+(8, 14, 'Rosalind Kertzmann Sr.', 'SIS359559', 'NISN112949', '2008-05-25', '1-478-331-8220', 'P', '1-708-783-4326', '743 Elenor Corners\nEast Jennyfer, VT 83097-6807', 9, '2025-11-21 20:32:59', '2025-12-08 01:58:48'),
+(11, 17, 'Darien Emard I', 'SIS022016', 'NISN844416', '1995-09-15', '+1-630-964-9188', 'P', '+1-240-990-2828', '7875 Pierce Crossroad\nVirgiefurt, MD 77399', 10, '2025-11-21 20:32:59', '2025-12-23 19:33:15'),
+(12, 18, 'Arnulfo Rolfson', 'SIS605487', 'NISN220211', '1970-01-06', '769-595-5637', 'P', '440.496.1571', '73967 Hartmann Lodge Apt. 111\nNew Lloydbury, NH 94004', 10, '2025-11-21 20:32:59', '2025-12-23 19:33:15'),
 (13, 19, 'Dr. Davin Bechtelar', 'SIS663960', 'NISN531580', '2009-12-02', '+12342580382', 'P', '540-272-8647', '3699 Stamm Lake\nEast Malvina, VA 95193-2136', NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
-(14, 20, 'Antwan Heathcote DDS', 'SIS695732', 'NISN825636', '1993-10-14', '774-882-1320', 'P', '727-228-4889', '6798 Kreiger Isle Suite 298\nEast Ianmouth, AZ 99862-4765', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
-(15, 21, 'Geovany Lehner', 'SIS414664', 'NISN298115', '1974-11-01', '+1.304.809.0038', 'P', '564-726-8542', '851 Elaina Islands\nCandidochester, NJ 95788-3105', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
-(16, 22, 'Jermaine Huels', 'SIS753778', 'NISN808136', '1987-12-13', '+1 (240) 429-2855', 'P', '904.713.6749', '311 Stephania Rue\nBernicemouth, NJ 98427', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
-(17, 23, 'Dr. Sienna Jast', 'SIS347187', 'NISN731015', '1996-11-05', '1-571-402-8156', 'P', '+1.319.878.7221', '21468 Gutkowski Centers\nEast Cindyfurt, AL 94734-6527', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
+(14, 20, 'Antwan Heathcote DDS', 'SIS695732', 'NISN825636', '1993-10-14', '774-882-1320', 'P', '727-228-4889', '6798 Kreiger Isle Suite 298\nEast Ianmouth, AZ 99862-4765', 10, '2025-11-21 20:33:00', '2025-12-23 19:33:15'),
+(15, 21, 'Geovany Lehner', 'SIS414664', 'NISN298115', '1974-11-01', '+1.304.809.0038', 'P', '564-726-8542', '851 Elaina Islands\nCandidochester, NJ 95788-3105', 11, '2025-11-21 20:33:00', '2025-12-23 19:33:43'),
+(16, 22, 'Jermaine Huels', 'SIS753778', 'NISN808136', '1987-12-13', '+1 (240) 429-2855', 'P', '904.713.6749', '311 Stephania Rue\nBernicemouth, NJ 98427', 10, '2025-11-21 20:33:00', '2025-12-23 19:33:15'),
+(17, 23, 'Dr. Sienna Jast', 'SIS347187', 'NISN731015', '1996-11-05', '1-571-402-8156', 'P', '+1.319.878.7221', '21468 Gutkowski Centers\nEast Cindyfurt, AL 94734-6527', 11, '2025-11-21 20:33:00', '2025-12-23 19:33:43'),
 (18, 24, 'Emiliano Blanda', 'SIS193376', 'NISN315237', '2005-04-07', '620-663-4088', 'P', '+1-970-773-3208', '71638 Nadia Via\nNew Hertha, TN 51244-7593', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
 (19, 25, 'Mafalda Gulgowski', 'SIS049677', 'NISN400197', '2014-08-02', '+19498370245', 'P', '(979) 600-2808', '6441 Carmen Branch\nPort Jasen, UT 80774', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
 (20, 26, 'Darion Ondricka', 'SIS039197', 'NISN291067', '2018-11-04', '(360) 644-0557', 'P', '347-599-3686', '2831 Bette Neck\nPort Dianna, OR 50943-5359', NULL, '2025-11-21 20:33:00', '2025-11-21 20:33:00'),
 (21, 33, 'Dovie Lynch', 'SIS769732', 'NISN778267', '2001-10-03', '+1 (478) 396-2932', 'P', '541-477-4658', '707 Jakubowski Roads\nNorth Lou, IN 55398-2832', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
-(22, 34, 'Elton Bayer Jr.', 'SIS272448', 'NISN938901', '1988-02-19', '570-310-5430', 'P', '(575) 595-8074', '300 McCullough Wells\nKreigerton, NE 46646-3826', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
+(22, 34, 'Elton Bayer Jr.', 'SIS272448', 'NISN938901', '1988-02-19', '570-310-5430', 'P', '(575) 595-8074', '300 McCullough Wells\nKreigerton, NE 46646-3826', 10, '2025-11-21 20:33:59', '2025-12-23 19:33:15'),
 (23, 35, 'Prof. Ollie Bartell', 'SIS059729', 'NISN436708', '2013-04-06', '517.564.6345', 'P', '1-650-968-5159', '879 Stroman Fall\nCarmellafort, RI 95066', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
-(24, 36, 'Abdiel Daniel', 'SIS286533', 'NISN901822', '1999-07-01', '+1.320.956.3912', 'P', '325.232.7379', '641 Enoch Ferry Apt. 279\nLeanneborough, MA 00597-1802', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
+(24, 36, 'Pemuda Biasa', 'SIS286533', 'NISN901822', '1999-07-01', '+1.320.956.3912', 'P', '325.232.7379', '641 Enoch Ferry Apt. 279\nLeanneborough, MA 00597-1802', 8, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
 (25, 37, 'Dr. Amely Kuphal', 'SIS355756', 'NISN374337', '1979-10-27', '+1.917.961.8202', 'P', '1-364-257-7601', '6817 Bayer Landing Suite 175\nNorth Rodrickborough, ME 29278', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
 (26, 38, 'Tyra Purdy', 'SIS700464', 'NISN795645', '1980-01-05', '+1-743-580-8411', 'P', '(919) 655-0852', '538 Trace Extensions\nEast Norwood, DE 41503', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
 (27, 39, 'Aron Leannon', 'SIS585723', 'NISN732543', '1993-04-22', '1-901-831-9843', 'P', '+16039560245', '61124 Imogene Crossing\nElbertmouth, MA 26321-5557', NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
@@ -843,8 +987,7 @@ INSERT INTO `siswa` (`id`, `user_id`, `nama`, `nis`, `nisn`, `tgl_lahir`, `no_hp
 (57, 75, 'Myron Mohr', 'SIS426779', 'NISN191281', '1985-08-01', '786.910.7177', 'P', '1-616-252-2120', '3709 O\'Keefe Lodge Suite 295\nPort Kyler, CA 06268-0303', NULL, '2025-11-21 20:36:44', '2025-11-21 20:36:44'),
 (58, 76, 'Zora Russel', 'SIS532673', 'NISN745155', '1986-03-02', '+1.862.567.9889', 'P', '520.602.3838', '47811 Ismael Lock Apt. 314\nHansenfort, DC 92720', NULL, '2025-11-21 20:36:44', '2025-11-21 20:36:44'),
 (59, 77, 'Blanche Schoen', 'SIS257946', 'NISN727952', '1975-05-02', '551-377-2250', 'P', '609-560-8185', '980 Wintheiser Light\nCasandraland, CA 80637', NULL, '2025-11-21 20:36:44', '2025-11-21 20:36:44'),
-(60, 78, 'Prof. Alva Ryan', 'SIS778774', 'NISN089965', '1999-03-04', '407-303-6145', 'P', '+15599145720', '2820 Jonathon Forge\nPort Tess, MS 92525-8309', NULL, '2025-11-21 20:36:44', '2025-11-21 20:36:44'),
-(61, 82, 'Contoh: Budi Setiawan', '2200456', '0067891234', '2006-09-12', '081234567890', 'P', '081234567891', 'Contoh alamat siswa...', 9, '2025-12-10 23:20:04', '2025-12-10 23:25:18');
+(60, 78, 'Prof. Alva Ryan', 'SIS778774', 'NISN089965', '1999-03-04', '407-303-6145', 'P', '+15599145720', '2820 Jonathon Forge\nPort Tess, MS 92525-8309', NULL, '2025-11-21 20:36:44', '2025-11-21 20:36:44');
 
 -- --------------------------------------------------------
 
@@ -858,11 +1001,19 @@ CREATE TABLE `staff` (
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `jabatan` varchar(255) DEFAULT NULL,
+  `jenis_kelamin` enum('L','P') DEFAULT NULL,
   `no_hp` varchar(255) DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `staff`
+--
+
+INSERT INTO `staff` (`id`, `user_id`, `nama`, `email`, `jabatan`, `jenis_kelamin`, `no_hp`, `alamat`, `created_at`, `updated_at`) VALUES
+(1, 80, 'Tata Usaha', 'tatausaha@gmail.com', 'Staff Keuangan', 'P', '6281548769365', 'Desa Saja', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -888,13 +1039,41 @@ CREATE TABLE `status_notifikasi` (
 CREATE TABLE `tagihan` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `siswa_id` bigint(20) UNSIGNED NOT NULL,
-  `jenis` varchar(255) NOT NULL,
+  `nama_tagihan` varchar(255) NOT NULL,
+  `jenis_tagihan_id` bigint(20) UNSIGNED NOT NULL,
   `jumlah` decimal(12,2) NOT NULL,
   `tgl_tagihan` date NOT NULL,
-  `status` enum('belum_lunas','lunas') NOT NULL DEFAULT 'belum_lunas',
+  `status` enum('belum lunas','lunas') NOT NULL DEFAULT 'belum lunas',
+  `tahun_pelajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `semester_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tagihan`
+--
+
+INSERT INTO `tagihan` (`id`, `siswa_id`, `nama_tagihan`, `jenis_tagihan_id`, `jumlah`, `tgl_tagihan`, `status`, `tahun_pelajaran_id`, `semester_id`, `created_at`, `updated_at`) VALUES
+(2, 24, 'Uang Gedung', 3, 900000.00, '2025-12-23', 'lunas', 6, 1, '2025-12-23 01:43:14', '2025-12-23 08:17:37'),
+(3, 5, 'SPP Maret', 1, 175000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:22:44', '2025-12-23 19:22:44'),
+(4, 6, 'SPP Maret', 1, 175000.00, '2025-12-24', 'lunas', 6, 1, '2025-12-23 19:22:44', '2025-12-23 19:26:17'),
+(5, 24, 'SPP Maret', 1, 175000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:22:44', '2025-12-23 19:22:44'),
+(6, 1, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(7, 8, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(8, 2, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(9, 4, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(10, 7, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(11, 15, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(12, 17, 'Ujian Sekolah', 3, 150000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:38:15', '2025-12-23 19:38:15'),
+(13, 5, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(14, 6, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(15, 24, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(16, 11, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(17, 12, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(18, 14, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(19, 16, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06'),
+(20, 22, 'PKL', 3, 600000.00, '2025-12-24', 'belum lunas', 6, 1, '2025-12-23 19:39:06', '2025-12-23 19:39:06');
 
 -- --------------------------------------------------------
 
@@ -915,7 +1094,8 @@ CREATE TABLE `tahun_pelajaran` (
 --
 
 INSERT INTO `tahun_pelajaran` (`id`, `nama`, `is_active`, `created_at`, `updated_at`) VALUES
-(6, '2026/2027', 1, '2025-11-29 23:56:24', '2025-12-08 21:25:43');
+(6, '2026/2027', 1, '2025-11-29 23:56:24', '2025-12-25 00:03:46'),
+(11, '2024/2025', 0, '2025-12-23 20:09:56', '2025-12-25 00:03:46');
 
 -- --------------------------------------------------------
 
@@ -948,12 +1128,13 @@ CREATE TABLE `users` (
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `password_text` varchar(255) NOT NULL,
+  `password_text` varchar(255) DEFAULT NULL,
   `role` varchar(255) NOT NULL DEFAULT 'siswa',
   `foto_profil` varchar(255) DEFAULT 'profile.png',
   `foto_unggulan` varchar(255) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `reset_password_token` varchar(255) DEFAULT NULL,
+  `remember_token` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -962,89 +1143,87 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `created_at`, `updated_at`) VALUES
-(1, 'newell.kirlin', 'Darwin Kuvalis', 'jlarson@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
-(2, 'lstehr', 'Mr. Alek Kunze', 'bins.thad@example.com', '$2y$12$qGpXr1RTYIzfLhLUvMXvtuaS7L0kyHwnEzmQr0fmNegrvNWISR6l.', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:32:50', '2025-11-21 20:32:50'),
-(3, 'hauck.elouise', 'Khalil Gerlach', 'collier.raquel@example.org', '$2y$12$6v29/DD9FgFupmUudJaqUeKLcB1IpH2FKYfDOn6XH5mrqdK.v5rmG', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:32:50', '2025-11-21 20:32:50'),
-(4, 'jessy10', 'Kimberly Reichel', 'hoppe.george@example.org', '$2y$12$1YoNGozGkJJoVhmw2CscR.M.yiDzYT89zI8v1MeiKGBMZUcqBkBZG', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:32:50', '2025-11-21 20:32:50'),
-(5, 'tbins', 'Coby Beahan', 'gvolkman@example.com', '$2y$12$4jy3JwleOVAog1fO/ynlYutWZxsuJ0XGs28oTPUTmyC/RrvVo7rxu', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
-(6, 'horace67', 'Fae Prosacco', 'price00@example.net', '$2y$12$YjVX0X3cGgjFRGVlCZtlIe6.4F/NqaHvh5cg7/jD7YBoHmsUPJYJa', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
-(7, 'cornell38', 'Prof. Archibald Langosh DDS', 'mante.rodolfo@example.net', '$2y$12$FnP75t.7.UMqXzCBrv2N/uXhvkj8Q1U6.mv98T8Hjk9He6V5m64cu', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:52', '2025-11-21 20:32:52'),
-(8, 'qkeeling', 'Prof. Mayra Heathcote PhD', 'retta98@example.com', '$2y$12$T9HkDiQblI9Nl.n5rR9X5eSuwvQpMXXUMFSyeeiVKwkaLk2.LN0Jm', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:52', '2025-11-21 20:32:52'),
-(9, 'howard.reilly', 'Elmore Jones', 'homenick.catalina@example.com', '$2y$12$gDhoaxc2fdfY7.ad9x1UtOWuqAt2YdqXFohl3K4Pic/VKa1Xt.p52', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:52', '2025-11-21 20:32:52'),
-(10, 'whayes', 'Mekhi Raynor', 'katherine54@example.org', '$2y$12$GPztPp45Yr1eIV0Cb1.2KOq2YkQkqfU12zAlHHvYaz4ZROmfqfAly', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:53', '2025-11-21 20:32:53'),
-(11, 'hill.conrad', 'Kenneth Ward', 'baumbach.forrest@example.org', '$2y$12$COQus/vT3oBWcWTXXeqIX.0S7Y0X8sRDn8NU.fo6.kqdpSa7yow3y', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:53', '2025-11-21 20:32:53'),
-(12, 'zgerhold', 'Candice Fay', 'vivien45@example.net', '$2y$12$IaKAk4j8/UhB4/L8OqjMK.yq8oDFUTdU5CfEEvMiQ7E3WMnoCN92C', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:54', '2025-11-21 20:32:54'),
-(13, 'ukassulke', 'Annamarie Ernser I', 'kessler.tyrique@example.net', '$2y$12$IgQVqDrLQL65rKJ9YeBA4ucLaftwuwqegYekaDkPMOuYsmAi1zt4u', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:54', '2025-11-21 20:32:54'),
-(14, 'chester06', 'Rosalind Kertzmann Sr.', 'jamie.senger@example.net', '$2y$12$VVsPDyKRkISci2jCyFnOx.u6Co36XdDcbxUV8aTYj6nMVmIPIlVAa', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:54', '2025-11-21 20:32:54'),
-(15, 'sven73', 'Kip Willms', 'renee.mcglynn@example.com', '$2y$12$rW72pzXNqRbQKlPSURzUaedhIt1.myWJBxgHcmZ1j/1JmD.nYYbse', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:55', '2025-11-21 20:32:55'),
-(16, 'flakin', 'Adrien Beier', 'albert.mueller@example.net', '$2y$12$RbUIBa1LCP1Y6WN6Rkw9desBfDb0hIg8CmSDyE4PYTU9XD7C1TgOy', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:55', '2025-11-21 20:32:55'),
-(17, 'mwill', 'Darien Emard I', 'micaela14@example.org', '$2y$12$uTOcVPvve1Srp/uxpdFY1.lBhuu9Z/2f3fZCO5.Y26W..mZhQF8Xm', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:56', '2025-11-21 20:32:56'),
-(18, 'oturcotte', 'Arnulfo Rolfson', 'allison51@example.com', '$2y$12$fW4ThPMTlGpctetXYwjJwe0xHSJ3BYyFJWV8X/YIxzo4RE5swigCK', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:56', '2025-11-21 20:32:56'),
-(19, 'torphy.verda', 'Dr. Davin Bechtelar', 'drunte@example.org', '$2y$12$mQrM4LVhpghYTfZOQCbvL.EP8hS42/CxBqaIhs.gNHyhzXrYKWyIi', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:56', '2025-11-21 20:32:56'),
-(20, 'tia.will', 'Antwan Heathcote DDS', 'general45@example.org', '$2y$12$p6fsx29qdugBD9bH0D.DF.SUHwKndd92XTJWV26K.X1VS/z66UzXy', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:57', '2025-11-21 20:32:57'),
-(21, 'collins.salma', 'Geovany Lehner', 'iwolff@example.net', '$2y$12$hWE2tdo.SfxPws4c7X/k1eO89/.NTjviw5RvaU6YYT1WzzMVr/QH.', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:57', '2025-11-21 20:32:57'),
-(22, 'emery10', 'Jermaine Huels', 'monty78@example.net', '$2y$12$KEOPnlUq6hw0S1znbZr5p.4hhskZ7Jyom.lXn/XZhsLwEKM3qRASK', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:57', '2025-11-21 20:32:57'),
-(23, 'schoen.brock', 'Dr. Sienna Jast', 'fay.dulce@example.com', '$2y$12$XGS/nZYMukFdfycnAzJfCudCOsriHamIURfQMika89FKY.gxn5ZUu', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:58', '2025-11-21 20:32:58'),
-(24, 'klocko.laurence', 'Emiliano Blanda', 'fkuphal@example.com', '$2y$12$sfIEZNBcMXndymDG7tdfGOPg8PFDCtuZiLAwXHray.SHoEWJPFEiK', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:58', '2025-11-21 20:32:58'),
-(25, 'lebsack.fiona', 'Mafalda Gulgowski', 'ernestina46@example.com', '$2y$12$0/SYoUEOJQRFrFODpPq4SendP22npP1bdsdyn486XmGpv1Ugk01wO', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
-(26, 'payton73', 'Darion Ondricka', 'montana.jacobi@example.org', '$2y$12$xoIRowulJykW/I4rkvxFAeJu/j761zvl.G/wzBo8R8vnfFi98M5JK', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
-(27, 'vmckenzie', 'Orville Larson Sr.', 'nolan.eunice@example.net', '$2y$12$EhpZ4gB3jXpRokJnlil8D.Y9xGR/6xK0JVAm6OcNru1uGRzD/lzZ2', '', 'admin', 'profile.png', '', 1, NULL, '2025-11-21 20:33:49', '2025-11-21 20:33:49'),
-(28, 'camilla82', 'Ryann Heller PhD', 'njacobi@example.com', '$2y$12$dKq4IjyMizcjQc44QCHB1uCB5VSl6yYHaPGnGWw5564KKlIdivY3.', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:33:50', '2025-11-21 20:33:50'),
-(29, 'gorczany.darrel', 'Cristobal Kling', 'schultz.carolyne@example.org', '$2y$12$PF0MBAi3/PxPTNlwNh2k.ea9fKeov8aB7GZ9SaTJrIy9DMeW76z9.', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:33:50', '2025-11-21 20:33:50'),
-(30, 'dhoppe', 'Kayla Jacobs', 'akuhlman@example.org', '$2y$12$dNgbpyRPzAHqfjbF1iWxTeZbXiFZ5Um4zyhO/fZmgerozKJTP3w2C', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
-(31, 'lauer', 'Wanda Simonis I', 'sarai.walter@example.com', '$2y$12$CxKF4XdSS5zzKnT6/6R11O.ewVKYvg1w0okbYkZAOu3XTfQoPK6xq', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
-(32, 'albertha.kerluke', 'Dr. Ariane Bosco Jr.', 'xwintheiser@example.org', '$2y$12$lwPHBrWVTrFLz9h1dA911uC/oAeCP6sfYYY.4O3qJ4vJUCnPKvZIi', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
-(33, 'zdibbert', 'Dovie Lynch', 'plarkin@example.com', '$2y$12$HL1G06jWvQSzuyLuhK0ry.qkRRD8HHwUvd5CKakNxZzpE0uRsApTu', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
-(34, 'delphia46', 'Elton Bayer Jr.', 'judy72@example.net', '$2y$12$r7B2imtYbVmx4XJkOdludOFjOyxEJ4ectiMUQJRHAGWFdkoENwwPK', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
-(35, 'damore.lucile', 'Prof. Ollie Bartell', 'gottlieb.letha@example.net', '$2y$12$Cm.wAX9ycp/Fl.70DnsTF.//mof5SKS.qAEqof2Klb2KXtyTTyU96', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:53', '2025-11-21 20:33:53'),
-(36, 'nlubowitz', 'Abdiel Daniel', 'terence.luettgen@example.net', '$2y$12$7KIlBLLuOxkNdVthaBI2WeSgqjOTGFUvStV1.vreq8OcMm4P/Bt6G', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:54', '2025-11-21 20:33:54'),
-(37, 'dare.hugh', 'Dr. Amely Kuphal', 'jeanette.quitzon@example.net', '$2y$12$D8LyZ0GOKQkRhXcUK77c2.trk941X/tQiP7if2I4//WjjxA4GwUz6', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:54', '2025-11-21 20:33:54'),
-(38, 'luna.becker', 'Tyra Purdy', 'buford.cummerata@example.net', '$2y$12$EqiEskHPelh7W8dncuOc/epzQKL/gUyX7yptGLpHH0ukPSggbUxjC', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:54', '2025-11-21 20:33:54'),
-(39, 'willard.lind', 'Aron Leannon', 'nya.jaskolski@example.org', '$2y$12$AnplD276osXDZaoQ4FVRHOpgPUe3gfbv.mGPFQMJaKw.v4tR3k3bS', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:55', '2025-11-21 20:33:55'),
-(40, 'qturcotte', 'Nyah Spencer III', 'frieda92@example.org', '$2y$12$Vh9jJzrHBchfKZ5RFljK7ecSwbXdhd0QtcMb3NEzm/uvYnfYvcxJC', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:55', '2025-11-21 20:33:55'),
-(41, 'angie43', 'Dr. Werner Jones I', 'raven65@example.org', '$2y$12$feakZWb2n4AdX.sDspNfZO/lmPT7SBCigqOdIvDTg1ZxzlUJ5ze2i', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:55', '2025-11-21 20:33:55'),
-(42, 'bcarroll', 'Dr. Reginald Parker', 'pat79@example.com', '$2y$12$AEZncPOg7QtvQzJUx02PsOGRO9MS6yaXJlXcIuKZrunVjkG/dwjdW', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:56', '2025-11-21 20:33:56'),
-(43, 'lswaniawski', 'Elfrieda Reilly', 'wkreiger@example.org', '$2y$12$pqFmyNOZiuexnmadTLA0JeaVRY0hgi6zlUuJosD.ehC7YX.ZSod96', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:56', '2025-11-21 20:33:56'),
-(44, 'amina.tromp', 'Kaley Bailey', 'zkassulke@example.net', '$2y$12$1j2cvPQUqqgLM8ACBIPw8emgGXFdezFIj9zVVluefjsHWoSEEuc7m', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:56', '2025-11-21 20:33:56'),
-(45, 'trace08', 'Kiana Mertz', 'gottlieb.cecil@example.net', '$2y$12$ApmQVvLp12BB.evVwRQWqO8lroaIi8WP/jF44ZlBXKvpSSNnPSQ22', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:57', '2025-11-21 20:33:57'),
-(46, 'nya68', 'Tierra Nicolas', 'gdooley@example.org', '$2y$12$xxkZJCphK0AT4VslYBh8sucrvZz9q5XCYEQwNWjal8VP3BZ7rNnxW', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:57', '2025-11-21 20:33:57'),
-(47, 'xskiles', 'Janis Hermiston', 'christiansen.everett@example.com', '$2y$12$Lruzo99oM7CDOu.AXTIBTujUC41MGWUwKcDwKRV2x25TRRwT6cq0i', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:57', '2025-11-21 20:33:57'),
-(48, 'hsanford', 'Ottilie Koch', 'jamison.mann@example.net', '$2y$12$NahZXz9.Op2Rauy3ytiMu.75ZQwsCOhbo0U2Qg6GhTMe8vsdl1lCq', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:58', '2025-11-21 20:33:58'),
-(49, 'marley40', 'Mrs. Dayana Johnson', 'xhyatt@example.net', '$2y$12$/xtiiHbvQaKzN5khaYcwMeXr9sJLLz0IALwWI7ZPyNamhGTLCmV1i', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:58', '2025-11-21 20:33:58'),
-(50, 'stark.marlen', 'Mallory Miller', 'arlene68@example.org', '$2y$12$ysRePbTXfsab2sIs3srkD.Yxnai2pWvjXFvKWIEp/7p52Lh.f6leq', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:58', '2025-11-21 20:33:58'),
-(51, 'faustino36', 'Efren Hansen', 'koch.mathias@example.com', '$2y$12$F.BRW3JT2totzhC99A04guIQ1UTvJvNhtuwSlufH2FOZjQNwMWTN.', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
-(52, 'sarai.corkery', 'Mr. Philip Gleichner Jr.', 'elisabeth85@example.org', '$2y$12$iWqWA0Q.XSYcjgT0sAHb4eHqkh.zCavbXec0V9tEwpt3luQ73av5m', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
-(53, 'liam59', 'Dr. Eric Bradtke I', 'cjaskolski@example.org', '$2y$12$aJ/TL6Ot5Hy0Q/pIVc3gl.qXa2xoechOK/0wOvpHtOc8tND6D.1.6', '', 'admin', 'profile.png', '', 1, NULL, '2025-11-21 20:36:26', '2025-11-21 20:36:26'),
-(54, 'yost.jerod', 'Aniya Swift', 'ibernier@example.net', '$2y$12$68jERsuJXhe8FDYDQjlL4.ZFvBppLlJ5paN9IWIz0xM/f4NY3kieO', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:36:26', '2025-11-21 20:36:26'),
-(55, 'eruecker', 'Lukas Douglas', 'pouros.santa@example.org', '$2y$12$O6HD5mymFzjrOaOrv7Y0p.d4q39Fljb60cvpKGNL.KkkczPxS/o3K', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:36:27', '2025-11-21 20:36:27'),
-(56, 'myrna.gislason', 'Landen Hegmann', 'reilly.wehner@example.org', '$2y$12$skWxdHMKdQZbQNettPI85O9jBvB.yvVJSVoM87db6F52VyoXNS2sC', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:36:28', '2025-11-21 20:36:28'),
-(57, 'schamberger.celestino', 'Greg Crist', 'annalise.stokes@example.net', '$2y$12$MKvDSJxvB/KnacVuxKeOruAfG8ehV8g1HivEkWD.NgEDWYb4iNdj.', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:36:29', '2025-11-21 20:36:29'),
-(58, 'jblanda', 'Prof. Elinor Hudson', 'ucarroll@example.org', '$2y$12$KAZEIQrJAhnhKF.M/GE.4eydZmkXMHGreOav5rYW/13IKRxrEFQYm', '', 'guru', 'profile.png', '', 1, NULL, '2025-11-21 20:36:29', '2025-11-21 20:36:29'),
-(59, 'stanton02', 'Jeramie Koch II', 'jaydon22@example.org', '$2y$12$tVG8x66TNiW.u9GKKxV1vuXKacGZVkVaFIluE3VEb.xECXPlLuoKi', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
-(60, 'eloy44', 'Ahmed Tromp', 'pgreenfelder@example.org', '$2y$12$8/hSgb3V472BX414/rHDzOZQCVCHC4zgBmfyVdHDEYAIxcyKujWCC', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:31', '2025-11-21 20:36:31'),
-(61, 'ed62', 'Dr. Heather Pollich', 'gottlieb.elvis@example.com', '$2y$12$EBS89H9QugposHmZyZ4FauBoZdw2TaYQXh9yjHHcwMRO6Nhid51fq', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:32', '2025-11-21 20:36:32'),
-(62, 'norris68', 'Prof. Richard Renner Sr.', 'koelpin.henriette@example.com', '$2y$12$kcbOpnNmuIgRBLygR9Wd1OKk9XgYXOzejpE/RxqX05CmO9Y6bmZ4W', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:32', '2025-11-21 20:36:32'),
-(63, 'brekke.vida', 'Zena Leuschke', 'santos24@example.com', '$2y$12$jJWg6OIHr5ZskLxHMByQc.8Q15XwZDo6WmXg006oj7ot1YC4JcV2S', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:33', '2025-11-21 20:36:33'),
-(64, 'glemke', 'Hermina Jakubowski DVM', 'nboyer@example.com', '$2y$12$mNWXAv5ZepjWZSdo7Ok56uDP4jCIEJYpNvwL2cr0htYMlxPeyW5cy', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:33', '2025-11-21 20:36:33'),
-(65, 'bernier.timothy', 'Audra Abbott III', 'pearl50@example.org', '$2y$12$DTgfDIIziluwfoU3zT4dXORYTl9Fs8x7R7jefnJLq1VUVo8g2jtIe', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:34', '2025-11-21 20:36:34'),
-(66, 'russel41', 'Orland Leuschke Jr.', 'shanahan.oma@example.org', '$2y$12$HehONZHX/fHllwuYdHCrVuJYvEo88IDCbSHVcSMT2OeI5QRng9FVG', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:35', '2025-11-21 20:36:35'),
-(67, 'craig95', 'Kitty Schultz', 'davin.heathcote@example.com', '$2y$12$PeBJRWNS0rTdwhhoCZUgH..XoMnCreNTcavHqtBjlc0opCFUkEEhO', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:35', '2025-11-21 20:36:35'),
-(68, 'schroeder.dock', 'Robert Dach', 'odessa55@example.org', '$2y$12$W2PcYnXBWk9.daFuV8Fnru/6tyuf7JyXBaLUabwW3/Gofqs8EJfzq', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:36', '2025-11-21 20:36:36'),
-(69, 'ondricka.van', 'Tressie Wisoky', 'ijaskolski@example.com', '$2y$12$sJOAfKQ9WfYC2/jrT1.SF.tR7YS8Boz0yFw1oQDPOqLafJAUvurGO', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:37', '2025-11-21 20:36:37'),
-(70, 'shawna05', 'Elmer Fadel', 'marquardt.rosalind@example.org', '$2y$12$yIW5/351tTkPlYdMPaVm2.d/TE8Xvrr4QUHbny5CAk5dDQ7xyO3yK', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:37', '2025-11-21 20:36:37'),
-(71, 'pierre29', 'Stuart Parker', 'xshanahan@example.net', '$2y$12$VvYAFbfGUVCmAKKiR9DDIeAbx5QGSW.qF5WpWztzdPd9jjQ6jWq9G', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:38', '2025-11-21 20:36:38'),
-(72, 'billy11', 'Mabelle Sauer', 'bo.spinka@example.org', '$2y$12$Ay7mTwG3.LpFIA2HISILxuihPKQw1XZ7NAfRlJTts2Ghx3brevf1S', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:38', '2025-11-21 20:36:38'),
-(73, 'carson.brakus', 'Mario Marks V', 'kaya.harber@example.net', '$2y$12$JmyHAqWCXeugITaM3ChbG.jQVOa7e2o/2SA2ZFEUd/sTWZ130A4qe', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:39', '2025-11-21 20:36:39'),
-(74, 'erica18', 'Rowland Schulist DDS', 'stehr.monica@example.net', '$2y$12$WewoV8urzYTrop25DCTFN.D8nf/KVTu16wKnSSF6pRioHLTFM409W', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:39', '2025-11-21 20:36:39'),
-(75, 'erenner', 'Myron Mohr', 'dschroeder@example.com', '$2y$12$9dDTLUDKEahTluNZ8OS3YOOgtlxp2Bz.P/8lQFamBtThUCfcMV4TG', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:40', '2025-11-21 20:36:40'),
-(76, 'reinger.gussie', 'Zora Russel', 'oconner.thomas@example.org', '$2y$12$/x00ko2mw8o/PxhofGr6Ku25cfa6NAIORzjiyCSm/Zt5VI2bqAC.y', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:40', '2025-11-21 20:36:40'),
-(77, 'art.dubuque', 'Blanche Schoen', 'kovacek.brandyn@example.org', '$2y$12$YiwcsRT9ILlof5oALreI3OKw2GUQ8wsU6qhtwPvo0EIXjyGWlU40q', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:41', '2025-11-21 20:36:41'),
-(78, 'tillman.harvey', 'Prof. Alva Ryan', 'haley.marshall@example.com', '$2y$12$6qlZ5PGVseM/ZfXJYrhua.3XOPPu3PUnXG40ZRePw9TW4lvCeoL.G', '', 'siswa', 'profile.png', '', 1, NULL, '2025-11-21 20:36:42', '2025-11-21 20:36:42'),
-(79, 'okesaja', 'kokokoko', 'okesaja@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
-(82, 'budi2200456', 'Contoh: Budi Setiawan', 'budi2200456@sekolah.test', '$2y$12$KEcmKUUmihnqZ18GFdkSQ./lY4GuCAIZqrPfVyvRjEtsN/ckSZrTq', 'password123', 'siswa', 'profile.png', NULL, 1, NULL, '2025-12-10 23:20:04', '2025-12-10 23:20:04'),
-(85, 'afif', 'Afif Waliyudin', 'afifrider507@gmail.com', '$2y$12$uJbhwyrkyp7NuPIla7aOPuaqu/RQkGlXecCZOhvXV5mHZ4S5ZA6HW', 'kocakgaming', 'guru', 'profile.png', NULL, 1, NULL, '2025-12-11 01:37:55', '2025-12-11 01:37:55'),
-(86, 'asikjuga', 'asikjuga', 'jagodigital65@gmail.com', '$2y$12$Z5z0oh338DPkhZ/wEYniO.bq/m4LoRO.cY0QTB9F2v1Z8z83FD1Rq', 'asikjuga', 'guru', 'profile.png', NULL, 1, NULL, '2025-12-11 01:41:24', '2025-12-11 01:41:24');
+INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'newell.kirlin', 'Darwin Kuvalis', 'jlarson@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, '97XgfVgt5vQkOA0elFt0fDPf8w3q6SfxPFWYv2QiHXiqF42aGzah2rOMrrR1', '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
+(2, 'afifsaja', 'Mr. Alek Kunze', 'afifsaja@gmail.com', '$2y$12$3C2v7WdtMS5EwuJpNe3OsezGNfg.VhLaPX6Bza/4b/QpDVEOG7lt6', 'akukeren', 'guru', 'foto-guru/w5DvIX1o5FxyuyINfJHxC9DWJ2g1JbBLLB7oSWxh.jpg', 'foto-unggulan/v4QtbPMQYvVy5Clyg26wK0sKH7qu5qQLsT3q4ScA.jpg', 1, NULL, '', '2025-11-21 20:32:50', '2025-12-22 20:45:50'),
+(3, 'hauck.elouise', 'Khalil Gerlach', 'collier.raquel@example.org', '$2y$12$6v29/DD9FgFupmUudJaqUeKLcB1IpH2FKYfDOn6XH5mrqdK.v5rmG', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:50', '2025-11-21 20:32:50'),
+(4, 'yaopoci', 'Kimberly Reichel', 'yaopoci@gmail.com', '$2y$12$1YoNGozGkJJoVhmw2CscR.M.yiDzYT89zI8v1MeiKGBMZUcqBkBZG', '', 'guru', 'foto-guru/muIhj2sO6uJedUQv05950CzxEqeBIMAtQJNhkBlN.jpg', '', 1, NULL, '', '2025-11-21 20:32:50', '2025-12-20 06:13:24'),
+(5, 'tbins', 'Coby Beahan', 'gvolkman@example.com', '$2y$12$4jy3JwleOVAog1fO/ynlYutWZxsuJ0XGs28oTPUTmyC/RrvVo7rxu', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
+(6, 'horace67', 'Fae Prosacco', 'price00@example.net', '$2y$12$YjVX0X3cGgjFRGVlCZtlIe6.4F/NqaHvh5cg7/jD7YBoHmsUPJYJa', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
+(7, 'cornell38', 'Prof. Archibald Langosh DDS', 'mante.rodolfo@example.net', '$2y$12$FnP75t.7.UMqXzCBrv2N/uXhvkj8Q1U6.mv98T8Hjk9He6V5m64cu', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:52', '2025-11-21 20:32:52'),
+(8, 'qkeeling', 'Prof. Mayra Heathcote PhD', 'retta98@example.com', '$2y$12$T9HkDiQblI9Nl.n5rR9X5eSuwvQpMXXUMFSyeeiVKwkaLk2.LN0Jm', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:52', '2025-11-21 20:32:52'),
+(9, 'howard.reilly', 'Elmore Jones', 'homenick.catalina@example.com', '$2y$12$gDhoaxc2fdfY7.ad9x1UtOWuqAt2YdqXFohl3K4Pic/VKa1Xt.p52', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:52', '2025-11-21 20:32:52'),
+(10, 'whayes', 'Mekhi Raynor', 'katherine54@example.org', '$2y$12$GPztPp45Yr1eIV0Cb1.2KOq2YkQkqfU12zAlHHvYaz4ZROmfqfAly', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:53', '2025-11-21 20:32:53'),
+(11, 'hill.conrad', 'Kenneth Ward', 'baumbach.forrest@example.org', '$2y$12$COQus/vT3oBWcWTXXeqIX.0S7Y0X8sRDn8NU.fo6.kqdpSa7yow3y', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:53', '2025-11-21 20:32:53'),
+(12, 'zgerhold', 'Candice Fay', 'vivien45@example.net', '$2y$12$IaKAk4j8/UhB4/L8OqjMK.yq8oDFUTdU5CfEEvMiQ7E3WMnoCN92C', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:54', '2025-11-21 20:32:54'),
+(13, 'ukassulke', 'Annamarie Ernser I', 'kessler.tyrique@example.net', '$2y$12$IgQVqDrLQL65rKJ9YeBA4ucLaftwuwqegYekaDkPMOuYsmAi1zt4u', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:54', '2025-11-21 20:32:54'),
+(14, 'chester06', 'Rosalind Kertzmann Sr.', 'jamie.senger@example.net', '$2y$12$VVsPDyKRkISci2jCyFnOx.u6Co36XdDcbxUV8aTYj6nMVmIPIlVAa', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:54', '2025-11-21 20:32:54'),
+(15, 'sven73', 'Kip Willms', 'renee.mcglynn@example.com', '$2y$12$rW72pzXNqRbQKlPSURzUaedhIt1.myWJBxgHcmZ1j/1JmD.nYYbse', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:55', '2025-11-21 20:32:55'),
+(16, 'flakin', 'Adrien Beier', 'albert.mueller@example.net', '$2y$12$RbUIBa1LCP1Y6WN6Rkw9desBfDb0hIg8CmSDyE4PYTU9XD7C1TgOy', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:55', '2025-11-21 20:32:55'),
+(17, 'mwill', 'Darien Emard I', 'micaela14@example.org', '$2y$12$uTOcVPvve1Srp/uxpdFY1.lBhuu9Z/2f3fZCO5.Y26W..mZhQF8Xm', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:56', '2025-11-21 20:32:56'),
+(18, 'oturcotte', 'Arnulfo Rolfson', 'allison51@example.com', '$2y$12$fW4ThPMTlGpctetXYwjJwe0xHSJ3BYyFJWV8X/YIxzo4RE5swigCK', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:56', '2025-11-21 20:32:56'),
+(19, 'torphy.verda', 'Dr. Davin Bechtelar', 'drunte@example.org', '$2y$12$mQrM4LVhpghYTfZOQCbvL.EP8hS42/CxBqaIhs.gNHyhzXrYKWyIi', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:56', '2025-11-21 20:32:56'),
+(20, 'tia.will', 'Antwan Heathcote DDS', 'general45@example.org', '$2y$12$p6fsx29qdugBD9bH0D.DF.SUHwKndd92XTJWV26K.X1VS/z66UzXy', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:57', '2025-11-21 20:32:57'),
+(21, 'collins.salma', 'Geovany Lehner', 'iwolff@example.net', '$2y$12$hWE2tdo.SfxPws4c7X/k1eO89/.NTjviw5RvaU6YYT1WzzMVr/QH.', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:57', '2025-11-21 20:32:57'),
+(22, 'emery10', 'Jermaine Huels', 'monty78@example.net', '$2y$12$KEOPnlUq6hw0S1znbZr5p.4hhskZ7Jyom.lXn/XZhsLwEKM3qRASK', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:57', '2025-11-21 20:32:57'),
+(23, 'schoen.brock', 'Dr. Sienna Jast', 'fay.dulce@example.com', '$2y$12$XGS/nZYMukFdfycnAzJfCudCOsriHamIURfQMika89FKY.gxn5ZUu', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:58', '2025-11-21 20:32:58'),
+(24, 'klocko.laurence', 'Emiliano Blanda', 'fkuphal@example.com', '$2y$12$sfIEZNBcMXndymDG7tdfGOPg8PFDCtuZiLAwXHray.SHoEWJPFEiK', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:58', '2025-11-21 20:32:58'),
+(25, 'lebsack.fiona', 'Mafalda Gulgowski', 'ernestina46@example.com', '$2y$12$0/SYoUEOJQRFrFODpPq4SendP22npP1bdsdyn486XmGpv1Ugk01wO', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
+(26, 'payton73', 'Darion Ondricka', 'montana.jacobi@example.org', '$2y$12$xoIRowulJykW/I4rkvxFAeJu/j761zvl.G/wzBo8R8vnfFi98M5JK', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
+(27, 'vmckenzie', 'Orville Larson Sr.', 'nolan.eunice@example.net', '$2y$12$EhpZ4gB3jXpRokJnlil8D.Y9xGR/6xK0JVAm6OcNru1uGRzD/lzZ2', '', 'admin', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:49', '2025-11-21 20:33:49'),
+(28, 'camilla82', 'Ryann Heller PhD', 'njacobi@example.com', '$2y$12$dKq4IjyMizcjQc44QCHB1uCB5VSl6yYHaPGnGWw5564KKlIdivY3.', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:50', '2025-11-21 20:33:50'),
+(29, 'gorczany.darrel', 'Cristobal Kling', 'schultz.carolyne@example.org', '$2y$12$PF0MBAi3/PxPTNlwNh2k.ea9fKeov8aB7GZ9SaTJrIy9DMeW76z9.', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:50', '2025-11-21 20:33:50'),
+(30, 'dhoppe', 'Kayla Jacobs', 'akuhlman@example.org', '$2y$12$dNgbpyRPzAHqfjbF1iWxTeZbXiFZ5Um4zyhO/fZmgerozKJTP3w2C', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
+(31, 'lauer', 'Wanda Simonis I', 'sarai.walter@example.com', '$2y$12$CxKF4XdSS5zzKnT6/6R11O.ewVKYvg1w0okbYkZAOu3XTfQoPK6xq', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
+(32, 'albertha.kerluke', 'Dr. Ariane Bosco Jr.', 'xwintheiser@example.org', '$2y$12$lwPHBrWVTrFLz9h1dA911uC/oAeCP6sfYYY.4O3qJ4vJUCnPKvZIi', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
+(33, 'zdibbert', 'Dovie Lynch', 'plarkin@example.com', '$2y$12$HL1G06jWvQSzuyLuhK0ry.qkRRD8HHwUvd5CKakNxZzpE0uRsApTu', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
+(34, 'delphia46', 'Elton Bayer Jr.', 'judy72@example.net', '$2y$12$r7B2imtYbVmx4XJkOdludOFjOyxEJ4ectiMUQJRHAGWFdkoENwwPK', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
+(35, 'damore.lucile', 'Prof. Ollie Bartell', 'gottlieb.letha@example.net', '$2y$12$Cm.wAX9ycp/Fl.70DnsTF.//mof5SKS.qAEqof2Klb2KXtyTTyU96', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:53', '2025-11-21 20:33:53'),
+(36, 'nlubowitz', 'Abdiel Daniel', 'terence.luettgen@example.net', '$2y$12$7KIlBLLuOxkNdVthaBI2WeSgqjOTGFUvStV1.vreq8OcMm4P/Bt6G', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:54', '2025-11-21 20:33:54'),
+(37, 'dare.hugh', 'Dr. Amely Kuphal', 'jeanette.quitzon@example.net', '$2y$12$D8LyZ0GOKQkRhXcUK77c2.trk941X/tQiP7if2I4//WjjxA4GwUz6', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:54', '2025-11-21 20:33:54'),
+(38, 'luna.becker', 'Tyra Purdy', 'buford.cummerata@example.net', '$2y$12$EqiEskHPelh7W8dncuOc/epzQKL/gUyX7yptGLpHH0ukPSggbUxjC', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:54', '2025-11-21 20:33:54'),
+(39, 'willard.lind', 'Aron Leannon', 'nya.jaskolski@example.org', '$2y$12$AnplD276osXDZaoQ4FVRHOpgPUe3gfbv.mGPFQMJaKw.v4tR3k3bS', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:55', '2025-11-21 20:33:55'),
+(40, 'qturcotte', 'Nyah Spencer III', 'frieda92@example.org', '$2y$12$Vh9jJzrHBchfKZ5RFljK7ecSwbXdhd0QtcMb3NEzm/uvYnfYvcxJC', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:55', '2025-11-21 20:33:55'),
+(41, 'angie43', 'Dr. Werner Jones I', 'raven65@example.org', '$2y$12$feakZWb2n4AdX.sDspNfZO/lmPT7SBCigqOdIvDTg1ZxzlUJ5ze2i', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:55', '2025-11-21 20:33:55'),
+(42, 'bcarroll', 'Dr. Reginald Parker', 'pat79@example.com', '$2y$12$AEZncPOg7QtvQzJUx02PsOGRO9MS6yaXJlXcIuKZrunVjkG/dwjdW', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:56', '2025-11-21 20:33:56'),
+(43, 'lswaniawski', 'Elfrieda Reilly', 'wkreiger@example.org', '$2y$12$pqFmyNOZiuexnmadTLA0JeaVRY0hgi6zlUuJosD.ehC7YX.ZSod96', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:56', '2025-11-21 20:33:56'),
+(44, 'amina.tromp', 'Kaley Bailey', 'zkassulke@example.net', '$2y$12$1j2cvPQUqqgLM8ACBIPw8emgGXFdezFIj9zVVluefjsHWoSEEuc7m', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:56', '2025-11-21 20:33:56'),
+(45, 'trace08', 'Kiana Mertz', 'gottlieb.cecil@example.net', '$2y$12$ApmQVvLp12BB.evVwRQWqO8lroaIi8WP/jF44ZlBXKvpSSNnPSQ22', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:57', '2025-11-21 20:33:57'),
+(46, 'nya68', 'Tierra Nicolas', 'gdooley@example.org', '$2y$12$xxkZJCphK0AT4VslYBh8sucrvZz9q5XCYEQwNWjal8VP3BZ7rNnxW', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:57', '2025-11-21 20:33:57'),
+(47, 'xskiles', 'Janis Hermiston', 'christiansen.everett@example.com', '$2y$12$Lruzo99oM7CDOu.AXTIBTujUC41MGWUwKcDwKRV2x25TRRwT6cq0i', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:57', '2025-11-21 20:33:57'),
+(48, 'hsanford', 'Ottilie Koch', 'jamison.mann@example.net', '$2y$12$NahZXz9.Op2Rauy3ytiMu.75ZQwsCOhbo0U2Qg6GhTMe8vsdl1lCq', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:58', '2025-11-21 20:33:58'),
+(49, 'marley40', 'Mrs. Dayana Johnson', 'xhyatt@example.net', '$2y$12$/xtiiHbvQaKzN5khaYcwMeXr9sJLLz0IALwWI7ZPyNamhGTLCmV1i', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:58', '2025-11-21 20:33:58'),
+(50, 'stark.marlen', 'Mallory Miller', 'arlene68@example.org', '$2y$12$ysRePbTXfsab2sIs3srkD.Yxnai2pWvjXFvKWIEp/7p52Lh.f6leq', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:58', '2025-11-21 20:33:58'),
+(51, 'faustino36', 'Efren Hansen', 'koch.mathias@example.com', '$2y$12$F.BRW3JT2totzhC99A04guIQ1UTvJvNhtuwSlufH2FOZjQNwMWTN.', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
+(52, 'sarai.corkery', 'Mr. Philip Gleichner Jr.', 'elisabeth85@example.org', '$2y$12$iWqWA0Q.XSYcjgT0sAHb4eHqkh.zCavbXec0V9tEwpt3luQ73av5m', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:59', '2025-11-21 20:33:59'),
+(53, 'liam59', 'Dr. Eric Bradtke I', 'cjaskolski@example.org', '$2y$12$aJ/TL6Ot5Hy0Q/pIVc3gl.qXa2xoechOK/0wOvpHtOc8tND6D.1.6', '', 'admin', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:26', '2025-11-21 20:36:26'),
+(54, 'yost.jerod', 'Aniya Swift', 'ibernier@example.net', '$2y$12$68jERsuJXhe8FDYDQjlL4.ZFvBppLlJ5paN9IWIz0xM/f4NY3kieO', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:26', '2025-11-21 20:36:26'),
+(55, 'eruecker', 'Lukas Douglas', 'pouros.santa@example.org', '$2y$12$O6HD5mymFzjrOaOrv7Y0p.d4q39Fljb60cvpKGNL.KkkczPxS/o3K', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:27', '2025-11-21 20:36:27'),
+(56, 'myrna.gislason', 'Landen Hegmann', 'reilly.wehner@example.org', '$2y$12$skWxdHMKdQZbQNettPI85O9jBvB.yvVJSVoM87db6F52VyoXNS2sC', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:28', '2025-11-21 20:36:28'),
+(57, 'schamberger.celestino', 'Greg Crist', 'annalise.stokes@example.net', '$2y$12$MKvDSJxvB/KnacVuxKeOruAfG8ehV8g1HivEkWD.NgEDWYb4iNdj.', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:29', '2025-11-21 20:36:29'),
+(58, 'jblanda', 'Prof. Elinor Hudson', 'ucarroll@example.org', '$2y$12$KAZEIQrJAhnhKF.M/GE.4eydZmkXMHGreOav5rYW/13IKRxrEFQYm', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:29', '2025-11-21 20:36:29'),
+(59, 'stanton02', 'Jeramie Koch II', 'jaydon22@example.org', '$2y$12$tVG8x66TNiW.u9GKKxV1vuXKacGZVkVaFIluE3VEb.xECXPlLuoKi', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
+(60, 'eloy44', 'Ahmed Tromp', 'pgreenfelder@example.org', '$2y$12$8/hSgb3V472BX414/rHDzOZQCVCHC4zgBmfyVdHDEYAIxcyKujWCC', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:31', '2025-11-21 20:36:31'),
+(61, 'ed62', 'Dr. Heather Pollich', 'gottlieb.elvis@example.com', '$2y$12$EBS89H9QugposHmZyZ4FauBoZdw2TaYQXh9yjHHcwMRO6Nhid51fq', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:32', '2025-11-21 20:36:32'),
+(62, 'norris68', 'Prof. Richard Renner Sr.', 'koelpin.henriette@example.com', '$2y$12$kcbOpnNmuIgRBLygR9Wd1OKk9XgYXOzejpE/RxqX05CmO9Y6bmZ4W', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:32', '2025-11-21 20:36:32'),
+(63, 'brekke.vida', 'Zena Leuschke', 'santos24@example.com', '$2y$12$jJWg6OIHr5ZskLxHMByQc.8Q15XwZDo6WmXg006oj7ot1YC4JcV2S', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:33', '2025-11-21 20:36:33'),
+(64, 'glemke', 'Hermina Jakubowski DVM', 'nboyer@example.com', '$2y$12$mNWXAv5ZepjWZSdo7Ok56uDP4jCIEJYpNvwL2cr0htYMlxPeyW5cy', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:33', '2025-11-21 20:36:33'),
+(65, 'bernier.timothy', 'Audra Abbott III', 'pearl50@example.org', '$2y$12$DTgfDIIziluwfoU3zT4dXORYTl9Fs8x7R7jefnJLq1VUVo8g2jtIe', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:34', '2025-11-21 20:36:34'),
+(66, 'russel41', 'Orland Leuschke Jr.', 'shanahan.oma@example.org', '$2y$12$HehONZHX/fHllwuYdHCrVuJYvEo88IDCbSHVcSMT2OeI5QRng9FVG', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:35', '2025-11-21 20:36:35'),
+(67, 'craig95', 'Kitty Schultz', 'davin.heathcote@example.com', '$2y$12$PeBJRWNS0rTdwhhoCZUgH..XoMnCreNTcavHqtBjlc0opCFUkEEhO', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:35', '2025-11-21 20:36:35'),
+(68, 'schroeder.dock', 'Robert Dach', 'odessa55@example.org', '$2y$12$W2PcYnXBWk9.daFuV8Fnru/6tyuf7JyXBaLUabwW3/Gofqs8EJfzq', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:36', '2025-11-21 20:36:36'),
+(69, 'ondricka.van', 'Tressie Wisoky', 'ijaskolski@example.com', '$2y$12$sJOAfKQ9WfYC2/jrT1.SF.tR7YS8Boz0yFw1oQDPOqLafJAUvurGO', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:37', '2025-11-21 20:36:37'),
+(70, 'shawna05', 'Elmer Fadel', 'marquardt.rosalind@example.org', '$2y$12$yIW5/351tTkPlYdMPaVm2.d/TE8Xvrr4QUHbny5CAk5dDQ7xyO3yK', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:37', '2025-11-21 20:36:37'),
+(71, 'pierre29', 'Stuart Parker', 'xshanahan@example.net', '$2y$12$VvYAFbfGUVCmAKKiR9DDIeAbx5QGSW.qF5WpWztzdPd9jjQ6jWq9G', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:38', '2025-11-21 20:36:38'),
+(72, 'billy11', 'Mabelle Sauer', 'bo.spinka@example.org', '$2y$12$Ay7mTwG3.LpFIA2HISILxuihPKQw1XZ7NAfRlJTts2Ghx3brevf1S', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:38', '2025-11-21 20:36:38'),
+(73, 'carson.brakus', 'Mario Marks V', 'kaya.harber@example.net', '$2y$12$JmyHAqWCXeugITaM3ChbG.jQVOa7e2o/2SA2ZFEUd/sTWZ130A4qe', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:39', '2025-11-21 20:36:39'),
+(74, 'erica18', 'Rowland Schulist DDS', 'stehr.monica@example.net', '$2y$12$WewoV8urzYTrop25DCTFN.D8nf/KVTu16wKnSSF6pRioHLTFM409W', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:39', '2025-11-21 20:36:39'),
+(75, 'erenner', 'Myron Mohr', 'dschroeder@example.com', '$2y$12$9dDTLUDKEahTluNZ8OS3YOOgtlxp2Bz.P/8lQFamBtThUCfcMV4TG', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:40', '2025-11-21 20:36:40'),
+(76, 'reinger.gussie', 'Zora Russel', 'oconner.thomas@example.org', '$2y$12$/x00ko2mw8o/PxhofGr6Ku25cfa6NAIORzjiyCSm/Zt5VI2bqAC.y', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:40', '2025-11-21 20:36:40'),
+(77, 'art.dubuque', 'Blanche Schoen', 'kovacek.brandyn@example.org', '$2y$12$YiwcsRT9ILlof5oALreI3OKw2GUQ8wsU6qhtwPvo0EIXjyGWlU40q', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:41', '2025-11-21 20:36:41'),
+(78, 'tillman.harvey', 'Prof. Alva Ryan', 'haley.marshall@example.com', '$2y$12$6qlZ5PGVseM/ZfXJYrhua.3XOPPu3PUnXG40ZRePw9TW4lvCeoL.G', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:42', '2025-11-21 20:36:42'),
+(79, 'okesaja', 'kokokoko', 'okesaja@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
+(80, 'tatausaha', 'Tata Usaha', 'tatausaha@gmail.com', '$2y$10$YLK8cg2s3xRI17zXrc1QquI7XoIMvSRAs0sJMnrY9PtlCoHChX4A.', 'tatausaha', 'staff', 'profile.png', NULL, 1, NULL, 'vJqRPqLo3OkiUnSvPvnPq8D8H1bN3TplodgU2iMRFixL7b9U4A8MhYMBdszk', '2025-12-22 12:52:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -1092,7 +1271,9 @@ CREATE TABLE `walikelas` (
 
 INSERT INTO `walikelas` (`id`, `guru_id`, `kelas_id`, `created_at`, `updated_at`) VALUES
 (6, 11, 8, '2025-12-06 21:37:03', '2025-12-06 21:37:03'),
-(7, 3, 9, '2025-12-08 01:58:48', '2025-12-08 01:58:48');
+(7, 3, 9, '2025-12-08 01:58:48', '2025-12-08 01:58:48'),
+(8, 2, 10, '2025-12-23 19:33:15', '2025-12-23 19:33:15'),
+(9, 1, 11, '2025-12-23 19:33:43', '2025-12-23 19:33:43');
 
 --
 -- Indexes for dumped tables
@@ -1180,11 +1361,27 @@ ALTER TABLE `jam_pelajaran`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `jenis_tagihan`
+--
+ALTER TABLE `jenis_tagihan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `jurusan`
 --
 ALTER TABLE `jurusan`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `jurusan_kode_jurusan_unique` (`kode_jurusan`);
+
+--
+-- Indeks untuk tabel `kaskeluar`
+--
+ALTER TABLE `kaskeluar`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `kode_pengeluaran` (`kode_pengeluaran`),
+  ADD KEY `kaskeluar_petugas_id_foreign` (`petugas_id`),
+  ADD KEY `kaskeluar_semester_id_foreign` (`semester_id`),
+  ADD KEY `kaskeluar_tahun_pelajaran_id_foreign` (`tahun_pelajaran_id`);
 
 --
 -- Indeks untuk tabel `kategori_mapel`
@@ -1206,6 +1403,21 @@ ALTER TABLE `ketua_kelas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `adminkelas_siswa_id_foreign` (`siswa_id`),
   ADD KEY `ketua_kelas_ibfk_1` (`kelas_id`);
+
+--
+-- Indeks untuk tabel `laporan_keuangan`
+--
+ALTER TABLE `laporan_keuangan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_laporan_semester` (`semester_id`),
+  ADD KEY `fk_laporan_tahun_pelajaran` (`tahun_pelajaran_id`);
+
+--
+-- Indeks untuk tabel `laporan_keuangan_detail`
+--
+ALTER TABLE `laporan_keuangan_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_laporan_detail_laporan` (`laporan_id`);
 
 --
 -- Indeks untuk tabel `log_kehadiran`
@@ -1269,7 +1481,9 @@ ALTER TABLE `password_reset_tokens`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `pembayaran_tagihan_id_foreign` (`tagihan_id`);
+  ADD KEY `pembayaran_tagihan_id_foreign` (`tagihan_id`),
+  ADD KEY `tahun_pelajaran_id` (`tahun_pelajaran_id`),
+  ADD KEY `semester_id` (`semester_id`);
 
 --
 -- Indeks untuk tabel `pengumpulan_tugas`
@@ -1323,7 +1537,10 @@ ALTER TABLE `status_notifikasi`
 --
 ALTER TABLE `tagihan`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `tagihan_siswa_id_foreign` (`siswa_id`);
+  ADD KEY `tagihan_siswa_id_foreign` (`siswa_id`),
+  ADD KEY `jenis_tagihan_id` (`jenis_tagihan_id`),
+  ADD KEY `tahun_pelajaran_id` (`tahun_pelajaran_id`),
+  ADD KEY `semester_id` (`semester_id`);
 
 --
 -- Indeks untuk tabel `tahun_pelajaran`
@@ -1413,7 +1630,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `hari_aktif`
@@ -1440,10 +1657,22 @@ ALTER TABLE `jam_pelajaran`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `jenis_tagihan`
+--
+ALTER TABLE `jenis_tagihan`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `jurusan`
 --
 ALTER TABLE `jurusan`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `kaskeluar`
+--
+ALTER TABLE `kaskeluar`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori_mapel`
@@ -1455,13 +1684,25 @@ ALTER TABLE `kategori_mapel`
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `ketua_kelas`
 --
 ALTER TABLE `ketua_kelas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `laporan_keuangan`
+--
+ALTER TABLE `laporan_keuangan`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT untuk tabel `laporan_keuangan_detail`
+--
+ALTER TABLE `laporan_keuangan_detail`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `log_kehadiran`
@@ -1479,7 +1720,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
@@ -1509,7 +1750,7 @@ ALTER TABLE `notifikasi`
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengumpulan_tugas`
@@ -1527,19 +1768,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `semesters`
 --
 ALTER TABLE `semesters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT untuk tabel `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `status_notifikasi`
@@ -1551,13 +1792,13 @@ ALTER TABLE `status_notifikasi`
 -- AUTO_INCREMENT untuk tabel `tagihan`
 --
 ALTER TABLE `tagihan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `tahun_pelajaran`
 --
 ALTER TABLE `tahun_pelajaran`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tugas`
@@ -1569,7 +1810,7 @@ ALTER TABLE `tugas`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT untuk tabel `waka_kesiswaan`
@@ -1587,7 +1828,7 @@ ALTER TABLE `waka_kurikulum`
 -- AUTO_INCREMENT untuk tabel `walikelas`
 --
 ALTER TABLE `walikelas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -1628,6 +1869,14 @@ ALTER TABLE `jadwal_mengajar`
   ADD CONSTRAINT `jadwal_mengajar_jam_selesai_id_foreign` FOREIGN KEY (`jam_selesai_id`) REFERENCES `jam_mengajar` (`id`) ON DELETE CASCADE;
 
 --
+-- Ketidakleluasaan untuk tabel `kaskeluar`
+--
+ALTER TABLE `kaskeluar`
+  ADD CONSTRAINT `kaskeluar_petugas_id_foreign` FOREIGN KEY (`petugas_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `kaskeluar_semester_id_foreign` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `kaskeluar_tahun_pelajaran_id_foreign` FOREIGN KEY (`tahun_pelajaran_id`) REFERENCES `tahun_pelajaran` (`id`) ON DELETE CASCADE;
+
+--
 -- Ketidakleluasaan untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
@@ -1639,6 +1888,19 @@ ALTER TABLE `kelas`
 ALTER TABLE `ketua_kelas`
   ADD CONSTRAINT `adminkelas_siswa_id_foreign` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `ketua_kelas_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `laporan_keuangan`
+--
+ALTER TABLE `laporan_keuangan`
+  ADD CONSTRAINT `fk_laporan_semester` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_laporan_tahun_pelajaran` FOREIGN KEY (`tahun_pelajaran_id`) REFERENCES `tahun_pelajaran` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `laporan_keuangan_detail`
+--
+ALTER TABLE `laporan_keuangan_detail`
+  ADD CONSTRAINT `fk_laporan_detail_laporan` FOREIGN KEY (`laporan_id`) REFERENCES `laporan_keuangan` (`id`) ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `log_kehadiran`
@@ -1683,6 +1945,8 @@ ALTER TABLE `notifikasi`
 -- Ketidakleluasaan untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
+  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`tahun_pelajaran_id`) REFERENCES `tahun_pelajaran` (`id`),
+  ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`),
   ADD CONSTRAINT `pembayaran_tagihan_id_foreign` FOREIGN KEY (`tagihan_id`) REFERENCES `tagihan` (`id`) ON DELETE CASCADE;
 
 --
@@ -1715,6 +1979,9 @@ ALTER TABLE `staff`
 -- Ketidakleluasaan untuk tabel `tagihan`
 --
 ALTER TABLE `tagihan`
+  ADD CONSTRAINT `tagihan_ibfk_1` FOREIGN KEY (`jenis_tagihan_id`) REFERENCES `jenis_tagihan` (`id`),
+  ADD CONSTRAINT `tagihan_ibfk_2` FOREIGN KEY (`tahun_pelajaran_id`) REFERENCES `tahun_pelajaran` (`id`),
+  ADD CONSTRAINT `tagihan_ibfk_3` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`),
   ADD CONSTRAINT `tagihan_siswa_id_foreign` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`id`) ON DELETE CASCADE;
 
 --

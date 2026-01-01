@@ -14,6 +14,10 @@ return new class extends Migration
       Schema::create('pembayaran', function (Blueprint $table) {
     $table->id();
     $table->foreignId('tagihan_id')->constrained('tagihan')->onDelete('cascade');
+    // foreignId Tahun_pelajaran_id
+    $table->foreignId('tahun_pelajaran_id')->constrained('tahun_pelajaran')->onDelete('cascade');
+    // foreignId semester_id
+    $table->foreignId('semester_id')->constrained('semesters')->onDelete('cascade');
     $table->decimal('jumlah_bayar', 12, 2);
     $table->date('tgl_bayar');
     $table->string('keterangan')->nullable(); // contoh: Cicilan 1, Cicilan 2

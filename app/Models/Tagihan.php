@@ -9,12 +9,17 @@ class Tagihan extends Model
 {
     use HasFactory;
 
+    protected $table = 'tagihan';
+
     protected $fillable = [
         'siswa_id',
-        'jenis',
+        'nama_tagihan',
+        'jenis_tagihan_id',
         'jumlah',
         'tgl_tagihan',
         'status',
+        'semester_id',
+        'tahun_pelajaran_id'
     ];
 
     /**
@@ -23,6 +28,10 @@ class Tagihan extends Model
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'siswa_id');
+    }
+    public function jenisTagihan()
+    {
+        return $this->belongsTo(JenisTagihan::class);
     }
 
     /**
@@ -54,7 +63,16 @@ class Tagihan extends Model
      */
     public function updateStatus()
     {
-        $this->status = $this->sisaTagihan() <= 0 ? 'lunas' : 'belum_lunas';
+        $this->status = $this->sisaTagihan() <= 0 ? 'lunas' : 'belum lunas';
         $this->save();
+    }
+
+    public function tahunPelajaran()
+    {
+        return $this->belongsTo(TahunPelajaran::class);
+    }
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class);
     }
 }

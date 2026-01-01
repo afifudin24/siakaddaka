@@ -53,9 +53,9 @@
                         <label class="form-label">Level</label>
                         <select name="tingkat" class="form-select" required>
                             <option value="">Pilih Level</option>
-                            <option value="X">X</option>
-                            <option value="XI">XI</option>
-                            <option value="XII">XII</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
                         </select>
                     </div>
 
