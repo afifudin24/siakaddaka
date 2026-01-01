@@ -9,7 +9,7 @@
             </a>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
                         <div class="user-guruid-card ">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 mt-md-0 mt-3">
+            <div class="col-md-7 mt-md-0 mt-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-16">
