@@ -14,6 +14,7 @@ use App\Models\LaporanKeuanganDetail;
 use App\Models\TahunPelajaran;
 use App\Models\Pembayaran;
 use App\Models\KasKeluar;
+use App\Models\DataSekolah;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\LaporanKeuanganExport;
@@ -223,6 +224,7 @@ public function cetak($id)
         ->sum('nominal');
 
     $saldoAkhir = $totalPemasukan - $totalPengeluaran;
+    $datasekolah = DataSekolah::first();
 
     $pdf = Pdf::loadView(
         'pages.staff.laporankeuangan.cetak',
@@ -230,7 +232,8 @@ public function cetak($id)
             'laporan',
             'totalPemasukan',
             'totalPengeluaran',
-            'saldoAkhir'
+            'saldoAkhir',
+            'datasekolah'
         )
     )
     ->setPaper('A4', 'portrait');

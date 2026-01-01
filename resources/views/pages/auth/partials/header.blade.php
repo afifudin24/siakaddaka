@@ -5,8 +5,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wowdash - Bootstrap 5 Admin Dashboard HTML Template</title>
-<link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}" sizes="16x16">
+  <title>{{ $site_title }}</title>
+<link rel="icon" type="image/png" href="{{ sekolah_logo('icon', 'assets/images/logo-icon.png') }}" sizes="16x16">
 
 <!-- Remix Icon -->
 <link rel="stylesheet" href="{{ asset('assets/css/remixicon.css') }}">

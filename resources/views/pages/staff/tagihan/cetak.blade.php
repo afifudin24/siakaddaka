@@ -5,11 +5,15 @@
     <title>Surat Tagihan Pembayaran</title>
     <style>
         body {
-            font-family: "Times New Roman", serif;
+           font-family: DejaVu Sans, sans-serif;
             font-size: 12pt;
             line-height: 1.5;
             margin: 20px 30px;
         }
+       
+    table {
+        border-collapse: collapse;
+    }
 
         .kop {
             text-align: center;
@@ -54,7 +58,17 @@
 
         .label {
             display: inline-block;
+            padding: 0;
+            margin: 0;
+           
             width: 140px;
+        }
+
+        .label2{
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+          
         }
 
         .nilai-utama {
@@ -75,12 +89,10 @@
 </head>
 <body>
 
-{{-- KOP SURAT --}}
-<div class="kop">
-    <h1>{{ config('app.name') }}</h1>
-    <p>Jl. Pendidikan No. 1, Purwokerto</p>
-    <p>Telp. (0281) 123456 • Email: sekolah@email.sch.id</p>
-</div>
+
+
+@include('pdf.partials.kop')
+
 
 {{-- JUDUL --}}
 <div class="judul">
@@ -102,24 +114,41 @@
     {{-- IDENTITAS --}}
     <div class="identitas">
         <p>
-            <span class="label">Nama Siswa</span> :
+            <span class="label">Nama Siswa</span>
+            <span class="label2">
+ :
             <b>{{ $tagihan->siswa->nama }}</b>
+
+            </span>
+           
         </p>
         <p>
-            <span class="label">Kelas</span> :
+            <span class="label">Kelas</span>
+            <span class="label2">
+                 :
             {{ $tagihan->siswa->kelas->nama_kelas ?? '-' }}
+            </span>
+           
         </p>
         <p>
-            <span class="label">Nama Tagihan</span> :
-            {{ $tagihan->nama_tagihan }}
+            <span class="label">Nama Tagihan</span> 
+            <span class="label2">:
+            {{ $tagihan->nama_tagihan }}</span> 
         </p>
         <p>
-            <span class="label">Jenis Tagihan</span> :
-            {{ $tagihan->jenisTagihan->nama_jenis }}
+            <span class="label">Jenis Tagihan</span>
+            <span class="label2"> :
+            {{ $tagihan->jenisTagihan->nama_jenis }}</span>
+           
         </p>
         <p>
-            <span class="label">Tanggal Tagihan</span> :
+            
+            <span class="label">Tanggal Tagihan</span>
+            <span class="label2">
+                :
             {{ \Carbon\Carbon::parse($tagihan->tgl_tagihan)->translatedFormat('d F Y') }}
+            </span>
+            
         </p>
     </div>
 
@@ -147,7 +176,7 @@
 
 {{-- TANDA TANGAN --}}
 <div class="ttd">
-    Purwokerto,
+    {{$datasekolah->kecamatan ?? 'KECAMATAN'}},
     {{ \Carbon\Carbon::now()->translatedFormat('F Y') }}<br><br><br>
 
     <b>{{ auth()->user()->staff->nama }}</b><br>

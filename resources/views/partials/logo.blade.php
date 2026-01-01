@@ -1,5 +1,5 @@
 <a href="/" class="sidebar-logo">
-  <img src="{{ asset('assets/images/logo.png') }}" alt="site logo" class="light-logo">
-  <img src="{{ asset('assets/images/logo-light.png') }}" alt="site logo" class="dark-logo">
-  <img src="{{ asset('assets/images/logo-icon.png') }}" alt="site logo" class="logo-icon">
+    <img src="{{ sekolah_logo('light', 'assets/images/logo.png') }}" class="light-logo">
+    <img src="{{ sekolah_logo('dark', 'assets/images/logo-light.png') }}" class="dark-logo">
+    <img src="{{ sekolah_logo('icon', 'assets/images/logo-icon.png') }}" class="logo-icon">
 </a>

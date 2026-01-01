@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminMapelController;
 use App\Http\Controllers\Admin\AdminKategoriMapelController;
 use App\Http\Controllers\Admin\AdminGuruController;
 use App\Http\Controllers\Admin\AdminSiswaController;
+use App\Http\Controllers\Admin\AdminDataSekolahController;
 
 
 
@@ -65,5 +66,8 @@ Route::middleware(['auth', 'role:admin'])
     Route::post('/siswa/aksi/import', [AdminSiswaController::class, 'importExcel'])->name('siswa.import');
     Route::resource('/siswa', AdminSiswaController::class);
 
-    
+    // Data Sekolah
+    Route::get('/datasekolah', [AdminDataSekolahController::class, 'index'])->name('datasekolah.index');
+    Route::post('/datasekolah/updateImage', [AdminDataSekolahController::class, 'updateImage'])->name('datasekolah.updateImage');
+    Route::post('/datasekolah/update', [AdminDataSekolahController::class, 'update'])->name('datasekolah.update');    
     });

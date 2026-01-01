@@ -9,16 +9,14 @@
       </a>
     </li>
     <li>-</li>
-    <li class="fw-medium"> LMS / Learning System</li>
+   
   </ul>
 </div>
-
     <div class="row gy-4 mb-24">
         <!-- ======================= First Row Cards Start =================== -->
             <div class="col-xxl-8">
                 <div class="card radius-8 border-0 p-20">
                   <form method="GET" id="filterForm" class="row g-2 mb-3">
-
     {{-- TAHUN PELAJARAN --}}
     <div class="col-md-3">
         <label class="form-label small">Tahun Pelajaran</label>
@@ -26,7 +24,6 @@
                 id="tahunPelajaran"
                 class="form-select form-select-sm">
             <option value="all">Semua Tahun</option>
-
             @foreach ($allTahunPelajaran as $tp)
                 <option value="{{ $tp->id }}"
                     {{ request('tahun_pelajaran_id', $tahunPelajaranAktif?->id) == $tp->id ? 'selected' : '' }}>
@@ -36,7 +33,6 @@
             @endforeach
         </select>
     </div>
-
     {{-- SEMESTER --}}
     <div class="col-md-3">
         <label class="form-label small">Semester</label>
@@ -44,7 +40,6 @@
                 id="semester"
                 class="form-select form-select-sm">
             <option value="all">Semua Semester</option>
-
             @foreach ($semesterList as $smt)
                 <option value="{{ $smt->id }}"
                     {{ request('semester_id', $semesterAktif?->id) == $smt->id ? 'selected' : '' }}>
@@ -54,11 +49,8 @@
             @endforeach
         </select>
     </div>
-
 </form>
-
                    <div class="row g-3">
-
     {{-- SALDO --}}
     <div class="col-12 col-md-4">
         <div class="card border-0 shadow-lg radius-12 bg-white">
@@ -77,7 +69,6 @@
             </div>
         </div>
     </div>
-
     {{-- PEMASUKAN --}}
     <div class="col-12 col-md-4">
         <div class="card border-0 shadow-lg radius-12 bg-white">
@@ -96,7 +87,6 @@
             </div>
         </div>
     </div>
-
     {{-- PENGELUARAN --}}
     <div class="col-12 col-md-4">
         <div class="card border-0 shadow-lg radius-12 bg-white">
@@ -115,7 +105,6 @@
             </div>
         </div>
     </div>
-
     {{-- Transaksi Terakhir --}}
     <br>
     
@@ -168,60 +157,39 @@
         </table>
       </div>
 </div>
-
-
                 </div>
             </div>
             <div class="col-xxl-4 col-md-6">
                 <div class="card h-100 radius-8 border-0">
-                    <div class="card-body p-24 d-flex flex-column justify-content-between gap-8">
-                        <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between mb-20">
-                            <h6 class="mb-2 fw-bold text-lg mb-0">Komposisi Pemasukan</h6>
-                          
-                            <select id="filterTahunPelajaran" class="form-select form-select-sm w-auto bg-base border text-secondary-light radius-8">
-    @foreach ($allTahunPelajaran as $tp)
-        <option value="{{ $tp->id }}">{{ $tp->nama }}</option>
-    @endforeach
-</select>
-                        </div>
-                 
-                        <div id="pemasukanDonutChart" class="y-value-left apexcharts-tooltip-z-none"></div>
-
-                        {{-- <ul class="d-flex flex-wrap align-items-center justify-content-between mt-3 gap-3">
-                            <li class="d-flex flex-column gap-8">
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="w-12-px h-12-px rounded-circle bg-warning-600"></span>
-                                    <span class="text-secondary-light text-sm fw-semibold">Organic Search</span>
-                                </div>
-                                <span class="text-primary-light fw-bold">875</span>
-                            </li>
-                            <li class="d-flex flex-column gap-8">
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="w-12-px h-12-px rounded-circle bg-success-600"></span>
-                                    <span class="text-secondary-light text-sm fw-semibold">Referrals</span>
-                                </div>
-                                <span class="text-primary-light fw-bold">450</span>
-                            </li>
-                            <li class="d-flex flex-column gap-8">
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="w-12-px h-12-px rounded-circle bg-primary-600"></span>
-                                    <span class="text-secondary-light text-sm fw-semibold">Social Media</span>
-                                </div>
-                                <span class="text-primary-light fw-bold">4,305</span>
-                            </li>
-                        </ul> --}}
-                    </div>
+                   <div class="card-body p-24 d-flex flex-column gap-8">
+    <!-- Header -->
+    <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between mb-20">
+        <h6 class="fw-bold text-lg mb-0">Komposisi Pemasukan</h6>
+        <select id="filterTahunPelajaran"
+            class="form-select form-select-sm w-auto bg-base border text-secondary-light radius-8">
+            @foreach ($allTahunPelajaran as $tp)
+                <option value="{{ $tp->id }}">{{ $tp->nama }}</option>
+            @endforeach
+        </select>
+    </div>
+    <!-- Chart Wrapper -->
+    <div class="flex-grow-1 d-flex justify-content-center align-items-start">
+        <div id="pemasukanDonutChart"
+             class="apexcharts-tooltip-z-none"
+            >
+        </div>
+    </div>
+</div>
                 </div>
             </div>
         <!-- ======================= First Row Cards End =================== -->
-
         <!-- ================== Second Row Cards Start ======================= -->
             <!-- Top Categories Card Start -->
             <div class="col-xxl-4 col-md-6">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
-                            <h6 class="mb-2 fw-bold text-lg mb-0">Top Categories</h6>
+                            <h6 class="mb-2 fw-bold text-lg mb-0">Tunggakan Terbesar</h6>
                             <a href="javascript:void(0)" class="text-primary-600 hover-text-primary d-flex align-items-center gap-1">
                             View All
                             <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
@@ -229,534 +197,89 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center gap-12">
-                                <div class="w-40-px h-40-px radius-8 flex-shrink-0 bg-info-50 d-flex justify-content-center align-items-center">
-                                    <img src="assets/images/home-six/category-icon1.png" alt="" class="">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-normal">Web Development</h6>
-                                    <span class="text-sm text-secondary-light fw-normal">40+ Courses</span>
-                                </div>
-                            </div>
-                            <a href="#" class="w-24-px h-24-px bg-primary-50 text-primary-600 d-flex justify-content-center align-items-center text-lg bg-hover-primary-100 radius-4">
-                                <i class="ri-arrow-right-s-line"></i>
-                            </a>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center gap-12">
-                                <div class="w-40-px h-40-px radius-8 flex-shrink-0 bg-success-50 d-flex justify-content-center align-items-center">
-                                    <img src="assets/images/home-six/category-icon2.png" alt="" class="">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-normal">Graphic Design</h6>
-                                    <span class="text-sm text-secondary-light fw-normal">40+ Courses</span>
-                                </div>
-                            </div>
-                            <a href="#" class="w-24-px h-24-px bg-primary-50 text-primary-600 d-flex justify-content-center align-items-center text-lg bg-hover-primary-100 radius-4">
-                                <i class="ri-arrow-right-s-line"></i>
-                            </a>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center gap-12">
-                                <div class="w-40-px h-40-px radius-8 flex-shrink-0 bg-lilac-50 d-flex justify-content-center align-items-center">
-                                    <img src="assets/images/home-six/category-icon3.png" alt="" class="">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-normal">UI/UX Design</h6>
-                                    <span class="text-sm text-secondary-light fw-normal">40+ Courses</span>
-                                </div>
-                            </div>
-                            <a href="#" class="w-24-px h-24-px bg-primary-50 text-primary-600 d-flex justify-content-center align-items-center text-lg bg-hover-primary-100 radius-4">
-                                <i class="ri-arrow-right-s-line"></i>
-                            </a>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center gap-12">
-                                <div class="w-40-px h-40-px radius-8 flex-shrink-0 bg-warning-50 d-flex justify-content-center align-items-center">
-                                    <img src="assets/images/home-six/category-icon4.png" alt="" class="">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-normal">Digital Marketing</h6>
-                                    <span class="text-sm text-secondary-light fw-normal">40+ Courses</span>
-                                </div>
-                            </div>
-                            <a href="#" class="w-24-px h-24-px bg-primary-50 text-primary-600 d-flex justify-content-center align-items-center text-lg bg-hover-primary-100 radius-4">
-                                <i class="ri-arrow-right-s-line"></i>
-                            </a>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center gap-12">
-                                <div class="w-40-px h-40-px radius-8 flex-shrink-0 bg-danger-50 d-flex justify-content-center align-items-center">
-                                    <img src="assets/images/home-six/category-icon5.png" alt="" class="">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-normal">3d Illustration & Art Design</h6>
-                                    <span class="text-sm text-secondary-light fw-normal">40+ Courses</span>
-                                </div>
-                            </div>
-                            <a href="#" class="w-24-px h-24-px bg-primary-50 text-primary-600 d-flex justify-content-center align-items-center text-lg bg-hover-primary-100 radius-4">
-                                <i class="ri-arrow-right-s-line"></i>
-                            </a>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-0">
-                            <div class="d-flex align-items-center gap-12">
-                                <div class="w-40-px h-40-px radius-8 flex-shrink-0 bg-primary-50 d-flex justify-content-center align-items-center">
-                                    <img src="assets/images/home-six/category-icon6.png" alt="" class="">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-normal">Logo Design</h6>
-                                    <span class="text-sm text-secondary-light fw-normal">40+ Courses</span>
-                                </div>
-                            </div>
-                            <a href="#" class="w-24-px h-24-px bg-primary-50 text-primary-600 d-flex justify-content-center align-items-center text-lg bg-hover-primary-100 radius-4">
-                                <i class="ri-arrow-right-s-line"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- Top Categories Card End -->
-
-            <!-- Instructor Card Start -->
-            <div class="col-xxl-4 col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
-                            <h6 class="mb-2 fw-bold text-lg mb-0">Top Instructors</h6>
-                            <a href="javascript:void(0)" class="text-primary-600 hover-text-primary d-flex align-items-center gap-1">
-                            View All
-                            <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/users/user1.png" alt="" class="w-40-px h-40-px rounded-circle flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Dianne Russell</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">Agent ID: 36254</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="d-flex align-items-center gap-6 mb-1">
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                </div>
-                                <span class="text-primary-light text-sm d-block text-end">25 Reviews</span>
-                            </div>
-                        </div>
-            
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/users/user2.png" alt="" class="w-40-px h-40-px rounded-circle flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Wade Warren</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">Agent ID: 36254</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="d-flex align-items-center gap-6 mb-1">
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                </div>
-                                <span class="text-primary-light text-sm d-block text-end">25 Reviews</span>
-                            </div>
-                        </div>
-            
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/users/user3.png" alt="" class="w-40-px h-40-px rounded-circle flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Albert Flores</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">Agent ID: 36254</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="d-flex align-items-center gap-6 mb-1">
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                </div>
-                                <span class="text-primary-light text-sm d-block text-end">25 Reviews</span>
-                            </div>
-                        </div>
-            
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/users/user4.png" alt="" class="w-40-px h-40-px rounded-circle flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Bessie Cooper</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">Agent ID: 36254</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="d-flex align-items-center gap-6 mb-1">
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                </div>
-                                <span class="text-primary-light text-sm d-block text-end">25 Reviews</span>
-                            </div>
-                        </div>
-            
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/users/user5.png" alt="" class="w-40-px h-40-px rounded-circle flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Arlene McCoy</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">Agent ID: 36254</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="d-flex align-items-center gap-6 mb-1">
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                </div>
-                                <span class="text-primary-light text-sm d-block text-end">25 Reviews</span>
-                            </div>
-                        </div>
-            
-                        <div class="d-flex align-items-center justify-content-between gap-3">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/users/user1.png" alt="" class="w-40-px h-40-px rounded-circle flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Arlene McCoy</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">Agent ID: 36254</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="d-flex align-items-center gap-6 mb-1">
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                    <span class="text-lg text-warning-600 d-flex line-height-1"><i class="ri-star-fill"></i></span>
-                                </div>
-                                <span class="text-primary-light text-sm d-block text-end">25 Reviews</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Instructor Card End -->
-
-
-            <!-- Student Progress Card Start -->
-            <div class="col-xxl-4 col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
-                            <h6 class="mb-2 fw-bold text-lg mb-0">Student's Progress</h6>
-                            <a href="javascript:void(0)" class="text-primary-600 hover-text-primary d-flex align-items-center gap-1">
-                            View All
-                            <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/home-six/student-img1.png" alt="" class="w-40-px h-40-px radius-8 flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Theresa Webb</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">UI/UX Design Course</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <span class="text-primary-light text-sm d-block text-end">
-                                    <svg class="radial-progress" data-percentage="33" viewBox="0 0 80 80">
-                                        <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                                        <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
-                                        <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">33</text>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/home-six/student-img2.png" alt="" class="w-40-px h-40-px radius-8 flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Robert Fox</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">Graphic Design Course</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <span class="text-primary-light text-sm d-block text-end">
-                                    <svg class="radial-progress" data-percentage="70" viewBox="0 0 80 80">
-                                        <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                                        <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
-                                        <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">70</text>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/home-six/student-img3.png" alt="" class="w-40-px h-40-px radius-8 flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Guy Hawkins</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">Web developer Course</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <span class="text-primary-light text-sm d-block text-end">
-                                    <svg class="radial-progress" data-percentage="80" viewBox="0 0 80 80">
-                                        <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                                        <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
-                                        <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">80</text>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/home-six/student-img4.png" alt="" class="w-40-px h-40-px radius-8 flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Cody Fisher</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">UI/UX Design Course</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <span class="text-primary-light text-sm d-block text-end">
-                                    <svg class="radial-progress" data-percentage="20" viewBox="0 0 80 80">
-                                        <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                                        <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
-                                        <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">20</text>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-24">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/home-six/student-img5.png" alt="" class="w-40-px h-40-px radius-8 flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Robiul Hasan</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">UI/UX Design Course</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <span class="text-primary-light text-sm d-block text-end">
-                                    <svg class="radial-progress" data-percentage="40" viewBox="0 0 80 80">
-                                        <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                                        <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
-                                        <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">40</text>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between gap-3 mb-0">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/home-six/student-img6.png" alt="" class="w-40-px h-40-px radius-8 flex-shrink-0 me-12 overflow-hidden">
-                                <div class="flex-grow-1">
-                                    <h6 class="text-md mb-0 fw-medium">Darlene Robertson</h6>
-                                    <span class="text-sm text-secondary-light fw-medium">UI/UX Design Course</span>
-                                </div>
-                            </div>
-                            <div class="">
-                                <span class="text-primary-light text-sm d-block text-end">
-                                    <svg class="radial-progress" data-percentage="24" viewBox="0 0 80 80">
-                                        <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                                        <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
-                                        <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">24</text>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Student Progress Card End -->
-        <!-- ================== Second Row Cards End ======================= -->
-
-         
-        <!-- ================== Third Row Cards Start ======================= -->
-        <div class="col-xxl-8">
-            <div class="card h-100">
-                <div class="card-header">
-                    <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
-                        <h6 class="mb-2 fw-bold text-lg mb-0">Courses</h6>
-                        <a href="javascript:void(0)" class="text-primary-600 hover-text-primary d-flex align-items-center gap-1">
-                            View All
-                            <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body p-24">
-                    <div class="table-responsive scroll-sm">
-                        <table class="table bordered-table mb-0">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Registered On</th>
-                                    <th scope="col">Instructors  </th>
-                                    <th scope="col">Users</th>
-                                    <th scope="col">Enrolled</th>
-                                    <th scope="col">Price </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <span class="text-secondary-light">24 Jun 2024</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">Ronald Richards</span>
-                                    </td>
-                                    <td>
-                                        <div class="text-secondary-light">
-                                            <h6 class="text-md mb-0 fw-normal">3d Illustration &amp; Art Design</h6>
-                                            <span class="text-sm fw-normal">34 Lessons</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">257</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">$29.00</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="text-secondary-light">24 Jun 2024</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">Jerome Bell</span>
-                                    </td>
-                                    <td>
-                                        <div class="text-secondary-light">
-                                            <h6 class="text-md mb-0 fw-normal">Advanced JavaScript Development</h6>
-                                            <span class="text-sm fw-normal">20 Lessons</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">375</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">$29.00</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="text-secondary-light">24 Jun 2024</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">Cody Fisher</span>
-                                    </td>
-                                    <td>
-                                        <div class="text-secondary-light">
-                                            <h6 class="text-md mb-0 fw-normal">Portrait Drawing Fundamentals </h6>
-                                            <span class="text-sm fw-normal">16 Lessons</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">220</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">$29.00</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="text-secondary-light">24 Jun 2024</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">Floyd Miles</span>
-                                    </td>
-                                    <td>
-                                        <div class="text-secondary-light">
-                                            <h6 class="text-md mb-0 fw-normal">Advanced App Development</h6>
-                                            <span class="text-sm fw-normal">25 Lessons</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">57</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">$29.00</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="text-secondary-light">24 Jun 2024</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">Ralph Edwards</span>
-                                    </td>
-                                    <td>
-                                        <div class="text-secondary-light">
-                                            <h6 class="text-md mb-0 fw-normal">HTML Fundamental Course</h6>
-                                            <span class="text-sm fw-normal">17 Lessons </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">27</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-secondary-light">$29.00</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                     @foreach ($tunggakan as $row)
+<div class="d-flex align-items-center justify-content-between gap-3 mb-24">
+    <div class="d-flex align-items-center gap-12">
+        <div class="w-40-px h-40-px radius-8 flex-shrink-0 
+            {{ $row->sisa_tunggakan > 2000000 ? 'bg-danger-50' : ($row->sisa_tunggakan > 1000000 ? 'bg-warning-50' : 'bg-info-50') }}
+            d-flex justify-content-center align-items-center">
+            <i class="ri-money-dollar-circle-line 
+                {{ $row->sisa_tunggakan > 2000000 ? 'text-danger-600' : ($row->sisa_tunggakan > 1000000 ? 'text-warning-600' : 'text-info-600') }}
+                text-xl">
+            </i>
         </div>
-
-       
- 
-        <div class="col-xxl-4">
-            <div class="card h-100">
-                <div class="card-header">
-                    <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
-                        <h6 class="mb-2 fw-bold text-lg mb-0">Course Activity</h6>
-                        <a href="javascript:void(0)" class="text-primary-600 hover-text-primary d-flex align-items-center gap-1">
-                            View All
-                            <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body p-24">
-                    <ul class="d-flex flex-wrap align-items-center justify-content-center my-3 gap-3">
-                        <li class="d-flex align-items-center gap-2">
-                            <span class="w-12-px h-12-px rounded-circle bg-warning-600"></span>
-                            <span class="text-secondary-light text-sm fw-semibold">Paid Course:
-                                <span class="text-primary-light fw-bold">500</span>
-                            </span>
-                        </li>
-                        <li class="d-flex align-items-center gap-2">
-                            <span class="w-12-px h-12-px rounded-circle bg-success-main"></span>
-                            <span class="text-secondary-light text-sm fw-semibold">Free Course: 
-                                <span class="text-primary-light fw-bold">300</span>
-                            </span>
-                        </li>
-                    </ul>
-                    <div id="paymentStatusChart" class="margin-16-minus y-value-left"></div>
-                </div>
-            </div>
+        <div class="flex-grow-1">
+            <h6 class="text-md mb-0 fw-normal">
+                {{ $row->nama_siswa }}
+            </h6>
+            <span class="text-sm text-secondary-light fw-normal">
+                {{ $row->nama_kelas ?? '-' }} •
+                Tunggakan:
+                <strong class="text-danger-600">
+                    Rp {{ number_format($row->sisa_tunggakan, 0, ',', '.') }}
+                </strong>
+            </span>
         </div>
-        <!-- ================== Third Row Cards End ======================= -->
-
     </div>
-
+    <a href="{{ route('staff.tagihan.tampilkantagihan', $row->siswa_id) }}"
+       class="w-24-px h-24-px bg-primary-50 text-primary-600
+              d-flex justify-content-center align-items-center
+              text-lg bg-hover-primary-100 radius-4">
+        <i class="ri-arrow-right-s-line"></i>
+    </a>
+</div>
+@endforeach
+                      
+                      
+                       
+                    </div>
+                </div>
+                 <!-- Top Categories Card End -->
+           
+            </div>
+        </div>
+     
+          
+            <!-- Instructor Card End -->
+       
+        <!-- ================== Second Row Cards End ======================= -->
+                 <div class="row gy-4 mb-24">
+                <div class="">
+                    <div class="card w-full ">
+                        <div class="card-header d-flex align-items-center flex-wrap gap-2 justify-content-between">
+                         <h6 class="mb-2 fw-bold text-lg mb-0">Pemasukan dan Pengeluaran</h6>
+                         <div class=""> 
+                            <select name="tahun_pelajaran_id"
+        id="tahunPelajaranPP"
+        class="form-select form-select-sm">
+    <option value="all">
+      
+        Semua Tahun Pelajaran
+    </option>
+    @foreach ($allTahunPelajaran as $tp)
+        <option value="{{ $tp->id }}" {{ request('tahun_pelajaran_id', $tahunPelajaranAktif?->id) == $tp->id ? 'selected' : '' }}>
+          
+            {{ $tp->nama }}
+            {{ $tp->is_active ? '(Aktif)' : '' }}
+          
+           
+        </option>
+    @endforeach
+</select>
+                         </div>
+                        </div>
+                        <div class="card-body px-24">     
+                        <div class="mx-24" id="barPemasukanPengeluaran"></div>
+                        </div>
+               
+                    </div>
+                </div>
+            </div> 
+           
+     
+    
+    </div>
   </div>
-
-
-
   @push('scripts')
     @if(session('login_success'))
 <script>
@@ -903,14 +426,11 @@
                 }
             }
         };
-
         var chart = new ApexCharts(document.querySelector(`#${chartId}`), options);
         chart.render();
     }
-
     createChartTwo('enrollmentChart', '#45B369', '#487fff');
     // ===================== Average Enrollment Rate End =============================== 
-
     
     // ================================ Users Overview Donut chart Start ================================ 
     var options = { 
@@ -957,7 +477,6 @@
         }
       }],
     };
-
     var chart = new ApexCharts(document.querySelector("#userOverviewDonutChart"), options);
     chart.render();
   // ================================ Users Overview Donut chart End ================================ 
@@ -1019,7 +538,6 @@
         width: 18,
       },
     };
-
     var chart = new ApexCharts(document.querySelector("#paymentStatusChart"), options);
     chart.render();
   // ================================ Client Payment Status chart End ================================ 
@@ -1028,7 +546,6 @@
   $('svg.radial-progress').each(function (index, value) {
         $(this).find($('circle.complete')).removeAttr('style');
     });
-
     // Activate progress animation on scroll
     $(window).scroll(function () {
         $('svg.radial-progress').each(function (index, value) {
@@ -1052,12 +569,10 @@
     }).trigger('scroll');
   // ================================ Aminated Radial Progress Bar End ================================ 
     </script>
-
 <script>
 const tahunSelect = document.getElementById('tahunPelajaran');
 const semesterSelect = document.getElementById('semester');
 const form = document.getElementById('filterForm');
-
 function showLoadingAndSubmit() {
     Swal.fire({
         title: 'Memuat data...',
@@ -1068,28 +583,23 @@ function showLoadingAndSubmit() {
             Swal.showLoading();
         }
     });
-
     // kasih delay dikit biar swal sempat render
     setTimeout(() => {
         form.submit();
     }, 300);
 }
-
 // 🔁 Tahun Pelajaran berubah
 tahunSelect.addEventListener('change', function () {
     semesterSelect.value = 'all';
     showLoadingAndSubmit();
 });
-
 // 🔁 Semester berubah
 semesterSelect.addEventListener('change', function () {
     showLoadingAndSubmit();
 });
 </script>
-
 <script>
 let pemasukanChart;
-
 function loadPemasukanChart(tahunPelajaranId) {
     $.ajax({
         url: '/staff/dashboard/keuangan/pemasukan-per-jenis',
@@ -1100,10 +610,8 @@ function loadPemasukanChart(tahunPelajaranId) {
         success: function (res) {
           
     console.log('RAW SERIES:', res.series);
-
     let series = [];
     let labels = [];
-
     res.series.forEach((val, i) => {
         val = Number(val);
         if (!isNaN(val) && val > 0) {
@@ -1111,19 +619,17 @@ function loadPemasukanChart(tahunPelajaranId) {
             labels.push(res.labels[i]);
         }
     });
-
     if (series.length === 0) {
         document.querySelector('#pemasukanDonutChart').innerHTML =
             '<p class="text-center text-muted">Tidak ada data pemasukan</p>';
         return;
     }
-
     const options = {
         series: series,
         labels: labels,
         chart: {
             type: 'donut',
-            height: 400
+            height: 600
         },
         dataLabels: { enabled: false },
         legend: { position: 'bottom' },
@@ -1134,16 +640,13 @@ function loadPemasukanChart(tahunPelajaranId) {
             }
         }
     };
-
     if (window.pemasukanChart) {
         window.pemasukanChart.destroy();
     }
-
     window.pemasukanChart = new ApexCharts(
         document.querySelector("#pemasukanDonutChart"),
         options
     );
-
     window.pemasukanChart.render();
             
         },
@@ -1156,12 +659,82 @@ function loadPemasukanChart(tahunPelajaranId) {
 <script>
 loadPemasukanChart({{ $tahunPelajaranAktif->id }});
 </script>
-
 <script>
 $('#filterTahunPelajaran').on('change', function () {
     loadPemasukanChart($(this).val());
 });
 </script>
+<script>
+let barChart;
 
+function loadBarChart(tahun = 'all', semester = 'all') {
+    $.ajax({
+        url: "/staff/dashboard/chart-pemasukan-pengeluaran",
+        data: {
+            tahun_pelajaran_id: tahun,
+            semester_id: semester
+        },
+        success: function (res) {
+            console.log(res);
 
+            if (barChart) barChart.destroy();
+
+            const options = {
+              series: res.series,
+    chart: {
+        type: 'bar',
+        height: 300,
+        toolbar: { show: false }
+    },
+    plotOptions: {
+        bar: {
+            borderRadius: 6,
+            distributed: true // 🔥 WAJIB biar beda warna
+        }
+    },
+    colors: ['#22C55E', '#EF4444'], // hijau & merah
+    xaxis: {
+        categories: res.categories
+    },
+                yaxis: {
+                    labels: {
+                        formatter: function (value) {
+                            if (value >= 1_000_000) return 'Rp ' + (value / 1_000_000).toFixed(1) + ' jt';
+                            if (value >= 1_000) return 'Rp ' + (value / 1_000).toFixed(0) + ' rb';
+                            return 'Rp ' + value;
+                        }
+                    }
+                },
+                tooltip: {
+                    y: {
+                        formatter: val => 'Rp ' + val.toLocaleString('id-ID')
+                    }
+                },
+                legend: {
+                    show: true,
+                    position: 'top'
+                }
+            };
+
+            barChart = new ApexCharts(
+                document.querySelector("#barPemasukanPengeluaran"),
+                options
+            );
+            barChart.render();
+        }
+    });
+}
+// load pertama
+loadBarChart();
+</script>
+<script>
+    $('#tahunPelajaranPP, #semesterPP').on('change', function () {
+        console.log( $('#tahunPelajaranPP').val());
+    loadBarChart(
+        $('#tahunPelajaranPP').val(),
+        $('#semesterPP').val()
+    );
+});
+</script>
+</script>
   @endpush

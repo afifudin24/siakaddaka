@@ -111,6 +111,31 @@ if ($request->filled('semester_id')) {
         }else{
             $semesterList = Semester::where('tahun_pelajaran_id', $tahunPelajaranAktif->id)->get();
         }
+
+         $tunggakan = DB::table('tagihan')
+        ->join('siswa', 'siswa.id', '=', 'tagihan.siswa_id')
+        ->join('kelas', 'kelas.id', '=', 'siswa.kelas_id')
+        ->leftJoin('pembayaran', 'pembayaran.tagihan_id', '=', 'tagihan.id')
+        ->where('tagihan.tahun_pelajaran_id', $tahunId)
+        ->where('tagihan.semester_id', $semesterId)
+        ->where('tagihan.status', 'belum lunas') // 🔥 penting
+        ->groupBy(
+            'siswa.id',
+            'siswa.nama',
+            'kelas.nama_kelas'
+        )
+        ->select(
+            'siswa.id as siswa_id',
+            'siswa.nama as nama_siswa',
+            'kelas.nama_kelas',
+            DB::raw('SUM(tagihan.jumlah) as total_tagihan'),
+            DB::raw('COALESCE(SUM(pembayaran.jumlah_bayar),0) as total_bayar'),
+            DB::raw('(SUM(tagihan.jumlah) - COALESCE(SUM(pembayaran.jumlah_bayar),0)) as sisa_tunggakan')
+        )
+        ->havingRaw('sisa_tunggakan > 0')
+        ->orderByDesc('sisa_tunggakan')
+        ->limit(5) // 🔥 Top 10 tunggakan terbesar
+        ->get();
       
 
     return view('pages.staff.dashboard.index', compact(
@@ -122,7 +147,8 @@ if ($request->filled('semester_id')) {
         'semesterAktif',
         'allTahunPelajaran',
         'semesterTahunPelajaran',
-        'semesterList'
+        'semesterList',
+        'tunggakan'
     ));
         }
        
@@ -149,6 +175,64 @@ public function pemasukanPerJenis(Request $request)
         'series' => $data->pluck('total'),
     ]);
 }
+
+public function chartPemasukanPengeluaran(Request $request)
+{
+    $tahunAktif    = TahunPelajaran::where('is_active', 1)->first();
+    $semesterAktif = Semester::where('is_active', 1)->first();
+
+    $tahunId    = $request->tahun_pelajaran_id ?? $tahunAktif?->id;
+    $semesterId = $request->semester_id ?? $semesterAktif?->id;
+
+    /** ================= PEMASUKAN ================= */
+    $pemasukanQuery = Pembayaran::whereHas('tagihan', function ($q) use ($tahunId, $semesterId) {
+
+        // ✅ HANYA TAGIHAN YANG LUNAS
+        $q->where('status', 'lunas');
+
+        // Filter tahun pelajaran
+        if ($tahunId !== 'all') {
+            $q->where('tahun_pelajaran_id', $tahunId);
+        }
+
+        // Filter semester
+        if ($semesterId !== 'all') {
+            $q->where('semester_id', $semesterId);
+        }
+    });
+
+    $totalPemasukan = $pemasukanQuery->sum('jumlah_bayar');
+
+    /** ================= PENGELUARAN ================= */
+    $pengeluaranQuery = KasKeluar::query();
+
+    if ($tahunId !== 'all') {
+        $pengeluaranQuery->where('tahun_pelajaran_id', $tahunId);
+    }
+
+    if ($semesterId !== 'all') {
+        $pengeluaranQuery->where('semester_id', $semesterId);
+    }
+
+    $totalPengeluaran = $pengeluaranQuery->sum('jumlah');
+return response()->json([
+    'categories' => ['Pemasukan', 'Pengeluaran'],
+    'series' => [
+        [
+            'name' => 'Jumlah',
+            'data' => [
+                (int) $totalPemasukan,
+                (int) $totalPengeluaran
+            ]
+        ]
+    ]
+]);
+
+
+
+}
+
+
 
     public function create()
     {

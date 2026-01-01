@@ -34,6 +34,8 @@
     {{-- HEADER --}}
     <div class="text-center">
         <h3>LAPORAN KEUANGAN</h3>
+        <h2>{{$datasekolah->nama_sekolah ?? 'SMK CONTOH'}}</h2>
+        <p> {{ $datasekolah->alamat ?? '-' }}</p>
         <p>
             Tahun Pelajaran: <strong>{{ $laporan->tahunPelajaran->nama }}</strong><br>
             Semester: <strong>{{ $laporan->semester->nama }}</strong><br>

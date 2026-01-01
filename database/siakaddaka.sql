@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 25 Des 2025 pada 08.23
+-- Host: 127.0.0.1:3306
+-- Waktu pembuatan: 01 Jan 2026 pada 08.05
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -142,11 +142,16 @@ CREATE TABLE `data_sekolah` (
   `status` varchar(255) DEFAULT NULL,
   `jenjang` varchar(255) DEFAULT NULL,
   `alamat` text DEFAULT NULL,
+  `kecamatan` varchar(255) DEFAULT NULL,
+  `yayasan_sekolah` varchar(255) DEFAULT NULL,
   `email_sekolah` varchar(255) DEFAULT NULL,
   `telepon` varchar(255) DEFAULT NULL,
   `logo` varchar(255) DEFAULT NULL,
-  `ikon` varchar(255) DEFAULT NULL,
+  `logo_dark` varchar(255) DEFAULT NULL,
+  `logo_icon` varchar(255) DEFAULT NULL,
+  `logo_surat` varchar(255) DEFAULT NULL,
   `gambar_unggulan` varchar(255) DEFAULT NULL,
+  `gambar_unggulan_2` varchar(255) DEFAULT NULL,
   `website` varchar(255) NOT NULL,
   `banner` varchar(255) DEFAULT NULL,
   `kepala_sekolah` varchar(255) DEFAULT NULL,
@@ -162,8 +167,8 @@ CREATE TABLE `data_sekolah` (
 -- Dumping data untuk tabel `data_sekolah`
 --
 
-INSERT INTO `data_sekolah` (`id`, `nama_sekolah`, `nama_singkatan`, `npsn`, `status`, `jenjang`, `alamat`, `email_sekolah`, `telepon`, `logo`, `ikon`, `gambar_unggulan`, `website`, `banner`, `kepala_sekolah`, `nip_kepala_sekolah`, `deskripsi_singkat`, `visi`, `misi`, `created_at`, `updated_at`) VALUES
-(1, 'SMK Contoh Nusantara', 'SMK DAKA', NULL, NULL, NULL, 'Jl. Pendidikan No. 123, Purwokerto', 'info@smkcontoh.sch.id', '0281-123456', 'logo.png', NULL, NULL, 'https://www.smkcontoh.sch.id', NULL, 'Drs. Andi Wijaya', NULL, NULL, 'Menjadi sekolah unggul yang berkarakter dan berprestasi.', 'Mencetak lulusan yang kompeten, berakhlak mulia, dan siap kerja.', '2025-11-21 20:36:44', '2025-11-21 20:36:44');
+INSERT INTO `data_sekolah` (`id`, `nama_sekolah`, `nama_singkatan`, `npsn`, `status`, `jenjang`, `alamat`, `kecamatan`, `yayasan_sekolah`, `email_sekolah`, `telepon`, `logo`, `logo_dark`, `logo_icon`, `logo_surat`, `gambar_unggulan`, `gambar_unggulan_2`, `website`, `banner`, `kepala_sekolah`, `nip_kepala_sekolah`, `deskripsi_singkat`, `visi`, `misi`, `created_at`, `updated_at`) VALUES
+(1, 'SMK Darussalam Karangpucung', 'SMK DAKA', NULL, 'Swasta', 'SMK', 'Jl. Raya Karangpucung - Majenang KM. 02 No. 08 Kec. Karangpucung, Kab. Cilacap', 'Karangpucung', 'YAYASAN DARUSSALAM AL-FATAH', 'smkdkrpc@gmail.com', '0281-123456', 'sekolah/lMrvFdwsncLf54g0jKtjkajsoZFMXwf2ZM4Hbfb1.jpg', 'sekolah/3KpVwkvSAhpv9V7hpJIu5NjvrDLmT1vBAhSvODAK.png', 'sekolah/ttTYorqbIFKiEudqyiUOmYP6ciRCz046qutGRmSR.png', 'sekolah/kMEBGJsMOjKubRSOaFBA1Q5eiqAgeSixytz5PxQO.png', 'sekolah/GzR6XFaXd8CUdJqxMePf9V5TW5Fimq6qy8VqiDuz.png', 'sekolah/0SOgWPb5xauwVqbZRDCgkaOkqEDuQzUCmlGltEoH.png', 'https://www.smkcontoh.sch.id', NULL, 'Dr. Risa Fita Hapsari, S.Pd, M.M.', NULL, 'SMK Sakti', 'Menjadi sekolah unggul yang berkarakter dan berprestasi.', '[\"Tes aja\"]', '2025-11-21 20:36:44', '2025-12-31 23:42:51');
 
 -- --------------------------------------------------------
 
@@ -688,7 +693,16 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (135, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-23 18:12:37', '2025-12-23 18:12:37'),
 (136, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0', '2025-12-23 19:32:05', '2025-12-23 19:32:05'),
 (137, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-24 17:21:32', '2025-12-24 17:21:32'),
-(138, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0', '2025-12-24 21:15:13', '2025-12-24 21:15:13');
+(138, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0', '2025-12-24 21:15:13', '2025-12-24 21:15:13'),
+(139, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-31 18:22:01', '2025-12-31 18:22:01'),
+(140, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-31 20:10:52', '2025-12-31 20:10:52'),
+(141, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-31 21:21:28', '2025-12-31 21:21:28'),
+(142, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-31 21:24:50', '2025-12-31 21:24:50'),
+(143, 80, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-31 21:24:50', '2025-12-31 21:24:50'),
+(144, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-31 21:25:01', '2025-12-31 21:25:01'),
+(145, 1, 'updated', 'User diperbarui: Darwin Kuvalis (admin)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-31 23:33:18', '2025-12-31 23:33:18'),
+(146, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-31 23:33:18', '2025-12-31 23:33:18'),
+(147, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-31 23:33:33', '2025-12-31 23:33:33');
 
 -- --------------------------------------------------------
 
@@ -1144,7 +1158,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'newell.kirlin', 'Darwin Kuvalis', 'jlarson@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, '97XgfVgt5vQkOA0elFt0fDPf8w3q6SfxPFWYv2QiHXiqF42aGzah2rOMrrR1', '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
+(1, 'newell.kirlin', 'Darwin Kuvalis', 'jlarson@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, 'nlyE59IW9JVHn75Tppx3iz9sTxRacCVOET4PHd5HbZGThzet4RE23eGjjgW2', '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
 (2, 'afifsaja', 'Mr. Alek Kunze', 'afifsaja@gmail.com', '$2y$12$3C2v7WdtMS5EwuJpNe3OsezGNfg.VhLaPX6Bza/4b/QpDVEOG7lt6', 'akukeren', 'guru', 'foto-guru/w5DvIX1o5FxyuyINfJHxC9DWJ2g1JbBLLB7oSWxh.jpg', 'foto-unggulan/v4QtbPMQYvVy5Clyg26wK0sKH7qu5qQLsT3q4ScA.jpg', 1, NULL, '', '2025-11-21 20:32:50', '2025-12-22 20:45:50'),
 (3, 'hauck.elouise', 'Khalil Gerlach', 'collier.raquel@example.org', '$2y$12$6v29/DD9FgFupmUudJaqUeKLcB1IpH2FKYfDOn6XH5mrqdK.v5rmG', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:50', '2025-11-21 20:32:50'),
 (4, 'yaopoci', 'Kimberly Reichel', 'yaopoci@gmail.com', '$2y$12$1YoNGozGkJJoVhmw2CscR.M.yiDzYT89zI8v1MeiKGBMZUcqBkBZG', '', 'guru', 'foto-guru/muIhj2sO6uJedUQv05950CzxEqeBIMAtQJNhkBlN.jpg', '', 1, NULL, '', '2025-11-21 20:32:50', '2025-12-20 06:13:24'),
@@ -1223,7 +1237,7 @@ INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_te
 (77, 'art.dubuque', 'Blanche Schoen', 'kovacek.brandyn@example.org', '$2y$12$YiwcsRT9ILlof5oALreI3OKw2GUQ8wsU6qhtwPvo0EIXjyGWlU40q', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:41', '2025-11-21 20:36:41'),
 (78, 'tillman.harvey', 'Prof. Alva Ryan', 'haley.marshall@example.com', '$2y$12$6qlZ5PGVseM/ZfXJYrhua.3XOPPu3PUnXG40ZRePw9TW4lvCeoL.G', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:42', '2025-11-21 20:36:42'),
 (79, 'okesaja', 'kokokoko', 'okesaja@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
-(80, 'tatausaha', 'Tata Usaha', 'tatausaha@gmail.com', '$2y$10$YLK8cg2s3xRI17zXrc1QquI7XoIMvSRAs0sJMnrY9PtlCoHChX4A.', 'tatausaha', 'staff', 'profile.png', NULL, 1, NULL, 'vJqRPqLo3OkiUnSvPvnPq8D8H1bN3TplodgU2iMRFixL7b9U4A8MhYMBdszk', '2025-12-22 12:52:25', NULL);
+(80, 'tatausaha', 'Tata Usaha', 'tatausaha@gmail.com', '$2y$10$YLK8cg2s3xRI17zXrc1QquI7XoIMvSRAs0sJMnrY9PtlCoHChX4A.', 'tatausaha', 'staff', 'profile.png', NULL, 1, NULL, 'wc2MKlPuuSGE87ZYgm8b6AA8FvqnjrIc0wmwoY2N73TtJgohDUYUCd3I38o8', '2025-12-22 12:52:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -1720,7 +1734,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`

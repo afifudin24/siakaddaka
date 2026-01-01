@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Akademik SMK - Solusi Manajemen Sekolah Modern</title>
-    
+    <link rel="icon" type="image/png" href="{{ sekolah_logo('icon', 'assets/images/logo-icon.png') }}" sizes="16x16">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
@@ -505,13 +505,12 @@ body.dark-mode .navbar-toggler-icon {
         <div class="container">
             <a class="navbar-brand" href="/">
                 @if($datasekolah && $datasekolah->logo)
-                    <img class="ikon" src="{{ asset('storage/sekolah/' . $datasekolah->logo) }}" alt="">
-                    {{-- <img class="ikon" src="{{ asset('images/sekolah/logo.png')}}" alt=""> --}}
+                <img src="{{ asset('storage/' . $datasekolah->logo) }}" alt="Logo" class="d-inline-block align-text-top me-2">
                 @else
                 <i class="fas fa-graduation-cap me-2"></i>
+                SIAKAD SMK
                 @endif
                 
-                SIAKAD SMK
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -598,7 +597,7 @@ body.dark-mode .navbar-toggler-icon {
 @endphp
 
 <div class="hero-image">
-    <img class="img-fluid" style="width : 70%;"  src="{{ $image }}" alt="Sistem Akademik SMK">
+    <img class="img-fluid" style="width : 70%;"  src="{{ sekolah_image('gambar_unggulan', $defaultImage) }}" alt="Sistem Akademik SMK">
 </div>
                 </div>
             </div>

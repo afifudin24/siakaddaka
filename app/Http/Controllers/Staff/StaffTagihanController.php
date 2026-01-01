@@ -10,6 +10,7 @@ use App\Models\Tagihan;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Semester;
+use App\Models\DataSekolah;
 use App\Models\TahunPelajaran;
 use Illuminate\Support\Facades\DB;
 class StaffTagihanController extends Controller
@@ -188,14 +189,17 @@ class StaffTagihanController extends Controller
     }
     public function cetakTagihan(Tagihan $tagihan)
     {
+         $datasekolah = DataSekolah::first();
         $tagihan->load([
             'siswa.kelas',
             'jenisTagihan',
             'pembayaran'
         ]);
+       
 
         $pdf = Pdf::loadView('pages.staff.tagihan.cetak', [
-            'tagihan' => $tagihan
+            'tagihan' => $tagihan,
+            'datasekolah' => $datasekolah
         ])->setPaper('A4', 'portrait');
 
         // 🔥 PREVIEW di browser

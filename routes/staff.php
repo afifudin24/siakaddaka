@@ -19,6 +19,11 @@ Route::middleware(['auth', 'role:staff'])
 Route::get('/dashboard/keuangan/pemasukan-per-jenis', 
     [StaffDashboardController::class, 'pemasukanPerJenis']
 );
+Route::get(
+    '/dashboard/chart-pemasukan-pengeluaran',
+    [StaffDashboardController::class, 'chartPemasukanPengeluaran']
+)->name('dashboard.chart.pemasukan-pengeluaran');
+
 
         // Jenis Tagihan
         Route::resource('/jenistagihan', StaffJenisTagihanController::class);

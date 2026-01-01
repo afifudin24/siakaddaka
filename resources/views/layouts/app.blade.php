@@ -7,10 +7,11 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <title>{{ $site_title }}</title>
-<!-- <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}" sizes="16x16"> -->
 
-<link rel="icon" type="image/png" href="{{ $favicon  ? asset('storage/' . $favicon)
-        : asset('assets/images/favicon.png') }}" sizes="16x16">
+
+<link rel="icon" type="image/png" href="{{ sekolah_logo('icon', 'assets/images/logo-icon.png') }}" sizes="16x16">
+
+         
 <!-- remix icon font css -->
 <link rel="stylesheet" href="{{ asset('assets/css/remixicon.css') }}">
 <!-- BootStrap css -->

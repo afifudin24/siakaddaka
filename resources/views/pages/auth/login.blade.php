@@ -13,7 +13,7 @@
 @endphp
 
 <img 
-    src="{{ $unggulanExists ? asset('storage/' . $unggulanPath) : asset('assets/images/auth/auth-img.png') }}" 
+    src="{{sekolah_image('gambar_unggulan_2', 'assets/images/auth/auth-img.png')}}" 
     alt="Gambar Unggulan"
 >
 
@@ -23,17 +23,7 @@
         <div class="max-w-464-px mx-auto w-100">
             <div>
                 <a href="/login" class="mb-40 max-w-290-px">
-                @php
-    $logoDb = optional($datasekolah)->logo; 
-    $logoPath = $logoDb ? 'sekolah/' . $logoDb : null;
-    $fileExists = $logoPath && Storage::disk('public')->exists($logoPath);
-@endphp
-
-@if($fileExists)
-    <img src="{{ asset('storage/' . $logoPath) }}" alt="Logo Sekolah">
-@else
-    <img src="{{ asset('assets/images/logo.png') }}" alt="Logo Default">
-@endif
+                    <img src="{{ sekolah_logo('light', 'assets/images/logo.png') }}" alt="Logo">
                 </a>
                 <h4 class="mb-12">Log In</h4>
                 <p class="mb-32 text-secondary-light text-lg">Selamat datang dan isi detail form dibawah</p>

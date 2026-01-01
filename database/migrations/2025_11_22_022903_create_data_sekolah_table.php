@@ -28,7 +28,9 @@ return new class extends Migration
 
             // Media
             $table->string('logo')->nullable();
-            $table->string('ikon')->nullable();
+            $table->string('logo_icon')->nullable();
+            $table->string('logo_light')->nullable();
+            $table->string('logo_dark')->nullable();
             $table->string('gambar_unggulan')->nullable();
             $table->string('gambar_unggulan_2')->nullable();
             $table->string('gambar_unggulan_3')->nullable();

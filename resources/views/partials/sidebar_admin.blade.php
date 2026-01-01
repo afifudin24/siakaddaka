@@ -90,6 +90,12 @@
     </ul>
 
 </li>
+      <li class="my-1">
+        <a href="/admin/datasekolah" class="{{ request()->is('admin/datasekolah') ? 'active' : '' }}">
+          <iconify-icon icon="teenyicons:school-outline" class="menu-icon"></iconify-icon>
+          <span>Data Sekolah</span>
+        </a>
+      </li>
     
     </ul>
   </div>
