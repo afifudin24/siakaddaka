@@ -74,6 +74,7 @@ public function update(Request $request)
         'alamat' => $request->alamat,
         'yayasan_sekolah' => $request->yayasan_sekolah,
         'kecamatan' => $request->kecamatan,
+        'website' => $request->website,
         'email_sekolah' => $request->email_sekolah,
         'telepon' => $request->telepon,
         'kepala_sekolah' => $request->kepala_sekolah,

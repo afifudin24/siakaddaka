@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Providers;
-
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -9,7 +7,6 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use App\Listeners\LogUserActivity;
-
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -28,7 +25,6 @@ class EventServiceProvider extends ServiceProvider
         LogUserActivity::class,
     ],
     ];
-
     /**
      * Register any events for your application.
      */
@@ -36,7 +32,6 @@ class EventServiceProvider extends ServiceProvider
     {
         //
     }
-
     /**
      * Determine if events and listeners should be automatically discovered.
      */

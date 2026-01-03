@@ -48,17 +48,26 @@
             </div>
             <ul class="to-top-list">
               <li>
-                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="view-profile.html"> 
-                <iconify-icon icon="solar:user-linear" class="icon text-xl"></iconify-icon>  My Profile</a>
+                @if(auth()->user()->role == 'admin')
+                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-brand d-flex align-items-center gap-3" href="/admin/profil">
+                @elseif(auth()->user()->role == 'guru')
+                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-brand d-flex align-items-center gap-3" href="/guru/profil">
+                @elseif(auth()->user()->role == 'siswa')
+                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-brand d-flex align-items-center gap-3" href="/siswa/profil">
+                @else
+                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-brand d-flex align-items-center gap-3" href="/staff/profil">
+                @endif 
+                
+                  <iconify-icon icon="solar:user-linear" class="icon text-xl"></iconify-icon>  Profil</a>
               </li>
-              <li>
+              {{-- <li>
                 <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="email.html"> 
                 <iconify-icon icon="tabler:message-check" class="icon text-xl"></iconify-icon>  Inbox</a>
               </li>
               <li>
                 <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="company.html"> 
                 <iconify-icon icon="icon-park-outline:setting-two" class="icon text-xl"></iconify-icon>  Setting</a>
-              </li>
+              </li> --}}
             <li>
     <a id="btnLogout" class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3" href="javascript:void(0)">
         <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon>  

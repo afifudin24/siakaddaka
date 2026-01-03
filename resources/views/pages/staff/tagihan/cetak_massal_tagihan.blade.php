@@ -5,30 +5,40 @@
     <title>Cetak Tagihan Massal</title>
 
     <style>
-        body {
-            font-family: "Times New Roman", serif;
-            font-size: 12px;
-            line-height: 1.6;
-        }
+    
 
         .page-break {
             page-break-after: always;
         }
 
+         body {
+           font-family: DejaVu Sans, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            margin: 20px 30px;
+        }
+       
+    table {
+        border-collapse: collapse;
+    }
+
         .kop {
             text-align: center;
             border-bottom: 3px solid #000;
             padding-bottom: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
-        .kop h2, .kop h3 {
+        .kop h1 {
             margin: 0;
+            font-size: 16pt;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         .kop p {
             margin: 2px 0;
-            font-size: 11px;
+            font-size: 10.5pt;
         }
 
         .judul {
@@ -84,11 +94,7 @@
 @foreach ($data as $siswa)
 
     {{-- KOP SURAT --}}
-    <div class="kop">
-        <h2>SEKOLAH MENENGAH KEJURUAN</h2>
-        <h3>SMK CONTOH SEJAHTERA</h3>
-        <p>Alamat Sekolah - Telp (0000) 123456</p>
-    </div>
+    @include('pdf.partials.kop')
 
     {{-- JUDUL --}}
     <div class="judul">
@@ -104,7 +110,7 @@
 
     {{-- IDENTITAS SISWA --}}
     <div class="identitas">
-        <table>
+        <table style="line-height: 1.2">
             <tr>
                 <td width="25%">Nama Siswa</td>
                 <td width="3%">:</td>

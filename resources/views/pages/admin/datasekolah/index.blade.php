@@ -44,8 +44,8 @@
                     <h6 class="fw-semibold mb-1">Logo Utama</h6>
                     <small class="text-muted">Digunakan pada header & dokumen</small>
 
-                    <div class="mt-3">
-                      <button class="btn btn-sm btn-primary btnEditImage"
+                    <div class="mt-3 text-center">
+                      <button class="btn d-flex mx-auto gap-1 p-1 align-items-center btn-sm btn-primary btnEditImage"
     data-field="logo"
     data-label="Logo">
     <iconify-icon icon="mdi:pencil"></iconify-icon>
@@ -68,7 +68,7 @@
                     <small class="text-light">Digunakan pada mode gelap</small>
 
                     <div class="mt-3">
-                        <button class="btn btn-sm btn-light btnEditImage"
+                        <button class="btn d-flex mx-auto gap-1 p-1 align-items-center btn-sm btn-light btnEditImage"
                              data-field="logo_dark"
     data-label="Logo Dark">
     <iconify-icon icon="mdi:pencil"></iconify-icon>
@@ -90,7 +90,7 @@
                     <small class="text-muted">Favicon / Icon aplikasi</small>
 
                     <div class="mt-3">
-                        <button class="btn btn-sm btn-primary btnEditImage"
+                        <button class="btn d-flex mx-auto gap-1 p-1 align-items-center btn-sm btn-primary btnEditImage"
                             data-field="logo_icon"
                             data-label="Logo Icon">
 
@@ -112,7 +112,7 @@
                     <small class="text-muted">Logo Surat</small>
 
                     <div class="mt-3">
-                        <button class="btn btn-sm btn-primary btnEditImage"
+                        <button class="btn d-flex mx-auto gap-1 p-1 align-items-center btn-sm btn-primary btnEditImage"
                             data-field="logo_surat"
                             data-label="Logo Surat">
 
@@ -154,7 +154,7 @@ $unggulan = [
             <small class="text-muted">Ditampilkan di {{ $item['lokasi'] }}</small>
 
             <div class="mt-3">
-                <button class="btn btn-sm btn-primary btnEditImage"
+                <button class="btn d-flex mx-auto gap-1 p-1 align-items-center btn-sm btn-primary btnEditImage"
                     data-field="{{ $field }}" data-label="{{ $item['label'] }}">
                     <iconify-icon icon="mdi:pencil"></iconify-icon>
                     Edit
@@ -225,16 +225,21 @@ $unggulan = [
                 <input type="text" name="yayasan_sekolah" class="form-control" value="{{ $dataSekolah->yayasan_sekolah }}">
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label">Email Sekolah</label>
                 <input type="email" name="email_sekolah" class="form-control"
                     value="{{ $dataSekolah->email_sekolah }}">
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label">Telepon</label>
                 <input type="text" name="telepon" class="form-control"
                     value="{{ $dataSekolah->telepon }}">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Website</label>
+                <input type="text" name="website" class="form-control"
+                    value="{{ $dataSekolah->website }}">
             </div>
 
             <div class="col-md-6">
@@ -292,9 +297,9 @@ $unggulan = [
 
 
             <div class="col-12 text-end mt-3">
-                <button type="submit" class="btn btn-primary px-4">
-                    Simpan
-                </button>
+                <button type="submit" class="btn btn-sm btn-success d-flex align-items-center gap-2"> 
+                <iconify-icon icon="lucide:save" class="text-xl"></iconify-icon> Simpan
+</button>
             </div>
 
         </div>

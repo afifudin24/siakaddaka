@@ -6,20 +6,33 @@
 
     <style>
         body {
-            font-family: "Times New Roman", serif;
-            font-size: 12px;
+           font-family: DejaVu Sans, sans-serif;
+            font-size: 12pt;
             line-height: 1.5;
+            margin: 20px 30px;
         }
+       
+    table {
+        border-collapse: collapse;
+    }
 
         .kop {
             text-align: center;
             border-bottom: 3px solid #000;
             padding-bottom: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
-        .kop h2 {
+        .kop h1 {
             margin: 0;
+            font-size: 16pt;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .kop p {
+            margin: 2px 0;
+            font-size: 10.5pt;
         }
 
         .pembuka, .penutup {
@@ -100,10 +113,7 @@
 <body>
 
 {{-- KOP SURAT --}}
-<div class="kop">
-    <h2>SMK CONTOH SEJAHTERA</h2>
-    <p>Alamat Sekolah - Telp (0000) 123456</p>
-</div>
+@include('pdf.partials.kop')
 
 {{-- PEMBUKA SURAT --}}
 <div class="pembuka">
@@ -115,7 +125,7 @@
 {{-- INFORMASI SISWA --}}
 <div class="siswa-info">
     <strong>Nama Siswa:</strong> {{ $siswa->nama }}<br>
-    <strong>Kelas:</strong> {{ $siswa->kelas->nama_kelas }}
+    <strong>Kelas:</strong> {{ $siswa->kelas->nama_kelas ?? '-' }}
 </div>
 
 {{-- TAGIHAN GRID --}}

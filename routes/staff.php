@@ -6,7 +6,8 @@ use App\Http\Controllers\Staff\StaffTagihanController;
 use App\Http\Controllers\Staff\StaffJenisTagihanController;
 use App\Http\Controllers\Staff\StaffPembayaranController;
 use App\Http\Controllers\Staff\StaffKasKeluarController;
-use App\Http\Controllers\Staff\StaffLaporanKeuanganController;
+use App\Http\Controllers\Staff\StaffLaporanKeuanganController; 
+use App\Http\Controllers\Staff\StaffProfilController; 
 use App\Models\Staff;
 
 Route::middleware(['auth', 'role:staff'])
@@ -105,6 +106,14 @@ Route::delete(
     [StaffLaporanKeuanganController::class, 'hapus']
 )->name('laporankeuangan.hapus');
 
+
+// Profil
+        Route::get('/profil', [StaffProfilController::class, 'index'])->name('profil.index');
+        Route::put('/profil', [StaffProfilController::class, 'update'])->name('profil.update');
+          Route::post('/profil/aksi/fotoprofil', [StaffProfilController::class, 'updateFotoProfil'])->name('updateFotoProfil');
+           Route::post('/profil/aksi/foto-unggulan',[StaffProfilController::class, 'updateFotoUnggulan'])->name('updateFotoUnggulan');
+                  Route::post('/profil/aksi/update-password',[StaffProfilController::class, 'updatePassword'])->name('profil.updatePassword');
+       Route::post('/profil/aksi/hapus-foto', [StaffProfilController::class, 'hapusFoto'])->name('profil.hapusFoto');
 
 
 

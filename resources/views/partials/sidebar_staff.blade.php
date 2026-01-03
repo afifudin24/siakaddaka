@@ -10,13 +10,13 @@
   <div class="sidebar-menu-area">
     <ul class="sidebar-menu" id="sidebar-menu">
          <li class="sidebar-menu-group-title">Home</li>
-      <li  class="{{ request()->is('staff/dashboard') ? 'active-page' : '' }}">
-        <a href="/staff/dashboard" class="{{ request()->is('staff/dashboard') ? 'active' : '' }}">
+      <li  class="{{ request()->is('staff/dashboard*') ? 'active-page' : '' }}">
+        <a href="/staff/dashboard" class="{{ request()->is('staff/dashboard*') ? 'active' : '' }}">
           <iconify-icon icon="mage:home" class="menu-icon"></iconify-icon>
           <span>Dashboard</span>
         </a>
       </li>
-      @if(auth()->user()->staff->jabatan == 'Staff Keuangan')
+      @if(auth()->user()->staff->jabatan == 'keuangan')
       <!-- List Tagihan -->
         <li class="{{ request()->is('staff/jenistagihan*') ? 'active-page' : '' }} ">
         <a href="/staff/jenistagihan" class="{{ request()->is('staff/jenistagihan*') ? 'active' : '' }}">
@@ -26,7 +26,7 @@
       </li>
         <li class="{{ request()->is('staff/tagihan*') ? 'active-page active' : '' }}">
         <a href="/staff/tagihan" class="{{ request()->is('staff/tagihan*') ? 'active-page  active' : '' }}">
-         <iconify-icon icon="mdi:cash" class="menu-icon"></iconify-icon>
+         <iconify-icon icon="hugeicons:invoice-03" class="menu-icon"></iconify-icon>
           <span>Tagihan</span>
         </a>
       </li>

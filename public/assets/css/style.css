@@ -285,7 +285,7 @@
   --purple-light-white: rgba(132, 90, 223, 0.25);
   --pink-light-white: rgba(250, 54, 230, 0.25);
   --base: #fff;
-  --brand: var(--cyan);
+  --brand: var(--success-main);
   --button-secondary: var(--primary-50);
   --black: var(--dark-2);
   --white: var(--base);
@@ -13112,12 +13112,12 @@ select option {
   left: 50%;
   bottom: -1px;
   transform: translateX(-50%);
-  background-color: var(--primary-600);
+  background-color: var(--brand);
   transition: 0.2s linear;
 }
 
 .bordered-tab .nav-link.active {
-  color: var(--primary-600);
+  color: var(--brand);
 }
 
 .bordered-tab .nav-link.active::before {
@@ -13127,7 +13127,7 @@ select option {
 /* Bordered Tab Css End */
 /* Pill Tab Css Start */
 .pill-tab .nav-link.active {
-  background-color: var(--primary-600);
+  background-color: var(--brand);
 }
 
 .pill-tab.style-three {
@@ -15309,6 +15309,7 @@ td.fc-header-center {
 .sidebar-close-btn {
   position: absolute;
   top: 0.8rem;
+ 
   inset-inline-end: 0.625rem;
   width: 1.75rem;
   height: 1.75rem;
@@ -15585,8 +15586,13 @@ td.fc-header-center {
     padding-inline-start: 2.75rem;
   }
 }
-.sidebar-menu .sidebar-submenu li.active-page a {
+/* .sidebar-menu .sidebar-submenu li.active-page a {
   background-color: var(--button-secondary);
+  color: var(--text-primary-light);
+} */
+.sidebar-menu .sidebar-submenu li.active-page a {
+  /* background-color: var(--brand); */
+     background-color: color-mix(in srgb, var(--brand) 20%, transparent);
   color: var(--text-primary-light);
 }
 
@@ -15763,4 +15769,65 @@ td.fc-header-center {
 
 .radius-12 {
     border-radius: 12px;
+}
+
+.theme-picker {
+  position: fixed;
+  right: 20px;
+  bottom: 60px;
+  z-index: 9999;
+}
+
+/* tombol bulat utama */
+.theme-toggle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: var(--brand);
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  cursor: pointer;
+}
+
+/* container warna */
+.theme-colors {
+  position: absolute;
+  bottom: 120px;
+  right: 0;
+  display: flex;
+  gap: 10px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+
+  opacity: 0;
+  transform: scale(.9);
+  pointer-events: none;
+  transition: .25s ease;
+}
+
+/* aktif */
+.theme-picker.show .theme-colors {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.theme-colors button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+
+.hover-text-brand:hover, .btn.hover-text-brand:hover {
+  color: var(--brand) !important;
 }

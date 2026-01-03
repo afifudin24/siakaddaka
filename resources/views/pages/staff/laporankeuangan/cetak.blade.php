@@ -4,10 +4,31 @@
     <meta charset="UTF-8">
     <title>Cetak Laporan Keuangan</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+         body {
+           font-family: DejaVu Sans, sans-serif;
             font-size: 12px;
-            color: #000;
+            line-height: 1.5;
+            margin: 20px 30px;
+        }
+       
+
+        .kop {
+            text-align: center;
+          
+            padding-bottom: 0px;
+           
+        }
+
+        .kop h1 {
+            margin: 0;
+            font-size: 16pt;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .kop p {
+            margin: 2px 0;
+            font-size: 10.5pt;
         }
         .text-center { text-align: center; }
         .text-right { text-align: right; }
@@ -16,6 +37,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
+            
         }
         table, th, td {
             border: 1px solid #000;
@@ -26,17 +48,34 @@
         .no-border {
             border: none !important;
         }
+        .kop table{
+            border: 0  !important;
+            line-height: 1.2 !important;
+            padding: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            padding-bottom: 10px !important;
+        }
+        .kop table td{
+            border: none !important;
+            padding: 0 !important;
+        }
+        .kop table th{
+            border: none !important;
+            padding: 0 !important;
+        }
         .mt-4 { margin-top: 40px; }
     </style>
 </head>
 <body onload="window.print()">
 
+    <div class="kop ">
+        @include('pdf.partials.kop')
+    </div>
+
     {{-- HEADER --}}
     <div class="text-center">
-        <h3>LAPORAN KEUANGAN</h3>
-        <h2>{{$datasekolah->nama_sekolah ?? 'SMK CONTOH'}}</h2>
-        <p> {{ $datasekolah->alamat ?? '-' }}</p>
-        <p>
+        
             Tahun Pelajaran: <strong>{{ $laporan->tahunPelajaran->nama }}</strong><br>
             Semester: <strong>{{ $laporan->semester->nama }}</strong><br>
             Periode:

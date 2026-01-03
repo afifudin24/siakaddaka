@@ -16,7 +16,7 @@ class StaffDashboardController extends Controller
 {
     public function index(Request $request)
     {
-        if(auth()->user()->staff->jabatan == 'Staff Keuangan'){
+        if(auth()->user()->staff->jabatan == 'keuangan'){
                // Tahun & semester aktif
     $tahunPelajaranAktif = TahunPelajaran::where('is_active', 1)->first();
     $semesterAktif = Semester::where('is_active', 1)->first();
@@ -112,30 +112,36 @@ if ($request->filled('semester_id')) {
             $semesterList = Semester::where('tahun_pelajaran_id', $tahunPelajaranAktif->id)->get();
         }
 
-         $tunggakan = DB::table('tagihan')
-        ->join('siswa', 'siswa.id', '=', 'tagihan.siswa_id')
-        ->join('kelas', 'kelas.id', '=', 'siswa.kelas_id')
-        ->leftJoin('pembayaran', 'pembayaran.tagihan_id', '=', 'tagihan.id')
-        ->where('tagihan.tahun_pelajaran_id', $tahunId)
-        ->where('tagihan.semester_id', $semesterId)
-        ->where('tagihan.status', 'belum lunas') // 🔥 penting
-        ->groupBy(
-            'siswa.id',
-            'siswa.nama',
-            'kelas.nama_kelas'
-        )
-        ->select(
-            'siswa.id as siswa_id',
-            'siswa.nama as nama_siswa',
-            'kelas.nama_kelas',
-            DB::raw('SUM(tagihan.jumlah) as total_tagihan'),
-            DB::raw('COALESCE(SUM(pembayaran.jumlah_bayar),0) as total_bayar'),
-            DB::raw('(SUM(tagihan.jumlah) - COALESCE(SUM(pembayaran.jumlah_bayar),0)) as sisa_tunggakan')
-        )
-        ->havingRaw('sisa_tunggakan > 0')
-        ->orderByDesc('sisa_tunggakan')
-        ->limit(5) // 🔥 Top 10 tunggakan terbesar
-        ->get();
+        $tunggakan = DB::table('tagihan')
+    ->join('siswa', 'siswa.id', '=', 'tagihan.siswa_id')
+    ->join('kelas', 'kelas.id', '=', 'siswa.kelas_id')
+    ->leftJoin('pembayaran', 'pembayaran.tagihan_id', '=', 'tagihan.id')
+    ->where('tagihan.tahun_pelajaran_id', $tahunId)
+
+    // 🔥 filter semester HANYA jika bukan "all"
+    ->when($semesterId !== 'all', function ($query) use ($semesterId) {
+        $query->where('tagihan.semester_id', $semesterId);
+    })
+
+    ->where('tagihan.status', 'belum lunas')
+    ->groupBy(
+        'siswa.id',
+        'siswa.nama',
+        'kelas.nama_kelas'
+    )
+    ->select(
+        'siswa.id as siswa_id',
+        'siswa.nama as nama_siswa',
+        'kelas.nama_kelas',
+        DB::raw('SUM(tagihan.jumlah) as total_tagihan'),
+        DB::raw('COALESCE(SUM(pembayaran.jumlah_bayar),0) as total_bayar'),
+        DB::raw('(SUM(tagihan.jumlah) - COALESCE(SUM(pembayaran.jumlah_bayar),0)) as sisa_tunggakan')
+    )
+    ->havingRaw('sisa_tunggakan > 0')
+    ->orderByDesc('sisa_tunggakan')
+    ->limit(5)
+    ->get();
+
       
 
     return view('pages.staff.dashboard.index', compact(

@@ -355,9 +355,10 @@ class StaffTagihanController extends Controller
     ->select('nama_tagihan', 'tahun_pelajaran_id', 'semester_id')
     ->groupBy('nama_tagihan', 'tahun_pelajaran_id', 'semester_id')->where('tahun_pelajaran_id', $tahunPelajaranAktif->id)->where('semester_id', $semesterAktif->id)
     ->get();
+    $datasekolah = DataSekolah::first();
     $tahunPelajaran = TahunPelajaran::all();
     $semesterTahunPelajaran = Semester::where('tahun_pelajaran_id', $tahunPelajaranAktif->id)->get();
-        return view('pages.staff.tagihan.cetak-tagihan-massal-form', compact('kelas', 'tahunPelajaran', 'semesterTahunPelajaran','semesterAktif', 'tahunPelajaranAktif', 'tagihan', 'jenisTagihan'));
+        return view('pages.staff.tagihan.cetak-tagihan-massal-form', compact('kelas', 'datasekolah', 'tahunPelajaran', 'semesterTahunPelajaran','semesterAktif', 'tahunPelajaranAktif', 'tagihan', 'jenisTagihan'));
     }
   
 
@@ -405,10 +406,11 @@ public function cetakMassalStore(Request $request)
 
     $tahunPelajaran = TahunPelajaran::find($request->tahun_pelajaran_id);
     $semester = Semester::find($request->semester_id);
+    $datasekolah = DataSekolah::first();
 
     $pdf = Pdf::loadView(
         'pages.staff.tagihan.cetak_massal_tagihan',
-        compact('data', 'tahunPelajaran', 'semester')
+        compact('data', 'tahunPelajaran', 'semester', 'datasekolah')
     )->setPaper('A4', 'portrait');
 
     // preview (TIDAK DOWNLOAD)
@@ -450,9 +452,12 @@ public function cetakTagihanByIdSiswa($id_siswa)
     // Hitung total sisa tagihan
     $totalSisa = $siswa->tagihan->sum(fn($t) => $t->sisaTagihan());
 
+    // Ambil data sekolah
+    $datasekolah = DataSekolah::first();
+
     $pdf = Pdf::loadView(
         'pages.staff.tagihan.cetak_tagihan_siswa',
-        compact('siswa', 'totalSisa')
+        compact('siswa', 'totalSisa', 'datasekolah')
     )->setPaper('A4', 'portrait');
 
     return $pdf->stream("tagihan-{$siswa->nama}.pdf");

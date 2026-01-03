@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminMapelController;
 use App\Http\Controllers\Admin\AdminKategoriMapelController;
 use App\Http\Controllers\Admin\AdminGuruController;
 use App\Http\Controllers\Admin\AdminSiswaController;
+use App\Http\Controllers\Admin\AdminStaffController;
 use App\Http\Controllers\Admin\AdminDataSekolahController;
 
 
@@ -65,6 +66,14 @@ Route::middleware(['auth', 'role:admin'])
     Route::get('/siswa/aksi/template', [AdminSiswaController::class, 'downloadTemplate'])->name('siswa.template');
     Route::post('/siswa/aksi/import', [AdminSiswaController::class, 'importExcel'])->name('siswa.import');
     Route::resource('/siswa', AdminSiswaController::class);
+    
+    // Staff
+        Route::resource('/staff', AdminStaffController::class);
+           Route::post('/staff/aksi/{id}/fotoprofil', [AdminStaffController::class, 'updateFotoProfil'])->name('staff.updateFotoProfil');
+       Route::post('/staff/aksi/{id}/foto-unggulan',[AdminStaffController::class, 'updateFotoUnggulan'])->name('staff.updateFotoUnggulan');
+       Route::post('/staff/aksi/{id}/update-password',[AdminStaffController::class, 'updatePassword'])->name('staff.updatePassword');
+       Route::post('/staff/aksi/{id}/hapus-foto', [AdminStaffController::class, 'hapusFoto'])->name('staff.hapusFoto');
+
 
     // Data Sekolah
     Route::get('/datasekolah', [AdminDataSekolahController::class, 'index'])->name('datasekolah.index');

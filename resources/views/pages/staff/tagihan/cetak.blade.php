@@ -6,7 +6,7 @@
     <style>
         body {
            font-family: DejaVu Sans, sans-serif;
-            font-size: 12pt;
+            font-size: 12px;
             line-height: 1.5;
             margin: 20px 30px;
         }

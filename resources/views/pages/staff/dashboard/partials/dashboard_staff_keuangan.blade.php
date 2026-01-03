@@ -8,7 +8,7 @@
         Dashboard
       </a>
     </li>
-    <li>-</li>
+    
    
   </ul>
 </div>
@@ -190,8 +190,8 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
                             <h6 class="mb-2 fw-bold text-lg mb-0">Tunggakan Terbesar</h6>
-                            <a href="javascript:void(0)" class="text-primary-600 hover-text-primary d-flex align-items-center gap-1">
-                            View All
+                            <a href="{{ route('staff.tagihan.index') }}" class="text-primary-600 hover-text-primary d-flex align-items-center gap-1">
+                            Lihat Semua
                             <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
                             </a>
                         </div>
@@ -621,7 +621,7 @@ function loadPemasukanChart(tahunPelajaranId) {
     });
     if (series.length === 0) {
         document.querySelector('#pemasukanDonutChart').innerHTML =
-            '<p class="text-center text-muted">Tidak ada data pemasukan</p>';
+            '<p class="text-center">Tidak ada data pemasukan</p>';
         return;
     }
     const options = {

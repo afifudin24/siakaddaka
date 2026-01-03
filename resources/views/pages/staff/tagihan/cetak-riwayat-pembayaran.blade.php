@@ -4,25 +4,34 @@
     <meta charset="UTF-8">
     <title>Riwayat Pembayaran Tagihan</title>
     <style>
-        body {
-            font-family: "Times New Roman", serif;
+         body {
+           font-family: DejaVu Sans, sans-serif;
             font-size: 12px;
-            color: #000;
+            line-height: 1.5;
+            margin: 20px 30px;
         }
+       
+    table {
+        border-collapse: collapse;
+    }
+
         .kop {
             text-align: center;
             border-bottom: 3px solid #000;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
         }
-        .kop h3 {
+
+        .kop h1 {
             margin: 0;
-            font-size: 16px;
+            font-size: 16pt;
+            font-weight: bold;
             text-transform: uppercase;
         }
+
         .kop p {
             margin: 2px 0;
-            font-size: 11px;
+            font-size: 10.5pt;
         }
         .judul {
             text-align: center;
@@ -85,11 +94,7 @@
 <body>
 
 {{-- KOP SURAT --}}
-<div class="kop">
-    <h3>SEKOLAH MENENGAH KEJURUAN</h3>
-    <p>Alamat Sekolah • Telp • Email</p>
-</div>
-
+@include('pdf.partials.kop')
 {{-- JUDUL --}}
 <div class="judul">
     RIWAYAT PEMBAYARAN TAGIHAN SISWA

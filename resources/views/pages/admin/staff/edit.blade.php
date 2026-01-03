@@ -3,10 +3,8 @@
 @section('content')
     <div class="dashboard-main-body">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5>Edit Guru</h5>
-            <a href="{{ route('admin.guru.index') }}" class="btn btn-danger btn-sm d-flex align-items-center gap-2">
-                <iconify-icon icon="lucide:arrow-left" class="text-xl"></iconify-icon> Kembali
-            </a>
+            <h5>Edit Staff</h5>
+          
         </div>
         <div class="row">
             <div class="col-md-5">
@@ -15,7 +13,7 @@
                         <div class="user-guruid-card ">
                             <div class="position-relative border radius-16 overflow-hidden">
                                 @php
-                                    $foto = $guru->user->foto_unggulan;
+                                    $foto = $staff->user->foto_unggulan;
 
                                     $validFoto =
                                         $foto && $foto !== 'profile.png' && Storage::disk('public')->exists($foto);
@@ -34,11 +32,11 @@
 
                                 <div class="ps-16 pb-16 pe-16 text-center mt--50">
                                     <!-- <img src="{{ asset('assets/images/user-guruid/user-guruid-img1.png') }}" alt="" class="border br-white border-width-2-px w-100-px h-100-px rounded-circle object-fit-cover"> -->
-                                    <img src="{{ foto_profil($guru) }}"
+                                    <img src="{{ foto_profil($staff) }}"
                                         class="border br-white border-width-2-px w-100-px h-100-px rounded-circle object-fit-cover">
 
-                                    <h6 class="text-lg mb-0 mt-4">{{ $guru->nama }}</h6>
-                                    <span class="text-secondary-light mb-16">{{ $guru->email }}</span>
+                                    <h6 class="text-lg mb-0 mt-4">{{ $staff->nama }}</h6>
+                                    <span class="text-secondary-light mb-16">{{ $staff->email }}</span>
 
                                 </div>
 
@@ -85,7 +83,7 @@
             </div>
                                      
             <div class="col-md-7 mt-md-0 mt-3">
-                 <form id="formUpdateGuru">
+                 <form id="formUpdateStaff">
   @csrf
   @method('PUT')
                 <div class="card">
@@ -127,7 +125,7 @@
                   <span class="icon">
                     <iconify-icon icon="f7:person"></iconify-icon>
                   </span>
-                  <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama" value="{{$guru->nama}}">
+                  <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama" value="{{$staff->nama}}">
                 </div>
               </div>
             </div>
@@ -138,7 +136,7 @@
                   <span class="icon">
                     <iconify-icon icon="f7:person-crop-circle-badge-checkmark"></iconify-icon>
                   </span>
-                  <input type="text" name="username" class="form-control" placeholder="Masukkan Username" value="{{$guru->user->username}}">
+                  <input type="text" name="username" class="form-control" placeholder="Masukkan Username" value="{{$staff->user->username}}">
                 </div>
               </div>
             </div>
@@ -150,7 +148,7 @@
                   <span class="icon">
                     <iconify-icon icon="f7:envelope"></iconify-icon>
                   </span>
-                  <input type="email" name="email" class="form-control" placeholder="Masukkan Email" value="{{$guru->user->email}}">
+                  <input type="email" name="email" class="form-control" placeholder="Masukkan Email" value="{{$staff->user->email}}">
                 </div>
               </div>
             </div>
@@ -161,7 +159,7 @@
                   <span class="icon">
                     <iconify-icon icon="f7:phone"></iconify-icon>
                   </span>
-                  <input type="text"  class="form-control" placeholder="Masukkan Email" value="{{$guru->no_hp}}" name="no_hp">
+                  <input type="text"  class="form-control" placeholder="Masukkan Email" value="{{$staff->no_hp}}" name="no_hp">
                 </div>
               </div>
             </div>
@@ -170,30 +168,8 @@
                             <div class="tab-pane fade" id="pills-details" role="tabpanel"
                                 aria-labelledby="pills-details-tab" tabindex="0">
                                 <div>
-                                     <div class="row mb-2 gy-3 d-flex align-items-center">
-              <label class="form-label mb-0 col-sm-2">NIP</label>
-              <div class="col-sm-10">
-                <div class="icon-field">
-                  <span class="icon">
-                    <iconify-icon icon="f7:pencil"></iconify-icon>
-                  </span>
-                  <!-- <textarea name="nip" id="nip" class="form-control" placeholder="Masukkan NIP">{{$guru->nip}}</textarea> -->
-                  <input type="text" name="nip" class="form-control" placeholder="Masukkan NIP" value="{{$guru->nip}}">
-                </div>
-              </div>
-            </div>
-                                     <div class="row mb-2 gy-3 d-flex align-items-center">
-              <label class="form-label mb-0 col-sm-2">NUPTK</label>
-              <div class="col-sm-10">
-                <div class="icon-field">
-                  <span class="icon">
-                    <iconify-icon icon="f7:rectangle-stack-fill-badge-person-crop"></iconify-icon>
-                  </span>
-                  <!-- <textarea name="nip" id="nip" class="form-control" placeholder="Masukkan NIP">{{$guru->nip}}</textarea> -->
-                  <input type="text" name="nuptk" class="form-control" placeholder="Masukkan NUPTK" value="{{$guru->nuptk}}">
-                </div>
-              </div>
-            </div>
+                           
+                               
                                      <div class="row mb-2 gy-3 d-flex align-items-center">
               <label class="form-label mb-0 col-sm-2">Alamat</label>
               <div class="col-sm-10">
@@ -201,8 +177,8 @@
                   <span class="icon">
                     <iconify-icon icon="f7:location"></iconify-icon>
                   </span>
-                  <textarea name="alamat" id="alamat" class="form-control" placeholder="Masukkan Alamat">{{$guru->alamat}}</textarea>
-                  <!-- <input type="text" name="#0" class="form-control" placeholder="Masukkan Alamat" value="{{$guru->alamat}}"> -->
+                  <textarea name="alamat" id="alamat" class="form-control" placeholder="Masukkan Alamat">{{$staff->alamat}}</textarea>
+                  <!-- <input type="text" name="#0" class="form-control" placeholder="Masukkan Alamat" value="{{$staff->alamat}}"> -->
                 </div>
               </div>
             </div>
@@ -213,7 +189,7 @@
                   <span class="icon">
                     <iconify-icon icon="f7:calendar"></iconify-icon>
                   </span>
-                 <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control" value="{{$guru->tgl_lahir}}">
+                 <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control" value="{{$staff->tanggal_lahir}}">
                 </div>
               </div>
             </div>
@@ -224,8 +200,8 @@
                   <span class="icon">
                     <iconify-icon icon="f7:book"></iconify-icon>
                   </span>
-                  <textarea name="bio" id="bio" class="form-control" placeholder="Masukkan Bio">{{$guru->bio}}</textarea>
-                  <!-- <input type="text" name="#0" class="form-control" placeholder="Masukkan Alamat" value="{{$guru->alamat}}"> -->
+                  <textarea name="bio" id="bio" class="form-control" placeholder="Masukkan Bio">{{$staff->bio}}</textarea>
+                  <!-- <input type="text" name="#0" class="form-control" placeholder="Masukkan Alamat" value="{{$staff->alamat}}"> -->
                 </div>
               </div>
             </div>
@@ -236,8 +212,8 @@
                 
                  <select class="form-select" name="jenis_kelamin" id="jenis_kelamin">
                     <option value="">Pilih Jenis Kelamin</option>
-                   <option value="L" {{ $guru->jenis_kelamin == 'L' ? 'selected' : '' }}>Laki-laki</option>
-                   <option value="P" {{ $guru->jenis_kelamin == 'P' ? 'selected' : '' }}>Perempuan</option>
+                   <option value="L" {{ $staff->jenis_kelamin == 'L' ? 'selected' : '' }}>Laki-laki</option>
+                   <option value="P" {{ $staff->jenis_kelamin == 'P' ? 'selected' : '' }}>Perempuan</option>
                  </select>
                 </div>
            
@@ -247,7 +223,6 @@
                             </div>
 </form>
                         </div>
-                    
                     </div>
                 </div>
             </div>
@@ -257,14 +232,15 @@
     @push('scripts')
     
 <script>
-$('#formUpdateGuru').on('submit', function(e) {
+$('#formUpdateStaff').on('submit', function(e) {
     e.preventDefault();
 
     let formData = new FormData(this);
     let btn = $('button[type=submit]');
 
     $.ajax({
-        url: "{{ route('admin.guru.update', $guru->id) }}",
+     url: "{{ route('admin.staff.update', $staff->id) }}",
+
         type: "POST",
         data: formData,
         processData: false,
@@ -283,13 +259,14 @@ $('#formUpdateGuru').on('submit', function(e) {
                     timer: 2000,
                     showConfirmButton: false
                 });
-                console.log(res);
+              
                 setTimeout(() => {
                     location.reload();
                 }, 2000);
             }
         },
         error: function(xhr) {
+          console.log(xhr);
             if (xhr.status === 422) {
                 let errors = xhr.responseJSON.errors;
                 let pesan = '<ul style="text-align:left;">';
@@ -421,7 +398,7 @@ function uploadFoto(blob) {
     formData.append('_token', '{{ csrf_token() }}');
 
     $.ajax({
-        url: "{{ route('admin.guru.updateFotoProfil', $guru->id) }}",
+        url: "{{ route('admin.staff.updateFotoProfil', $staff->id) }}",
         type: "POST",
         data: formData,
         processData: false,
@@ -557,7 +534,7 @@ function uploadFotoUnggulan(blob) {
     formData.append('_token', '{{ csrf_token() }}');
 
     $.ajax({
-        url: "{{ route('admin.guru.updateFotoUnggulan', $guru->id) }}",
+        url: "{{ route('admin.staff.updateFotoUnggulan', $staff->id) }}",
         type: "POST",
         data: formData,
         processData: false,
@@ -579,6 +556,7 @@ function uploadFotoUnggulan(blob) {
             }).then(() => location.reload());
         },
         error: function (xhr) {
+            console.error(xhr);
             let pesan = 'Upload gagal';
             if (xhr.status === 422 && xhr.responseJSON.errors) {
                 pesan = '<ul style="text-align:left">';
@@ -604,7 +582,7 @@ $('#btnUbahPassword').on('click', function () {
         title: 'Ubah Password',
         html: `
             <label class="text-start d-block">Password Lama</label>
-            <input type="text" class="swal2-input" value="{{ $guru->user->password_text }}" readonly>
+            <input type="text" class="swal2-input" value="{{ $staff->user->password_text }}" readonly>
 
             <label class="text-start d-block mt-2">Password Baru</label>
             <input type="password" id="password_baru" class="swal2-input" placeholder="Minimal 6 karakter">
@@ -645,7 +623,7 @@ $('#btnUbahPassword').on('click', function () {
 
 function updatePassword(password) {
     $.ajax({
-        url: "{{ route('admin.guru.updatePassword', $guru->id) }}",
+        url: "{{ route('admin.staff.updatePassword', $staff->id) }}",
         type: "POST",
         data: {
             _token: "{{ csrf_token() }}",
@@ -668,6 +646,7 @@ function updatePassword(password) {
             });
         },
         error: function (xhr) {
+        
             let msg = 'Terjadi kesalahan';
 
             if (xhr.status === 422) {
@@ -704,7 +683,7 @@ $('#btnHapusFoto').on('click', function () {
 
 function hapusFoto() {
     $.ajax({
-        url: "{{ route('admin.guru.hapusFoto', $guru->id) }}",
+        url: "{{ route('admin.staff.hapusFoto', $staff->id) }}",
         type: "POST",
         data: {
             _token: "{{ csrf_token() }}"

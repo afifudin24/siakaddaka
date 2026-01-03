@@ -66,6 +66,27 @@
     <!-- Main content area -->
     @yield('content')
 
+ <div id="themePicker" class="theme-picker">
+    <!-- tombol utama -->
+    <button id="toggleTheme" class="theme-toggle">
+        <iconify-icon icon="mdi:palette-outline"></iconify-icon>
+    </button>
+
+    <!-- pilihan warna -->
+    <div id="themeColors" class="theme-colors">
+        <button data-color="var(--primary-500)" style="background:#458EFF"></button>
+        <button data-color="var(--success-main)" style="background:#45B369"></button>
+        <button data-color="var(--warning-main)" style="background:#FF9F29"></button>
+        <button data-color="var(--danger-main)" style="background:#EF4A00"></button>
+        <button data-color="var(--info-main)" style="background:#144BD6"></button>
+        <button data-color="var(--purple)" style="background:#8252E9"></button>
+        <button data-color="var(--cyan)" style="background:#00B8F2"></button>
+    </div>
+</div>
+
+
+
+
     @include('partials.footer') <!-- Include Footer -->
 </main>
 
@@ -138,5 +159,41 @@ document.getElementById('btnLogout').addEventListener('click', function() {
     });
 });
 </script>
+
+<script>
+const picker = document.getElementById('themePicker');
+const toggle = document.getElementById('toggleTheme');
+const buttons = document.querySelectorAll('.theme-colors button');
+const root = document.documentElement;
+
+// toggle palette
+toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    picker.classList.toggle('show');
+});
+
+// klik warna
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const color = btn.dataset.color;
+        root.style.setProperty('--brand', color);
+        localStorage.setItem('brandColor', color);
+        picker.classList.remove('show');
+    });
+});
+
+// klik di luar → tutup
+document.addEventListener('click', () => {
+    picker.classList.remove('show');
+});
+
+// load dari localStorage
+const savedBrand = localStorage.getItem('brandColor');
+if (savedBrand) {
+    root.style.setProperty('--brand', savedBrand);
+}
+</script>
+
+
 </body>
 </html>

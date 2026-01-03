@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('jabatan')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('alamat')->nullable();
+            $table->string('bio')->nullable();
+            // tanggal lahir
+            $table->date('tanggal_lahir')->nullable();
 
             $table->timestamps();
         });

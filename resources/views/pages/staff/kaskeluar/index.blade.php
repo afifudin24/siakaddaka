@@ -115,8 +115,8 @@
                     <iconify-icon icon="mdi:filter"></iconify-icon> Filter
                 </button>
                 <a href="{{ route('staff.kaskeluar.index') }}"
-                    class="btn btn-sm btn-light w-100">
-                    Reset
+                    class="btn btn-sm btn-light w-100 d-flex gap-1 align-items-center">
+                   <iconify-icon icon="system-uicons:reset-alt"></iconify-icon>  Reset
                 </a>
                <a href="{{ route('staff.kaskeluar.cetak', request()->query()) }}"
    target="_blank"

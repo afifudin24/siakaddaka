@@ -5,27 +5,42 @@
     <title>Riwayat Pembayaran Massal</title>
 
     <style>
-        body {
-            font-family: "Times New Roman", serif;
+     
+
+    
+
+         body {
+           font-family: DejaVu Sans, sans-serif;
             font-size: 12px;
             line-height: 1.5;
+            margin: 20px 30px;
         }
-
-        .page-break {
+            .page-break {
             page-break-after: always;
         }
+       
+    table {
+        border-collapse: collapse;
+    }
 
         .kop {
             text-align: center;
             border-bottom: 3px solid #000;
             padding-bottom: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
-        .kop h2 {
+        .kop h1 {
             margin: 0;
+            font-size: 16pt;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
+        .kop p {
+            margin: 2px 0;
+            font-size: 10.5pt;
+        }
         .siswa-info {
             margin-bottom: 15px;
         }
@@ -99,10 +114,7 @@
 @foreach($data as $siswa)
 
     {{-- KOP SURAT --}}
-    <div class="kop">
-        <h2>SMK CONTOH SEJAHTERA</h2>
-        <p>Alamat Sekolah - Telp (0000) 123456</p>
-    </div>
+   @include('pdf.partials.kop')
 
     {{-- INFORMASI SISWA --}}
     <div class="siswa-info">

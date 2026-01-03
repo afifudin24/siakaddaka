@@ -245,19 +245,19 @@
   --light-600: #E4F1FF;
   --light-700: #374151;
   --light-800: #1F2937;
-  --success-main: #45B369;
+  --success-main: rgb(69, 179, 105);
   --success-surface: #DAF0E1;
   --success-border: #B5E1C3;
   --success-hover: #009F5E;
   --success-pressed: #006038;
   --success-focus: rgba(69, 179, 105, 0.1490196078);
-  --info-main: #144BD6;
+  --info-main: rgb(20, 75, 214);
   --info-surface: #E7EEFC;
   --info-border: #AECAFC;
   --info-hover: #0A51CE;
   --info-pressed: #06307C;
   --info-focus: rgba(20, 75, 214, 0.1490196078);
-  --warning-main: #FF9F29;
+  --warning-main: rgb(255, 159, 41);
   --warning-surface: #FFF9E2;
   --warning-border: #FFEBA6;
   --warning-hover: #D69705;
@@ -269,7 +269,7 @@
   --danger-hover: #D53128;
   --danger-pressed: #801D18;
   --danger-focus: rgba(239, 71, 112, 0.1490196078);
-  --cyan: #00B8F2;
+  --cyan: rgb(0, 184, 242);
   --indigo: #7F27FF;
   --purple: #8252E9;
   --red: #E30A0A;
@@ -285,7 +285,7 @@
   --purple-light-white: rgba(132, 90, 223, 0.25);
   --pink-light-white: rgba(250, 54, 230, 0.25);
   --base: #fff;
-  --brand: var(--cyan);
+  --brand: var(--success-main);
   --button-secondary: var(--primary-50);
   --black: var(--dark-2);
   --white: var(--base);
@@ -15585,7 +15585,8 @@ td.fc-header-center {
   }
 }
 .sidebar-menu .sidebar-submenu li.active-page a {
-  background-color: var(--button-secondary);
+  /* background-color: var(--brand); */
+    background-color: rgba(var(--brand), 0.7);
   color: var(--text-primary-light);
 }
 

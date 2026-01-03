@@ -19,6 +19,9 @@ class Staff extends Model
         'no_hp',
         'jenis_kelamin',
         'alamat',
+        'tanggal_lahir',
+        'jabatan',
+        'bio'
     ];
 
     /**

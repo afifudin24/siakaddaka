@@ -10,6 +10,7 @@ use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Semester;
+use App\Models\DataSekolah;
 use App\Models\TahunPelajaran;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -66,6 +67,7 @@ public function cetakRiwayatByTagihan($tagihanId)
     $pembayaran = Pembayaran::where('tagihan_id', $tagihanId)
         ->orderBy('tgl_bayar', 'asc')
         ->get();
+    $datasekolah = DataSekolah::first();
 
     $data = [
         'tagihan' => $tagihan,
@@ -74,6 +76,7 @@ public function cetakRiwayatByTagihan($tagihanId)
         'tahunPelajaran' => $tahunPelajaran,
         'tanggalCetak' => Carbon::now()->translatedFormat('d F Y'),
         'petugas' => auth()->user()->staff->nama ?? auth()->user()->name,
+        'datasekolah' => $datasekolah
     ];
 
     $pdf = Pdf::loadView('pages.staff.tagihan.cetak-riwayat-pembayaran', $data)
@@ -142,10 +145,11 @@ public function cetakRiwayatPembayaranMassal(Request $request)
 
     $tahunPelajaran = TahunPelajaran::find($request->tahun_pelajaran_id);
     $semester = Semester::find($request->semester_id);
+    $datasekolah = DataSekolah::first();
 
     $pdf = Pdf::loadView(
         'pages.staff.tagihan.cetak_riwayat_pembayaran_massal',
-        compact('data', 'tahunPelajaran', 'semester')
+        compact('data', 'tahunPelajaran', 'semester', 'datasekolah')
     )->setPaper('A4', 'portrait');
 
     return $pdf->stream('cetak-riwayat-pembayaran-massal.pdf');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Waktu pembuatan: 01 Jan 2026 pada 08.05
+-- Waktu pembuatan: 03 Jan 2026 pada 09.19
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -168,7 +168,7 @@ CREATE TABLE `data_sekolah` (
 --
 
 INSERT INTO `data_sekolah` (`id`, `nama_sekolah`, `nama_singkatan`, `npsn`, `status`, `jenjang`, `alamat`, `kecamatan`, `yayasan_sekolah`, `email_sekolah`, `telepon`, `logo`, `logo_dark`, `logo_icon`, `logo_surat`, `gambar_unggulan`, `gambar_unggulan_2`, `website`, `banner`, `kepala_sekolah`, `nip_kepala_sekolah`, `deskripsi_singkat`, `visi`, `misi`, `created_at`, `updated_at`) VALUES
-(1, 'SMK Darussalam Karangpucung', 'SMK DAKA', NULL, 'Swasta', 'SMK', 'Jl. Raya Karangpucung - Majenang KM. 02 No. 08 Kec. Karangpucung, Kab. Cilacap', 'Karangpucung', 'YAYASAN DARUSSALAM AL-FATAH', 'smkdkrpc@gmail.com', '0281-123456', 'sekolah/lMrvFdwsncLf54g0jKtjkajsoZFMXwf2ZM4Hbfb1.jpg', 'sekolah/3KpVwkvSAhpv9V7hpJIu5NjvrDLmT1vBAhSvODAK.png', 'sekolah/ttTYorqbIFKiEudqyiUOmYP6ciRCz046qutGRmSR.png', 'sekolah/kMEBGJsMOjKubRSOaFBA1Q5eiqAgeSixytz5PxQO.png', 'sekolah/GzR6XFaXd8CUdJqxMePf9V5TW5Fimq6qy8VqiDuz.png', 'sekolah/0SOgWPb5xauwVqbZRDCgkaOkqEDuQzUCmlGltEoH.png', 'https://www.smkcontoh.sch.id', NULL, 'Dr. Risa Fita Hapsari, S.Pd, M.M.', NULL, 'SMK Sakti', 'Menjadi sekolah unggul yang berkarakter dan berprestasi.', '[\"Tes aja\"]', '2025-11-21 20:36:44', '2025-12-31 23:42:51');
+(1, 'SMK Darussalam Karangpucung', 'SMK DAKA', NULL, 'Swasta', 'SMK', 'Jl. Raya Karangpucung - Majenang KM. 02 No. 08 Kec. Karangpucung, Kab. Cilacap', 'Karangpucung', 'YAYASAN DARUSSALAM AL-FATAH KABUPATEN CILACAP', 'smkdkrpc@gmail.com', '0281-123456', 'sekolah/lMrvFdwsncLf54g0jKtjkajsoZFMXwf2ZM4Hbfb1.jpg', 'sekolah/3KpVwkvSAhpv9V7hpJIu5NjvrDLmT1vBAhSvODAK.png', 'sekolah/ttTYorqbIFKiEudqyiUOmYP6ciRCz046qutGRmSR.png', 'sekolah/kMEBGJsMOjKubRSOaFBA1Q5eiqAgeSixytz5PxQO.png', 'sekolah/GzR6XFaXd8CUdJqxMePf9V5TW5Fimq6qy8VqiDuz.png', 'sekolah/0SOgWPb5xauwVqbZRDCgkaOkqEDuQzUCmlGltEoH.png', 'https://www.smkdaka.sch.id', NULL, 'Dr. Risa Fita Hapsari, S.Pd, M.M.', NULL, 'SMK Sakti', 'Menjadi sekolah unggul yang berkarakter dan berprestasi.', '[\"Tes aja\"]', '2025-11-21 20:36:44', '2026-01-02 19:16:16');
 
 -- --------------------------------------------------------
 
@@ -702,7 +702,24 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (144, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-31 21:25:01', '2025-12-31 21:25:01'),
 (145, 1, 'updated', 'User diperbarui: Darwin Kuvalis (admin)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-31 23:33:18', '2025-12-31 23:33:18'),
 (146, 1, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-31 23:33:18', '2025-12-31 23:33:18'),
-(147, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-31 23:33:33', '2025-12-31 23:33:33');
+(147, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2025-12-31 23:33:33', '2025-12-31 23:33:33'),
+(148, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-02 17:48:41', '2026-01-02 17:48:41'),
+(149, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-02 18:33:45', '2026-01-02 18:33:45'),
+(150, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36', '2026-01-02 19:52:36', '2026-01-02 19:52:36'),
+(151, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-02 19:57:15', '2026-01-02 19:57:15'),
+(152, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-02 20:07:27', '2026-01-02 20:07:27'),
+(153, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36', '2026-01-02 20:09:47', '2026-01-02 20:09:47'),
+(154, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-02 20:18:32', '2026-01-02 20:18:32'),
+(155, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-02 20:18:47', '2026-01-02 20:18:47'),
+(156, 1, 'created', 'User baru dibuat: Afif Waliyudin (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-02 21:09:21', '2026-01-02 21:09:21'),
+(157, 80, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-02 21:13:12', '2026-01-02 21:13:12'),
+(158, 80, 'logout', 'User logout dari sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-02 21:13:12', '2026-01-02 21:13:12'),
+(166, 80, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-02 23:10:58', '2026-01-02 23:10:58'),
+(167, 1, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-02 23:47:25', '2026-01-02 23:47:25'),
+(168, 1, 'updated', 'User diperbarui: Tata Usaha (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-03 00:13:15', '2026-01-03 00:13:15'),
+(169, 1, 'deleted', 'User dihapus: Afif Waliyudin (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-03 00:14:22', '2026-01-03 00:14:22'),
+(170, 1, 'created', 'User baru dibuat: tes (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-03 00:19:57', '2026-01-03 00:19:57'),
+(171, 1, 'deleted', 'User dihapus: tes (staff)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-03 00:20:05', '2026-01-03 00:20:05');
 
 -- --------------------------------------------------------
 
@@ -1017,7 +1034,9 @@ CREATE TABLE `staff` (
   `jabatan` varchar(255) DEFAULT NULL,
   `jenis_kelamin` enum('L','P') DEFAULT NULL,
   `no_hp` varchar(255) DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL,
+  `bio` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1026,8 +1045,8 @@ CREATE TABLE `staff` (
 -- Dumping data untuk tabel `staff`
 --
 
-INSERT INTO `staff` (`id`, `user_id`, `nama`, `email`, `jabatan`, `jenis_kelamin`, `no_hp`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, 80, 'Tata Usaha', 'tatausaha@gmail.com', 'Staff Keuangan', 'P', '6281548769365', 'Desa Saja', NULL, NULL);
+INSERT INTO `staff` (`id`, `user_id`, `nama`, `email`, `jabatan`, `jenis_kelamin`, `no_hp`, `tanggal_lahir`, `alamat`, `bio`, `created_at`, `updated_at`) VALUES
+(1, 80, 'Tata Usaha Ojke', 'tatausaha@gmail.com', 'keuangan', 'P', '6281548769365', '1980-01-20', 'Desa Saja', 'Senantiasa berbahagia', NULL, '2026-01-02 23:46:31');
 
 -- --------------------------------------------------------
 
@@ -1237,7 +1256,7 @@ INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_te
 (77, 'art.dubuque', 'Blanche Schoen', 'kovacek.brandyn@example.org', '$2y$12$YiwcsRT9ILlof5oALreI3OKw2GUQ8wsU6qhtwPvo0EIXjyGWlU40q', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:41', '2025-11-21 20:36:41'),
 (78, 'tillman.harvey', 'Prof. Alva Ryan', 'haley.marshall@example.com', '$2y$12$6qlZ5PGVseM/ZfXJYrhua.3XOPPu3PUnXG40ZRePw9TW4lvCeoL.G', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:36:42', '2025-11-21 20:36:42'),
 (79, 'okesaja', 'kokokoko', 'okesaja@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
-(80, 'tatausaha', 'Tata Usaha', 'tatausaha@gmail.com', '$2y$10$YLK8cg2s3xRI17zXrc1QquI7XoIMvSRAs0sJMnrY9PtlCoHChX4A.', 'tatausaha', 'staff', 'profile.png', NULL, 1, NULL, 'wc2MKlPuuSGE87ZYgm8b6AA8FvqnjrIc0wmwoY2N73TtJgohDUYUCd3I38o8', '2025-12-22 12:52:25', NULL);
+(80, 'tatausaha', 'Tata Usaha', 'tatausaha@gmail.com', '$2y$12$r3n7UeCtEtdEQKnBfzoEh.nOV1.OFP9n8nfDXM7XaCuhBbZQ9yO7m', 'tatausaha1', 'staff', 'foto-staff/QfNLqJL5VOaYr9IvFJA4yAxGCPyglI6VnuxVft0k.jpg', 'foto-unggulan/d9P8XmbfEZeqkpJPpAjpFDbJY7i5eKc37x6tPhqE.jpg', 1, NULL, '43GLj9iaZztCx9HudY31ps0hrJosBx2PPUeUrmgJ77q8jqxY93dUanRYg56j', '2025-12-22 12:52:25', '2026-01-03 00:13:15');
 
 -- --------------------------------------------------------
 
@@ -1734,7 +1753,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
@@ -1794,7 +1813,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `status_notifikasi`
@@ -1824,7 +1843,7 @@ ALTER TABLE `tugas`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT untuk tabel `waka_kesiswaan`
