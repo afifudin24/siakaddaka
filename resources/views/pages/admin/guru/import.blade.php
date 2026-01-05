@@ -227,7 +227,7 @@ document.getElementById('saveData').addEventListener('click', function() {
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
-                text: 'Data siswa berhasil disimpan!',
+                text: 'Data guru berhasil disimpan!',
                 timer: 2000,
                 showConfirmButton: false
             });

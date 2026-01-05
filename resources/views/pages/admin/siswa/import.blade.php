@@ -189,61 +189,76 @@ function generatePreviewTable(rows) {
     previewArea.innerHTML = table;
 }
 </script>
-
 <script>
-document.getElementById('saveData').addEventListener('click', function() {
-    let file = excelFile.files[0];
-    if (!file) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Oops...',
-            text: 'Silakan pilih file Excel terlebih dahulu!'
-        });
-        return;
-    }
+let offset = 0;
+let importKey = null;
+
+function updateProgress(processed, total) {
+    let percent = Math.round((processed / total) * 100);
+    document.getElementById('progress-bar').style.width = percent + '%';
+    document.getElementById('progress-text').innerText = percent + '%';
+}
+
+document.getElementById('saveData').addEventListener('click', () => {
 
     let formData = new FormData();
-    formData.append("file", file);
-    formData.append("_token", "{{ csrf_token() }}");
+    formData.append('file', excelFile.files[0]);
+    formData.append('_token', '{{ csrf_token() }}');
 
-    fetch("/admin/siswa/aksi/import", {  // endpoint untuk simpan data siswa
-        method: "POST",
+    Swal.fire({
+        title: 'Mengimpor Data...',
+        html: `
+            <b id="progress-text">0%</b>
+            <div style="background:#eee">
+                <div id="progress-bar" style="height:10px;width:0%;background:#3085d6"></div>
+            </div>
+        `,
+        showConfirmButton: false,
+        allowOutsideClick: false
+    });
+
+    fetch('/admin/siswa/aksi/import', {
+        method: 'POST',
         body: formData
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === "success") {
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: 'Data siswa berhasil disimpan!',
-                timer: 2000,
-                showConfirmButton: false
-            });
-
-            // reset form & preview
-            excelFile.value = '';
-            fileInfo.classList.add("d-none");
-            document.getElementById("previewTableArea").innerHTML = '';
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Gagal!',
-                text: data.message || 'Terjadi kesalahan saat menyimpan data.'
-            });
-            console.error(data.message);
-        }
-    })
-    .catch(err => {
-        console.error(err);
-        Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: 'Terjadi kesalahan saat mengirim data.'
-        });
+    .then(r => r.json())
+    .then(res => {
+        importKey = res.import_key;
+        processNext();
     });
 });
+
+function processNext() {
+    fetch('/admin/siswa/import/process', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 
+            'X-CSRF-TOKEN': document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute('content')
+    },
+       
+        body: JSON.stringify({
+            import_key: importKey,
+            offset: offset
+        })
+    })
+    .then(r => r.json())
+    .then(res => {
+        updateProgress(res.processed, res.total);
+        offset = res.processed;
+
+        if (!res.done) {
+            processNext();
+        } else {
+            Swal.fire('Selesai!', 'Import data berhasil', 'success');
+            offset = 0;
+            importKey = null;
+            location.reload();
+        }
+    });
+}
 </script>
+
 
 
 

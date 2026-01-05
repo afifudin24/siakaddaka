@@ -102,6 +102,12 @@
         <span>Data Akademik</span>
     </a>
     <ul class="sidebar-submenu">
+        <li class="{{ request()->is('admin/hari-aktif*') ? 'active-page' : '' }}">
+            <a href="/admin/hari-aktif" class="{{ request()->is('admin/hari-aktif*') ? 'active' : '' }}">
+              <iconify-icon icon="bi:calendar-day" class="menu-icon"></iconify-icon>
+                <span>Hari Aktif KBM</span>
+            </a>
+        </li>
         <li class="{{ request()->is('admin/data-mengajar*') ? 'active-page' : '' }}">
             <a href="/admin/data-mengajar" class="{{ request()->is('admin/data-mengajar*') ? 'active' : '' }}">
               <iconify-icon icon="mdi:teach" class="menu-icon"></iconify-icon>

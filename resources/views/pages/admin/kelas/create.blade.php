@@ -18,8 +18,8 @@
             <h5 class="card-title mb-0">Tambah Kelas</h5>
         <div>
 
-            <button type="submit" class="btn btn-sm btn-primary d-flex align-items-center gap-2"> 
-                <iconify-icon icon="lucide:plus" class="text-xl"></iconify-icon> Simpan
+            <button type="submit" class="btn btn-sm btn-success d-flex align-items-center gap-2"> 
+                <iconify-icon icon="lucide:save" class="text-xl"></iconify-icon> Simpan
 </button>
         </div>
 

@@ -64,6 +64,9 @@ Route::middleware(['auth', 'role:admin'])
     Route::get('/siswa/aksi/importview', [AdminSiswaController::class, 'importView'])->name('siswa.importview');
     Route::post('/siswa/aksi/massleave', [AdminSiswaController::class, 'massleave'])->name('siswa.massleave');
     Route::get('/siswa/aksi/template', [AdminSiswaController::class, 'downloadTemplate'])->name('siswa.template');
+    Route::get('/siswa/import/progress/{key}', [AdminSiswaController::class, 'importProgress']);
+    Route::post('/siswa/import/process', [AdminSiswaController::class, 'processChunk']);
+
     Route::post('/siswa/aksi/import', [AdminSiswaController::class, 'importExcel'])->name('siswa.import');
     Route::resource('/siswa', AdminSiswaController::class);
     

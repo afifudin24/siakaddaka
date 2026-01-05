@@ -1,56 +1,113 @@
 <?php
-
 namespace App\Imports;
 
-use App\Models\Siswa;
 use App\Models\User;
+use App\Models\Siswa;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Concerns\{
+    ToModel,
+    WithHeadingRow,
+    WithValidation,
+    SkipsOnFailure,
+    WithEvents,
+    ShouldQueue,
+    WithChunkReading
+};
+use Maatwebsite\Excel\Events\AfterImport;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
 
-class SiswaImport implements ToModel, WithHeadingRow
+class SiswaImport implements
+    ToModel,
+    WithHeadingRow,
+    WithValidation,
+    SkipsOnFailure,
+    WithEvents,
+    ShouldQueue,
+    WithChunkReading
 {
-    public $errors = []; // menampung error tiap baris
+    use SkipsFailures;
+
+    protected $importKey;
+
+    public function __construct($importKey)
+    {
+        $this->importKey = $importKey;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'nama_lengkap' => 'required',
+            'nis' => 'required',
+            'nisn' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'tanggal_lahir_yyyy_mm_dd' => 'required|date',
+        ];
+    }
 
     public function model(array $row)
     {
-        try {
-            // cek username sudah ada atau belum
-            $existingUser = User::where('username', $row['username'])->first();
-            if ($existingUser) {
-                $this->errors[] = "Username '{$row['username']}' sudah ada, baris dilewati.";
-                return null; // skip baris ini
-            }
-
-            // 1. Buat user
-            $user = User::create([
-                'nama' => $row['nama_lengkap'],
-                'email' => $row['username'] . '@sekolah.test',
-                'username' => $row['username'],
-                'role' => 'siswa',
-                'password' => Hash::make($row['password']),
-                'password_text' => $row['password']
-            ]);
-
-            // 2. Buat siswa
-            return new Siswa([
-                'user_id'       => $user->id,
-                'nama'          => $row['nama_lengkap'],
-                'nis'           => $row['nis'],
-                'nisn'          => $row['nisn'],
-                'tgl_lahir'     => $row['tanggal_lahir_yyyy_mm_dd'],
-                'no_hp'         => $row['no_hp'],
-                'no_hp_ortu'    => $row['no_hp_ortu'],
-                'alamat'        => $row['alamat'],
-                'jenis_kelamin' => $row['jenis_kelamin_lp'],
-                'kelas_id'      => null
-            ]);
-
-        } catch (\Exception $e) {
-            // jika terjadi error lain, simpan ke array errors
-            $this->errors[] = "Baris '{$row['nama_lengkap']}' gagal: " . $e->getMessage();
+        if (User::where('username', $row['username'])->exists()) {
+            $this->updateProgress();
             return null;
         }
+
+        $user = User::create([
+            'nama' => $row['nama_lengkap'],
+            'email' => $row['username'].'@sekolah.test',
+            'username' => $row['username'],
+            'role' => 'siswa',
+            'password' => Hash::make($row['password']),
+            'password_text' => $row['password'],
+        ]);
+
+        Siswa::create([
+            'user_id' => $user->id,
+            'nama' => $row['nama_lengkap'],
+            'nis' => $row['nis'],
+            'nisn' => $row['nisn'],
+            'tgl_lahir' => $row['tanggal_lahir_yyyy_mm_dd'],
+            'kelas_id' => null
+        ]);
+
+        $this->updateProgress();
+    }
+
+    protected function updateProgress()
+    {
+        $data = Cache::get("import_$this->importKey");
+
+        $processed = $data['processed'] + 1;
+        $percent = intval(($processed / $data['total']) * 100);
+
+        Cache::put("import_$this->importKey", [
+            'total' => $data['total'],
+            'processed' => $processed,
+            'percent' => $percent,
+            'done' => $processed >= $data['total']
+        ]);
+    }
+
+    public function chunkSize(): int
+    {
+        return 20;
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterImport::class => function () {
+                $data = Cache::get("import_$this->importKey");
+
+                if ($data['processed'] >= $data['total']) {
+                    Cache::put("import_$this->importKey", array_merge($data, [
+                        'percent' => 100,
+                        'done' => true
+                    ]));
+                }
+            }
+        ];
     }
 }

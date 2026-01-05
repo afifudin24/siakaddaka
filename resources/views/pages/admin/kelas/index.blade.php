@@ -96,7 +96,7 @@
              <!-- Kolom disembunyikan di mobile -->
         <td class="d-none d-md-table-cell">{{ $kls->kode_kelas }}</td>
         <td class="d-none d-md-table-cell">{{ $kls->jurusan->nama_jurusan }}</td>
-        <td class="d-none d-md-table-cell">{{ $kls->walikelas->guru->nama }}</td>
+        <td class="d-none d-md-table-cell">{{ $kls->walikelas->guru->nama ?? '-' }}</td>
 
             <td class="d-none d-md-table-cell">{{ $kls->siswa_count }} Siswa</td>
             <td class="d-table-cell d-md-none">{{ $kls->siswa_count }}</td>
@@ -179,6 +179,8 @@
     $('#dataTableKelas').DataTable({
           responsive: true,
     autoWidth: false,
+    sorting: false,
+    ordering: false,
     // scrollX: true,
     language: {
         "emptyTable": "Tidak ada data",

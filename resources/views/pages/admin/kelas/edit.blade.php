@@ -5,7 +5,7 @@
 <div class="dashboard-main-body">
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5>Tambah Kelas</h5>
+        <h5>Edit Kelas</h5>
         <a href="{{ route('admin.kelas.index') }}" class="btn btn-danger d-flex align-items-center gap-2">
              <iconify-icon icon="lucide:arrow-left" class="text-xl"></iconify-icon> Kembali
         </a>
@@ -20,8 +20,8 @@
             <h5 class="card-title mb-0">Data Kelas</h5>
         <div>
 
-            <button type="submit" class="btn btn-sm btn-primary d-flex align-items-center gap-2"> 
-                <iconify-icon icon="lucide:plus" class="text-xl"></iconify-icon> Simpan
+            <button type="submit" class="btn btn-sm btn-success d-flex align-items-center gap-2"> 
+                <iconify-icon icon="lucide:save" class="text-xl"></iconify-icon> Simpan
 </button>
         </div>
 
@@ -55,9 +55,9 @@
                         <label class="form-label">Level</label>
                         <select name="tingkat" class="form-select" required>
                             <option value="">Pilih Level</option>
-                            <option {{ $kelas->tingkat == 'X' ? 'selected' : '' }} value="X">X</option>
-                            <option {{ $kelas->tingkat == 'XI' ? 'selected' : '' }} value="XI">XI</option>
-                            <option {{ $kelas->tingkat == 'XII' ? 'selected' : '' }} value="XII">XII</option>
+                            <option {{ $kelas->tingkat == '10' ? 'selected' : '' }} value="10">X</option>
+                            <option {{ $kelas->tingkat == '11' ? 'selected' : '' }} value="11">XI</option>
+                            <option {{ $kelas->tingkat == '12' ? 'selected' : '' }} value="12">XII</option>
                         </select>
                     </div>
 

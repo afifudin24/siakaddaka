@@ -13,13 +13,13 @@ use App\Models\Siswa;
 use App\Models\Jurusan;
 use App\Models\WaliKelas;
 use App\Models\KetuaKelas;
-
+use Illuminate\Validation\Rule;
 class AdminKelasController extends Controller
 {
     // buatkan resource controller
     public function index(){
       $kelas = Kelas::with(['waliKelas.guru', 'siswa'])
-              ->withCount('siswa')
+              ->withCount('siswa')->orderBy('nama_kelas', 'asc')
               ->get();
 
 
@@ -45,74 +45,93 @@ class AdminKelasController extends Controller
         return view('pages.admin.kelas.show', compact('kelas'));
     }
 
-    public function store(Request $request)
-{
-//   dd($request->siswa_ids);
-    $request->validate([
-        'nama_kelas' => 'required',
-        'kode_kelas' => 'required|unique:kelas,kode_kelas',
-        'tingkat' => 'required',
-        'jurusan_id' => 'required',
-        'guru_id' => 'required',       // wali kelas
-        'ketua_kelas_id' => 'nullable', // ketua kelas
-        'siswa_ids' => 'required'          // siswa yang masuk kelas ini
-    ]);
-    $siswaIds = json_decode($request->siswa_ids, true);
-   if (!is_array($siswaIds)) {
-    return back()->with('error', 'Format siswa tidak valid');
-}
 
-    if (count($siswaIds) === 0) {
-    return back()->with('error', 'Pilih minimal satu siswa');
-}
+public function store(Request $request)
+{
+    $request->validate(
+        [
+            'nama_kelas' => [
+                'required',
+                Rule::unique('kelas')->where(function ($query) use ($request) {
+                    return $query
+                        ->where('nama_kelas', $request->nama_kelas)
+                        ->where('kode_kelas', $request->kode_kelas);
+                }),
+            ],
+            'kode_kelas' => 'required',
+            'tingkat' => 'required',
+            'jurusan_id' => 'required',
+            'guru_id' => 'nullable',
+            'ketua_kelas_id' => 'nullable',
+            'siswa_ids' => 'nullable',
+        ],
+        [
+            'nama_kelas.required' => 'Nama kelas wajib diisi.',
+            'nama_kelas.unique'   => 'Kelas dengan nama dan kode tersebut sudah terdaftar.',
+            'kode_kelas.required' => 'Kode kelas wajib diisi.',
+            'tingkat.required'    => 'Tingkat wajib dipilih.',
+            'jurusan_id.required' => 'Jurusan wajib dipilih.',
+        ]
+    );
+
+    // decode siswa (boleh null)
+    $siswaIds = $request->siswa_ids 
+        ? json_decode($request->siswa_ids, true) 
+        : [];
+
+    if (!is_array($siswaIds)) {
+        return back()->with('error', 'Format data siswa tidak valid');
+    }
 
     DB::beginTransaction();
     try {
 
-        // 1️⃣ Simpan kelas baru
+        // 1️⃣ Simpan kelas
         $kelas = Kelas::create([
             'nama_kelas' => $request->nama_kelas,
             'kode_kelas' => $request->kode_kelas,
             'tingkat' => $request->tingkat,
             'jurusan_id' => $request->jurusan_id,
-            'ketua_kelas_id' => $request->ketua_kelas_id ?? null
         ]);
 
-        // 2️⃣ Reset semua siswa yang sebelumnya punya kelas ini (jika ada)
-        // (opsional untuk create, wajib untuk update)
-         Siswa::where('kelas_id', $kelas->id)->update(['kelas_id' => null]);
-         $validCount = Siswa::whereIn('id', $siswaIds)->count();
+        // 2️⃣ Jika ADA siswa, baru diproses
+        if (count($siswaIds) > 0) {
 
-        // 3️⃣ Update siswa yang dipilih masuk kelas ini
-         if ($validCount !== count($siswaIds)) {
-        return back()->with('error', 'Terdapat siswa yang tidak valid.');
-    }
+            $validCount = Siswa::whereIn('id', $siswaIds)->count();
+            if ($validCount !== count($siswaIds)) {
+                return back()->with('error', 'Terdapat siswa yang tidak valid.');
+            }
 
-    // lanjut update kelas_id siswa
-    Siswa::whereIn('id', $siswaIds)
-         ->update(['kelas_id' => $kelas->id]);
+            Siswa::whereIn('id', $siswaIds)
+                ->update(['kelas_id' => $kelas->id]);
+        }
 
-        // 4️⃣ Tambah wali kelas (tabel walikelas)
-        WaliKelas::create([
-            'kelas_id' => $kelas->id,
-            'guru_id' => $request->guru_id
-        ]);
+        // 3️⃣ Jika ADA wali kelas
+        if ($request->filled('guru_id')) {
+            WaliKelas::create([
+                'kelas_id' => $kelas->id,
+                'guru_id' => $request->guru_id
+            ]);
+        }
 
-        KetuaKelas::create([
-            'kelas_id' => $kelas->id,
-            'siswa_id' => $request->ketua_kelas
-        ]);
+        // 4️⃣ Jika ADA ketua kelas
+        if ($request->filled('ketua_kelas_id')) {
+            KetuaKelas::create([
+                'kelas_id' => $kelas->id,
+                'siswa_id' => $request->ketua_kelas_id
+            ]);
+        }
 
         DB::commit();
-        return redirect()->route('admin.kelas.index')
+        return redirect()
+            ->route('admin.kelas.index')
             ->with('success', 'Kelas berhasil ditambahkan.');
 
     } catch (\Exception $e) {
         DB::rollBack();
-        return redirect()->back()->with('error', $e->getMessage());
+        return back()->with('error', 'Terjadi kesalahan saat menyimpan data.');
     }
 }
-
 public function edit(Kelas $kela)
 {
 
@@ -158,30 +177,24 @@ public function update(Request $request, $id)
         'kode_kelas' => 'required|unique:kelas,kode_kelas,' . $id,
         'tingkat' => 'required',
         'jurusan_id' => 'required',
-        'guru_id' => 'required',
+        'guru_id' => 'nullable',
         'ketua_kelas_id' => 'nullable',
-        'siswa_ids' => 'required'
+        'siswa_ids' => 'nullable',
     ]);
 
-    // Decode siswa_ids
-    $siswaIds = json_decode($request->siswa_ids, true);
+    $siswaIds = $request->siswa_ids
+        ? json_decode($request->siswa_ids, true)
+        : [];
 
     if (!is_array($siswaIds)) {
         return back()->with('error', 'Format siswa tidak valid.');
     }
 
-    if (count($siswaIds) === 0) {
-        return back()->with('error', 'Pilih minimal satu siswa.');
-    }
-
     DB::beginTransaction();
 
     try {
-
-        // 1️⃣ Ambil data kelas
         $kelas = Kelas::findOrFail($id);
 
-        // 2️⃣ Update data kelas kecuali wali & ketua
         $kelas->update([
             'nama_kelas' => $request->nama_kelas,
             'kode_kelas' => $request->kode_kelas,
@@ -190,33 +203,37 @@ public function update(Request $request, $id)
             'ketua_kelas_id' => $request->ketua_kelas_id ?? null
         ]);
 
-        // 3️⃣ Kosongkan kelas_id siswa lama
+        // reset siswa lama
         Siswa::where('kelas_id', $kelas->id)->update(['kelas_id' => null]);
 
-        // Validasi jumlah siswa
-        $validCount = Siswa::whereIn('id', $siswaIds)->count();
-        if ($validCount !== count($siswaIds)) {
-            return back()->with('error', 'Terdapat siswa yang tidak valid.');
+        // assign siswa baru (jika ada)
+        if (count($siswaIds) > 0) {
+            $validCount = Siswa::whereIn('id', $siswaIds)->count();
+            if ($validCount !== count($siswaIds)) {
+                return back()->with('error', 'Terdapat siswa yang tidak valid.');
+            }
+
+            Siswa::whereIn('id', $siswaIds)
+                ->update(['kelas_id' => $kelas->id]);
         }
 
-        // 4️⃣ Assign siswa baru ke kelas ini
-        Siswa::whereIn('id', $siswaIds)
-            ->update(['kelas_id' => $kelas->id]);
-
-        // 5️⃣ Update wali kelas
-        WaliKelas::updateOrCreate(
-            ['kelas_id' => $kelas->id],
-            ['guru_id' => $request->guru_id]
-        );
-
-        // 6️⃣ Update ketua kelas
-        if ($request->ketua_kelas) {
-            KetuaKelas::updateOrCreate(
+        // wali kelas
+        if ($request->guru_id) {
+            WaliKelas::updateOrCreate(
                 ['kelas_id' => $kelas->id],
-                ['siswa_id' => $request->ketua_kelas]
+                ['guru_id' => $request->guru_id]
             );
         } else {
-            // Jika ketua dihapus
+            WaliKelas::where('kelas_id', $kelas->id)->delete();
+        }
+
+        // ketua kelas
+        if ($request->ketua_kelas_id) {
+            KetuaKelas::updateOrCreate(
+                ['kelas_id' => $kelas->id],
+                ['siswa_id' => $request->ketua_kelas_id]
+            );
+        } else {
             KetuaKelas::where('kelas_id', $kelas->id)->delete();
         }
 
@@ -229,6 +246,7 @@ public function update(Request $request, $id)
         return back()->with('error', $e->getMessage());
     }
 }
+
 public function destroy(Request $request, $id)
 {
     try {
