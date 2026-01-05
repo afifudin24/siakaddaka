@@ -20,7 +20,7 @@ class Tagihan extends Model
         'status',
         'semester_id',
         'tahun_pelajaran_id'
-    ];
+];
 
     /**
      * Relasi ke Siswa

@@ -8,11 +8,15 @@ use Illuminate\Http\Request;
 use App\Imports\SiswaImport;
 use App\Exports\SiswaTemplateExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Admin;
 use App\Models\Kelas;
+use App\Models\User;
 use App\Models\Siswa;
 use App\Models\Guru;
 
@@ -164,7 +168,7 @@ public function processChunk(Request $request)
             'email' => $username.'@sekolah.test',
             'username' => $username,
             'role' => 'siswa',
-            'password' => \Hash::make($row[4]),
+            'password' => Hash::make($row[4]),
             'password_text' => $row[4],
         ]);
 
@@ -185,6 +189,207 @@ public function processChunk(Request $request)
         'done' => $processed >= count($rows)
     ]);
 }
+
+public function edit($id){
+    $siswa = Siswa::with('user')->findOrFail($id);
+    return view('pages.admin.siswa.edit', compact('siswa'));
+}
+
+
+
+public function update(Request $request, $id)
+{
+    $validator = Validator::make($request->all(), [
+        'nama'          => 'required|string|max:100',
+        'username'      => 'required|string|max:50',
+        'email'         => 'required|email',
+        'no_hp'         => 'nullable|string|max:15',
+        'nis'           => 'required|string|max:30',
+        'nisn'         => 'required|string|max:30',
+        'alamat'        => 'nullable|string',
+        'tgl_lahir'     => 'nullable|date',
+        'no_hp_ortu'           => 'nullable|string|max:15',
+        'jenis_kelamin' => 'required|in:L,P',
+    ], [
+        'nama.required'          => 'Nama wajib diisi',
+        'username.required'      => 'Username wajib diisi',
+        'email.required'         => 'Email wajib diisi',
+        'email.email'            => 'Format email tidak valid',
+        'nis.required'           => 'NIS wajib diisi',
+        'nisn.required'          => 'NISN wajib diisi',
+        // 'no_hp.numeric'          => 'No HP harus berupa angka',
+        'jenis_kelamin.required' => 'Jenis kelamin wajib dipilih',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'status' => false,
+            'errors' => $validator->errors()
+        ], 422);
+    }
+
+    $siswa = Siswa::findOrFail($id);
+
+    // update tabel siswa
+    $siswa->update([
+        'nama'          => $request->nama,
+        'no_hp'         => $request->no_hp,
+        'nis'           => $request->nis,
+        'nisn'          => $request->nisn,
+        'alamat'        => $request->alamat,
+        'email'             => $request->email,
+        'tgl_lahir'     => $request->tgl_lahir,
+        'no_hp_ortu'           => $request->no_hp_ortu,
+        'jenis_kelamin' => $request->jenis_kelamin,
+    ]);
+
+    // update tabel user
+    $siswa->user->update([
+        'username' => $request->username,
+        'email'    => $request->email,
+    ]);
+
+    return response()->json([
+        'status'  => true,
+        'message' => 'Data guru berhasil diperbarui'
+    ]);
+}
+
+public function updateFotoProfil(Request $request, $id)
+{
+    $validator = Validator::make($request->all(), [
+        'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+    ], [
+        'foto.required' => 'Foto wajib diunggah',
+        'foto.image'    => 'File harus berupa gambar',
+        'foto.mimes'    => 'Format foto harus JPG atau PNG',
+        'foto.max'      => 'Ukuran foto maksimal 2MB'
+    ]);
+
+    // ❌ VALIDASI GAGAL
+    if ($validator->fails()) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Validasi gagal',
+            'errors' => $validator->errors()
+        ], 422);
+    }
+
+    try {
+        $siswa = Siswa::findOrFail($id);
+
+        $path = $request->file('foto')->store('foto-siswa', 'public');
+
+        // hapus foto lama
+        if ($siswa->user->foto_profil &&
+            Storage::disk('public')->exists($siswa->user->foto_profil)) {
+            Storage::disk('public')->delete($siswa->user->foto_profil);
+        }
+
+        $siswa->user->update([
+            'foto_profil' => $path
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Foto profil berhasil diperbarui'
+        ]);
+
+    } catch (\Exception $e) {
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Gagal memperbarui foto profil',
+            'error' => $e->getMessage() // opsional (hapus di production)
+        ], 500);
+    }
+}
+
+public function updateFotoUnggulan(Request $request, $id)
+{
+    $validator = Validator::make($request->all(), [
+        'foto_unggulan' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+    ], [
+        'foto_unggulan.required' => 'Foto unggulan wajib diunggah',
+        'foto_unggulan.image' => 'File harus berupa gambar',
+        'foto_unggulan.max' => 'Ukuran maksimal 2MB'
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'status' => false,
+            'errors' => $validator->errors()
+        ], 422);
+    }
+
+    $siswa = Siswa::findOrFail($id);
+
+    $path = $request->file('foto_unggulan')->store('foto-unggulan', 'public');
+
+    // hapus foto lama
+    if ($siswa->user->foto_unggulan &&
+        Storage::disk('public')->exists($siswa->user->foto_unggulan)) {
+        Storage::disk('public')->delete($siswa->user->foto_unggulan);
+    }
+
+    $siswa->user->update([
+        'foto_unggulan' => $path
+    ]);
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Foto unggulan berhasil diperbarui'
+    ]);
+
+}
+
+public function updatePassword(Request $request, $id)
+{
+    $request->validate([
+        'password' => 'required|string|min:6'
+    ], [
+        'password.required' => 'Password baru wajib diisi',
+        'password.min' => 'Password minimal 6 karakter'
+    ]);
+    $siswa = Siswa::findOrFail($id);
+    $user = User::findOrFail($siswa->user_id);
+
+    $user->update([
+        'password' => Hash::make($request->password),
+        'password_text' => $request->password // sesuai kondisi kamu
+    ]);
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Password berhasil diperbarui'
+    ]);
+}
+public function hapusFoto($id)
+{
+    $siswa = Siswa::findOrFail($id);
+    $user = $siswa->user;
+
+    // hapus foto profil
+    if ($user->foto_profil && Storage::disk('public')->exists($user->foto_profil)) {
+        Storage::disk('public')->delete($user->foto_profil);
+    }
+
+    // hapus foto unggulan (jika ada)
+    if ($user->foto_unggulan && Storage::disk('public')->exists($user->foto_unggulan)) {
+        Storage::disk('public')->delete($user->foto_unggulan);
+    }
+
+    $user->update([
+        'foto_profil' => null,
+        'foto_unggulan' => null
+    ]);
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Foto profil dan foto unggulan berhasil dihapus'
+    ]);
+}
+
 
 
 }

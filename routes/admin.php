@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminGuruController;
 use App\Http\Controllers\Admin\AdminSiswaController;
 use App\Http\Controllers\Admin\AdminStaffController;
 use App\Http\Controllers\Admin\AdminDataSekolahController;
+use App\Http\Controllers\Admin\AdminUserController;
 
 
 
@@ -69,7 +70,12 @@ Route::middleware(['auth', 'role:admin'])
 
     Route::post('/siswa/aksi/import', [AdminSiswaController::class, 'importExcel'])->name('siswa.import');
     Route::resource('/siswa', AdminSiswaController::class);
-    
+
+      Route::post('/siswa/aksi/{id}/fotoprofil', [AdminSiswaController::class, 'updateFotoProfil'])->name('siswa.updateFotoProfil');
+       Route::post('/siswa/aksi/{id}/foto-unggulan',[AdminSiswaController::class, 'updateFotoUnggulan'])->name('siswa.updateFotoUnggulan');
+       Route::post('/siswa/aksi/{id}/update-password',[AdminSiswaController::class, 'updatePassword'])->name('siswa.updatePassword');
+       Route::post('/siswa/aksi/{id}/hapus-foto', [AdminSiswaController::class, 'hapusFoto'])->name('siswa.hapusFoto');
+
     // Staff
         Route::resource('/staff', AdminStaffController::class);
            Route::post('/staff/aksi/{id}/fotoprofil', [AdminStaffController::class, 'updateFotoProfil'])->name('staff.updateFotoProfil');
@@ -82,4 +88,11 @@ Route::middleware(['auth', 'role:admin'])
     Route::get('/datasekolah', [AdminDataSekolahController::class, 'index'])->name('datasekolah.index');
     Route::post('/datasekolah/updateImage', [AdminDataSekolahController::class, 'updateImage'])->name('datasekolah.updateImage');
     Route::post('/datasekolah/update', [AdminDataSekolahController::class, 'update'])->name('datasekolah.update');    
+
+    // User
+    Route::get('/users/admin', [AdminUserController::class, 'admin'])->name('users.admin');
+    Route::post('/users/admin/aktifkansemua', [AdminUserController::class, 'aktifkanSemuaAdmin'])->name('users.admin.aktifkansemua');
+    Route::post('/users/admin/nonaktifkansemua', [AdminUserController::class, 'nonaktifkanSemuaAdmin'])->name('users.admin.nonaktifkansemua');
+
+    Route::post('/users/{id}/togglestatus', [AdminUserController::class, 'toggleStatus'])->name('users.toggleStatus');
     });

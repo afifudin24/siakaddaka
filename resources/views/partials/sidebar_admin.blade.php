@@ -214,10 +214,10 @@
 
       {{-- Managemen user --}}
       <li class="dropdown my-1
-    {{ Request::is('admin/user-admin*') ||
-       Request::is('admin/user-siswa*') ||
-       Request::is('admin/user-guru*') ||
-       Request::is('admin/user-staff*')
+    {{ Request::is('admin/users/admin*') ||
+       Request::is('admin/users/guru*') ||
+       Request::is('admin/users/siswa*') ||
+       Request::is('admin/users/staff*')
        ? 'active open' : '' }}">
 
     <a href="javascript:void(0)">
@@ -226,8 +226,8 @@
     </a>
 
     <ul class="sidebar-submenu">
-        <li class="{{ request()->is('admin/user-admin*') ? 'active-page' : '' }}">
-            <a href="/admin/user-admin" class="{{ request()->is('admin/user-admin*') ? 'active' : '' }}">
+        <li class="{{ request()->is('admin/users/admin*') ? 'active-page' : '' }}">
+            <a href="/admin/users/admin" class="{{ request()->is('admin/users/admin*') ? 'active' : '' }}">
               <iconify-icon icon="rivet-icons:gear-solid" class="menu-icon"></iconify-icon>
                 <span>Administrator</span>
             </a>

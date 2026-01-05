@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataSekolah;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
@@ -65,15 +66,35 @@ class AuthController extends Controller
         ]);
     }
 
-    public function loginAjax(Request $request)
+public function loginAjax(Request $request)
 {
     $request->validate([
         'email' => 'required',
         'password' => 'required',
     ]);
 
-    $loginType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+    $loginType = filter_var($request->email, FILTER_VALIDATE_EMAIL)
+        ? 'email'
+        : 'username';
 
+    // ===== CEK USER ADA & AKTIF =====
+    $user = User::where($loginType, $request->email)->first();
+
+    if (!$user) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Email/username atau password salah.'
+        ], 401);
+    }
+
+    if (!$user->is_active) {
+        return response()->json([
+            'status' => 'inactive',
+            'message' => 'Akun Anda belum aktif. Silakan hubungi administrator.'
+        ], 403);
+    }
+
+    // ===== ATTEMPT LOGIN =====
     $credentials = [
         $loginType => $request->email,
         'password' => $request->password
@@ -83,37 +104,28 @@ class AuthController extends Controller
 
     if (Auth::attempt($credentials, $remember)) {
 
-        $user = Auth::user();
-
-        switch ($user->role) {
+        switch (Auth::user()->role) {
             case 'admin':
-                return response()->json([
-                    'status' => 'success',
-                    'redirect' => url('/admin/dashboard'),
-                    'message' => 'Login Berhasil! Mengalihkan...'
-                ]);
-
+                $redirect = url('/admin/dashboard');
+                break;
             case 'guru':
-                return response()->json([
-                    'status' => 'success',
-                    'redirect' => url('/guru/dashboard'),
-                    'message' => 'Login Berhasil! Mengalihkan...'
-                ]);
-
+                $redirect = url('/guru/dashboard');
+                break;
             case 'siswa':
-                return response()->json([
-                    'status' => 'success',
-                    'redirect' => url('/siswa/dashboard'),
-                    'message' => 'Login Berhasil! Mengalihkan...'
-                ]);
-
+                $redirect = url('/siswa/dashboard');
+                break;
             case 'staff':
-                return response()->json([
-                    'status' => 'success',
-                    'redirect' => url('/staff/dashboard'),
-                    'message' => 'Login Berhasil! Mengalihkan...'
-                ]);
+                $redirect = url('/staff/dashboard');
+                break;
+            default:
+                $redirect = url('/');
         }
+
+        return response()->json([
+            'status' => 'success',
+            'redirect' => $redirect,
+            'message' => 'Login berhasil! Mengalihkan...'
+        ]);
     }
 
     return response()->json([

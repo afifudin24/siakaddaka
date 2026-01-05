@@ -736,5 +736,5 @@ loadBarChart();
     );
 });
 </script>
-</script>
+
   @endpush
