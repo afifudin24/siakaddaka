@@ -70,6 +70,7 @@ Route::middleware(['auth', 'role:admin'])
 
     Route::post('/siswa/aksi/import', [AdminSiswaController::class, 'importExcel'])->name('siswa.import');
     Route::resource('/siswa', AdminSiswaController::class);
+    Route::delete('/siswa/aksi/hapus/{id}', [AdminSiswaController::class, 'destroy'])->name('siswa.destroy');
 
       Route::post('/siswa/aksi/{id}/fotoprofil', [AdminSiswaController::class, 'updateFotoProfil'])->name('siswa.updateFotoProfil');
        Route::post('/siswa/aksi/{id}/foto-unggulan',[AdminSiswaController::class, 'updateFotoUnggulan'])->name('siswa.updateFotoUnggulan');

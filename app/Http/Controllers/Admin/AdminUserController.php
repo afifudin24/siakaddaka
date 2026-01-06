@@ -123,7 +123,7 @@ public function toggleStatus($id)
     $perPage = $request->per_page ?? 10;
 
     $siswa = $query
-        ->orderBy('created_at', 'desc')
+        ->orderBy('nama', 'asc')
         ->paginate($perPage)
         ->withQueryString(); // penting!
 

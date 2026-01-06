@@ -148,7 +148,7 @@
                                     <th scope="col" style="width : 150px" class="">PASSWORD</th>
 
                                     <!-- Walikelas (hilang di mobile) -->
-                                    <th scope="col" class="">AKSI</th>
+                                    <th scope="col" style="width : 40px !important" class="">AKSI</th>
 
                                 </tr>
                             </thead>
@@ -208,7 +208,7 @@
                                            
                                         </td>
 
-                                        <td>
+                                        <td style="width: 40px !important">
                                             {{-- jika is_active 1 maka tombolnya nonaktifkan dengan ikon --}}
                                             <div class="d-inline-flex gap-1">
 

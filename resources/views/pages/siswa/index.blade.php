@@ -256,18 +256,14 @@
                                                 <iconify-icon icon="mdi:account-edit"></iconify-icon>
                                             </a>
 
-                                             <form action="{{ route('admin.siswa.destroy', $s->id) }}" method="POST"
-                                                class="delete-form d-inline">
-                                                @csrf
-                                                @method('DELETE')
+                                     <a href="javascript:void(0)"
+   class="btn-delete w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle
+   d-inline-flex align-items-center justify-content-center"
+   data-url="{{ route('admin.siswa.destroy', $s->id) }}">
 
-                                                <a href="javascript:void(0)"
-                                                    class="btn-delete w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle 
-        d-inline-flex align-items-center justify-content-center">
+    <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
+</a>
 
-                                                    <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
-                                                </a>
-                                            </form>
                                            
 
                                         </td>
@@ -407,27 +403,58 @@
             });
         </script>
 
-        <script>
-            $(document).on('click', '.btn-delete', function(e) {
-                e.preventDefault();
+     
 
-                const form = $(this).closest('form');
+    <script>
+$(document).on('click', '.btn-delete', function (e) {
+    e.preventDefault();
 
-                Swal.fire({
-                    title: "Yakin ingin menghapus?",
-                    text: "Data yang dihapus tidak bisa dikembalikan!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#6c757d",
-                    confirmButtonText: "Ya, hapus!",
-                    cancelButtonText: "Batal",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
-                });
+    const url = $(this).data('url');
+    const row = $(this).closest('tr');
+    console.log(url);
+
+    Swal.fire({
+        title: 'Yakin ingin menghapus?',
+        text: 'Data siswa yang dihapus tidak dapat dikembalikan!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Ya, hapus!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (res) {
+                    Swal.fire(
+                        'Berhasil!',
+                        res.message ?? 'Data siswa berhasil dihapus',
+                        'success'
+                    );
+
+                    // 🔥 hapus row tabel
+                    row.fadeOut(300, function () {
+                        $(this).remove();
+                    });
+                },
+                error: function (xhr) {
+                    Swal.fire(
+                        'Gagal!',
+                        xhr.responseJSON?.message ?? 'Terjadi kesalahan',
+                        'error'
+                    );
+                }
             });
-        </script>
+        }
+    });
+});
+</script>
+
+
     @endpush
 @endsection

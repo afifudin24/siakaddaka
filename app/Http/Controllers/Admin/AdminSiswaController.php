@@ -53,11 +53,21 @@ class AdminSiswaController extends Controller
 }
 
 
-    public function destroy( $id ) {
-        $siswa = Siswa::findOrFail( $id );
-        $siswa->delete();
-        return redirect()->back()->with('success', 'Berhasil menghapus data.');
-    }
+  public function destroy($id)
+{
+    $siswa = Siswa::findOrFail($id);
+    $user  = User::findOrFail($siswa->user_id);
+
+    // hapus data
+    $siswa->delete();
+    $user->delete();
+
+    return response()->json([
+        'status'  => true,
+        'message' => 'Berhasil menghapus data siswa'
+    ], 200);
+}
+
 
     public function massdelete(Request $request)
     {
