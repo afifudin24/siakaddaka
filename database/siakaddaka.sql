@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Waktu pembuatan: 05 Jan 2026 pada 09.54
+-- Waktu pembuatan: 06 Jan 2026 pada 09.13
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -453,7 +453,10 @@ CREATE TABLE `kategori_mapel` (
 --
 
 INSERT INTO `kategori_mapel` (`id`, `nama_kategori_mapel`, `created_at`, `updated_at`) VALUES
-(1, 'Kejuruan', '2025-12-07 23:46:47', '2025-12-08 00:02:25');
+(1, 'Kejuruan', '2025-12-07 23:46:47', '2025-12-08 00:02:25'),
+(4, 'Umum', '2026-01-05 19:14:30', '2026-01-05 19:14:30'),
+(5, 'Kejuruan TKJ', '2026-01-05 21:15:23', '2026-01-05 21:15:23'),
+(6, 'Kejuruan AK', '2026-01-05 21:21:31', '2026-01-05 21:21:31');
 
 -- --------------------------------------------------------
 
@@ -1088,7 +1091,21 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (485, 1, 'created', 'User baru dibuat: Waryanto (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:42', '2026-01-04 21:17:42'),
 (486, 1, 'created', 'User baru dibuat: Wiwi Waryanti (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:42', '2026-01-04 21:17:42'),
 (487, 1, 'created', 'User baru dibuat: YENI RAHMAWATI (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:42', '2026-01-04 21:17:42'),
-(488, 1, 'created', 'User baru dibuat: YUNI ANDARI (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:42', '2026-01-04 21:17:42');
+(488, 1, 'created', 'User baru dibuat: YUNI ANDARI (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:42', '2026-01-04 21:17:42'),
+(489, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-05 21:15:15', '2026-01-05 21:15:15'),
+(490, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-05 21:21:12', '2026-01-05 21:21:12'),
+(491, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-05 21:22:45', '2026-01-05 21:22:45'),
+(492, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian TKJJJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36', '2026-01-05 21:23:50', '2026-01-05 21:23:50'),
+(493, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36', '2026-01-05 21:24:58', '2026-01-05 21:24:58'),
+(494, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian TKJJJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36', '2026-01-05 21:25:44', '2026-01-05 21:25:44'),
+(495, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian T (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36', '2026-01-05 21:28:45', '2026-01-05 21:28:45'),
+(496, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36', '2026-01-05 21:29:28', '2026-01-05 21:29:28'),
+(497, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian TEKAJE (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36', '2026-01-05 21:31:47', '2026-01-05 21:31:47'),
+(498, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36', '2026-01-05 21:32:41', '2026-01-05 21:32:41'),
+(499, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-05 21:32:57', '2026-01-05 21:32:57'),
+(500, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-05 21:36:26', '2026-01-05 21:36:26'),
+(501, 1, 'updated', 'Mapel diperbarui: Konsentrasi Keahlian TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-05 21:37:13', '2026-01-05 21:37:13'),
+(502, 1, 'created', 'Mapel baru dibuat: Mapel Pilihan TKJ (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-05 21:37:28', '2026-01-05 21:37:28');
 
 -- --------------------------------------------------------
 
@@ -1099,6 +1116,7 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 CREATE TABLE `mapel` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nama_mapel` varchar(255) NOT NULL,
+  `kode_mapel` varchar(100) NOT NULL,
   `kategori_mapel_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1108,8 +1126,9 @@ CREATE TABLE `mapel` (
 -- Dumping data untuk tabel `mapel`
 --
 
-INSERT INTO `mapel` (`id`, `nama_mapel`, `kategori_mapel_id`, `created_at`, `updated_at`) VALUES
-(6, 'Kompetensi Kejuruan TKJ', 1, '2025-12-08 02:05:41', '2025-12-08 02:05:41');
+INSERT INTO `mapel` (`id`, `nama_mapel`, `kode_mapel`, `kategori_mapel_id`, `created_at`, `updated_at`) VALUES
+(6, 'Konsentrasi Keahlian TKJ', 'KKTKJ', 5, '2025-12-08 02:05:41', '2026-01-05 21:37:12'),
+(7, 'Mapel Pilihan TKJ', 'MPTKJ', 5, '2026-01-05 21:37:28', '2026-01-05 21:37:28');
 
 -- --------------------------------------------------------
 
@@ -2647,7 +2666,7 @@ ALTER TABLE `kaskeluar`
 -- AUTO_INCREMENT untuk tabel `kategori_mapel`
 --
 ALTER TABLE `kategori_mapel`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas`
@@ -2689,13 +2708,13 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=489;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=503;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
 --
 ALTER TABLE `mapel`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `materi`

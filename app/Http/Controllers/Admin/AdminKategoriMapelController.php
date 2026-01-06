@@ -25,55 +25,87 @@ class AdminKategoriMapelController extends Controller
         return view( 'pages.admin.mapel.index', compact( 'mapel', 'kategorimapel' ) );
     }
 
-    public function store( Request $request ) {
-        $validator = Validator::make($request->all(), [
+ public function store(Request $request)
+{
+    $validator = Validator::make($request->all(), [
         'nama_kategori_mapel' => 'required|string|max:255',
     ], [
         'nama_kategori_mapel.required' => 'Nama kategori mapel wajib diisi.',
         'nama_kategori_mapel.string'   => 'Nama kategori mapel harus berupa teks.',
         'nama_kategori_mapel.max'      => 'Nama kategori mapel maksimal 255 karakter.',
     ]);
-        if ( $validator->fails() ) {
-            return redirect()->back()
-            ->withErrors( $validator, 'errorkategori' ) // ← custom error bag
-            ->withInput();
+
+    if ($validator->fails()) {
+
+        // 👉 JIKA AJAX
+        if ($request->ajax()) {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ], 422);
         }
 
-        $kategorimapel = new KategoriMapel;
-        $kategorimapel->nama_kategori_mapel = $request->nama_kategori_mapel;
-        $kategorimapel->save();
-
-        return redirect()->route( 'admin.mapel.index' )
-        ->with( 'successkategori', 'Kategori Mapel berhasil ditambahkan.' );
-
+        // 👉 JIKA BUKAN AJAX (fallback)
+        return redirect()->back()
+            ->withErrors($validator, 'errorkategori')
+            ->withInput();
     }
 
-    public function update( Request $request, $id ) {
-        $validator = Validator::make($request->all(), [
+    $kategorimapel = new KategoriMapel;
+    $kategorimapel->nama_kategori_mapel = $request->nama_kategori_mapel;
+    $kategorimapel->save();
+
+    // 👉 RESPONSE AJAX
+    if ($request->ajax()) {
+        return response()->json([
+            'status' => true,
+            'message' => 'Kategori Mapel berhasil ditambahkan.',
+            'data' => $kategorimapel
+        ]);
+    }
+
+    // 👉 NORMAL SUBMIT
+    return redirect()->route('admin.mapel.index')
+        ->with('successkategori', 'Kategori Mapel berhasil ditambahkan.');
+}
+   public function update(Request $request, $id)
+{
+    $validator = Validator::make($request->all(), [
         'nama_kategori_mapel' => 'required|string|max:255',
     ], [
         'nama_kategori_mapel.required' => 'Nama kategori mapel wajib diisi.',
         'nama_kategori_mapel.string'   => 'Nama kategori mapel harus berupa teks.',
         'nama_kategori_mapel.max'      => 'Nama kategori mapel maksimal 255 karakter.',
     ]);
-        if ( $validator->fails() ) {
-            return redirect()->back()
-            ->withErrors( $validator, 'errorkategori' ) // ← custom error bag
-            ->withInput();
-        }
 
-        $kategorimapel = KategoriMapel::findOrFail( $id );
-        $kategorimapel->nama_kategori_mapel = $request->nama_kategori_mapel;
-        $kategorimapel->save();
-
-        return redirect()->route( 'admin.mapel.index' )
-        ->with( 'successkategori', 'Kategori Mapel berhasil diubah.' );
+    if ($validator->fails()) {
+        return response()->json([
+            'status' => false,
+            'errors' => $validator->errors()
+        ], 422);
     }
 
-    public function destroy( $id ) {
-        $kategorimapel = KategoriMapel::findOrFail( $id );
-        $kategorimapel->delete();
-        return redirect()->route( 'admin.mapel.index' )
-        ->with( 'successkategori', 'Kategori Mapel berhasil dihapus.' );
-    }
+    $kategorimapel = KategoriMapel::findOrFail($id);
+    $kategorimapel->nama_kategori_mapel = $request->nama_kategori_mapel;
+    $kategorimapel->save();
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Kategori Mapel berhasil diubah.',
+        'data' => $kategorimapel
+    ]);
+}
+
+    public function destroy($id)
+{
+    $kategorimapel = KategoriMapel::findOrFail($id);
+    $kategorimapel->delete();
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Kategori Mapel berhasil dihapus.',
+        'id' => $id
+    ]);
+}
+
 }

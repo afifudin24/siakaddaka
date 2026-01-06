@@ -13,6 +13,7 @@ class Mapel extends Model
 
     protected $fillable = [
         'nama_mapel',
+        'kode_mapel',
         'kategori_mapel_id',
     ];
 
