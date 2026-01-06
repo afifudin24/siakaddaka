@@ -14,6 +14,7 @@ class DataMengajar extends Model
     protected $fillable = [
         'guru_id',
         'mapel_id',
+        'kelas_id',
         'jam_mengajar',
         'pertemuan_per_minggu',
     ];
@@ -39,6 +40,8 @@ class DataMengajar extends Model
     public function logKehadiran(){
         return $this->hasMany(LogKehadiran::class, 'mengajar_id');
     }
+
+
 
     public function kelas(){
         return $this->belongsTo(Kelas::class);

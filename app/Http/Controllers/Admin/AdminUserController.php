@@ -37,7 +37,7 @@ class AdminUserController extends Controller
     if ($request->filled('search')) {
         $search = $request->search;
         $query->where(function ($q) use ($search) {
-            $q->where('name', 'like', "%{$search}%")
+            $q->where('nama', 'like', "%{$search}%")
               ->orWhere('email', 'like', "%{$search}%");
         });
     }
@@ -114,6 +114,13 @@ public function toggleStatus($id)
             $query->where('is_active', false);
         }
     }
+        if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where(function ($q) use ($search) {
+            $q->where('nama', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%");
+        });
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -151,6 +158,145 @@ public function nonaktifkanSemuaSiswa()
         'message' => 'Semua pengguna siswa telah dinonaktifkan.'
     ]);
 }
+
+public function guru(Request $request)
+{
+    $query = User::where('role', 'guru');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Status
+    |--------------------------------------------------------------------------
+    | aktif        -> status = true
+    | tidak aktif  -> status = false
+    | all / null   -> tidak difilter
+    */
+    if ($request->filled('status') && $request->status !== 'all') {
+        if ($request->status === 'true') {
+            $query->where('is_active', true);
+        } elseif ($request->status === 'false') {
+            $query->where('is_active', false);
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Search (nama / email / username)
+    |--------------------------------------------------------------------------
+    */
+    if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where(function ($q) use ($search) {
+            $q->where('nama', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%");
+        });
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Paginate
+    |--------------------------------------------------------------------------
+    */
+    $perPage = $request->per_page ?? 10;
+
+    $guru = $query
+        ->orderBy('created_at', 'desc')
+        ->paginate($perPage)
+        ->withQueryString(); // penting!
+
+    return view('pages.admin.users.guru', compact('guru'));
+}
+
+public function aktifkanSemuaGuru()
+{
+    User::where('role', 'guru')->update(['is_active' => true]);
+
+    // pake response json ajax
+    return response()->json([
+        'status' => true,
+        'message' => 'Semua pengguna guru telah diaktifkan.'
+    ]);
+
+   
+}
+public function nonaktifkanSemuaGuru()
+{
+    User::where('role', 'guru')->update(['is_active' => false]);
+
+    // pake response json ajax
+    return response()->json([
+        'status' => true,
+        'message' => 'Semua pengguna guru telah dinonaktifkan.'
+    ]);
+}
+
+
+// Staff
+    public function staff(Request $request)
+{
+    $query = User::where('role', 'staff');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Status
+    |--------------------------------------------------------------------------
+    | aktif        -> status = true
+    | tidak aktif  -> status = false
+    | all / null   -> tidak difilter
+    */
+    if ($request->filled('status') && $request->status !== 'all') {
+        if ($request->status === 'true') {
+            $query->where('is_active', true);
+        } elseif ($request->status === 'false') {
+            $query->where('is_active', false);
+        }
+    }
+        if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where(function ($q) use ($search) {
+            $q->where('nama', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%");
+        });
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Paginate
+    |--------------------------------------------------------------------------
+    */
+    $perPage = $request->per_page ?? 10;
+
+    $staff = $query
+        ->orderBy('nama', 'asc')
+        ->paginate($perPage)
+        ->withQueryString(); // penting!
+
+    return view('pages.admin.users.staff', compact('staff'));
+}
+    public function aktifkanSemuaStaff()
+{
+    User::where('role', 'staff')->update(['is_active' => true]);
+
+    // pake response json ajax
+    return response()->json([
+        'status' => true,
+        'message' => 'Semua pengguna staff telah diaktifkan.'
+    ]);
+
+   
+}
+public function nonaktifkanSemuaStaff()
+{
+    User::where('role', 'staff')->update(['is_active' => false]);
+
+    // pake response json ajax
+    return response()->json([
+        'status' => true,
+        'message' => 'Semua pengguna staff telah dinonaktifkan.'
+    ]);
+}
+
+
 
 
 

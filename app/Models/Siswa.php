@@ -23,6 +23,7 @@ class Siswa extends Model
         'no_hp_ortu',
         'alamat',
         'kelas_id',
+        'is_lulus'
     ];
 
     /**

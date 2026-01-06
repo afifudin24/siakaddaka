@@ -34,6 +34,8 @@ return new class extends Migration
               ->constrained('kelas')
               ->onDelete('set null');
 
+        $table->boolean('is_lulus')->default(false);
+
         $table->timestamps();
     });
 }

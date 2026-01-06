@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminSiswaController;
 use App\Http\Controllers\Admin\AdminStaffController;
 use App\Http\Controllers\Admin\AdminDataSekolahController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminDataMengajarController;
 
 
 
@@ -56,6 +57,7 @@ Route::middleware(['auth', 'role:admin'])
        Route::post('/guru/aksi/{id}/update-password',[AdminGuruController::class, 'updatePassword'])->name('guru.updatePassword');
        Route::post('/guru/aksi/{id}/hapus-foto', [AdminGuruController::class, 'hapusFoto'])->name('guru.hapusFoto');
        Route::get('/guru/aksi/{id}/editJabatan', [AdminGuruController::class, 'editJabatanView'])->name('guru.editJabatan');
+       Route::get('/guru/aksi/{id}/editDataMengajar', [AdminGuruController::class, 'editDataMengajarView'])->name('guru.editDataMengajar');
 
 
     // siswa
@@ -99,7 +101,22 @@ Route::middleware(['auth', 'role:admin'])
     Route::post('/users/siswa/aktifkansemua', [AdminUserController::class, 'aktifkanSemuaSiswa'])->name('users.siswa.aktifkansemua');
     Route::post('/users/siswa/nonaktifkansemua', [AdminUserController::class, 'nonaktifkanSemuaSiswa'])->name('users.siswa.nonaktifkansemua');
 
+       Route::get('/users/guru', [AdminUserController::class, 'guru'])->name('users.guru');
+    Route::post('/users/guru/aktifkansemua', [AdminUserController::class, 'aktifkanSemuaGuru'])->name('users.guru.aktifkansemua');
+    Route::post('/users/guru/nonaktifkansemua', [AdminUserController::class, 'nonaktifkanSemuaGuru'])->name('users.guru.nonaktifkansemua');
+
+      Route::get('/users/staff', [AdminUserController::class, 'staff'])->name('users.staff');
+    Route::post('/users/staff/aktifkansemua', [AdminUserController::class, 'aktifkanSemuaStaff'])->name('users.staff.aktifkansemua');
+    Route::post('/users/staff/nonaktifkansemua', [AdminUserController::class, 'nonaktifkanSemuaStaff'])->name('users.staff.nonaktifkansemua');
+
     Route::post('/users/{id}/togglestatus', [AdminUserController::class, 'toggleStatus'])->name('users.toggleStatus');
 
     Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])->name('users.destroy');
+
+    // Data Mengajar
+    Route::get('/guru/{id}/datamengajar', [AdminDataMengajarController::class, 'dataMengajarPerGuru'])->name('guru.datamengajar');
+    Route::get('/datamengajar/kelas-by-mapel', [AdminDataMengajarController::class, 'kelasByMapel'])
+->name('datamengajar.kelasByMapel');
+    Route::post('/guru/{id}/datamengajar/update', [AdminDataMengajarController::class, 'update'])->name('guru.datamengajar.update');
+
     });

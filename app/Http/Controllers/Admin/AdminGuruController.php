@@ -19,7 +19,7 @@ class AdminGuruController extends Controller
 {
   public function index(Request $request)
 {
-    $perPage = $request->query('paginate', 10);
+    $perPage = $request->query('paginate', 20);
     $search  = $request->query('search');
 
   $guru = Guru::with([

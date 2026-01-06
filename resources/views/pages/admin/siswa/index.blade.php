@@ -429,11 +429,15 @@ $(document).on('click', '.btn-delete', function (e) {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (res) {
-                    Swal.fire(
-                        'Berhasil!',
-                        res.message ?? 'Data siswa berhasil dihapus',
-                        'success'
-                    );
+                  Swal.fire({
+    title: 'Berhasil!',
+    text: res.message ?? 'Data siswa berhasil dihapus',
+    icon: 'success',
+    confirmButtonText: 'OK'
+}).then(() => {
+    location.reload();
+});
+
 
                     // 🔥 hapus row tabel
                     row.fadeOut(300, function () {

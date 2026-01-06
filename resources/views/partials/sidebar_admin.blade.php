@@ -240,15 +240,15 @@
             </a>
         </li>
 
-        <li class="{{ request()->is('admin/user-guru*') ? 'active-page' : '' }}">
-            <a href="/admin/user-guru" class="{{ request()->is('admin/user-guru*') ? 'active' : '' }}">
+        <li class="{{ request()->is('admin/users/guru*') ? 'active-page' : '' }}">
+            <a href="/admin/users/guru" class="{{ request()->is('admin/users/guru*') ? 'active' : '' }}">
               <iconify-icon icon="fa-solid:chalkboard-teacher" class="menu-icon"></iconify-icon>
                 <span>Guru</span>
             </a>
         </li>
 
-        <li class="{{ request()->is('admin/user-staff*') ? 'active-page' : '' }}">
-            <a href="/admin/user-staff" class="{{ request()->is('admin/user-staff*') ? 'active' : '' }}">
+        <li class="{{ request()->is('admin/users/staff*') ? 'active-page' : '' }}">
+            <a href="/admin/users/staff" class="{{ request()->is('admin/users/staff*') ? 'active' : '' }}">
                   <iconify-icon icon="icon-park-outline:file-staff-one" class="menu-icon"></iconify-icon>
                 <span>Staff</span>
             </a>

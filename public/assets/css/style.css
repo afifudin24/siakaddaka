@@ -15837,3 +15837,69 @@ td.fc-header-center {
   color: #fff !important;
   border-color: var(--brand) !important;
 }
+
+/* supaya item select2 tidak full width */
+.select2-container--bootstrap-5
+.select2-selection--multiple
+.select2-selection__choice {
+    width: auto !important;
+    max-width: 100%;
+}
+
+/* biar item sejajar ke samping */
+.select2-container--bootstrap-5
+.select2-selection--multiple {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center;
+}
+
+/* jarak antar item */
+.select2-container--bootstrap-5
+.select2-selection__choice {
+    margin-top: 4px;
+    margin-right: 4px;
+}
+.select2-container .select2-selection--multiple .select2-selection__rendered{
+  display: inline-flex !important;
+}
+
+/* container utama */
+.select2-container--bootstrap-5
+.select2-selection--multiple {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 38px; /* tinggi normal input */
+}
+
+/* chip */
+.select2-selection__choice {
+    width: auto !important;
+    margin: 2px 4px 2px 0;
+}
+
+/* INPUT / SEARCH SELECT2 */
+.select2-container--bootstrap-5
+.select2-selection__search {
+    flex: 0 0 auto !important;
+    margin-left: auto; /* dorong ke kanan */
+}
+
+/* jangan biarkan input turun */
+.select2-container--bootstrap-5
+.select2-selection__search input {
+    width: 120px !important;
+    min-width: 80px;
+}
+.select2-dropdown.select2-dropdown--below{
+  padding-top: 10px !important;
+  margin-top: 0px !important;
+  margin-left: 0px !important;
+}
+
+textarea.select2-search__field{
+  margin-top: 0px !important;
+  vertical-align: middle !important;
+  height: 24px !important;
+}

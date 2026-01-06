@@ -26,7 +26,7 @@
         onchange="document.getElementById('perPageForm').submit();">
         
         @for ($i = 10; $i <= 100; $i += 10)
-            <option value="{{ $i }}" {{ request('paginate', 10) == $i ? 'selected' : '' }}>
+            <option value="{{ $i }}" {{ request('paginate', 20) == $i ? 'selected' : '' }}>
                 {{ $i }}
             </option>
         @endfor
@@ -34,7 +34,7 @@
 </form>
                    <form method="GET" class="navbar-search">
     {{-- Pertahankan paginate saat melakukan search --}}
-    <input type="hidden" name="paginate" value="{{ request('paginate', 10) }}">
+    <input type="hidden" name="paginate" value="{{ request('paginate', 20) }}">
 
     <input type="text" class="bg-base h-40-px w-auto" 
            name="search" 
@@ -163,9 +163,9 @@
     @foreach ($groups as $mapelId => $items)
         <tr>
             {{-- Tampilkan nama guru hanya di baris pertama --}}
-            @if ($loop->first)
+       
                 <td style="width : 20px">{{ $loop->iteration }}</td>
-            @endif
+          
 
             {{-- Nama Mapel --}}
             <td style="width:70px; text-align: left; padding: 8px; white-space: normal !important; 
@@ -192,8 +192,8 @@
                                 <div class="row">
                                   
                                     <div class="col-md-12">
-                                      <a href="{{route('admin.guru.editJabatan', $gr->id)}}" class="bg-primary-50 text-primary-600 bg-hover-primary-600 hover-text-white p-10 text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center justify-content-center mt-16 fw-medium gap-2 w-100"> 
-                                    Jabatan
+                                      <a href="{{route('admin.guru.datamengajar', $gr->id)}}" class="bg-primary-50 text-primary-600 bg-hover-primary-600 hover-text-white p-10 text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center justify-content-center mt-16 fw-medium gap-2 w-100"> 
+                                    Data Mengajar
                                     <iconify-icon icon="solar:alt-arrow-right-linear" class="icon text-xl line-height-1"></iconify-icon>
                                 </a>
                                
