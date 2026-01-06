@@ -15831,3 +15831,9 @@ td.fc-header-center {
 .hover-text-brand:hover, .btn.hover-text-brand:hover {
   color: var(--brand) !important;
 }
+
+.list-group-item-action.active{
+  background-color: var(--brand) !important;
+  color: #fff !important;
+  border-color: var(--brand) !important;
+}

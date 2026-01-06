@@ -94,5 +94,11 @@ Route::middleware(['auth', 'role:admin'])
     Route::post('/users/admin/aktifkansemua', [AdminUserController::class, 'aktifkanSemuaAdmin'])->name('users.admin.aktifkansemua');
     Route::post('/users/admin/nonaktifkansemua', [AdminUserController::class, 'nonaktifkanSemuaAdmin'])->name('users.admin.nonaktifkansemua');
 
+     Route::get('/users/siswa', [AdminUserController::class, 'siswa'])->name('users.admin');
+    Route::post('/users/siswa/aktifkansemua', [AdminUserController::class, 'aktifkanSemuaSiswa'])->name('users.siswa.aktifkansemua');
+    Route::post('/users/siswa/nonaktifkansemua', [AdminUserController::class, 'nonaktifkanSemuaSiswa'])->name('users.siswa.nonaktifkansemua');
+
     Route::post('/users/{id}/togglestatus', [AdminUserController::class, 'toggleStatus'])->name('users.toggleStatus');
+
+    Route::delete('/users/{id}', [AdminUserController::class, 'destroy'])->name('users.destroy');
     });

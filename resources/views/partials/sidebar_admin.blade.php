@@ -233,8 +233,8 @@
             </a>
         </li>
 
-        <li class="{{ request()->is('admin/user-siswa*') ? 'active-page' : '' }}">
-            <a href="/admin/user-siswa" class="{{ request()->is('admin/user-siswa*') ? 'active' : '' }}">
+        <li class="{{ request()->is('admin/users/siswa*') ? 'active-page' : '' }}">
+            <a href="/admin/users/siswa" class="{{ request()->is('admin/users/siswa*') ? 'active' : '' }}">
               <iconify-icon icon="ph:student-bold" class="menu-icon"></iconify-icon>
                 <span>Siswa</span>
             </a>

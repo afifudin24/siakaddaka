@@ -5,7 +5,7 @@
     <div class="dashboard-main-body">
 
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-            <h6 class="fw-semibold mb-0">Staff</h6>
+            <h6 class="fw-semibold mb-0">Users Siswa</h6>
             <ul class="d-flex align-items-center gap-2">
                 <li class="fw-medium">
                     <a href="index.html" class="d-flex align-items-center gap-1 hover-text-primary">
@@ -20,7 +20,7 @@
 
         <div class="card basic-data-table">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Data Users Admin</h5>
+                <h5 class="card-title mb-0">Data Users Siswa</h5>
                 <div>
                     {{-- <div class="d-flex gap-2">
                     <a href="javascript:void(0)"
@@ -89,7 +89,7 @@
 
     <input type="text" class="bg-base h-40-px w-auto" 
            name="search" 
-           placeholder="Cari User Admin"
+           placeholder="Cari User Siswa"
            value="{{ request('search') }}">
  <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
     <button class="btn btn-primary  btn-sm h-40-px px-12 radius-12">
@@ -103,7 +103,7 @@
     {{-- Aktifkan Semua --}}
     <button type="button"
         class="btn btn-success text-sm btn-sm p-1 radius-4 d-flex align-items-center gap-2 btn-toggle-all"
-        data-url="{{ route('admin.users.admin.aktifkansemua') }}"
+        data-url="{{ route('admin.users.siswa.aktifkansemua') }}"
         data-action="activate">
         <iconify-icon icon="mdi:toggle-switch" class="text-xl"></iconify-icon>
         <span class="d-none d-md-inline">Aktifkan Semua</span>
@@ -112,7 +112,7 @@
     {{-- Nonaktifkan Semua --}}
     <button type="button"
         class="btn btn-danger text-sm btn-sm p-1 radius-4 d-flex align-items-center gap-2 btn-toggle-all"
-        data-url="{{ route('admin.users.admin.nonaktifkansemua') }}"
+        data-url="{{ route('admin.users.siswa.nonaktifkansemua') }}"
         data-action="deactivate">
         <iconify-icon icon="mdi:toggle-switch-off" class="text-xl"></iconify-icon>
         <span class="d-none d-md-inline">Nonaktifkan Semua</span>
@@ -154,7 +154,7 @@
                             </thead>
 
                             <tbody>
-                                @foreach ($admin as $s)
+                                @foreach ($siswa as $s)
                                     <tr id="user-{{ $s->id }}">
                                        
                                         <td class="text-center" style="width : 5px !important; padding: 7px; text-align: center">
@@ -226,11 +226,7 @@
     @endif
 </a>
 {{-- tombol hapus --}}
-<button 
-    class="btn-delete bg-danger-focus text-danger-main w-32-px h-32-px rounded-circle d-inline-flex align-items-center justify-content-center"
-    data-id="{{ $s->id }}">
-    <iconify-icon icon="ic:baseline-delete"></iconify-icon>
-</button>
+
     </div>
 
 
@@ -245,15 +241,15 @@
    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mt-24">
                  <span>
     Menampilkan
-    {{ $admin->firstItem() ?? 0 }} 
+    {{ $siswa->firstItem() ?? 0 }} 
     sampai 
-    {{ $admin->lastItem() ?? 0 }} 
+    {{ $siswa->lastItem() ?? 0 }} 
     dari
-    {{ $admin->total() }} 
+    {{ $siswa->total() }} 
     data
 </span>
 
-                    {{ $admin->links() }}
+                    {{ $siswa->links() }}
                 </div>
             </div>
         </div>
@@ -369,8 +365,8 @@ $(document).on('click', '.btn-toggle-all', function () {
         : 'Nonaktifkan Semua?';
 
     let text = action === 'activate'
-        ? 'Semua admin akan diaktifkan'
-        : 'Semua admin akan dinonaktifkan';
+        ? 'Semua siswa akan diaktifkan'
+        : 'Semua siswa akan dinonaktifkan';
 
     Swal.fire({
         title: title,

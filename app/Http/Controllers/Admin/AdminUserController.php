@@ -80,6 +80,7 @@ public function nonaktifkanSemuaAdmin()
     ]);
 }
 
+
 public function toggleStatus($id)
 {
     $user = User::findOrFail($id);
@@ -92,5 +93,75 @@ public function toggleStatus($id)
     ]);
 
 }
+
+// Siswa
+    public function siswa(Request $request)
+{
+    $query = User::where('role', 'siswa');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Status
+    |--------------------------------------------------------------------------
+    | aktif        -> status = true
+    | tidak aktif  -> status = false
+    | all / null   -> tidak difilter
+    */
+    if ($request->filled('status') && $request->status !== 'all') {
+        if ($request->status === 'true') {
+            $query->where('is_active', true);
+        } elseif ($request->status === 'false') {
+            $query->where('is_active', false);
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Paginate
+    |--------------------------------------------------------------------------
+    */
+    $perPage = $request->per_page ?? 10;
+
+    $siswa = $query
+        ->orderBy('created_at', 'desc')
+        ->paginate($perPage)
+        ->withQueryString(); // penting!
+
+    return view('pages.admin.users.siswa', compact('siswa'));
+}
+    public function aktifkanSemuaSiswa()
+{
+    User::where('role', 'siswa')->update(['is_active' => true]);
+
+    // pake response json ajax
+    return response()->json([
+        'status' => true,
+        'message' => 'Semua pengguna siswa telah diaktifkan.'
+    ]);
+
+   
+}
+public function nonaktifkanSemuaSiswa()
+{
+    User::where('role', 'siswa')->update(['is_active' => false]);
+
+    // pake response json ajax
+    return response()->json([
+        'status' => true,
+        'message' => 'Semua pengguna siswa telah dinonaktifkan.'
+    ]);
+}
+
+
+
+public function destroy($id){
+    $user = User::findOrFail($id);
+    $user->delete();
+    return response()->json([
+        'status' => true,
+        'message' => 'Pengguna berhasil dihapus.'
+    ]);
+}
+
 
 }
