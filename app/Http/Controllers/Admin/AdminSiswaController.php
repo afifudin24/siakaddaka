@@ -162,24 +162,22 @@ public function processChunk(Request $request)
         return response()->json(['done' => true]);
     }
 
-    $limit = 10; // 🔥 10 row per request
+    $limit = 5; // 🔥 10 row per request
     $slice = array_slice($rows, $request->offset, $limit);
 
     foreach ($slice as $row) {
         // mapping sesuai kolom excel
-        $username = $row[3];
-
+        $username = $row[8];
         if (\App\Models\User::where('username', $username)->exists()) {
             continue;
         }
-
         $user = \App\Models\User::create([
             'nama' => $row[0],
             'email' => $username.'@sekolah.test',
             'username' => $username,
             'role' => 'siswa',
-            'password' => Hash::make($row[4]),
-            'password_text' => $row[4],
+            'password' => Hash::make($row[9]),
+            'password_text' => $row[9],
         ]);
 
         \App\Models\Siswa::create([
@@ -187,7 +185,7 @@ public function processChunk(Request $request)
             'nama' => $row[0],
             'nis' => $row[1],
             'nisn' => $row[2],
-            'tgl_lahir' => $row[5],
+            'tgl_lahir' => $row[4],
         ]);
     }
 
