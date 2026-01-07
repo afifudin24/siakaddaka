@@ -88,7 +88,7 @@
                     @foreach($guru as $key => $gr)
                         
                    
-                    <div class="col-xxl-3 col-md-4 user-grid-card ">
+                    <div class="col-xxl-4 col-md-4 user-grid-card ">
                         <div class="position-relative border radius-16 overflow-hidden">
                           @php
     $foto = $gr->user->foto_unggulan;
@@ -143,7 +143,7 @@
                                 <div>
                                     <table class="table basic-border-table mb-0" style="width: 100%">
                                         <thead>
-                                            <th style="width : 20px;">NO</th>
+                                            <th style="width : 10px !important;">NO</th>
                                             <th style="width : 70px;">Mapel</th>
                                             <th>Kelas</th>
                                         </thead>
@@ -162,9 +162,9 @@
 @else
     @foreach ($groups as $mapelId => $items)
         <tr>
-            {{-- Tampilkan nama guru hanya di baris pertama --}}
+        
        
-                <td style="width : 20px">{{ $loop->iteration }}</td>
+                <td style="padding:0 0px !important; width : 10px !important">{{ $loop->iteration }}</td>
           
 
             {{-- Nama Mapel --}}
@@ -173,7 +173,7 @@
     vertical-align: top;">{{ $items->first()->mapel->nama_mapel }}</td>
 
             {{-- Daftar kelas --}}
-            <td style="width:70px; text-align: left; padding: 8px; white-space: normal !important; 
+            <td style="width:80px; text-align: left; padding: 8px; white-space: normal !important; 
     word-wrap: break-word; 
     vertical-align: top;">
                 @foreach ($items as $dm)

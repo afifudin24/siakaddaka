@@ -179,6 +179,7 @@
     $('#dataTableKelas').DataTable({
           responsive: true,
     autoWidth: false,
+      "pageLength": 50,
     sorting: false,
     ordering: false,
     // scrollX: true,
