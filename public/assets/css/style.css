@@ -15903,3 +15903,7 @@ textarea.select2-search__field{
   vertical-align: middle !important;
   height: 24px !important;
 }
+
+.text-brand{
+  color: var(--brand);
+}

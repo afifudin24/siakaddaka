@@ -39,12 +39,14 @@
     @csrf
 
     <div class="card shadow-sm border-0">
-          <div class="alert alert-info bg-info-100  mb-2 text-info-600 border-info-600 border-start-width-4-px border-top-0 border-end-0 border-bottom-0 px-16 py-1 mb-0  text-lg radius-4 d-flex align-items-center justify-content-center" role="alert">
+          <div class="alert alert-info bg-info-100  mb-2 text-info-600 border-info-600 border-start-width-4-px border-top-0 border-end-0 border-bottom-0 px-16 py-1 mb-0  text-lg radius-4  align-items-center justify-content-center" role="alert">
                         <div class="d-flex gap-2  justify-content-start align-items-center text-left">
                             <iconify-icon icon="ic:baseline-info" class="text-xl"></iconify-icon>
                             <p class="mb-0 fs-6">Pastikan gunakan template yang sudah disediakan</p>
+                         
                         
                         </div>
+                           <p class="mb-0 fs-6 text-center">Untuk kestabilan, impor per 50-100 data</p>
                        
                     </div>
         <div class="card-body text-center p-4">
@@ -247,14 +249,30 @@ function processNext() {
         updateProgress(res.processed, res.total);
         offset = res.processed;
 
-        if (!res.done) {
-            processNext();
-        } else {
-            Swal.fire('Selesai!', 'Import data berhasil', 'success');
-            offset = 0;
-            importKey = null;
-            location.reload();
-        }
+   if (!res.done) {
+    processNext();
+} else {
+    Swal.fire({
+    icon: 'success',
+    title: 'Selesai!',
+    html: `
+        <b>Import data berhasil 🎉</b><br>
+        <small>
+            Total siswa berhasil diimport: 
+            <b>${res.processed}</b> dari <b>${res.total}</b>
+        </small>
+    `,
+    confirmButtonText: 'OK'
+}).then((result) => {
+    if (result.isConfirmed) {
+        offset = 0;
+        importKey = null;
+        location.reload();
+    }
+});
+
+}
+
     });
 }
 </script>
