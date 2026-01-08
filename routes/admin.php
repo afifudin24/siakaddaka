@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\AdminStaffController;
 use App\Http\Controllers\Admin\AdminDataSekolahController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminDataMengajarController;
+use App\Http\Controllers\Admin\AdminPengumumanController;
+
 
 
 
@@ -119,4 +121,7 @@ Route::middleware(['auth', 'role:admin'])
 ->name('datamengajar.kelasByMapel');
     Route::post('/guru/{id}/datamengajar/update', [AdminDataMengajarController::class, 'update'])->name('guru.datamengajar.update');
 
+
+    // Pengumuman
+    Route::resource('/pengumuman', AdminPengumumanController::class);
     });

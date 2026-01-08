@@ -14,8 +14,12 @@ class PengumumanTarget extends Model
         'target_id'
     ];
 
-    public function announcement()
+    public function pengumuman()
     {
-        return $this->belongsTo(Announcement::class);
+        return $this->belongsTo(Pengumuman::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'target_id');
     }
 }

@@ -74,4 +74,9 @@ class User extends Authenticatable
     public function logUser(){
         return $this->hasMany(LogUser::class);
     }
+
+    public function target()
+    {
+        return $this->hasMany(PengumumanTarget::class, 'target_id');
+    }
 }

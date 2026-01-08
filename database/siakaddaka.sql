@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Waktu pembuatan: 08 Jan 2026 pada 09.24
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 08 Jan 2026 pada 10.48
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -2020,7 +2020,8 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (1399, 1, 'created', 'User baru dibuat: SYAMSURI IKHSAN (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:16:37', '2026-01-07 19:16:37'),
 (1400, 1, 'created', 'User baru dibuat: TEGAR AGUSTIAWAN (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:16:38', '2026-01-07 19:16:38'),
 (1401, 1, 'created', 'User baru dibuat: TIO (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:16:39', '2026-01-07 19:16:39'),
-(1402, 1, 'created', 'User baru dibuat: WIRANTO (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:16:39', '2026-01-07 19:16:39');
+(1402, 1, 'created', 'User baru dibuat: WIRANTO (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:16:39', '2026-01-07 19:16:39'),
+(1403, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-08 01:57:19', '2026-01-08 01:57:19');
 
 -- --------------------------------------------------------
 
@@ -2195,6 +2196,60 @@ CREATE TABLE `pengumpulan_tugas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pengumuman`
+--
+
+CREATE TABLE `pengumuman` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `created_by` bigint(20) UNSIGNED NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `start_at` timestamp NULL DEFAULT NULL,
+  `end_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pengumuman`
+--
+
+INSERT INTO `pengumuman` (`id`, `title`, `content`, `created_by`, `is_active`, `start_at`, `end_at`, `created_at`, `updated_at`) VALUES
+(1, 'Pemeliharaan Sistem', 'Sistem akan mengalami maintenance pada hari Sabtu pukul 22:00 WIB. Mohon simpan pekerjaan Anda.', 1, 1, '2026-01-08 08:56:03', '2026-01-10 08:56:03', '2026-01-08 08:56:03', '2026-01-08 08:56:03'),
+(2, 'Rapat Evaluasi Bulanan', 'Mengundang seluruh staff pengajar untuk hadir di Ruang Meeting A besok pagi.', 1, 1, '2026-01-08 08:56:03', NULL, '2026-01-08 08:56:03', '2026-01-08 08:56:03'),
+(3, 'Peringatan Absensi', 'Halo, absensi Anda bulan ini di bawah batas minimum. Harap hubungi HRD.', 1, 1, '2026-01-08 08:56:03', NULL, '2026-01-08 08:56:03', '2026-01-08 08:56:03'),
+(4, 'Selamat Tahun Baru 2024', 'Semoga tahun ini membawa berkah.', 1, 0, '2023-12-31 17:00:00', '2024-01-31 16:59:59', '2026-01-08 08:56:03', '2026-01-08 08:56:03');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pengumuman_target`
+--
+
+CREATE TABLE `pengumuman_target` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `pengumuman_id` bigint(20) UNSIGNED NOT NULL,
+  `target_type` enum('all','role','user') NOT NULL,
+  `target_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `target_role` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pengumuman_target`
+--
+
+INSERT INTO `pengumuman_target` (`id`, `pengumuman_id`, `target_type`, `target_id`, `target_role`, `created_at`, `updated_at`) VALUES
+(1, 1, 'all', NULL, NULL, '2026-01-08 08:56:14', '2026-01-08 08:56:14'),
+(2, 2, 'role', NULL, 'guru', '2026-01-08 08:56:14', '2026-01-08 08:56:14'),
+(3, 3, 'user', 105, NULL, '2026-01-08 08:56:14', '2026-01-08 08:56:14'),
+(4, 4, 'all', NULL, NULL, '2026-01-08 08:56:14', '2026-01-08 08:56:14');
 
 -- --------------------------------------------------------
 
@@ -5127,6 +5182,22 @@ ALTER TABLE `pengumpulan_tugas`
   ADD KEY `pengumpulan_tugas_siswa_id_foreign` (`siswa_id`);
 
 --
+-- Indeks untuk tabel `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pengumuman_created_by_foreign` (`created_by`);
+
+--
+-- Indeks untuk tabel `pengumuman_target`
+--
+ALTER TABLE `pengumuman_target`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pengumuman_target_pengumuman_id_foreign` (`pengumuman_id`),
+  ADD KEY `pengumuman_target_type_id_index` (`target_type`,`target_id`),
+  ADD KEY `target_id` (`target_id`);
+
+--
 -- Indeks untuk tabel `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
@@ -5353,7 +5424,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1403;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1404;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
@@ -5390,6 +5461,18 @@ ALTER TABLE `pembayaran`
 --
 ALTER TABLE `pengumpulan_tugas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `pengumuman_target`
+--
+ALTER TABLE `pengumuman_target`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -5588,6 +5671,19 @@ ALTER TABLE `pembayaran`
 ALTER TABLE `pengumpulan_tugas`
   ADD CONSTRAINT `pengumpulan_tugas_siswa_id_foreign` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `pengumpulan_tugas_tugas_id_foreign` FOREIGN KEY (`tugas_id`) REFERENCES `tugas` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  ADD CONSTRAINT `pengumuman_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `pengumuman_target`
+--
+ALTER TABLE `pengumuman_target`
+  ADD CONSTRAINT `pengumuman_target_ibfk_1` FOREIGN KEY (`target_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `pengumuman_target_pengumuman_id_foreign` FOREIGN KEY (`pengumuman_id`) REFERENCES `pengumuman` (`id`) ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `semesters`

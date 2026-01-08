@@ -15,7 +15,8 @@ return new class extends Migration {
                   ->cascadeOnDelete();
 
             $table->enum('target_type', ['all', 'role', 'user']);
-            $table->unsignedBigInteger('target_id')->nullable();
+          $table->string('target_id')->nullable();
+
 
             $table->timestamps();
 
