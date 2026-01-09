@@ -154,8 +154,8 @@
 </li>
 {{-- Data Akademik End --}}
 {{-- Pengumuman Start --}}
-<li class="{{ request()->is('admin/pengumuman*') ? 'active-page' : '' }}">
-    <a href="/admin/pengumuman" class="{{ request()->is('admin/pengumuman*') ? 'active' : '' }}">
+<li class="{{ request()->is('admin/pengumuman*') ? 'active-page active' : '' }}">
+    <a href="/admin/pengumuman" class="{{ request()->is('admin/pengumuman*') ? 'active active-page' : '' }}">
         <iconify-icon icon="streamline-plump:announcement-megaphone" class="menu-icon"></iconify-icon>
         <span>Pengumuman</span>
     </a>

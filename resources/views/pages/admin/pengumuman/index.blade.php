@@ -23,7 +23,7 @@
                 <h5 class="card-title mb-0">Data Pengumuman</h5>
                 <div>
                     <div class="d-flex gap-2">
-                        <a href="{{ route('admin.kelas.create') }}"
+                        <a href="{{ route('admin.pengumuman.create') }}"
                             class="btn btn-primary text-sm btn-sm p-1 radius-4 d-flex align-items-center gap-2">
                             <iconify-icon icon="lucide:plus" class="text-xl"></iconify-icon>
                             <span class="d-none d-md-inline">Tambah</span>
@@ -36,6 +36,39 @@
 
             </div>
             <div class="card-body">
+                 <div class="d-flex gap-2 mb-24">
+                                   <form id="perPageForm" method="GET">
+
+    {{-- Pertahankan parameter search --}}
+    <input type="hidden" name="search" value="{{ request('search') }}">
+
+    <select name="paginate" class="form-select form-select-sm w-auto ps-12 py-6 radius-12 h-40-px"
+        onchange="document.getElementById('perPageForm').submit();">
+
+        @for ($i = 10; $i <= 100; $i += 10)
+            <option value="{{ $i }}" {{ request('paginate', 20) == $i ? 'selected' : '' }}>
+                {{ $i }}
+            </option>
+        @endfor
+    </select>
+
+</form>
+                  <form method="GET" class="navbar-search d-flex gap-2 align-items-center">
+
+    {{-- Pertahankan paginate saat melakukan search --}}
+    <input type="hidden" name="paginate" value="{{ request('paginate', 10) }}">
+
+    <input type="text" class="bg-base h-40-px w-auto" 
+           name="search" 
+           placeholder="Cari pengumuman"
+           value="{{ request('search') }}">
+ <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
+    <button class="btn btn-primary  btn-sm h-40-px px-12 radius-12">
+        <iconify-icon icon="ion:search-outline"></iconify-icon>
+    </button>
+
+</form>
+</div>
                 @forelse ($pengumumans as $item)
 <div class="card shadow-sm mb-3" id="pengumuman-{{ $item->id }}">
     <div class="card-body">
@@ -46,7 +79,8 @@
                 <h6 class="mb-1">{{ $item->title }}</h6>
                 <p>{{ $item->content }}</p>
                 <small class="text-muted">
-                    {{ $item->created_at->format('d M Y, H:i') }}
+                    Berlaku : 
+                    {{ $item->start_at->format('d M Y, H:i') }} s/d {{ $item->end_at->format('d M Y, H:i') }}
                 </small>
             </div>
 
@@ -56,15 +90,15 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#" class="dropdown-item btn-edit"
+                        <a href="#" class="dropdown-item d-flex align-items-center btn-edit gap-1"
                            data-id="{{ $item->id }}">
-                           ✏️ Edit
+                           <iconify-icon icon="ic:round-edit" class="icon"></iconify-icon> Edit
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="dropdown-item text-danger btn-delete"
+                    <li class="hover-danger">
+                        <a href="#" class="dropdown-item text-danger btn-delete d-flex align-items-center gap-1"
                            data-id="{{ $item->id }}">
-                           🗑️ Hapus
+                           <iconify-icon icon="tabler:trash" class="icon"></iconify-icon> Hapus
                         </a>
                     </li>
                 </ul>

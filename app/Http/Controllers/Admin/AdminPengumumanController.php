@@ -11,6 +11,7 @@ use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Staff;
+use App\Models\User;
 use App\Models\Pengumuman;
 use App\Models\PengumumanTarget;
 
@@ -25,7 +26,7 @@ class AdminPengumumanController extends Controller
 public function index(Request $request)
 {
     $search  = $request->input('search');
-    $perPage = $request->input('perpage', 20);
+    $perPage = $request->input('paginate', 20);
 
     $pengumumans = Pengumuman::with('targets.user')
         ->when($search, function ($query) use ($search) {
@@ -41,6 +42,11 @@ public function index(Request $request)
         'search',
         'perPage'
     ));
+}
+
+public function create(){
+    $users = User::all();
+    return view('pages.admin.pengumuman.create', compact('users'));
 }
 
     /**
