@@ -15853,7 +15853,9 @@ td.fc-header-center {
     flex-wrap: wrap !important;
     align-items: center;
 }
-
+.select2-selection__rendered{
+  flex-wrap : wrap !important;
+}
 /* jarak antar item */
 .select2-container--bootstrap-5
 .select2-selection__choice {

@@ -136,7 +136,10 @@
         <div class="d-flex justify-content-between align-items-center">
            {{-- TARGET --}}
         <div class="d-flex flex-wrap gap-1">
-            @foreach ($item->targets as $target)
+        @php
+            $target = $item->target;
+        @endphp
+        
                 @if ($target->target_type === 'all')
                     <span class="badge bg-primary">
                         Semua User
@@ -146,18 +149,26 @@
                         {{ $target->target_role }}
                     </span>
                 @else
-                <div class="d-flex gap-1"> 
-                    <span class="badge bg-secondary">
-                         {{ $target->user->nama }}
-                      
-                    </span>
-                  
-                    <span class="badge bg-info">
-                          {{ $target->user->role }}
-                    </span>
-                </div>
+               
+              <div class="d-flex gap-1 flex-wrap">
+    @foreach ($target->users as $user)
+    @if($user->role == 'admin')
+  <span class="badge bg-secondary text-capitalize">{{ $user->nama }} | {{ $user->role }}</span>
+    @elseif($user->role == 'guru')
+ <span class="badge bg-info text-capitalize">{{ $user->nama }} | {{ $user->role }}</span>
+    @elseif($user->role == 'siswa')
+    <span class="badge bg-warning text-dark text-capitalize">{{ $user->nama }} | {{ $user->role }}</span>
+    @else
+   <span class="badge bg-success text-capitalize">{{ $user->nama }} | {{ $user->role }}</span>
+    @endif
+
+      
+    
+    @endforeach
+</div>
+
                 @endif
-            @endforeach
+         
         </div>
 
         {{-- status --}}

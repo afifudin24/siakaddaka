@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Jan 2026 pada 10.48
+-- Waktu pembuatan: 10 Jan 2026 pada 11.02
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -179,7 +179,7 @@ CREATE TABLE `data_sekolah` (
 --
 
 INSERT INTO `data_sekolah` (`id`, `nama_sekolah`, `nama_singkatan`, `npsn`, `status`, `jenjang`, `alamat`, `kecamatan`, `yayasan_sekolah`, `email_sekolah`, `telepon`, `logo`, `logo_dark`, `logo_icon`, `logo_surat`, `gambar_unggulan`, `gambar_unggulan_2`, `website`, `banner`, `kepala_sekolah`, `nip_kepala_sekolah`, `deskripsi_singkat`, `visi`, `misi`, `created_at`, `updated_at`) VALUES
-(1, 'SMK Darussalam Karangpucung', 'SMK DAKA', NULL, 'Swasta', 'SMK', 'Jl. Raya Karangpucung - Majenang KM. 02 No. 08 Kec. Karangpucung, Kab. Cilacap', 'Karangpucung', 'YAYASAN DARUSSALAM AL-FATAH KABUPATEN CILACAP', 'smkdkrpc@gmail.com', '0281-123456', 'sekolah/lMrvFdwsncLf54g0jKtjkajsoZFMXwf2ZM4Hbfb1.jpg', 'sekolah/3KpVwkvSAhpv9V7hpJIu5NjvrDLmT1vBAhSvODAK.png', 'sekolah/ttTYorqbIFKiEudqyiUOmYP6ciRCz046qutGRmSR.png', 'sekolah/kMEBGJsMOjKubRSOaFBA1Q5eiqAgeSixytz5PxQO.png', 'sekolah/GzR6XFaXd8CUdJqxMePf9V5TW5Fimq6qy8VqiDuz.png', 'sekolah/0SOgWPb5xauwVqbZRDCgkaOkqEDuQzUCmlGltEoH.png', 'https://www.smkdaka.sch.id', NULL, 'Dr. Risa Fita Hapsari, S.Pd, M.M.', NULL, 'SMK Sakti', 'Menjadi sekolah unggul yang berkarakter dan berprestasi.', '[\"Tes aja\"]', '2025-11-21 20:36:44', '2026-01-02 19:16:16');
+(1, 'SMK Darussalam Karangpucung', 'SMK DAKA', '20331764', 'Swasta', 'SMK', 'Jl. Raya Karangpucung - Majenang KM. 02 No. 08 Kec. Karangpucung, Kab. Cilacap', 'Karangpucung', 'YAYASAN DARUSSALAM AL-FATAH KABUPATEN CILACAP', 'smkdkrpc@gmail.com', '0280-6261729', 'sekolah/lMrvFdwsncLf54g0jKtjkajsoZFMXwf2ZM4Hbfb1.jpg', 'sekolah/3KpVwkvSAhpv9V7hpJIu5NjvrDLmT1vBAhSvODAK.png', 'sekolah/ttTYorqbIFKiEudqyiUOmYP6ciRCz046qutGRmSR.png', 'sekolah/kMEBGJsMOjKubRSOaFBA1Q5eiqAgeSixytz5PxQO.png', 'sekolah/GzR6XFaXd8CUdJqxMePf9V5TW5Fimq6qy8VqiDuz.png', 'sekolah/0SOgWPb5xauwVqbZRDCgkaOkqEDuQzUCmlGltEoH.png', 'https://www.smkdaka.sch.id', NULL, 'Dr. Risa Fita Hapsari, S.Pd, M.M.', NULL, 'SMK Sakti', 'Menjadi sekolah unggul yang berkarakter dan berprestasi.', '[\"Tes aja\"]', '2025-11-21 20:36:44', '2026-01-10 01:29:18');
 
 -- --------------------------------------------------------
 
@@ -2021,7 +2021,8 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (1400, 1, 'created', 'User baru dibuat: TEGAR AGUSTIAWAN (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:16:38', '2026-01-07 19:16:38'),
 (1401, 1, 'created', 'User baru dibuat: TIO (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:16:39', '2026-01-07 19:16:39'),
 (1402, 1, 'created', 'User baru dibuat: WIRANTO (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:16:39', '2026-01-07 19:16:39'),
-(1403, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-08 01:57:19', '2026-01-08 01:57:19');
+(1403, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-08 01:57:19', '2026-01-08 01:57:19'),
+(1404, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-09 18:17:24', '2026-01-09 18:17:24');
 
 -- --------------------------------------------------------
 
@@ -2223,7 +2224,8 @@ INSERT INTO `pengumuman` (`id`, `title`, `content`, `created_by`, `is_active`, `
 (1, 'Pemeliharaan Sistem', 'Sistem akan mengalami maintenance pada hari Sabtu pukul 22:00 WIB. Mohon simpan pekerjaan Anda.', 1, 1, '2026-01-08 08:56:03', '2026-01-10 08:56:03', '2026-01-08 08:56:03', '2026-01-08 08:56:03'),
 (2, 'Rapat Evaluasi Bulanan', 'Mengundang seluruh staff pengajar untuk hadir di Ruang Meeting A besok pagi.', 1, 1, '2026-01-08 08:56:03', NULL, '2026-01-08 08:56:03', '2026-01-08 08:56:03'),
 (3, 'Peringatan Absensi', 'Halo, absensi Anda bulan ini di bawah batas minimum. Harap hubungi HRD.', 1, 1, '2026-01-08 08:56:03', NULL, '2026-01-08 08:56:03', '2026-01-08 08:56:03'),
-(4, 'Selamat Tahun Baru 2024', 'Semoga tahun ini membawa berkah.', 1, 0, '2023-12-31 17:00:00', '2024-01-31 16:59:59', '2026-01-08 08:56:03', '2026-01-08 08:56:03');
+(9, 'twess', 'tess', 1, 1, '2026-01-09 18:32:53', '2026-01-09 18:32:53', '2026-01-09 18:32:53', '2026-01-09 18:32:53'),
+(10, 'tesyyyyy', 'tesss', 1, 1, '2026-01-10 00:51:57', '2026-01-10 00:51:57', '2026-01-09 21:40:24', '2026-01-10 00:51:57');
 
 -- --------------------------------------------------------
 
@@ -2235,21 +2237,22 @@ CREATE TABLE `pengumuman_target` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `pengumuman_id` bigint(20) UNSIGNED NOT NULL,
   `target_type` enum('all','role','user') NOT NULL,
-  `target_id` bigint(20) UNSIGNED DEFAULT NULL,
   `target_role` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `target_user` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`target_user`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `pengumuman_target`
 --
 
-INSERT INTO `pengumuman_target` (`id`, `pengumuman_id`, `target_type`, `target_id`, `target_role`, `created_at`, `updated_at`) VALUES
-(1, 1, 'all', NULL, NULL, '2026-01-08 08:56:14', '2026-01-08 08:56:14'),
-(2, 2, 'role', NULL, 'guru', '2026-01-08 08:56:14', '2026-01-08 08:56:14'),
-(3, 3, 'user', 105, NULL, '2026-01-08 08:56:14', '2026-01-08 08:56:14'),
-(4, 4, 'all', NULL, NULL, '2026-01-08 08:56:14', '2026-01-08 08:56:14');
+INSERT INTO `pengumuman_target` (`id`, `pengumuman_id`, `target_type`, `target_role`, `created_at`, `updated_at`, `target_user`) VALUES
+(1, 1, 'all', NULL, '2026-01-08 08:56:14', '2026-01-08 08:56:14', NULL),
+(2, 2, 'role', 'guru', '2026-01-08 08:56:14', '2026-01-08 08:56:14', NULL),
+(3, 3, 'user', NULL, '2026-01-08 08:56:14', '2026-01-08 08:56:14', '[3, 5, 8]\n'),
+(5, 9, 'all', NULL, '2026-01-09 18:32:53', '2026-01-09 18:32:53', NULL),
+(6, 10, 'user', NULL, '2026-01-09 21:40:24', '2026-01-10 00:51:57', '[1]');
 
 -- --------------------------------------------------------
 
@@ -3191,33 +3194,33 @@ INSERT INTO `siswa` (`id`, `user_id`, `nama`, `nis`, `nisn`, `tgl_lahir`, `no_hp
 (875, 953, 'TAAT PUJI RAHAYU', '23248045', '0076317010', '2007-12-16', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:27', '2026-01-07 19:11:27'),
 (876, 954, 'Tiara Ramadhani', '23247999', '0081003354', '2008-09-26', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:27', '2026-01-07 19:11:27'),
 (877, 955, 'WAHYUNINGSIH', '23248018', '0086463452', '2008-07-21', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:28', '2026-01-07 19:11:28'),
-(878, 956, 'ABDUL PAKIH', '23247625', '0083413201', '2008-12-16', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:29', '2026-01-07 19:11:29'),
-(879, 957, 'ABIGAIL VANIA', '23247626', '0082840669', '2008-05-07', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:30', '2026-01-07 19:11:30'),
-(880, 958, 'Agus Saputra', '23247643', '0084969325', '2008-08-16', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:31', '2026-01-07 19:11:31'),
+(878, 956, 'ABDUL PAKIH', '23247625', '0083413201', '2008-12-16', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:29', '2026-01-10 01:34:52'),
+(879, 957, 'ABIGAIL VANIA', '23247626', '0082840669', '2008-05-07', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:30', '2026-01-10 01:34:52'),
+(880, 958, 'Agus Saputra', '23247643', '0084969325', '2008-08-16', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:31', '2026-01-10 01:34:52'),
 (881, 959, 'AISYAH NURFADHILAH', '23247651', '0079652341', '2007-03-10', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:31', '2026-01-07 19:11:31'),
 (882, 960, 'AKHSAN SAEFANI MA\'RUF', '23247654', '0088250459', '2008-03-11', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:32', '2026-01-07 19:11:32'),
 (883, 961, 'ANIATURROHMAH', '23247680', '0086532239', '2008-05-31', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:34', '2026-01-07 19:11:34'),
-(884, 962, 'ASYAM ILHAM ALHAKIM', '23247688', '0071975303', '2007-08-09', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:34', '2026-01-07 19:11:34'),
+(884, 962, 'ASYAM ILHAM ALHAKIM', '23247688', '0071975303', '2007-08-09', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:34', '2026-01-10 01:34:52'),
 (885, 963, 'DAVINA SIFA VELLISA', '23247724', '0079276977', '2007-11-05', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:35', '2026-01-07 19:11:35'),
-(886, 964, 'DIAN RIZQY NUGROHO', '23247729', '0085471261', '2008-02-11', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:36', '2026-01-07 19:11:36'),
-(887, 965, 'Fien Zahra Sawittri', '23247766', '0079820633', '2007-12-15', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:36', '2026-01-07 19:11:36'),
-(888, 966, 'FISAL ADI KURNIAWAN', '23247774', '0071097354', '2007-08-01', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:37', '2026-01-07 19:11:37'),
+(886, 964, 'DIAN RIZQY NUGROHO', '23247729', '0085471261', '2008-02-11', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:36', '2026-01-10 01:34:52'),
+(887, 965, 'Fien Zahra Sawittri', '23247766', '0079820633', '2007-12-15', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:36', '2026-01-10 01:34:52'),
+(888, 966, 'FISAL ADI KURNIAWAN', '23247774', '0071097354', '2007-08-01', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:37', '2026-01-10 01:34:52'),
 (889, 967, 'GILANG AJI PRAYOGA', '23247777', '0077423487', '2007-12-22', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:38', '2026-01-07 19:11:38'),
 (890, 968, 'HERLAN SANTOSA', '23247785', '0081696779', '2008-03-27', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:39', '2026-01-07 19:11:39'),
-(891, 969, 'HIBATULLAH NAUFAL', '23247786', '0088084647', '2008-01-28', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:39', '2026-01-07 19:11:39'),
-(892, 970, 'KHILYATUL QINAYAH', '23247827', '0083435753', '2008-06-24', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:40', '2026-01-07 19:11:40'),
+(891, 969, 'HIBATULLAH NAUFAL', '23247786', '0088084647', '2008-01-28', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:39', '2026-01-10 01:34:52'),
+(892, 970, 'KHILYATUL QINAYAH', '23247827', '0083435753', '2008-06-24', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:40', '2026-01-10 01:34:52'),
 (893, 971, 'MUHAMAD FARID ARISKI', '23247849', '0087805719', '2008-05-02', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:43', '2026-01-07 19:11:43'),
 (894, 972, 'MUHAMMAD YUSUF SUPRIYATNA', '23248054', '0074902007', '2007-07-13', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:43', '2026-01-07 19:11:43'),
 (895, 973, 'NAZWA FITRIYANI', '23247868', '0073770951', '2007-09-27', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:44', '2026-01-07 19:11:44'),
-(896, 974, 'NIHAYAH BELLA ADINA', '23247872', '0088227696', '2008-12-04', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:44', '2026-01-07 19:11:44'),
-(897, 975, 'NURHASIM', '23247878', '3079807472', '2007-06-18', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:45', '2026-01-07 19:11:45'),
-(898, 976, 'PUTRI MARLINA RAHAYU', '23247884', '0081428050', '2009-03-15', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:46', '2026-01-07 19:11:46'),
+(896, 974, 'NIHAYAH BELLA ADINA', '23247872', '0088227696', '2008-12-04', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:44', '2026-01-10 01:34:52'),
+(897, 975, 'NURHASIM', '23247878', '3079807472', '2007-06-18', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:45', '2026-01-10 01:34:52'),
+(898, 976, 'PUTRI MARLINA RAHAYU', '23247884', '0081428050', '2009-03-15', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:46', '2026-01-10 01:34:52'),
 (899, 977, 'RANI DIAH ASTUTI', '23247898', '0074391153', '2007-10-29', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:46', '2026-01-07 19:11:46'),
-(900, 978, 'REZA AUXILLIA SEKAR ZIVANNA', '23247913', '0081443639', '2008-08-13', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:47', '2026-01-07 19:11:47'),
-(901, 979, 'REZHA SULISTYA NINGSIH', '23247914', '0082562500', '2008-04-26', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:47', '2026-01-07 19:11:47'),
+(900, 978, 'REZA AUXILLIA SEKAR ZIVANNA', '23247913', '0081443639', '2008-08-13', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:47', '2026-01-10 01:34:52'),
+(901, 979, 'REZHA SULISTYA NINGSIH', '23247914', '0082562500', '2008-04-26', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:47', '2026-01-10 01:34:52'),
 (902, 980, 'RIDHO RAMADANI', '23247917', '0088366884', '2008-08-06', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:47', '2026-01-07 19:11:47'),
-(903, 981, 'RIFKI SEBASTIAR', '23247925', '0083319457', '2008-07-15', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:48', '2026-01-07 19:11:48'),
-(904, 982, 'SISKA DWI LARASATI', '23247967', '0088053303', '2008-08-24', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:49', '2026-01-07 19:11:49'),
+(903, 981, 'RIFKI SEBASTIAR', '23247925', '0083319457', '2008-07-15', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:48', '2026-01-10 01:34:52'),
+(904, 982, 'SISKA DWI LARASATI', '23247967', '0088053303', '2008-08-24', NULL, 'P', NULL, NULL, 26, 0, '2026-01-07 19:11:49', '2026-01-10 01:34:52'),
 (905, 983, 'SITI NURUS SYIFA', '23247970', '0088703042', '2008-07-07', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:49', '2026-01-07 19:11:49'),
 (906, 984, 'WINTA', '23248022', '0077099440', '2008-01-19', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:50', '2026-01-07 19:11:50'),
 (907, 985, 'ZAGHWA OKTAVIA PRIANI', '23248027', '0088395714', '2008-10-26', NULL, 'P', NULL, NULL, NULL, 0, '2026-01-07 19:11:50', '2026-01-07 19:11:50'),
@@ -5194,8 +5197,7 @@ ALTER TABLE `pengumuman`
 ALTER TABLE `pengumuman_target`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pengumuman_target_pengumuman_id_foreign` (`pengumuman_id`),
-  ADD KEY `pengumuman_target_type_id_index` (`target_type`,`target_id`),
-  ADD KEY `target_id` (`target_id`);
+  ADD KEY `pengumuman_target_type_id_index` (`target_type`);
 
 --
 -- Indeks untuk tabel `personal_access_tokens`
@@ -5424,7 +5426,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1404;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1405;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
@@ -5466,13 +5468,13 @@ ALTER TABLE `pengumpulan_tugas`
 -- AUTO_INCREMENT untuk tabel `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengumuman_target`
 --
 ALTER TABLE `pengumuman_target`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -5682,7 +5684,6 @@ ALTER TABLE `pengumuman`
 -- Ketidakleluasaan untuk tabel `pengumuman_target`
 --
 ALTER TABLE `pengumuman_target`
-  ADD CONSTRAINT `pengumuman_target_ibfk_1` FOREIGN KEY (`target_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `pengumuman_target_pengumuman_id_foreign` FOREIGN KEY (`pengumuman_id`) REFERENCES `pengumuman` (`id`) ON DELETE CASCADE;
 
 --

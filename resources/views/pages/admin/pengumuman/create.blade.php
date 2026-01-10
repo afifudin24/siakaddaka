@@ -164,57 +164,57 @@
 
 </script>
 
+
 <script>
-    $('#formPengumuman').on('submit', function (e) {
+$('#formPengumuman').on('submit', function (e) {
     e.preventDefault();
 
-    let targets = [];
-    let type = $('#target_type').val();
+    let targetType = $('#target_type').val();
 
-    if (type === 'all') {
-        targets.push({ type: 'all', value: null });
+    let payload = {
+        _token: "{{ csrf_token() }}",
+        title: $('#title').val(),
+        content: $('#content').val(),
+        target_type: targetType,
+        target_role: null,
+        target_user: []
+    };
+
+    if (targetType === 'role') {
+        payload.target_role = $('#roles').val();
     }
 
-    if (type === 'role') {
-        let roles = $('#roles').val();
-        roles.forEach(role => {
-            targets.push({
-                type: 'role',
-                value: role
-            });
-        });
+    if (targetType === 'user') {
+        payload.target_user = $('#users').val();
     }
 
-    if (type === 'user') {
-        let users = $('#users').val();
-        users.forEach(id => {
-            targets.push({
-                type: 'user',
-                value: id
-            });
-        });
-    }
+    // 🔥 LOADING
+    Swal.fire({
+        title: 'Menyimpan...',
+        text: 'Mohon tunggu',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
 
     $.ajax({
         url: "{{ route('admin.pengumuman.store') }}",
         method: "POST",
-        data: {
-            _token: "{{ csrf_token() }}",
-            title: $('#title').val(),
-            content: $('#content').val(),
-            targets: targets
-        },
+        data: payload,
         success: function (res) {
             Swal.fire('Berhasil', res.message, 'success');
             $('#formPengumuman')[0].reset();
             $('.select2').val(null).trigger('change');
         },
         error: function (err) {
-            console.log(err)
+            console.log(err);
             Swal.fire('Error', 'Gagal menyimpan pengumuman', 'error');
         }
     });
 });
+
+
 
 </script>
 @endpush

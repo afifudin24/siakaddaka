@@ -13,9 +13,9 @@
 
           <div class="card basic-data-table">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Tambah Pengumuman</h5>
+                <h5 class="card-title mb-0">Edit Pengumuman</h5>
                 <div>
-                    <form id="formPengumuman">
+                    <form id="formPengumumanEdit">
                     <div class="d-flex gap-2">
                         <button type="submit"
                             class="btn btn-success text-sm btn-sm p-1 radius-4 d-flex align-items-center gap-2">
@@ -93,18 +93,22 @@
                 <option value="staff" {{ $pengumuman->target->target_role == 'staff' ? 'selected' : '' }}>Staff</option>
             </select>
         </div>
+    
 
-        {{-- USER TARGET --}}
-        <div class="col-md-6 d-none" id="userWrapper">
-            <label class="form-label">Pilih User</label>
-            <select id="users" class="form-control select2" multiple>
-                @foreach ($users as $user)
-                    <option {{ $pengumuman->target->target_user == $user->id ? 'selected' : '' }} value="{{ $user->id }}">
-                        {{ $user->name }} ({{ $user->role }})
-                    </option>
-                @endforeach
-            </select>
-        </div>
+
+     {{-- USER TARGET --}}
+<div class="col-md-6 {{ $target->target_type === 'user' ? '' : 'd-none' }}" id="userWrapper">
+    <label class="form-label">Pilih User</label>
+    <select id="users" class="form-control select2" multiple>
+        @foreach ($users as $user)
+            <option value="{{ $user->id }}"
+                {{ in_array($user->id, $selectedUsers ?? []) ? 'selected' : '' }}>
+                {{ $user->nama }} ({{ $user->role }})
+            </option>
+        @endforeach
+    </select>
+</div>
+
 
       
     </div>
@@ -119,6 +123,10 @@
 <script>
 if ({{ $pengumuman->target->target_type === 'role' ? 'true' : 'false' }}) {
         $('#roleWrapper').removeClass('d-none');
+    }
+
+    if ({{ $pengumuman->target->target_type === 'user' ? 'true' : 'false' }}) {
+        $('#userWrapper').removeClass('d-none');
     }
       $('#target_type').select2({
           theme: "bootstrap-5",
@@ -144,7 +152,7 @@ if ({{ $pengumuman->target->target_type === 'role' ? 'true' : 'false' }}) {
     }
 });
       $('#users').select2({
-          theme: "bootstrap-5",
+          theme: "classic",
         //   closeOnSelect : false,
            placeholder: "Pilih User",
             width: '100%',
@@ -171,60 +179,52 @@ if ({{ $pengumuman->target->target_type === 'role' ? 'true' : 'false' }}) {
 });
 
 </script>
-
 <script>
-    $('#formPengumuman').on('submit', function (e) {
+$('#formPengumumanEdit').on('submit', function (e) {
     e.preventDefault();
 
-    let targets = [];
-    let type = $('#target_type').val();
+    let id = {{ $pengumuman->id }};
+    let targetType = $('#target_type').val();
 
-    if (type === 'all') {
-        targets.push({ type: 'all', value: null });
+    let payload = {
+        _token: "{{ csrf_token() }}",
+        _method: 'PUT',
+        title: $('#title').val(),
+        content: $('#content').val(),
+        target_type: targetType,
+        target_role: null,
+        target_user: []
+    };
+
+    if (targetType === 'role') {
+        payload.target_role = $('#roles').val();
     }
 
-    if (type === 'role') {
-        let roles = $('#roles').val();
-        roles.forEach(role => {
-            targets.push({
-                type: 'role',
-                value: role
-            });
-        });
+    if (targetType === 'user') {
+        payload.target_user = $('#users').val();
     }
 
-    if (type === 'user') {
-        let users = $('#users').val();
-        users.forEach(id => {
-            targets.push({
-                type: 'user',
-                value: id
-            });
-        });
-    }
+    Swal.fire({
+        title: 'Menyimpan...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+    });
 
     $.ajax({
-        url: "{{ route('admin.pengumuman.store') }}",
-        method: "POST",
-        data: {
-            _token: "{{ csrf_token() }}",
-            title: $('#title').val(),
-            content: $('#content').val(),
-            targets: targets
-        },
+        url: `/admin/pengumuman/${id}`,
+        method: 'POST',
+        data: payload,
         success: function (res) {
             Swal.fire('Berhasil', res.message, 'success');
-            $('#formPengumuman')[0].reset();
-            $('.select2').val(null).trigger('change');
         },
         error: function (err) {
-            console.log(err)
-            Swal.fire('Error', 'Gagal menyimpan pengumuman', 'error');
+            console.log(err);
+            Swal.fire('Error', 'Gagal memperbarui pengumuman', 'error');
         }
     });
 });
-
 </script>
+
 @endpush
 
 @endsection

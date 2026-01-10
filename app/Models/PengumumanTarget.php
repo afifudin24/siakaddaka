@@ -11,8 +11,19 @@ class PengumumanTarget extends Model
  protected $fillable = [
         'pengumuman_id',
         'target_type',
-        'target_id'
+        'target_user'
     ];
+    protected $casts = [
+    'target_user' => 'array',
+];
+
+
+
+    // 🔥 helper ambil users
+    public function users()
+    {
+        return User::whereIn('id', $this->target_user ?? [])->get();
+    }
 
     public function pengumuman()
     {
@@ -22,4 +33,10 @@ class PengumumanTarget extends Model
     {
         return $this->belongsTo(User::class, 'target_id');
     }
+    public function getUsersAttribute()
+{
+    if (!$this->target_user) return collect();
+    return User::whereIn('id', $this->target_user)->get();
+}
+
 }

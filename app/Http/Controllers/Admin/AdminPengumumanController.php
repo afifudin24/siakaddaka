@@ -54,121 +54,132 @@ public function create(){
      * STORE (AJAX)
      * =========================
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string',
-            'content' => 'required|string',
-            'targets' => 'required|array',
-            'targets.*.type' => 'required|in:all,role,user',
-            'targets.*.value' => 'nullable',
-            'start_at' => 'nullable|date',
-            'end_at' => 'nullable|date|after_or_equal:start_at',
+   public function store(Request $request)
+{
+    $request->validate([
+        'title'       => 'required|string',
+        'content'     => 'required|string',
+        'target_type' => 'required|in:all,role,user',
+        'target_role' => 'nullable|string',
+        'target_user' => 'nullable|array',
+        'target_user.*' => 'exists:users,id',
+        
+    ]);
+
+    DB::beginTransaction();
+    try {
+        $pengumuman = Pengumuman::create([
+            'title' => $request->title,
+            'content' => $request->content,
+          'start_at' => Carbon::parse($request->start_at),
+'end_at'   => Carbon::parse($request->end_at),
+            'created_by' => auth()->user()->id,
         ]);
 
-        $startAt = Carbon::parse($request->start_at);
-        $endAt = Carbon::parse($request->end_at);
+        PengumumanTarget::create([
+            'pengumuman_id' => $pengumuman->id,
+            'target_type'   => $request->target_type,
+            'target_role'   => $request->target_type === 'role'
+                                ? $request->target_role
+                                : null,
+            'target_user'   => $request->target_type === 'user'
+                                ? $request->target_user
+                                : null,
+        ]);
 
-        DB::beginTransaction();
-        try {
-            $pengumuman = Pengumuman::create([
-                'title' => $request->title,
-                'content' => $request->content,
-                'created_by' => auth()->id(),
-                'is_active' => true,
-                'start_at' => $startAt,
-                'end_at' => $endAt,
-            ]);
+        DB::commit();
 
-            foreach ($request->targets as $target) {
-                PengumumanTarget::create([
-                    'pengumuman_id' => $pengumuman->id,
-                    'target_type' => $target['type'],
-                    'target_id' => $target['type'] === 'all'
-                        ? null
-                        : $target['value'],
-                ]);
-            }
-
-            DB::commit();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Pengumuman berhasil ditambahkan'
-            ]);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json([
-                'status' => false,
-                'message' => 'Gagal menambahkan pengumuman',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Pengumuman berhasil disimpan'
+        ]);
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage()
+        ], 500);
     }
+}
 
-    public function edit($id)
-    {
-        $pengumuman = Pengumuman::with('target')->findOrFail($id);
-        $users = User::all();
 
-        // dd($pengumuman);
+  public function edit($id)
+{
+    $pengumuman = Pengumuman::with('target')->findOrFail($id);
+    $users = User::all();
 
-        return view('pages.admin.pengumuman.edit', compact('pengumuman', 'users'));
-    }
+    $target = PengumumanTarget::where('pengumuman_id', $pengumuman->id)->first();
+
+    $selectedUsers = $target && $target->target_type === 'user'
+        ? $target->target_user
+        : [];
+
+     
+
+    return view('pages.admin.pengumuman.edit', compact(
+        'pengumuman',
+        'users',
+        'selectedUsers',
+        'target'
+    ));
+}
+
 
     /**
      * =========================
      * UPDATE (AJAX)
      * =========================
      */
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'title' => 'required|string',
-            'content' => 'required|string',
-            'targets' => 'required|array',
-            'targets.*.type' => 'required|in:all,role,user',
-            'targets.*.value' => 'nullable'
+   public function update(Request $request, $id)
+{
+    $request->validate([
+        'title'        => 'required|string',
+        'content'      => 'required|string',
+        'target_type'  => 'required|in:all,role,user',
+        'target_role'  => 'nullable|string',
+        'target_user'  => 'nullable|array',
+        'target_user.*'=> 'exists:users,id',
+    ]);
+
+    DB::beginTransaction();
+    try {
+        $pengumuman = Pengumuman::findOrFail($id);
+
+        $pengumuman->update([
+            'title'   => $request->title,
+            'content' => $request->content,
+            'start_at' => Carbon::parse($request->start_at),
+            'end_at'   => Carbon::parse($request->end_at),
         ]);
 
-        DB::beginTransaction();
-        try {
-            $pengumuman = Pengumuman::findOrFail($id);
+        // asumsinya 1 pengumuman = 1 target
+        $target = PengumumanTarget::where('pengumuman_id', $pengumuman->id)->firstOrFail();
 
-            $pengumuman->update([
-                'title' => $request->title,
-                'content' => $request->content,
-                'start_at' => $request->start_at,
-                'end_at' => $request->end_at,
-            ]);
+        $target->update([
+            'target_type' => $request->target_type,
+            'target_role' => $request->target_type === 'role'
+                                ? $request->target_role
+                                : null,
+            'target_user' => $request->target_type === 'user'
+                                ? array_map('intval', $request->target_user ?? [])
+                                : null,
+        ]);
 
-            // reset target
-            PengumumanTarget::where('Pengumuman_id', $id)->delete();
+        DB::commit();
 
-            foreach ($request->targets as $target) {
-                PengumumanTarget::create([
-                    'Pengumuman_id' => $id,
-                    'target_type' => $target['type'],
-                    'target_id' => $target['type'] === 'all'
-                        ? null
-                        : $target['value'],
-                ]);
-            }
-
-            DB::commit();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Pengumuman berhasil diperbarui'
-            ]);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json([
-                'status' => false,
-                'message' => 'Gagal memperbarui pengumuman'
-            ], 500);
-        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Pengumuman berhasil diperbarui'
+        ]);
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage()
+        ], 500);
     }
+}
+
 
     /**
      * =========================

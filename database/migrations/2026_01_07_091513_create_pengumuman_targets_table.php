@@ -15,7 +15,7 @@ return new class extends Migration {
                   ->cascadeOnDelete();
 
             $table->enum('target_type', ['all', 'role', 'user']);
-          $table->string('target_id')->nullable();
+         $table->json('target_user')->nullable();
 
 
             $table->timestamps();
