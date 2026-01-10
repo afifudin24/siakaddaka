@@ -13,6 +13,41 @@ use Illuminate\Support\Facades\DB;
 
 class AdminDataMengajarController extends Controller
 {
+
+public function index(Request $request)
+{
+    $perPage = $request->per_page ?? 20;
+
+    // dropdown filter
+    $gurus = Guru::orderBy('nama')->get();
+    $kelas = Kelas::orderBy('nama_kelas')->get();
+
+    // 👉 default kosong
+    $datamengajar = collect();
+
+    // 👉 hanya load data jika guru dipilih
+    if ($request->filled('guru_id')) {
+        $datamengajar = DataMengajar::with(['guru', 'kelas'])
+            ->whereHas('guru', function ($q) use ($request) {
+                $q->where('id', $request->guru_id);
+            })
+            ->when($request->kelas_id, function ($query) use ($request) {
+                $query->where('kelas_id', $request->kelas_id);
+            })
+            ->latest()
+            ->paginate($perPage)
+            ->withQueryString();
+    }
+
+    return view('pages.admin.datamengajar.index', compact(
+        'gurus',
+        'kelas',
+        'datamengajar'
+    ));
+}
+
+
+
   public function dataMengajarPerGuru($id)
 {
     $guru = Guru::findOrFail($id);
@@ -126,6 +161,37 @@ public function update(Request $request, $guruId)
             'message' => 'Terjadi kesalahan: ' . $e->getMessage()
         ], 500);
     }
+}
+
+public function updateJamMengajar(Request $request, $id)
+{
+    $request->validate([
+        'jam_mengajar' => 'required|numeric|min:1',
+        'pertemuan_per_minggu' => 'required|numeric|min:1'
+    ]);
+
+    $datamengajar = DataMengajar::findOrFail($id);
+
+    $datamengajar->update([
+        'jam_mengajar' => $request->jam_mengajar,
+        'pertemuan_per_minggu' => $request->pertemuan_per_minggu
+    ]);
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Jam mengajar berhasil diperbarui'
+    ]);
+}
+
+public function destroy($id)
+{
+    $datamengajar = DataMengajar::findOrFail($id);
+    $datamengajar->delete();
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Data mengajar berhasil dihapus'
+    ]);
 }
 
 

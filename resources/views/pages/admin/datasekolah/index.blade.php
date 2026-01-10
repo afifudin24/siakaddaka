@@ -317,7 +317,7 @@ $unggulan = [
 const imageConfig = {
     logo:              { w: 168, h: 40 },
     logo_dark:         { w: 168, h: 40 },
-    logo_icon:         { w: 43, h: 40 },
+    logo_icon:         { w: 83, h: 80 },
     logo_surat:         { w: 100, h: 100 },
     banner:            { w: 1200, h: 400 },
     gambar_unggulan:   { w: 400, h: 400 },

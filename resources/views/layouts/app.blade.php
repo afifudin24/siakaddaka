@@ -47,10 +47,44 @@
 
 <link rel="stylesheet"
  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+ <style>
+    #preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff; /* ganti sesuai tema */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.preloader-img {
+  /* width: 80px; */
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+ </style>
 
 </head>
 
 <body>
+    <div id="preloader">
+  <img
+    src="{{ sekolah_image('logo_surat', 'assets/images/logo-icon.png') }}"
+    alt="loader"
+    class="preloader-img"
+  />
+</div>
+
     @if(auth()->user()->role == 'admin')
   @include('partials.sidebar_admin') <!-- Include Sidebar -->
   @elseif(auth()->user()->role == 'guru')
@@ -89,6 +123,19 @@
 
     @include('partials.footer') <!-- Include Footer -->
 </main>
+
+{{-- preloader --}}
+<script>
+  window.addEventListener('load', function () {
+    const preloader = document.getElementById('preloader');
+    preloader.style.opacity = '0';
+    preloader.style.transition = 'opacity 0.5s ease';
+
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 500);
+  });
+</script>
 
  <!-- jQuery library js -->
 <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>

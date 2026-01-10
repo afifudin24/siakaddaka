@@ -121,6 +121,11 @@ Route::middleware(['auth', 'role:admin'])
 ->name('datamengajar.kelasByMapel');
     Route::post('/guru/{id}/datamengajar/update', [AdminDataMengajarController::class, 'update'])->name('guru.datamengajar.update');
 
+    Route::resource('/datamengajar', AdminDataMengajarController::class);
+    Route::put('/datamengajar/jammengajar/{id}', [AdminDataMengajarController::class, 'updateJamMengajar'])->name('datamengajar.updateJamMengajar');
+Route::delete('/datamengajar/{id}', [AdminDataMengajarController::class, 'destroy']);
+
+
 
     // Pengumuman
     Route::resource('/pengumuman', AdminPengumumanController::class);

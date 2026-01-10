@@ -90,7 +90,7 @@
 </li>
 {{-- Data Akademik Start --}}
 <li class="dropdown my-1
-    {{ Request::is('admin/data-mengajar*') ||
+    {{ Request::is('admin/datamengajar*') ||
        Request::is('admin/jadwal-mengajar*') ||
        Request::is('admin/jurnal-mengajar*') ||
        Request::is('admin/kehadiran-kelas*') ||
@@ -108,14 +108,14 @@
                 <span>Hari Aktif KBM</span>
             </a>
         </li>
-        <li class="{{ request()->is('admin/data-mengajar*') ? 'active-page' : '' }}">
-            <a href="/admin/data-mengajar" class="{{ request()->is('admin/data-mengajar*') ? 'active' : '' }}">
+        <li class="{{ request()->is('admin/datamengajar*') ? 'active-page' : '' }}">
+            <a href="/admin/datamengajar" class="{{ request()->is('admin/datamengajar*') ? 'active' : '' }}">
               <iconify-icon icon="mdi:teach" class="menu-icon"></iconify-icon>
                 <span>Data Mengajar</span>
             </a>
         </li>
         <li class="{{ request()->is('admin/jadwal-mengajar*') ? 'active-page' : '' }}">
-            <a href="/admin/jadwal-mengajar" class="{{ request()->is('admin/jadwal-mengajar*') ? 'active' : '' }}">
+            <a href="/admin/jadwal-mengajar" class="{{ request()->is('admin/jadwalmengajar*') ? 'active' : '' }}">
               <iconify-icon icon="ri:calendar-schedule-line" class="menu-icon"></iconify-icon>  
               <span>Jadwal Mengajar</span>
             </a>
