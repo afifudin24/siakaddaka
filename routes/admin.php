@@ -124,4 +124,12 @@ Route::middleware(['auth', 'role:admin'])
 
     // Pengumuman
     Route::resource('/pengumuman', AdminPengumumanController::class);
+    Route::post('/pengumuman/{id}/toggle-status', 
+    [AdminPengumumanController::class, 'toggleStatus']
+)->name('pengumuman.toggle-status');
+Route::delete('/admin/pengumuman/{id}', 
+    [AdminPengumumanController::class, 'destroy']
+)->name('pengumuman.destroy');
+
+
     });

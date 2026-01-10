@@ -14,7 +14,7 @@ use App\Models\Staff;
 use App\Models\User;
 use App\Models\Pengumuman;
 use App\Models\PengumumanTarget;
-
+use Carbon\Carbon;
 
 class AdminPengumumanController extends Controller
 {
@@ -28,7 +28,7 @@ public function index(Request $request)
     $search  = $request->input('search');
     $perPage = $request->input('paginate', 20);
 
-    $pengumumans = Pengumuman::with('targets.user')
+    $pengumumans = Pengumuman::with('target.user')
         ->when($search, function ($query) use ($search) {
             $query->where('title', 'like', "%{$search}%")
                   ->orWhere('content', 'like', "%{$search}%");
@@ -61,8 +61,13 @@ public function create(){
             'content' => 'required|string',
             'targets' => 'required|array',
             'targets.*.type' => 'required|in:all,role,user',
-            'targets.*.value' => 'nullable'
+            'targets.*.value' => 'nullable',
+            'start_at' => 'nullable|date',
+            'end_at' => 'nullable|date|after_or_equal:start_at',
         ]);
+
+        $startAt = Carbon::parse($request->start_at);
+        $endAt = Carbon::parse($request->end_at);
 
         DB::beginTransaction();
         try {
@@ -71,13 +76,13 @@ public function create(){
                 'content' => $request->content,
                 'created_by' => auth()->id(),
                 'is_active' => true,
-                'start_at' => $request->start_at,
-                'end_at' => $request->end_at,
+                'start_at' => $startAt,
+                'end_at' => $endAt,
             ]);
 
             foreach ($request->targets as $target) {
                 PengumumanTarget::create([
-                    'Pengumuman_id' => $pengumuman->id,
+                    'pengumuman_id' => $pengumuman->id,
                     'target_type' => $target['type'],
                     'target_id' => $target['type'] === 'all'
                         ? null
@@ -95,9 +100,20 @@ public function create(){
             DB::rollBack();
             return response()->json([
                 'status' => false,
-                'message' => 'Gagal menambahkan pengumuman'
+                'message' => 'Gagal menambahkan pengumuman',
+                'error' => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function edit($id)
+    {
+        $pengumuman = Pengumuman::with('target')->findOrFail($id);
+        $users = User::all();
+
+        // dd($pengumuman);
+
+        return view('pages.admin.pengumuman.edit', compact('pengumuman', 'users'));
     }
 
     /**
@@ -175,5 +191,23 @@ public function create(){
             ], 500);
         }
     }
+
+    public function toggleStatus($id)
+{
+    $pengumuman = Pengumuman::findOrFail($id);
+
+    $pengumuman->is_active = !$pengumuman->is_active;
+    $pengumuman->save();
+
+    return response()->json([
+        'success' => true,
+        'status'  => $pengumuman->is_active,
+        'message' => $pengumuman->is_active
+            ? 'Pengumuman berhasil diaktifkan'
+            : 'Pengumuman berhasil dinonaktifkan',
+    ]);
+}
+
+
 
 }

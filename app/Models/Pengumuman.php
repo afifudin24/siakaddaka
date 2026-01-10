@@ -22,8 +22,8 @@ class Pengumuman extends Model
 ];
 
 
-    public function targets()
+    public function target()
     {
-        return $this->hasMany(PengumumanTarget::class);
+        return $this->hasOne(PengumumanTarget::class);
     }
 }

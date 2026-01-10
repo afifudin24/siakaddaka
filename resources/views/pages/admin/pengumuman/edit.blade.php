@@ -36,7 +36,7 @@
         {{-- JUDUL --}}
         <div class="col-md-6">
             <label class="form-label">Judul Pengumuman</label>
-            <input type="text" name="title" id="title"
+            <input type="text" name="title" value="{{ $pengumuman->title }}" id="title"
                    class="form-control" required>
         </div>
 
@@ -44,7 +44,8 @@
         <div class="col-md-6">
             <label class="form-label">Status</label>
             <select class="form-control">
-                <option value="1" selected>Aktif</option>
+                <option value="1" {{ $pengumuman->is_active ? 'selected' : '' }}>Aktif</option>
+                <option value="0" {{ !$pengumuman->is_active ? 'selected' : '' }}>Tidak Aktif</option>
             </select>
         </div>
 
@@ -52,19 +53,19 @@
         <div class="col-md-12">
             <label class="form-label">Isi Pengumuman</label>
             <textarea name="content" id="content"
-                      class="form-control" rows="4" required></textarea>
+                      class="form-control" rows="4" required>{{ $pengumuman->content }}</textarea>
         </div>
 
         {{-- berlaku --}}
         <div class="row">
          <div class="col-md-6">
     <label class="form-label">Tanggal Mulai Berlaku</label>
-    <input type="datetime-local" name="start_at" class="form-control" required>
+    <input type="datetime-local" value="{{ $pengumuman->start_at }}" name="start_at" class="form-control" required>
 </div>
 
 <div class="col-md-6">
     <label class="form-label">Tanggal Berakhir</label>
-    <input type="datetime-local" name="end_at" class="form-control" required>
+    <input type="datetime-local" value="{{ $pengumuman->end_at }}" name="end_at" class="form-control" required>
 </div>
 
         </div>
@@ -73,20 +74,23 @@
             <label class="form-label">Target Pengumuman</label>
             <select id="target_type" class="form-control select2">
                 <option value="">-- Pilih Target --</option>
-                <option value="all">Semua User</option>
-                <option value="role">Berdasarkan Role</option>
-                <option value="user">User Tertentu</option>
+                <option value="all" {{ $pengumuman->target->target_type == 'all' ? 'selected' : '' }}>Semua User</option>
+                <option value="role" {{ $pengumuman->target->target_type == 'role' ? 'selected' : '' }}>Berdasarkan Role</option>
+                <option value="user" {{ $pengumuman->target->target_type == 'user' ? 'selected' : '' }}>User Tertentu</option>
             </select>
         </div>
+
+    
+
 
         {{-- ROLE TARGET --}}
         <div class="col-md-6 d-none" id="roleWrapper">
             <label class="form-label">Pilih Role</label>
-            <select id="roles" class="form-control select2" multiple>
-                <option value="admin">Admin</option>
-                <option value="guru">Guru</option>
-                <option value="siswa">Siswa</option>
-                <option value="staff">Staff</option>
+            <select id="roles" class="form-control select2">
+                <option {{ $pengumuman->target->target_role == 'admin' ? 'selected' : '' }} value="admin">Admin</option>
+                <option value="guru" {{ $pengumuman->target->target_role == 'guru' ? 'selected' : '' }}>Guru</option>
+                <option value="siswa" {{ $pengumuman->target->target_role == 'siswa' ? 'selected' : '' }}>Siswa</option>
+                <option value="staff" {{ $pengumuman->target->target_role == 'staff' ? 'selected' : '' }}>Staff</option>
             </select>
         </div>
 
@@ -95,7 +99,7 @@
             <label class="form-label">Pilih User</label>
             <select id="users" class="form-control select2" multiple>
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}">
+                    <option {{ $pengumuman->target->target_user == $user->id ? 'selected' : '' }} value="{{ $user->id }}">
                         {{ $user->name }} ({{ $user->role }})
                     </option>
                 @endforeach
@@ -113,6 +117,9 @@
 
 @push('scripts')
 <script>
+if ({{ $pengumuman->target->target_type === 'role' ? 'true' : 'false' }}) {
+        $('#roleWrapper').removeClass('d-none');
+    }
       $('#target_type').select2({
           theme: "bootstrap-5",
         //   closeOnSelect : false,
@@ -148,6 +155,7 @@
     }
             
     });
+
     $('#target_type').on('change', function () {
     let type = $(this).val();
 

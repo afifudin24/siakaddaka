@@ -78,10 +78,13 @@
             <div>
                 <h6 class="mb-1">{{ $item->title }}</h6>
                 <p>{{ $item->content }}</p>
-                <small class="text-muted">
-                    Berlaku : 
-                    {{ $item->start_at->format('d M Y, H:i') }} s/d {{ $item->end_at->format('d M Y, H:i') }}
-                </small>
+              <small class="text-muted">
+    Berlaku :
+    {{ optional($item->start_at)->format('d M Y, H:i') ?? '-' }}
+    s/d
+    {{ optional($item->end_at)->format('d M Y, H:i') ?? '-' }}
+</small>
+
             </div>
 
             <div class="dropdown">
@@ -90,17 +93,36 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#" class="dropdown-item d-flex align-items-center btn-edit gap-1"
+                        <a href="{{ route('admin.pengumuman.edit', $item->id) }}" class="dropdown-item d-flex align-items-center btn-edit gap-1"
                            data-id="{{ $item->id }}">
                            <iconify-icon icon="ic:round-edit" class="icon"></iconify-icon> Edit
                         </a>
                     </li>
-                    <li class="hover-danger">
-                        <a href="#" class="dropdown-item text-danger btn-delete d-flex align-items-center gap-1"
-                           data-id="{{ $item->id }}">
-                           <iconify-icon icon="tabler:trash" class="icon"></iconify-icon> Hapus
-                        </a>
-                    </li>
+                 <li class="hover-danger">
+    <a href="javascript:void(0);"
+       class="dropdown-item text-danger btn-delete d-flex align-items-center gap-1"
+       data-id="{{ $item->id }}">
+        <iconify-icon icon="tabler:trash" class="icon"></iconify-icon>
+        Hapus
+    </a>
+</li>
+
+                     <li class="hover-{{ $item->is_active ? 'warning' : 'success' }}">
+    <a href="javascript:void(0);"
+       class="dropdown-item btn-toggle-status d-flex align-items-center gap-1
+              {{ $item->is_active ? 'text-warning' : 'text-success' }}"
+       data-id="{{ $item->id }}"
+       data-status="{{ $item->is_active }}">
+       
+        <iconify-icon
+            icon="{{ $item->is_active ? 'tabler:eye-off' : 'tabler:eye' }}"
+            class="icon">
+        </iconify-icon>
+
+        {{ $item->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
+    </a>
+</li>
+
                 </ul>
             </div>
         </div>
@@ -110,7 +132,9 @@
             {{ Str::limit(strip_tags($item->isi), 180) }}
         </p>
 
-        {{-- TARGET --}}
+        {{-- FOOTER --}}
+        <div class="d-flex justify-content-between align-items-center">
+           {{-- TARGET --}}
         <div class="d-flex flex-wrap gap-1">
             @foreach ($item->targets as $target)
                 @if ($target->target_type === 'all')
@@ -136,8 +160,23 @@
             @endforeach
         </div>
 
+        {{-- status --}}
+
+        <div>
+            @if ($item->is_active)
+                <span class="badge bg-success">Aktif</span>
+            @else
+                <span class="badge bg-danger">Nonaktif</span>
+            @endif
+
+
+        </div>
+
+     
+
     </div>
 </div>
+</div>  
 @empty
 <div class="alert alert-warning">
     Belum ada pengumuman
@@ -148,5 +187,86 @@
 
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+    $(document).on('click', '.btn-toggle-status', function (e) {
+    e.preventDefault();
+    console.log('clicked');
+
+    let id = $(this).data('id');
+    let status = $(this).data('status');
+
+    let actionText = status ? 'menonaktifkan' : 'mengaktifkan';
+
+    Swal.fire({
+        title: 'Konfirmasi',
+        text: `Yakin ingin ${actionText} pengumuman ini?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `/admin/pengumuman/${id}/toggle-status`,
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (res) {
+                    Swal.fire('Berhasil!', res.message, 'success')
+                        .then(() => location.reload());
+                },
+                error: function () {
+                    Swal.fire('Gagal!', 'Terjadi kesalahan', 'error');
+                }
+            });
+        }
+    });
+});
+</script>
+
+{{-- hapus --}}
+<script>
+$(document).on('click', '.btn-delete', function (e) {
+    e.preventDefault();
+
+    let id = $(this).data('id');
+
+    Swal.fire({
+        title: 'Hapus Pengumuman?',
+        text: 'Data yang dihapus tidak bisa dikembalikan!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ya, hapus',
+        cancelButtonText: 'Batal',
+        confirmButtonColor: '#d33'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `/admin/pengumuman/${id}`,
+                type: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (res) {
+                    Swal.fire('Berhasil!', res.message, 'success');
+
+                    // 🔥 HAPUS ROW TANPA RELOAD (optional)
+                    $('#pengumuman-' + id).fadeOut(300, function () {
+                        $(this).remove();
+                    });
+                },
+                error: function () {
+                    Swal.fire('Gagal!', 'Tidak dapat menghapus data', 'error');
+                }
+            });
+        }
+    });
+});
+
+</script>
+    @endpush
 
     @endsection
