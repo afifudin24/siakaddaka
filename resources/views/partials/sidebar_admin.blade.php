@@ -184,18 +184,21 @@
 
         <li class="{{ request()->is('admin/peserta-pkl*') ? 'active-page' : '' }}">
             <a href="/admin/peserta-pkl" class="{{ request()->is('admin/peserta-pkl*') ? 'active' : '' }}">
+              <iconify-icon icon="clarity:employee-group-solid" class="menu-icon"></iconify-icon>
                 <span>Peserta PKL</span>
             </a>
         </li>
 
         <li class="{{ request()->is('admin/pembimbing-pkl*') ? 'active-page' : '' }}">
             <a href="/admin/pembimbing-pkl" class="{{ request()->is('admin/pembimbing-pkl*') ? 'active' : '' }}">
+              <iconify-icon icon="hugeicons:mentoring" class="menu-icon"></iconify-icon>
                 <span>Pembimbing PKL</span>
             </a>
         </li>
 
         <li class="{{ request()->is('admin/dudi*') ? 'active-page' : '' }}">
             <a href="/admin/dudi" class="{{ request()->is('admin/dudi*') ? 'active' : '' }}">
+              <iconify-icon icon="bi:building" class="menu-icon"></iconify-icon>
                 <span>DU/DI</span>
             </a>
         </li>

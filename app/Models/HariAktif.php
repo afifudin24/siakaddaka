@@ -17,4 +17,8 @@ class HariAktif extends Model
     {
         return $this->hasMany(JadwalMengajar::class, 'hari', 'nama_hari');
     }
+    public function jamPelajaran()
+    {
+        return $this->hasMany(JamPelajaran::class, 'hari', 'nama_hari');
+    }
 }
