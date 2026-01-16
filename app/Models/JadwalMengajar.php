@@ -9,29 +9,26 @@ class JadwalMengajar extends Model
     protected $table = 'jadwal_mengajar';
 
     protected $fillable = [
-        'kelas_id',
+        
         'data_mengajar_id',
-        'hari',
-        'jam_ke'
+        'hari_id',
+        'jam_pelajaran_id',
     ];
 
-    public function kelas()
-    {
-        return $this->belongsTo(Kelas::class);
-    }
+   
 
-    public function dataMengajar()
+   public function dataMengajar()
     {
         return $this->belongsTo(DataMengajar::class);
     }
 
     public function hariAktif()
     {
-        return $this->belongsTo(HariAktif::class, 'hari', 'nama_hari');
+        return $this->belongsTo(HariAktif::class, 'hari_id');
     }
 
     public function jamPelajaran()
     {
-        return $this->belongsTo(JamPelajaran::class, 'jam_ke', 'jam_ke');
+        return $this->belongsTo(JamPelajaran::class);
     }
 }

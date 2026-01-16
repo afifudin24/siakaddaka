@@ -21,7 +21,53 @@ class AdminHariAktifController extends Controller
     public function index()
     {
         $hariaktif = HariAktif::all();
-        return view('admin.hariaktif.index', compact('hariaktif'));
+        return view('pages.admin.hariaktif.index', compact('hariaktif'));
     }
+public function store(Request $request)
+{
+    $request->validate([
+        'urutan_hari' => 'required|integer|min:1|max:7',
+    ]);
+
+    // Cek apakah hari sudah ada
+    $cek = HariAktif::where('urutan_hari', $request->urutan_hari)->exists();
+
+    if ($cek) {
+        return response()->json([
+            'status'  => false,
+            'message' => 'Hari tersebut sudah ditambahkan'
+        ], 409); // 409 = Conflict (tepat secara HTTP)
+    }
+
+    $mapHari = [
+        1 => 'Senin',
+        2 => 'Selasa',
+        3 => 'Rabu',
+        4 => 'Kamis',
+        5 => 'Jumat',
+        6 => 'Sabtu',
+        7 => 'Minggu',
+    ];
+
+    HariAktif::create([
+        'urutan_hari' => $request->urutan_hari,
+        'nama_hari'   => $mapHari[$request->urutan_hari],
+    ]);
+
+    return response()->json([
+        'status'  => true,
+        'message' => 'Hari aktif berhasil ditambahkan'
+    ], 201);
+}
+
+public function destroy($id)
+{
+    $hariaktif = HariAktif::findOrFail($id);
+    $hariaktif->delete();
+    return response()->json([
+        'status'  => true,
+        'message' => 'Hari aktif berhasil dihapus'
+    ]);
+}
 
 }

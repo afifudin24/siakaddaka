@@ -21,6 +21,6 @@ class JamPelajaran extends Model
     }
     public function hari()
     {
-        return $this->belongsTo(HariAktif::class);
+        return $this->belongsTo(HariAktif::class, 'hari_id');
     }
 }

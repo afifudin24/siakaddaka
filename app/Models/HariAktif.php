@@ -9,6 +9,7 @@ class HariAktif extends Model
     protected $table = 'hari_aktif';
 
     protected $fillable = [
+        'urutan_hari',
         'nama_hari'
     ];
 
@@ -17,8 +18,13 @@ class HariAktif extends Model
     {
         return $this->hasMany(JadwalMengajar::class, 'hari', 'nama_hari');
     }
-    public function jamPelajaran()
+     public function jamPelajaran()
     {
-        return $this->hasMany(JamPelajaran::class, 'hari', 'nama_hari');
+        return $this->hasMany(JamPelajaran::class, 'hari_id', 'id');
     }
+    public function totalJamPelajaran()
+{
+    return $this->jamPelajaran()->count();
+}
+
 }

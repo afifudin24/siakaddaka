@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 10 Jan 2026 pada 11.02
+-- Host: 127.0.0.1:3306
+-- Waktu pembuatan: 16 Jan 2026 pada 10.13
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -106,6 +106,30 @@ INSERT INTO `agenda` (`id`, `judul`, `deskripsi`, `tgl_mulai`, `tgl_selesai`, `w
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `backups`
+--
+
+CREATE TABLE `backups` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `file_path` varchar(255) NOT NULL,
+  `file_size` bigint(20) DEFAULT NULL,
+  `status` enum('success','failed') NOT NULL DEFAULT 'success',
+  `note` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `backups`
+--
+
+INSERT INTO `backups` (`id`, `file_name`, `file_path`, `file_size`, `status`, `note`, `created_at`, `updated_at`) VALUES
+(6, 'backup_20260116_084817.sql', 'backup/backup_20260116_084817.sql', 852927, 'success', 'tess', '2026-01-16 01:48:19', '2026-01-16 01:48:19');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `data_mengajar`
 --
 
@@ -132,9 +156,9 @@ INSERT INTO `data_mengajar` (`id`, `guru_id`, `kelas_id`, `mapel_id`, `jam_menga
 (8, 17, 11, 9, 0, 0, '2026-01-07 03:00:36', '2026-01-07 03:00:36'),
 (9, 17, 27, 9, 0, 0, '2026-01-07 03:00:36', '2026-01-07 03:00:36'),
 (10, 17, 10, 7, 0, 0, '2026-01-07 03:00:51', '2026-01-07 03:00:51'),
-(11, 19, 26, 6, 0, 0, '2026-01-07 03:01:51', '2026-01-07 03:01:51'),
-(12, 19, 27, 6, 0, 0, '2026-01-07 03:01:51', '2026-01-07 03:01:51'),
-(13, 17, 8, 10, 0, 0, '2026-01-07 18:16:45', '2026-01-07 18:16:45'),
+(11, 19, 26, 6, 8, 2, '2026-01-07 03:01:51', '2026-01-16 02:05:01'),
+(12, 19, 27, 6, 8, 2, '2026-01-07 03:01:51', '2026-01-16 02:05:12'),
+(13, 17, 8, 10, 6, 2, '2026-01-07 18:16:45', '2026-01-16 02:07:33'),
 (14, 17, 10, 10, 0, 0, '2026-01-07 18:16:45', '2026-01-07 18:16:45'),
 (15, 17, 13, 10, 0, 0, '2026-01-07 18:16:45', '2026-01-07 18:16:45'),
 (16, 17, 14, 10, 0, 0, '2026-01-07 18:16:45', '2026-01-07 18:16:45');
@@ -243,9 +267,7 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id`, `user_id`, `nama`, `bio`, `nip`, `nuptk`, `email`, `no_hp`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, 2, 'AfifKeren', 'Nam in sint atque ex qui enim a deserunt.', '7205564583', '2749431145', 'afifsaja@gmail.com', '6281548769365', '2010-08-13', 'P', 'Desa Surusunda Rt 01 Rw 03', '2025-11-21 20:32:51', '2026-01-04 21:16:59'),
 (4, 5, 'Coby Beahan', 'Sequi impedit qui mollitia fugit doloribus.', '7841974130', '7901528296', 'gvolkman@example.com', '409.715.9141', '1987-03-17', '', '3202 Bartell Knolls Apt. 408\nSouth Melbahaven, FL 25084', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
-(8, 30, 'Kayla Jacobs', 'Veniam omnis voluptas repudiandae dolorum aliquid.', '4962156306', '8968984254', 'akuhlman@example.org', '(534) 976-9686', '2025-05-01', '', '263 Tromp Cape\nDooleyfurt, NJ 12415-2578', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
 (9, 31, 'Wanda Simonis I', 'Laudantium distinctio fugiat accusantium reiciendis sapiente ut.', '4371981429', '5497741093', 'sarai.walter@example.com', '+1 (925) 807-7968', '1998-12-31', '', '604 Schultz Meadow\nNew Orlo, MA 26967', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
 (10, 32, 'Dr. Ariane Bosco Jr.', 'Vitae possimus facilis dignissimos temporibus vel ea.', '7200947223', '8855350180', 'xwintheiser@example.org', '(816) 444-2392', '2012-09-01', '', '58594 Auer Trafficway Suite 915\nWolfmouth, NE 97638-9621', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
 (12, 55, 'Lukas Douglas', 'Nulla est est ex accusamus.', '5020137654', '0764997175', 'pouros.santa@example.org', '251.903.8594', '1991-05-18', '', '4320 King Center\nPort Jasenside, NJ 98536-5099', '2025-11-21 20:36:30', '2025-11-21 20:36:30'),
@@ -317,11 +339,23 @@ INSERT INTO `guru` (`id`, `user_id`, `nama`, `bio`, `nip`, `nuptk`, `email`, `no
 
 CREATE TABLE `hari_aktif` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `urutan_hari` int(11) NOT NULL,
   `nama_hari` varchar(255) NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `hari_aktif`
+--
+
+INSERT INTO `hari_aktif` (`id`, `urutan_hari`, `nama_hari`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Senin', 1, '2026-01-15 18:16:37', '2026-01-15 18:16:37'),
+(2, 2, 'Selasa', 1, '2026-01-15 19:17:59', '2026-01-15 19:17:59'),
+(3, 3, 'Rabu', 1, '2026-01-15 19:18:53', '2026-01-15 19:18:53'),
+(4, 4, 'Kamis', 1, '2026-01-15 19:19:00', '2026-01-15 19:19:00'),
+(6, 5, 'Jumat', 1, '2026-01-15 19:45:11', '2026-01-15 19:45:11');
 
 -- --------------------------------------------------------
 
@@ -332,11 +366,25 @@ CREATE TABLE `hari_aktif` (
 CREATE TABLE `jadwal_mengajar` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `data_mengajar_id` bigint(20) UNSIGNED NOT NULL,
-  `jam_mulai_id` bigint(20) UNSIGNED NOT NULL,
-  `jam_selesai_id` bigint(20) UNSIGNED NOT NULL,
+  `hari_id` bigint(11) UNSIGNED NOT NULL,
+  `jam_pelajaran_id` bigint(11) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `jadwal_mengajar`
+--
+
+INSERT INTO `jadwal_mengajar` (`id`, `data_mengajar_id`, `hari_id`, `jam_pelajaran_id`, `created_at`, `updated_at`) VALUES
+(5, 3, 3, 34, '2026-01-15 20:45:24', '2026-01-15 20:45:24'),
+(6, 3, 3, 35, '2026-01-15 20:45:24', '2026-01-15 20:45:24'),
+(7, 3, 3, 36, '2026-01-15 20:45:24', '2026-01-15 20:45:24'),
+(8, 3, 3, 37, '2026-01-15 20:45:24', '2026-01-15 20:45:24'),
+(9, 3, 6, 59, '2026-01-15 20:45:24', '2026-01-15 20:45:24'),
+(10, 3, 6, 60, '2026-01-15 20:45:24', '2026-01-15 20:45:24'),
+(11, 3, 6, 61, '2026-01-15 20:45:24', '2026-01-15 20:45:24'),
+(12, 3, 6, 62, '2026-01-15 20:45:24', '2026-01-15 20:45:24');
 
 -- --------------------------------------------------------
 
@@ -360,12 +408,69 @@ CREATE TABLE `jam_mengajar` (
 
 CREATE TABLE `jam_pelajaran` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `hari_id` bigint(11) UNSIGNED NOT NULL,
   `jam_ke` int(11) NOT NULL,
   `mulai` time NOT NULL,
   `selesai` time NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `jam_pelajaran`
+--
+
+INSERT INTO `jam_pelajaran` (`id`, `hari_id`, `jam_ke`, `mulai`, `selesai`, `created_at`, `updated_at`) VALUES
+(9, 1, 1, '07:00:00', '07:40:00', '2026-01-15 19:20:58', '2026-01-15 19:20:58'),
+(10, 1, 2, '07:40:00', '08:15:00', '2026-01-15 19:20:58', '2026-01-15 19:20:58'),
+(11, 1, 3, '08:15:00', '08:55:00', '2026-01-15 19:20:58', '2026-01-15 19:20:58'),
+(12, 1, 4, '09:10:00', '09:50:00', '2026-01-15 19:20:58', '2026-01-15 19:20:58'),
+(13, 1, 5, '09:50:00', '10:30:00', '2026-01-15 19:20:59', '2026-01-15 19:20:59'),
+(14, 1, 6, '10:30:00', '11:10:00', '2026-01-15 19:20:59', '2026-01-15 19:20:59'),
+(15, 1, 7, '11:10:00', '11:50:00', '2026-01-15 19:20:59', '2026-01-15 19:20:59'),
+(16, 1, 8, '12:20:00', '13:00:00', '2026-01-15 19:20:59', '2026-01-15 19:20:59'),
+(17, 1, 9, '13:00:00', '13:35:00', '2026-01-15 19:20:59', '2026-01-15 19:20:59'),
+(18, 1, 10, '13:35:00', '14:10:00', '2026-01-15 19:20:59', '2026-01-15 19:20:59'),
+(19, 1, 11, '14:10:00', '14:40:00', '2026-01-15 19:21:00', '2026-01-15 19:21:00'),
+(20, 2, 1, '07:00:00', '07:40:00', '2026-01-15 19:27:51', '2026-01-15 19:27:51'),
+(21, 2, 2, '07:40:00', '08:15:00', '2026-01-15 19:27:52', '2026-01-15 19:27:52'),
+(22, 2, 3, '08:15:00', '08:55:00', '2026-01-15 19:27:52', '2026-01-15 19:27:52'),
+(23, 2, 4, '09:10:00', '09:50:00', '2026-01-15 19:27:52', '2026-01-15 19:27:52'),
+(24, 2, 5, '09:50:00', '10:30:00', '2026-01-15 19:27:52', '2026-01-15 19:27:52'),
+(25, 2, 6, '10:30:00', '11:10:00', '2026-01-15 19:27:52', '2026-01-15 19:27:52'),
+(26, 2, 7, '11:10:00', '11:50:00', '2026-01-15 19:27:52', '2026-01-15 19:27:52'),
+(27, 2, 8, '12:20:00', '13:00:00', '2026-01-15 19:27:52', '2026-01-15 19:27:52'),
+(28, 2, 9, '13:00:00', '13:35:00', '2026-01-15 19:27:52', '2026-01-15 19:27:52'),
+(29, 2, 10, '13:35:00', '14:10:00', '2026-01-15 19:27:53', '2026-01-15 19:27:53'),
+(30, 2, 11, '14:40:00', '14:40:00', '2026-01-15 19:27:53', '2026-01-15 19:27:53'),
+(31, 3, 1, '07:00:00', '07:40:00', '2026-01-15 19:31:16', '2026-01-15 19:31:16'),
+(32, 3, 2, '07:40:00', '08:15:00', '2026-01-15 19:31:16', '2026-01-15 19:31:16'),
+(33, 3, 3, '08:15:00', '08:55:00', '2026-01-15 19:31:17', '2026-01-15 19:31:17'),
+(34, 3, 4, '09:10:00', '09:50:00', '2026-01-15 19:31:17', '2026-01-15 19:31:17'),
+(35, 3, 5, '09:50:00', '10:30:00', '2026-01-15 19:31:17', '2026-01-15 19:31:17'),
+(36, 3, 6, '10:30:00', '11:10:00', '2026-01-15 19:31:17', '2026-01-15 19:31:17'),
+(37, 3, 7, '11:10:00', '11:50:00', '2026-01-15 19:31:17', '2026-01-15 19:31:17'),
+(38, 3, 8, '12:20:00', '13:00:00', '2026-01-15 19:31:17', '2026-01-15 19:31:17'),
+(39, 3, 9, '13:00:00', '13:35:00', '2026-01-15 19:31:18', '2026-01-15 19:31:18'),
+(40, 3, 10, '13:35:00', '14:10:00', '2026-01-15 19:31:18', '2026-01-15 19:31:18'),
+(41, 3, 11, '14:10:00', '14:40:00', '2026-01-15 19:31:18', '2026-01-15 19:31:18'),
+(42, 4, 1, '07:00:00', '07:40:00', '2026-01-15 19:34:03', '2026-01-15 19:34:03'),
+(43, 4, 2, '07:40:00', '08:15:00', '2026-01-15 19:34:03', '2026-01-15 19:34:03'),
+(44, 4, 3, '08:15:00', '08:55:00', '2026-01-15 19:34:03', '2026-01-15 19:34:03'),
+(45, 4, 4, '09:10:00', '09:50:00', '2026-01-15 19:34:03', '2026-01-15 19:34:03'),
+(46, 4, 5, '09:50:00', '10:30:00', '2026-01-15 19:34:03', '2026-01-15 19:34:03'),
+(47, 4, 6, '10:30:00', '11:10:00', '2026-01-15 19:34:03', '2026-01-15 19:34:03'),
+(48, 4, 7, '11:10:00', '11:50:00', '2026-01-15 19:34:04', '2026-01-15 19:34:04'),
+(49, 4, 8, '12:20:00', '13:00:00', '2026-01-15 19:34:04', '2026-01-15 19:34:04'),
+(50, 4, 9, '13:00:00', '13:35:00', '2026-01-15 19:34:04', '2026-01-15 19:34:04'),
+(51, 4, 10, '13:35:00', '14:10:00', '2026-01-15 19:34:04', '2026-01-15 19:34:04'),
+(52, 4, 11, '14:10:00', '14:40:00', '2026-01-15 19:34:04', '2026-01-15 19:34:04'),
+(59, 6, 1, '07:00:00', '07:45:00', '2026-01-15 19:47:03', '2026-01-15 19:47:03'),
+(60, 6, 2, '07:45:00', '08:25:00', '2026-01-15 19:47:03', '2026-01-15 19:47:03'),
+(61, 6, 3, '08:25:00', '09:05:00', '2026-01-15 19:47:03', '2026-01-15 19:47:03'),
+(62, 6, 4, '09:30:00', '10:15:00', '2026-01-15 19:47:03', '2026-01-15 19:47:03'),
+(63, 6, 5, '10:15:00', '10:55:00', '2026-01-15 19:47:03', '2026-01-15 19:47:03'),
+(64, 6, 6, '10:55:00', '11:25:00', '2026-01-15 19:47:03', '2026-01-15 19:47:03');
 
 -- --------------------------------------------------------
 
@@ -633,7 +738,6 @@ CREATE TABLE `log_user` (
 
 INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES
 (1, 1, 'created', 'User baru dibuat: Darwin Kuvalis (admin)', '127.0.0.1', 'Symfony', '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
-(2, 2, 'created', 'User baru dibuat: Mr. Alek Kunze (guru)', '127.0.0.1', 'Symfony', '2025-11-21 20:32:50', '2025-11-21 20:32:50'),
 (5, 5, 'created', 'User baru dibuat: Coby Beahan (guru)', '127.0.0.1', 'Symfony', '2025-11-21 20:32:51', '2025-11-21 20:32:51'),
 (7, 7, 'created', 'User baru dibuat: Prof. Archibald Langosh DDS (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:32:52', '2025-11-21 20:32:52'),
 (8, 8, 'created', 'User baru dibuat: Prof. Mayra Heathcote PhD (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:32:52', '2025-11-21 20:32:52'),
@@ -653,7 +757,6 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (25, 25, 'created', 'User baru dibuat: Mafalda Gulgowski (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
 (26, 26, 'created', 'User baru dibuat: Darion Ondricka (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:32:59', '2025-11-21 20:32:59'),
 (27, 27, 'created', 'User baru dibuat: Orville Larson Sr. (admin)', '127.0.0.1', 'Symfony', '2025-11-21 20:33:50', '2025-11-21 20:33:50'),
-(30, 30, 'created', 'User baru dibuat: Kayla Jacobs (guru)', '127.0.0.1', 'Symfony', '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
 (31, 31, 'created', 'User baru dibuat: Wanda Simonis I (guru)', '127.0.0.1', 'Symfony', '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
 (32, 32, 'created', 'User baru dibuat: Dr. Ariane Bosco Jr. (guru)', '127.0.0.1', 'Symfony', '2025-11-21 20:33:51', '2025-11-21 20:33:51'),
 (33, 33, 'created', 'User baru dibuat: Dovie Lynch (siswa)', '127.0.0.1', 'Symfony', '2025-11-21 20:33:52', '2025-11-21 20:33:52'),
@@ -871,9 +974,9 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (256, 1, 'created', 'User baru dibuat: SITI MUNINGSIH (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-04 19:17:01', '2026-01-04 19:17:01'),
 (257, 1, 'created', 'User baru dibuat: SITI NUR FADILAH (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-04 19:17:01', '2026-01-04 19:17:01'),
 (258, 1, 'created', 'User baru dibuat: SYAHFA DWI MULYA (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-04 19:17:02', '2026-01-04 19:17:02'),
-(259, 1, 'created', 'User baru dibuat: SYFA DWI DUTA (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-04 19:17:02', '2026-01-04 19:17:02');
+(259, 1, 'created', 'User baru dibuat: SYFA DWI DUTA (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-04 19:17:02', '2026-01-04 19:17:02'),
+(260, 1, 'created', 'User baru dibuat: TESA APRILIYANA (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-04 19:17:03', '2026-01-04 19:17:03');
 INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES
-(260, 1, 'created', 'User baru dibuat: TESA APRILIYANA (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-04 19:17:03', '2026-01-04 19:17:03'),
 (261, 1, 'created', 'User baru dibuat: TIA DININGSIH (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-04 19:17:03', '2026-01-04 19:17:03'),
 (262, 1, 'created', 'User baru dibuat: Valen Anjani (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-04 19:17:03', '2026-01-04 19:17:03'),
 (263, 1, 'created', 'User baru dibuat: VIRA TRI RAHMADANI (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-04 19:17:04', '2026-01-04 19:17:04'),
@@ -1069,9 +1172,9 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (453, 1, 'created', 'User baru dibuat: IKHSAN MAHARDHIKA ABDILLAH (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:32', '2026-01-04 21:17:32'),
 (454, 1, 'created', 'User baru dibuat: Imam Mujiono (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:32', '2026-01-04 21:17:32'),
 (455, 1, 'created', 'User baru dibuat: Irma Riyani (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:33', '2026-01-04 21:17:33'),
-(456, 1, 'created', 'User baru dibuat: ISMA DWI SUNDARI (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:33', '2026-01-04 21:17:33');
+(456, 1, 'created', 'User baru dibuat: ISMA DWI SUNDARI (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:33', '2026-01-04 21:17:33'),
+(457, 1, 'created', 'User baru dibuat: KHOIRUL ANWAR (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:33', '2026-01-04 21:17:33');
 INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES
-(457, 1, 'created', 'User baru dibuat: KHOIRUL ANWAR (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:33', '2026-01-04 21:17:33'),
 (458, 1, 'created', 'User baru dibuat: LILIS AFIFATUL MAR\'AH (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:33', '2026-01-04 21:17:33'),
 (459, 1, 'created', 'User baru dibuat: LISTIANA NURAENI (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:34', '2026-01-04 21:17:34'),
 (460, 1, 'created', 'User baru dibuat: Listiya Widiasari (guru)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0', '2026-01-04 21:17:34', '2026-01-04 21:17:34'),
@@ -1271,9 +1374,9 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (654, 1, 'created', 'User baru dibuat: Hilma Jakiah (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-06 18:28:22', '2026-01-06 18:28:22'),
 (655, 1, 'created', 'User baru dibuat: ISCHA APRILYSTIA (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-06 18:28:23', '2026-01-06 18:28:23'),
 (656, 1, 'created', 'User baru dibuat: LINDA APRIYANI (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-06 18:28:23', '2026-01-06 18:28:23'),
-(657, 1, 'created', 'User baru dibuat: MELQISSYA (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-06 18:28:24', '2026-01-06 18:28:24');
+(657, 1, 'created', 'User baru dibuat: MELQISSYA (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-06 18:28:24', '2026-01-06 18:28:24'),
+(658, 1, 'created', 'User baru dibuat: Nadlirotul Ruwaidah (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-06 18:28:25', '2026-01-06 18:28:25');
 INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES
-(658, 1, 'created', 'User baru dibuat: Nadlirotul Ruwaidah (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-06 18:28:25', '2026-01-06 18:28:25'),
 (659, 1, 'created', 'User baru dibuat: NAJID WAROHMAN (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-06 18:28:25', '2026-01-06 18:28:25'),
 (660, 1, 'created', 'User baru dibuat: NANI APRIYANTI (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-06 18:28:26', '2026-01-06 18:28:26'),
 (661, 1, 'created', 'User baru dibuat: NAZWA OKTAVIA AZAHRA (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-06 18:28:27', '2026-01-06 18:28:27'),
@@ -1478,9 +1581,9 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (860, 1, 'created', 'User baru dibuat: QORIBUL \'IBAD MUJAZIN (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 18:09:08', '2026-01-07 18:09:08'),
 (861, 1, 'created', 'User baru dibuat: REFALDY ARIE SADEWO (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 18:09:08', '2026-01-07 18:09:08'),
 (862, 1, 'created', 'User baru dibuat: RIDWAN HARDIANZYAH (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 18:09:09', '2026-01-07 18:09:09'),
-(863, 1, 'created', 'User baru dibuat: RIZKI NAZRIL IRHAM (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 18:09:09', '2026-01-07 18:09:09');
+(863, 1, 'created', 'User baru dibuat: RIZKI NAZRIL IRHAM (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 18:09:09', '2026-01-07 18:09:09'),
+(864, 1, 'created', 'User baru dibuat: RIZQI BILAL ROMADHON (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 18:09:09', '2026-01-07 18:09:09');
 INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES
-(864, 1, 'created', 'User baru dibuat: RIZQI BILAL ROMADHON (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 18:09:09', '2026-01-07 18:09:09'),
 (865, 1, 'created', 'User baru dibuat: RUSTRIANSYAH (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 18:09:10', '2026-01-07 18:09:10'),
 (866, 1, 'created', 'User baru dibuat: Surya Irfansah (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 18:09:10', '2026-01-07 18:09:10'),
 (867, 1, 'created', 'User baru dibuat: ANTONY (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 18:10:52', '2026-01-07 18:10:52'),
@@ -1686,9 +1789,9 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (1067, 1, 'created', 'User baru dibuat: SEVIRA RAKHMADANI (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:11:02', '2026-01-07 19:11:02'),
 (1068, 1, 'created', 'User baru dibuat: SITI ZULAEHA LESTARI (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:11:03', '2026-01-07 19:11:03'),
 (1069, 1, 'created', 'User baru dibuat: SUCI NOVITA SARI (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:11:03', '2026-01-07 19:11:03'),
-(1070, 1, 'created', 'User baru dibuat: SYARA DWI AJIJAH (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:11:04', '2026-01-07 19:11:04');
+(1070, 1, 'created', 'User baru dibuat: SYARA DWI AJIJAH (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:11:04', '2026-01-07 19:11:04'),
+(1071, 1, 'created', 'User baru dibuat: VIVIT PUTRIYANI (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:11:05', '2026-01-07 19:11:05');
 INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES
-(1071, 1, 'created', 'User baru dibuat: VIVIT PUTRIYANI (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:11:05', '2026-01-07 19:11:05'),
 (1072, 1, 'created', 'User baru dibuat: ZAHRA NURUSSHIFA (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:11:06', '2026-01-07 19:11:06'),
 (1073, 1, 'created', 'User baru dibuat: AIN DIASTUTI RAHAYU (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:11:06', '2026-01-07 19:11:06'),
 (1074, 1, 'created', 'User baru dibuat: Alifa Chika Meivia (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:11:07', '2026-01-07 19:11:07'),
@@ -1894,9 +1997,9 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (1274, 1, 'created', 'User baru dibuat: RIZKY ADITIYA (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:13:49', '2026-01-07 19:13:49'),
 (1275, 1, 'created', 'User baru dibuat: Satria Cahya Gumilang (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:13:50', '2026-01-07 19:13:50'),
 (1276, 1, 'created', 'User baru dibuat: SATRIA FEBRIAN (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:13:51', '2026-01-07 19:13:51'),
-(1277, 1, 'created', 'User baru dibuat: TEGAR ALFIANO (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:13:51', '2026-01-07 19:13:51');
+(1277, 1, 'created', 'User baru dibuat: TEGAR ALFIANO (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:13:51', '2026-01-07 19:13:51'),
+(1278, 1, 'created', 'User baru dibuat: Tora Andre Wirawan (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:13:52', '2026-01-07 19:13:52');
 INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES
-(1278, 1, 'created', 'User baru dibuat: Tora Andre Wirawan (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:13:52', '2026-01-07 19:13:52'),
 (1279, 1, 'created', 'User baru dibuat: WAHYU MUHAMAD NURHIDAYAT (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:13:52', '2026-01-07 19:13:52'),
 (1280, 1, 'created', 'User baru dibuat: ALI HIDAYAH NURY (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:14:53', '2026-01-07 19:14:53'),
 (1281, 1, 'created', 'User baru dibuat: ALVA ARIYANSAH (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:14:53', '2026-01-07 19:14:53'),
@@ -2022,7 +2125,19 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (1401, 1, 'created', 'User baru dibuat: TIO (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:16:39', '2026-01-07 19:16:39'),
 (1402, 1, 'created', 'User baru dibuat: WIRANTO (siswa)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-07 19:16:39', '2026-01-07 19:16:39'),
 (1403, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-08 01:57:19', '2026-01-08 01:57:19'),
-(1404, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-09 18:17:24', '2026-01-09 18:17:24');
+(1404, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-09 18:17:24', '2026-01-09 18:17:24'),
+(1405, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-14 21:35:19', '2026-01-14 21:35:19'),
+(1406, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-15 17:59:18', '2026-01-15 17:59:18'),
+(1407, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-16 01:28:04', '2026-01-16 01:28:04'),
+(1408, 1, 'updated', 'Data mengajar diperbarui: Guru AFIF WALIYUDIN, Mapel Konsentrasi Keahlian TKJ 2, Jam 8, Pertemuan per minggu 2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-16 02:05:01', '2026-01-16 02:05:01'),
+(1409, 1, 'updated', 'Data mengajar diperbarui: Guru AFIF WALIYUDIN, Mapel Konsentrasi Keahlian TKJ 2, Jam 8, Pertemuan per minggu 2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-16 02:05:12', '2026-01-16 02:05:12'),
+(1410, 1, 'updated', 'Data mengajar diperbarui: Guru ACHMAD FAOZI, Mapel Konsentrasi Keahlian TKJ 3, Jam 6, Pertemuan per minggu 2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-16 02:07:33', '2026-01-16 02:07:33'),
+(1411, 1, 'created', 'Mapel baru dibuat: Bahasa Indonesia (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-16 02:09:03', '2026-01-16 02:09:03'),
+(1412, 1, 'created', 'Mapel baru dibuat: Projek IPAS (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-16 02:09:16', '2026-01-16 02:09:16'),
+(1413, 1, 'created', 'Mapel baru dibuat: SJR (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-16 02:09:28', '2026-01-16 02:09:28'),
+(1414, 1, 'created', 'Mapel baru dibuat: Seni Tari (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-16 02:10:20', '2026-01-16 02:10:20'),
+(1415, 1, 'created', 'Mapel baru dibuat: Pendikan Jasmani dan Olahraga (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-16 02:10:56', '2026-01-16 02:10:56'),
+(1416, 1, 'created', 'Mapel baru dibuat: Koding dan Kecerdasan Artifisial (Kategori: Tidak ada kategori)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-16 02:11:32', '2026-01-16 02:11:32');
 
 -- --------------------------------------------------------
 
@@ -2048,7 +2163,13 @@ INSERT INTO `mapel` (`id`, `nama_mapel`, `kode_mapel`, `kategori_mapel_id`, `cre
 (7, 'Mapel Pilihan TKJ', 'MPTKJ', 5, '2026-01-05 21:37:28', '2026-01-05 21:37:28'),
 (8, 'Bahasa Inggris', 'BING', 4, '2026-01-06 08:21:06', '2026-01-06 08:21:06'),
 (9, 'Konsentrasi Keahlian TKJ 1', 'KKTKJ1', 5, '2026-01-07 02:33:19', '2026-01-07 02:33:19'),
-(10, 'Konsentrasi Keahlian TKJ 3', 'KKTKJ3', 5, '2026-01-07 02:33:42', '2026-01-07 02:33:42');
+(10, 'Konsentrasi Keahlian TKJ 3', 'KKTKJ3', 5, '2026-01-07 02:33:42', '2026-01-07 02:33:42'),
+(11, 'Bahasa Indonesia', 'BINDO', 4, '2026-01-16 02:09:03', '2026-01-16 02:09:03'),
+(12, 'Projek IPAS', 'PIPAS', 4, '2026-01-16 02:09:16', '2026-01-16 02:09:16'),
+(13, 'SJR', 'Sejarah', 4, '2026-01-16 02:09:28', '2026-01-16 02:09:28'),
+(14, 'Seni Tari', 'ST', 4, '2026-01-16 02:10:20', '2026-01-16 02:10:20'),
+(15, 'Pendikan Jasmani dan Olahraga', 'PJOR', 4, '2026-01-16 02:10:56', '2026-01-16 02:10:56'),
+(16, 'Koding dan Kecerdasan Artifisial', 'KKA', 4, '2026-01-16 02:11:32', '2026-01-16 02:11:32');
 
 -- --------------------------------------------------------
 
@@ -2121,7 +2242,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (33, '2025_11_23_083149_create_tahun_pelajaran_table', 2),
 (34, '2025_11_23_083336_create_semesters_table', 2),
 (35, '2025_11_21_032646_jam_pelajaran', 3),
-(36, '2025_11_23_114730_hari_aktif', 3);
+(36, '2025_11_23_114730_hari_aktif', 3),
+(37, '2026_01_16_073410_create_backups_table', 4);
 
 -- --------------------------------------------------------
 
@@ -2224,8 +2346,7 @@ INSERT INTO `pengumuman` (`id`, `title`, `content`, `created_by`, `is_active`, `
 (1, 'Pemeliharaan Sistem', 'Sistem akan mengalami maintenance pada hari Sabtu pukul 22:00 WIB. Mohon simpan pekerjaan Anda.', 1, 1, '2026-01-08 08:56:03', '2026-01-10 08:56:03', '2026-01-08 08:56:03', '2026-01-08 08:56:03'),
 (2, 'Rapat Evaluasi Bulanan', 'Mengundang seluruh staff pengajar untuk hadir di Ruang Meeting A besok pagi.', 1, 1, '2026-01-08 08:56:03', NULL, '2026-01-08 08:56:03', '2026-01-08 08:56:03'),
 (3, 'Peringatan Absensi', 'Halo, absensi Anda bulan ini di bawah batas minimum. Harap hubungi HRD.', 1, 1, '2026-01-08 08:56:03', NULL, '2026-01-08 08:56:03', '2026-01-08 08:56:03'),
-(9, 'twess', 'tess', 1, 1, '2026-01-09 18:32:53', '2026-01-09 18:32:53', '2026-01-09 18:32:53', '2026-01-09 18:32:53'),
-(10, 'tesyyyyy', 'tesss', 1, 1, '2026-01-10 00:51:57', '2026-01-10 00:51:57', '2026-01-09 21:40:24', '2026-01-10 00:51:57');
+(9, 'twess', 'tess', 1, 1, '2026-01-09 18:32:53', '2026-01-09 18:32:53', '2026-01-09 18:32:53', '2026-01-09 18:32:53');
 
 -- --------------------------------------------------------
 
@@ -2251,8 +2372,7 @@ INSERT INTO `pengumuman_target` (`id`, `pengumuman_id`, `target_type`, `target_r
 (1, 1, 'all', NULL, '2026-01-08 08:56:14', '2026-01-08 08:56:14', NULL),
 (2, 2, 'role', 'guru', '2026-01-08 08:56:14', '2026-01-08 08:56:14', NULL),
 (3, 3, 'user', NULL, '2026-01-08 08:56:14', '2026-01-08 08:56:14', '[3, 5, 8]\n'),
-(5, 9, 'all', NULL, '2026-01-09 18:32:53', '2026-01-09 18:32:53', NULL),
-(6, 10, 'user', NULL, '2026-01-09 21:40:24', '2026-01-10 00:51:57', '[1]');
+(5, 9, 'all', NULL, '2026-01-09 18:32:53', '2026-01-09 18:32:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -3651,7 +3771,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'newell.kirlin', 'Darwin Kuvalis', 'jlarson@example.org', '$2y$12$afY/dr5OaTUvgZWjFjnTVOfD/VA9ArVNhXM1L9uL/nfw.MyNzsT9m', '', 'admin', 'profile.png', '', 1, NULL, 'uOFH9nRnHvpkdjePezX0EJ3xln0Tvkqm0E2Kk8TR8zrRJZrb5bR4Ch5nQoGY', '2025-11-21 20:32:49', '2025-11-21 20:32:49'),
-(2, 'afifsaja', 'Mr. Alek Kunze', 'afifsaja@gmail.com', '$2y$12$3C2v7WdtMS5EwuJpNe3OsezGNfg.VhLaPX6Bza/4b/QpDVEOG7lt6', 'akukeren', 'guru', 'foto-guru/w5DvIX1o5FxyuyINfJHxC9DWJ2g1JbBLLB7oSWxh.jpg', 'foto-unggulan/v4QtbPMQYvVy5Clyg26wK0sKH7qu5qQLsT3q4ScA.jpg', 1, NULL, '', '2025-11-21 20:32:50', '2026-01-06 06:35:22'),
 (5, 'tbins', 'Coby Beahan', 'gvolkman@example.com', '$2y$12$4jy3JwleOVAog1fO/ynlYutWZxsuJ0XGs28oTPUTmyC/RrvVo7rxu', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:51', '2026-01-06 06:35:22'),
 (7, 'cornell38', 'Prof. Archibald Langosh DDS', 'mante.rodolfo@example.net', '$2y$12$FnP75t.7.UMqXzCBrv2N/uXhvkj8Q1U6.mv98T8Hjk9He6V5m64cu', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:52', '2026-01-06 02:50:17'),
 (8, 'qkeeling', 'Prof. Mayra Heathcote PhD', 'retta98@example.com', '$2y$12$T9HkDiQblI9Nl.n5rR9X5eSuwvQpMXXUMFSyeeiVKwkaLk2.LN0Jm', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:52', '2026-01-06 02:50:17'),
@@ -3671,7 +3790,6 @@ INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_te
 (25, 'lebsack.fiona', 'Mafalda Gulgowski', 'ernestina46@example.com', '$2y$12$0/SYoUEOJQRFrFODpPq4SendP22npP1bdsdyn486XmGpv1Ugk01wO', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:59', '2026-01-06 02:50:17'),
 (26, 'payton73', 'Darion Ondricka', 'montana.jacobi@example.org', '$2y$12$xoIRowulJykW/I4rkvxFAeJu/j761zvl.G/wzBo8R8vnfFi98M5JK', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:32:59', '2026-01-06 02:50:17'),
 (27, 'vmckenzie', 'Orville Larson Sr.', 'nolan.eunice@example.net', '$2y$12$EhpZ4gB3jXpRokJnlil8D.Y9xGR/6xK0JVAm6OcNru1uGRzD/lzZ2', '', 'admin', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:49', '2025-11-21 20:33:49'),
-(30, 'dhoppe', 'Kayla Jacobs', 'akuhlman@example.org', '$2y$12$dNgbpyRPzAHqfjbF1iWxTeZbXiFZ5Um4zyhO/fZmgerozKJTP3w2C', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:51', '2026-01-06 06:35:22'),
 (31, 'lauer', 'Wanda Simonis I', 'sarai.walter@example.com', '$2y$12$CxKF4XdSS5zzKnT6/6R11O.ewVKYvg1w0okbYkZAOu3XTfQoPK6xq', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:51', '2026-01-06 06:35:22'),
 (32, 'albertha.kerluke', 'Dr. Ariane Bosco Jr.', 'xwintheiser@example.org', '$2y$12$lwPHBrWVTrFLz9h1dA911uC/oAeCP6sfYYY.4O3qJ4vJUCnPKvZIi', '', 'guru', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:51', '2026-01-06 06:35:22'),
 (33, 'zdibbert', 'Dovie Lynch', 'plarkin@example.com', '$2y$12$HL1G06jWvQSzuyLuhK0ry.qkRRD8HHwUvd5CKakNxZzpE0uRsApTu', '', 'siswa', 'profile.png', '', 1, NULL, '', '2025-11-21 20:33:52', '2026-01-06 02:50:17'),
@@ -3866,11 +3984,11 @@ INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_te
 (228, '25268757', 'REVFAL SUGIYANTO', '25268757@sekolah.test', '$2y$12$DgCm5UD5FLcuACTMsklb7Ov5hQn3QJiXJBzzRfC4ebI5vjmCXvzfO', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:39', '2026-01-06 02:50:17'),
 (229, '25268764', 'RIFI ALFIAN FAUZI', '25268764@sekolah.test', '$2y$12$D1IVGYt.F3JufCPfiVW8UOJ4ZiBQ9TJmJb9ai77aXWJBnbDkTnVci', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:40', '2026-01-06 02:50:17'),
 (230, '25268770', 'RIVAN NANDA MARDIKA', '25268770@sekolah.test', '$2y$12$SOxF/nIC75aMUsCLH5RV/eGXeXCeMOH49orPgLKFHvJ9h0ee1c7g.', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:40', '2026-01-06 02:50:17'),
-(231, '25268775', 'RIZKA NUR UTAMI', '25268775@sekolah.test', '$2y$12$2qy4Z0YMoTV8ICGOKcTMtunOvKGX9scysGyTB68NJfb.SRX/DKhg6', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:40', '2026-01-06 02:50:17');
-INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
+(231, '25268775', 'RIZKA NUR UTAMI', '25268775@sekolah.test', '$2y$12$2qy4Z0YMoTV8ICGOKcTMtunOvKGX9scysGyTB68NJfb.SRX/DKhg6', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:40', '2026-01-06 02:50:17'),
 (232, '25268778', 'RIZKI TEGAR PRASETYO', '25268778@sekolah.test', '$2y$12$4l0QhRYgelHsDKwvNDy/JeHzRElh7WR56JIhXrlGmrJXO2/8KK6mC', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:41', '2026-01-06 02:50:17'),
 (233, '25268783', 'ROSTIANA SARI INTEN DEWATA', '25268783@sekolah.test', '$2y$12$USwD3jLaw3iZwNjIBNy/zuJ9VZ/luyJU42.QQMRdcqr21VZ3xIPLe', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:41', '2026-01-06 02:50:17'),
-(234, '25268809', 'Surya hansyah', '25268809@sekolah.test', '$2y$12$afwv4kJWS.pfzKeyDzJnz.aw1uhIxepSKEE7H3uQX9KWIwUzYTD9W', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:42', '2026-01-06 02:50:17'),
+(234, '25268809', 'Surya hansyah', '25268809@sekolah.test', '$2y$12$afwv4kJWS.pfzKeyDzJnz.aw1uhIxepSKEE7H3uQX9KWIwUzYTD9W', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:42', '2026-01-06 02:50:17');
+INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
 (235, '25268826', 'VANI ALVIANA SARI', '25268826@sekolah.test', '$2y$12$VTvCXfYmI2Z05act3OlyF.yJNV9CnrtOFAKv5XZp2H.HOOoAD5.S6', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:42', '2026-01-06 02:50:17'),
 (236, '25268834', 'WAHYU RIZKI PRATAMA', '25268834@sekolah.test', '$2y$12$BLLZ4ymuWbaEpe17ZvD/O.ZK3FZCJIpChURuJxfA2Hb/TuJVrZHxC', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:43', '2026-01-06 02:50:17'),
 (237, '25268837', 'WINA WIDIANINGSIH', '25268837@sekolah.test', '$2y$12$OFgIgBlwbz9d/IuKUpckoOzSw.PUT8ezI2l3iVSOLw4Bx1FMcSSpa', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-04 20:05:43', '2026-01-06 02:50:17'),
@@ -4078,11 +4196,11 @@ INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_te
 (440, '25268628', 'HANIF KURNIAWAN SAPUTRA', '25268628@sekolah.test', '$2y$12$NIZV4i2TcTEQKCghPlk4XOAV5xRdH1Phe.21/FetQHt05/tLytK5.', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:08', '2026-01-06 18:13:08'),
 (441, '25268634', 'IKO CITRA TRI SATRIO', '25268634@sekolah.test', '$2y$12$Q86FTN2zKvSViU.uPcSEUeOc4sFAybWWScC9wOiqraoYSFo3sftve', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:08', '2026-01-06 18:13:08'),
 (442, '25268651', 'KHAIRUL MU\'IZZ', '25268651@sekolah.test', '$2y$12$FmT77CAnvekuTakuOAZizO5j6V4KNO4V06ghzOmCpgC8eZ6WLtrT6', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:09', '2026-01-06 18:13:09'),
-(443, '25268676', 'MOCHAMAD RIVALDY', '25268676@sekolah.test', '$2y$12$msNc7N23DOIudJWd2obhveqmooaEGVgO53.oEm863.gca0WHKrhVG', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:09', '2026-01-06 18:13:09');
-INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
+(443, '25268676', 'MOCHAMAD RIVALDY', '25268676@sekolah.test', '$2y$12$msNc7N23DOIudJWd2obhveqmooaEGVgO53.oEm863.gca0WHKrhVG', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:09', '2026-01-06 18:13:09'),
 (444, '25268682', 'Muhamad Fadil Aldiyansah', '25268682@sekolah.test', '$2y$12$ilqbG7vdC2QHtANib.KQPuuB5G2zcR4cPl3Nn82.bPowJ506P4RCW', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:10', '2026-01-06 18:13:10'),
 (445, '25268684', 'Muhamad Fathurrohman', '25268684@sekolah.test', '$2y$12$eLnMqZifBkrwRspfpPIn2u3/V8g74AFHdLCCdBPICxx0d1sipGrYa', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:10', '2026-01-06 18:13:10'),
-(446, '25268851', 'MUHAMMAD RIZKY PRATAMA SAEFUDIN', '25268851@sekolah.test', '$2y$12$5ZN8iSzBauR7lOGULbjF6.JXQvHXnFE.UllB.gIxeCyHaGzSl2Dti', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:12', '2026-01-06 18:13:12'),
+(446, '25268851', 'MUHAMMAD RIZKY PRATAMA SAEFUDIN', '25268851@sekolah.test', '$2y$12$5ZN8iSzBauR7lOGULbjF6.JXQvHXnFE.UllB.gIxeCyHaGzSl2Dti', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:12', '2026-01-06 18:13:12');
+INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
 (447, '25268707', 'NANDA HAFIZ FAUZIAN', '25268707@sekolah.test', '$2y$12$bsFS64QdJ9wE78PPzuPF.OWd2K7W3f1fkMoyCRdlA28iUiyjEmIJS', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:13', '2026-01-06 18:13:13'),
 (448, '25268714', 'NAZRIL WAHDA AL KHUSNA', '25268714@sekolah.test', '$2y$12$JAoAWrcBfafSCk4ttXt7oedrE6k51RvgIdxjPk6slVv6CHTjhn7Xy', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:14', '2026-01-06 18:13:14'),
 (449, '25268753', 'Rendika Pratama', '25268753@sekolah.test', '$2y$12$hgSUXZPb4AyRWeayfaZOa.tDasHosUFON1QJ6/tTsDJGIYqVWC20a', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-06 18:13:15', '2026-01-06 18:13:15'),
@@ -4294,11 +4412,11 @@ INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_te
 (655, '24258173', 'DEA APRILIA', '24258173@sekolah.test', '$2y$12$Ie9p7pDXvbXVutMnCJNqdOh0Pgq3NYNsH/QVzkUebUSNGazyprMbK', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:06', '2026-01-07 18:05:06'),
 (656, '24258176', 'DELLA PUSPITA', '24258176@sekolah.test', '$2y$12$1ITVzycXGlxofVRA9kXdf.cwzD47Oh6ZMsbzK4VMkKejLHVjmZaUu', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:07', '2026-01-07 18:05:07'),
 (657, '24258189', 'DIDI KURNIAWAN', '24258189@sekolah.test', '$2y$12$pFOHSbircAY37bijTUYe9uUWJQKjQPBG/qWcJrdhgzpq56fets9xG', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:07', '2026-01-07 18:05:07'),
-(658, '24258199', 'EGA FRADIKA', '24258199@sekolah.test', '$2y$12$e2BGlqcEE1ai6YZW96jrPublblEhpIvGbtSOUQeVRv3vU3mE.k4f2', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:08', '2026-01-07 18:05:08');
-INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
+(658, '24258199', 'EGA FRADIKA', '24258199@sekolah.test', '$2y$12$e2BGlqcEE1ai6YZW96jrPublblEhpIvGbtSOUQeVRv3vU3mE.k4f2', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:08', '2026-01-07 18:05:08'),
 (659, '24258205', 'EZA AGUSTIAR RAMADHAN', '24258205@sekolah.test', '$2y$12$m7XJIQ8ZxbdPgaIDC1gKXe7msjC3AVwd.fkeSM7l5QjJMZz4vooZ.', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:08', '2026-01-07 18:05:08'),
 (660, '24258229', 'FILA RAMADANI', '24258229@sekolah.test', '$2y$12$DS0YxKSyTb7G6C./Pqp76./VuxhEtoDdd9fXn/qFuozAvqL8FRncu', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:09', '2026-01-07 18:05:09'),
-(661, '24258249', 'IIF NURHIDAYAT', '24258249@sekolah.test', '$2y$12$7AOm8mOYSlEjkTHLHlyKg.pOWyYizfSpcEmOtfy4pmEy/.VjnBEsq', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:09', '2026-01-07 18:05:09'),
+(661, '24258249', 'IIF NURHIDAYAT', '24258249@sekolah.test', '$2y$12$7AOm8mOYSlEjkTHLHlyKg.pOWyYizfSpcEmOtfy4pmEy/.VjnBEsq', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:09', '2026-01-07 18:05:09');
+INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
 (662, '24258251', 'IMAM MUHAMMAD AL FARIZ', '24258251@sekolah.test', '$2y$12$CMshcxPqYhBl4.Qal39KquDBa.yU90RqWsE8s9MTchlQOgNH2KTsi', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:10', '2026-01-07 18:05:10'),
 (663, '24258271', 'Kemal Pebriyan', '24258271@sekolah.test', '$2y$12$L5IZ6vN34Tx9yLwoyE2g5OmJTxSOrQcGuBy8KQig.bXgJPLFLURg2', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:10', '2026-01-07 18:05:10'),
 (664, '24258311', 'MUHAMMAD FATHAN AL FATIH', '24258311@sekolah.test', '$2y$12$ZU5YXNMUjDcyWK.ILaju0udPWuiEkumL5JPdDgmrVI5n6DWTY7ExK', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 18:05:11', '2026-01-07 18:05:11'),
@@ -4510,11 +4628,11 @@ INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_te
 (870, '23247875', 'NOVINA SRI RAHAYU', '23247875@sekolah.test', '$2y$12$GcKIs7UmRba.EBzwcpw/suIeWx0St9utu9SpI6.OqhIZqFoXo1SuW', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:45', '2026-01-07 19:08:45'),
 (871, '23247908', 'REVA RIYANTI', '23247908@sekolah.test', '$2y$12$iYjvlJ7wuaitiePP68AYIOK2m07Syk1aw94/QOVBDQTdAotR6lILC', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:46', '2026-01-07 19:08:46'),
 (872, '23247948', 'SARAH AGUSTIN', '23247948@sekolah.test', '$2y$12$q.PArqTmeBN1G0uu/NjXF.XkC9LAhAH21q0ZAKmoBqSIBAtiJEY3e', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:47', '2026-01-07 19:08:47'),
-(873, '23247964', 'Silviana Lintang Andriyani', '23247964@sekolah.test', '$2y$12$3UFuRlmg9GL6Na/e2RZEIuo3jp7Pv1wK3t2J6bBBAUocyb14WpNim', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:47', '2026-01-07 19:08:47');
-INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
+(873, '23247964', 'Silviana Lintang Andriyani', '23247964@sekolah.test', '$2y$12$3UFuRlmg9GL6Na/e2RZEIuo3jp7Pv1wK3t2J6bBBAUocyb14WpNim', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:47', '2026-01-07 19:08:47'),
 (874, '23247985', 'SYAHLA MEILIA', '23247985@sekolah.test', '$2y$12$SCDFOnsEscYUlbgwcLzgMuWxoTh9Zi62zQk9hFPSVVyRlphmGBSk2', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:48', '2026-01-07 19:08:48'),
 (875, '23247998', 'TIARA DWI SAFITRI', '23247998@sekolah.test', '$2y$12$nvZo1tPlWPspmlwgRATyO.40oVLApKEsxUY9WdFi9/F1TrV/jcixS', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:49', '2026-01-07 19:08:49'),
-(876, '23248008', 'UNES AMANIA', '23248008@sekolah.test', '$2y$12$WZ1iypVGCWH.wkGcXzJ/ROYF.9ieywduCq7ga2rNvas449hZ6KBc.', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:50', '2026-01-07 19:08:50'),
+(876, '23248008', 'UNES AMANIA', '23248008@sekolah.test', '$2y$12$WZ1iypVGCWH.wkGcXzJ/ROYF.9ieywduCq7ga2rNvas449hZ6KBc.', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:50', '2026-01-07 19:08:50');
+INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
 (877, '23248013', 'Vivin Hayati Hasanah', '23248013@sekolah.test', '$2y$12$Swpq31s4VS6zIkgTm9zwX.iOzkqRh5oLX/X7OW.dR8XJA4RyAKdzu', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:51', '2026-01-07 19:08:51'),
 (878, '23248019', 'Widia Aulia Assyifa', '23248019@sekolah.test', '$2y$12$jJLoavqffALT3fu/xSOEgusW0D8ohoJBVFJi/k1Mzw.uMnbCnyR32', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:52', '2026-01-07 19:08:52'),
 (879, '23248021', 'WINA ROSMILA', '23248021@sekolah.test', '$2y$12$ZsEHj1KOVZ.Ir4rSM0dx1upQ36ri/SNovtm/veBhT44IMghXPXare', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:08:53', '2026-01-07 19:08:53'),
@@ -4726,11 +4844,11 @@ INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_te
 (1085, '23247636', 'ADITYA FAUZI ZAIN', '23247636@sekolah.test', '$2y$12$dEtFgZefZO4519XUWWkknOH0NIy7CXXk6IQILB36811AHapHP.Tc.', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:27', '2026-01-07 19:13:27'),
 (1086, '23247638', 'ADRIAN NUR ROHMAN', '23247638@sekolah.test', '$2y$12$Su9qqUVNTZY6W0W7/Gi47uk8Z3zKVLgVTB/rIV2mQw1by1P7GrKPa', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:27', '2026-01-07 19:13:27'),
 (1087, '23247652', 'AJI GALIH PRASETYO', '23247652@sekolah.test', '$2y$12$j6RufpYfqNileb1ruJQmsuussHcjembL3ukEQJZIFPErBQEAcW.qG', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:28', '2026-01-07 19:13:28'),
-(1088, '23247659', 'ALDI AYRIAN', '23247659@sekolah.test', '$2y$12$oJ2BmJOmwKLrK/nDgOlYTeIv/18lYGNgwOWbUvJPOxykuTxRzmPWK', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:28', '2026-01-07 19:13:28');
-INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1088, '23247659', 'ALDI AYRIAN', '23247659@sekolah.test', '$2y$12$oJ2BmJOmwKLrK/nDgOlYTeIv/18lYGNgwOWbUvJPOxykuTxRzmPWK', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:28', '2026-01-07 19:13:28'),
 (1089, '23247664', 'ALI MA\'RUF', '23247664@sekolah.test', '$2y$12$UjsAwkYlRrIk47DZ.p54wuDnPi1mQma7VvlniefaeI.lYz8sGjRDa', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:29', '2026-01-07 19:13:29'),
 (1090, '23247713', 'CHOIRUL ZAKI RAMDANI', '23247713@sekolah.test', '$2y$12$yD/n5gWAmoPQPBe7yf14k.ANWCmBvcYuSRy8i/m7na2lv24jTZgEm', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:30', '2026-01-07 19:13:30'),
-(1091, '23247744', 'EKSA JULIO PANGESTU', '23247744@sekolah.test', '$2y$12$mU9Y0DpQ4wFllbKZnVo1WeOpibC3wVvBrjc4Z/a36gqXRP3WqCNni', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:30', '2026-01-07 19:13:30'),
+(1091, '23247744', 'EKSA JULIO PANGESTU', '23247744@sekolah.test', '$2y$12$mU9Y0DpQ4wFllbKZnVo1WeOpibC3wVvBrjc4Z/a36gqXRP3WqCNni', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:30', '2026-01-07 19:13:30');
+INSERT INTO `users` (`id`, `username`, `nama`, `email`, `password`, `password_text`, `role`, `foto_profil`, `foto_unggulan`, `is_active`, `reset_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1092, '23247755', 'FAHRI MUHAMAD FAISAL', '23247755@sekolah.test', '$2y$12$UiWAJXr3eVWmkO2FjRMiT./5I1v2jDNRSG6Fv1W3WkD32LVEHISXm', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:30', '2026-01-07 19:13:30'),
 (1093, '23247756', 'FAHRI RAHMADAN', '23247756@sekolah.test', '$2y$12$e.fzqBg0Zd78VbKsd8WPP.TNMuZmheK9acURtnTwJgGj/xXrjW0Oa', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:31', '2026-01-07 19:13:31'),
 (1094, '23247788', 'IBNU NGAZIZATULNGUBAIDILLAH', '23247788@sekolah.test', '$2y$12$1n.XAu4GpmiBbqf7Ig/k2uPUOeNGR2sE81H4eKOnnWXYZziYoAmBS', 'sakti321*', 'siswa', 'profile.png', NULL, 1, NULL, NULL, '2026-01-07 19:13:31', '2026-01-07 19:13:31'),
@@ -4985,6 +5103,12 @@ ALTER TABLE `agenda`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `backups`
+--
+ALTER TABLE `backups`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `data_mengajar`
 --
 ALTER TABLE `data_mengajar`
@@ -5036,8 +5160,8 @@ ALTER TABLE `hari_aktif`
 ALTER TABLE `jadwal_mengajar`
   ADD PRIMARY KEY (`id`),
   ADD KEY `jadwal_mengajar_data_mengajar_id_foreign` (`data_mengajar_id`),
-  ADD KEY `jadwal_mengajar_jam_mulai_id_foreign` (`jam_mulai_id`),
-  ADD KEY `jadwal_mengajar_jam_selesai_id_foreign` (`jam_selesai_id`);
+  ADD KEY `hari_id` (`hari_id`),
+  ADD KEY `jam_pelajaran_id` (`jam_pelajaran_id`);
 
 --
 -- Indeks untuk tabel `jam_mengajar`
@@ -5049,7 +5173,8 @@ ALTER TABLE `jam_mengajar`
 -- Indeks untuk tabel `jam_pelajaran`
 --
 ALTER TABLE `jam_pelajaran`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jam_pelajaran_ibfk_1` (`hari_id`);
 
 --
 -- Indeks untuk tabel `jenis_tagihan`
@@ -5309,6 +5434,12 @@ ALTER TABLE `agenda`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
+-- AUTO_INCREMENT untuk tabel `backups`
+--
+ALTER TABLE `backups`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT untuk tabel `data_mengajar`
 --
 ALTER TABLE `data_mengajar`
@@ -5342,13 +5473,13 @@ ALTER TABLE `guru`
 -- AUTO_INCREMENT untuk tabel `hari_aktif`
 --
 ALTER TABLE `hari_aktif`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwal_mengajar`
 --
 ALTER TABLE `jadwal_mengajar`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `jam_mengajar`
@@ -5360,7 +5491,7 @@ ALTER TABLE `jam_mengajar`
 -- AUTO_INCREMENT untuk tabel `jam_pelajaran`
 --
 ALTER TABLE `jam_pelajaran`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT untuk tabel `jenis_tagihan`
@@ -5426,13 +5557,13 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1405;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1417;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
 --
 ALTER TABLE `mapel`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `materi`
@@ -5444,7 +5575,7 @@ ALTER TABLE `materi`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `notifikasi`
@@ -5583,8 +5714,14 @@ ALTER TABLE `guru`
 --
 ALTER TABLE `jadwal_mengajar`
   ADD CONSTRAINT `jadwal_mengajar_data_mengajar_id_foreign` FOREIGN KEY (`data_mengajar_id`) REFERENCES `data_mengajar` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `jadwal_mengajar_jam_mulai_id_foreign` FOREIGN KEY (`jam_mulai_id`) REFERENCES `jam_mengajar` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `jadwal_mengajar_jam_selesai_id_foreign` FOREIGN KEY (`jam_selesai_id`) REFERENCES `jam_mengajar` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `jadwal_mengajar_ibfk_1` FOREIGN KEY (`hari_id`) REFERENCES `hari_aktif` (`id`),
+  ADD CONSTRAINT `jadwal_mengajar_ibfk_2` FOREIGN KEY (`jam_pelajaran_id`) REFERENCES `jam_pelajaran` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `jam_pelajaran`
+--
+ALTER TABLE `jam_pelajaran`
+  ADD CONSTRAINT `jam_pelajaran_ibfk_1` FOREIGN KEY (`hari_id`) REFERENCES `hari_aktif` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `kaskeluar`

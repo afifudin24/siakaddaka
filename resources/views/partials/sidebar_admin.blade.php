@@ -91,9 +91,9 @@
 {{-- Data Akademik Start --}}
 <li class="dropdown my-1
     {{ Request::is('admin/datamengajar*') ||
-       Request::is('admin/jadwal-mengajar*') ||
-       Request::is('admin/jurnal-mengajar*') ||
-       Request::is('admin/kehadiran-kelas*') ||
+       Request::is('admin/jadwalmengajar*') ||
+       Request::is('admin/jurnalmengajar*') ||
+       Request::is('admin/kehadirankelas*') ||
        Request::is('admin/tugas*') ||
        Request::is('admin/nilai*')
        ? 'active open' : '' }}">
@@ -102,8 +102,8 @@
         <span>Data Akademik</span>
     </a>
     <ul class="sidebar-submenu">
-        <li class="{{ request()->is('admin/hari-aktif*') ? 'active-page' : '' }}">
-            <a href="/admin/hari-aktif" class="{{ request()->is('admin/hari-aktif*') ? 'active' : '' }}">
+        <li class="{{ request()->is('admin/hariaktif*') ? 'active-page' : '' }}">
+            <a href="/admin/hariaktif" class="{{ request()->is('admin/hariaktif*') ? 'active' : '' }}">
               <iconify-icon icon="bi:calendar-day" class="menu-icon"></iconify-icon>
                 <span>Hari Aktif KBM</span>
             </a>
@@ -114,20 +114,20 @@
                 <span>Data Mengajar</span>
             </a>
         </li>
-        <li class="{{ request()->is('admin/jadwal-mengajar*') ? 'active-page' : '' }}">
-            <a href="/admin/jadwal-mengajar" class="{{ request()->is('admin/jadwalmengajar*') ? 'active' : '' }}">
+        <li class="{{ request()->is('admin/jadwalmengajar*') ? 'active-page' : '' }}">
+            <a href="/admin/jadwalmengajar" class="{{ request()->is('admin/jadwalmengajar*') ? 'active' : '' }}">
               <iconify-icon icon="ri:calendar-schedule-line" class="menu-icon"></iconify-icon>  
               <span>Jadwal Mengajar</span>
             </a>
         </li>
-        <li class="{{ request()->is('admin/jurnal-mengajar*') ? 'active-page' : '' }}">
-            <a href="/admin/jurnal-mengajar" class="{{ request()->is('admin/jurnal-mengajar*') ? 'active' : '' }}">
+        <li class="{{ request()->is('admin/jurnalmengajar*') ? 'active-page' : '' }}">
+            <a href="/admin/jurnalmengajar" class="{{ request()->is('admin/jurnalmengajar*') ? 'active' : '' }}">
               <iconify-icon icon="bi:journal-text" class="menu-icon"></iconify-icon>  
               <span>Jurnal Mengajar</span>
             </a>
         </li>
-        <li class="{{ request()->is('admin/kehadiran-kelas*') ? 'active-page' : '' }}">
-            <a href="/admin/kehadiran-kelas" class="{{ request()->is('admin/kehadiran-kelas*') ? 'active' : '' }}">
+        <li class="{{ request()->is('admin/kehadirankelas*') ? 'active-page' : '' }}">
+            <a href="/admin/kehadirankelas" class="{{ request()->is('admin/kehadirankelas*') ? 'active' : '' }}">
                 <iconify-icon icon="material-symbols:co-present" class="menu-icon"></iconify-icon>
                 <span>Kehadiran Kelas</span>
             </a>

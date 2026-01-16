@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\HariAktif;
 use App\Models\JamPelajaran;
 use App\Models\JadwalMengajar;
+use App\Models\Kelas;
 use App\Models\DataMengajar;
+use Illuminate\Support\Facades\DB;
 
 class AdminJadwalMengajarController extends Controller
 {
@@ -15,28 +17,32 @@ class AdminJadwalMengajarController extends Controller
      */
   public function index(Request $request)
 {
-    $kelas_id = $request->kelas; // ambil kelas dari GET
+      $kelas = Kelas::orderBy('tingkat')->orderBy('nama_kelas')->get();
 
-    $kelas = Kelas::all();
-
-    $jadwal_lama = collect();
-    $hari = collect();
-    $jam = collect();
-    $data_mengajar = collect();
-
-    if ($kelas_id) {
-        $hari = HariAktif::all();
-        $jam = JamPelajaran::all();
-
-        $data_mengajar = DataMengajar::where('kelas_id', $kelas_id)->get();
-
-        $jadwal_lama = JadwalMengajar::with('dataMengajar')
-            ->whereHas('dataMengajar', fn($q) => $q->where('kelas_id', $kelas_id))
-            ->get();
+    if (!$request->filled('kelas_id')) {
+        return view('pages.admin.jadwalmengajar.index', compact('kelas'));
     }
 
-    return view('admin.jadwal.index', compact(
-        'kelas', 'kelas_id', 'hari', 'jam', 'data_mengajar', 'jadwal_lama'
+    $kelasId = $request->kelas_id;
+
+    $hariAktif = HariAktif::with(['jamPelajaran' => function ($q) {
+        $q->orderBy('jam_ke');
+    }])->orderBy('urutan_hari')->get();
+
+    $dataMengajar = DataMengajar::where('kelas_id', $kelasId)->get();
+
+    $jadwal = JadwalMengajar::whereIn(
+        'hari_id',
+        $hariAktif->pluck('id')
+    )->get()->keyBy(fn ($j) =>
+        $j->hari_id . '-' . $j->jam_pelajaran_id
+    );
+
+    return view('pages.admin.jadwalmengajar.index', compact(
+        'kelas',
+        'hariAktif',
+        'dataMengajar',
+        'jadwal'
     ));
 }
 
@@ -68,30 +74,29 @@ class AdminJadwalMengajarController extends Controller
     /**
      * Step 3: simpan jadwal untuk satu kelas
      */
-public function store(Request $request, $kelas_id)
+public function store(Request $request)
 {
-    $jadwal = $request->jadwal;
+    DB::transaction(function () use ($request) {
 
-    // Hapus jadwal lama berdasarkan kelas via relasi data_mengajar
-    JadwalMengajar::whereHas('dataMengajar', function ($q) use ($kelas_id) {
-        $q->where('kelas_id', $kelas_id);
-    })->delete();
+        JadwalMengajar::whereIn(
+            'hari_id',
+            array_keys($request->jadwal)
+        )->delete();
 
-    // Insert ulang jadwal baru
-    foreach ($jadwal as $hari_id => $jamList) {
-        foreach ($jamList as $jam_id => $dm_id) {
-
-            if (!$dm_id) continue; // skip jika kosong
-
-            JadwalMengajar::create([
-                'hari_id' => $hari_id,
-                'jam_pelajaran_id' => $jam_id,
-                'data_mengajar_id' => $dm_id, // kelas ikut dari sini
-            ]);
+        foreach ($request->jadwal as $hariId => $jams) {
+            foreach ($jams as $jamId => $dataMengajarId) {
+                if ($dataMengajarId) {
+                    JadwalMengajar::create([
+                        'hari_id' => $hariId,
+                        'jam_pelajaran_id' => $jamId,
+                        'data_mengajar_id' => $dataMengajarId,
+                    ]);
+                }
+            }
         }
-    }
+    });
 
-    return redirect()->route('jadwal.index')
-                     ->with('success', 'Jadwal berhasil disimpan!');
+    return response()->json(['status' => true]);
 }
+
 }

@@ -15,6 +15,10 @@ use App\Http\Controllers\Admin\AdminDataSekolahController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminDataMengajarController;
 use App\Http\Controllers\Admin\AdminPengumumanController;
+use App\Http\Controllers\Admin\AdminHariAktifController;
+use App\Http\Controllers\Admin\AdminJamPelajaranController;
+use App\Http\Controllers\Admin\AdminJadwalMengajarController;
+use App\Http\Controllers\Admin\AdminBackupController;
 
 
 
@@ -135,6 +139,32 @@ Route::delete('/datamengajar/{id}', [AdminDataMengajarController::class, 'destro
 Route::delete('/admin/pengumuman/{id}', 
     [AdminPengumumanController::class, 'destroy']
 )->name('pengumuman.destroy');
+
+// Hari Aktif
+    Route::get('/hariaktif', [AdminHariAktifController::class, 'index'])->name('hariaktif.index');
+    Route::post('/hariaktif/update', [AdminHariAktifController::class, 'update'])->name('hariaktif.update');
+    Route::post('/hariaktif/store', [AdminHariAktifController::class, 'store'])
+    ->name('hari-aktif.store');
+    Route::delete('/hariaktif/{id}', [AdminHariAktifController::class, 'destroy'])->name('hariaktif.destroy');
+    // Jam Pelajaran
+    Route::get('/jam-pelajaran/{hari}', [AdminJamPelajaranController::class, 'index']);
+Route::post('/jam-pelajaran/{hari}', [AdminJamPelajaranController::class, 'store']);
+
+        // Jadwal Mengajar
+        Route::get('/jadwalmengajar', [AdminJadwalMengajarController::class, 'index']);
+Route::post('/jadwalmengajar', [AdminJadwalMengajarController::class, 'store'])
+    ->name('jadwal.store');
+
+    // backup
+    Route::get('/backup', [AdminBackupController::class, 'index'])->name('backup.index');
+    Route::post('/backup', [AdminBackupController::class, 'backup'])->name('backup.backup');
+    Route::post('/admin/backup', [AdminBackupController::class, 'store'])
+    ->name('backup.store');
+    Route::get('/backup/download/{file}', [AdminBackupController::class, 'download'])->name('backup.download');
+    Route::delete('/backup/{backup}', [AdminBackupController::class, 'destroy'])
+    ->name('backup.destroy');
+
+
 
 
     });

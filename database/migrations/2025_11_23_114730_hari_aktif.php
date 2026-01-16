@@ -13,6 +13,7 @@ return new class extends Migration
     {
       Schema::create('hari_aktif', function (Blueprint $table) {
     $table->id();
+    $table->integer('urutan_hari'); // Senin, Selasa, dst.
     $table->string('nama_hari'); // Senin, Selasa, dst.
     $table->boolean('is_active')->default(true); 
     $table->timestamps();

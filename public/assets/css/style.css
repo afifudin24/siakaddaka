@@ -6815,6 +6815,11 @@ h6, .h6 {
 .text-end {
   text-align: end !important;
 }
+.jam-row .form-control,
+.jam-row .btn {
+    height: 38px; /* samakan dengan form-control */
+}
+
 
 /* === text-align css end === */
 /* === border css start === */
