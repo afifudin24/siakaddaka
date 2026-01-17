@@ -23,6 +23,10 @@ return new class extends Migration
           ->constrained('hari_aktif')
           ->onDelete('cascade');
 
+              $table->foreignId('tahun_pelajaran_id')
+          ->constrained('tahun_pelajaran')
+          ->onDelete('cascade');
+
     $table->foreignId('jam_pelajaran_id')
           ->constrained('jam_pelajaran')
           ->onDelete('cascade');

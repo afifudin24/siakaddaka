@@ -13,6 +13,7 @@ class JadwalMengajar extends Model
         'data_mengajar_id',
         'hari_id',
         'jam_pelajaran_id',
+        'tahun_pelajaran_id',
     ];
 
    

@@ -126,28 +126,22 @@
 
                     <div class="d-flex justify-content-between small">
                         <span class="d-flex gap-1 align-items-center">
-                            <iconify-icon icon="bi:clock"></iconify-icon> {{ $mengajar->jam_mengajar }} Jam
+                            <iconify-icon icon="bi:clock"></iconify-icon> {{ $mengajar->total_jam }} JP
                         </span>
                         <span class="d-flex gap-1 align-items-center">
-                            <iconify-icon icon="bi:calendar"></iconify-icon> {{ $mengajar->pertemuan_per_minggu }}x / minggu
+                            <iconify-icon icon="bi:calendar"></iconify-icon> {{ $mengajar->pertemuan_perminggu }}x / minggu
                         </span>
                     </div>
                 </div>
 
                 <div class="card-footer bg-transparent border-0 d-flex gap-2">
-                   <button
-    class="btn btn-sm btn-outline-primary w-100 btn-edit"
-    data-id="{{ $mengajar->id }}"
-    data-jam="{{ $mengajar->jam_mengajar }}"
-    data-pertemuan="{{ $mengajar->pertemuan_per_minggu }}"
->
-    Edit
-</button>
+                 
 
                    <button
-    class="btn btn-sm btn-outline-danger w-100 btn-delete"
+    class="btn btn-sm btn-outline-danger d-flex gap-1 align-items-center justify-content-center w-100 btn-delete"
     data-id="{{ $mengajar->id }}"
 >
+<iconify-icon icon="lucide:trash-2" class="text-lg"></iconify-icon>
     Hapus
 </button>
 

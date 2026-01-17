@@ -31,7 +31,11 @@ class AdminJadwalMengajarController extends Controller
 
     $dataMengajar = DataMengajar::where('kelas_id', $kelasId)->get();
 
-    $jadwal = JadwalMengajar::whereIn(
+    $tahunpelajaranAktif = DB::table('tahun_pelajaran')
+        ->where('is_active', true)
+        ->first();
+
+    $jadwal = JadwalMengajar::where('tahun_pelajaran_id', $tahunpelajaranAktif->id)->whereIn(
         'hari_id',
         $hariAktif->pluck('id')
     )->get()->keyBy(fn ($j) =>
@@ -78,25 +82,37 @@ public function store(Request $request)
 {
     DB::transaction(function () use ($request) {
 
-        JadwalMengajar::whereIn(
-            'hari_id',
-            array_keys($request->jadwal)
-        )->delete();
+        $tahunPelajaranAktif = DB::table('tahun_pelajaran')
+            ->where('is_active', true)
+            ->first();
 
+        // Hapus jadwal lama KHUSUS kelas ini
+        JadwalMengajar::whereIn('hari_id', array_keys($request->jadwal))
+            ->where('tahun_pelajaran_id', $tahunPelajaranAktif->id)
+            ->whereHas('dataMengajar', function ($q) use ($request) {
+                $q->where('kelas_id', $request->kelas_id);
+            })
+            ->delete();
+
+        // Insert ulang
         foreach ($request->jadwal as $hariId => $jams) {
             foreach ($jams as $jamId => $dataMengajarId) {
-                if ($dataMengajarId) {
+                if (!empty($dataMengajarId)) {
                     JadwalMengajar::create([
-                        'hari_id' => $hariId,
-                        'jam_pelajaran_id' => $jamId,
-                        'data_mengajar_id' => $dataMengajarId,
+                        'hari_id'            => $hariId,
+                        'jam_pelajaran_id'   => $jamId,
+                        'data_mengajar_id'   => $dataMengajarId,
+                        'tahun_pelajaran_id' => $tahunPelajaranAktif->id,
                     ]);
                 }
             }
         }
     });
 
-    return response()->json(['status' => true]);
+    return response()->json([
+        'status' => true,
+        'message' => 'Jadwal berhasil disimpan'
+    ]);
 }
 
 }

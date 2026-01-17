@@ -19,6 +19,8 @@ use App\Http\Controllers\Admin\AdminHariAktifController;
 use App\Http\Controllers\Admin\AdminJamPelajaranController;
 use App\Http\Controllers\Admin\AdminJadwalMengajarController;
 use App\Http\Controllers\Admin\AdminBackupController;
+use App\Http\Controllers\Admin\AdminPanitiaPKLController;
+use App\Http\Controllers\Admin\AdminPembimbingPKLController;
 
 
 
@@ -164,6 +166,28 @@ Route::post('/jadwalmengajar', [AdminJadwalMengajarController::class, 'store'])
     Route::delete('/backup/{backup}', [AdminBackupController::class, 'destroy'])
     ->name('backup.destroy');
 
+    // Panitia PKL
+    Route::get('/panitia-pkl', [AdminPanitiaPKLController::class, 'index'])->name('panitia-pkl.index');
+    Route::post('/panitia-pkl', [AdminPanitiaPKLController::class, 'store'])->name('panitia-pkl.store');
+Route::put('/panitia-pkl/{id}', [AdminPanitiaPKLController::class, 'update'])
+    ->name('panitia-pkl.update');
+    Route::delete('/panitia-pkl/{id}', [AdminPanitiaPKLController::class, 'destroy'])
+    ->name('panitia-pkl.destroy');
+
+    // Pembimbing PKL
+    Route::get('/pembimbing-pkl', [AdminPembimbingPKLController::class, 'index'])->name('pembimbing-pkl.index');
+    Route::get('/pembimbing-pkl/add', [AdminPembimbingPKLController::class, 'add'])->name('pembimbing-pkl.add');
+    Route::post('/pembimbing-pkl', [AdminPembimbingPKLController::class, 'store'])->name('pembimbing-pkl.store');
+Route::put('/pembimbing-pkl/{id}', [AdminPembimbingPKLController::class, 'update'])
+    ->name('pembimbing-pkl.update');
+    Route::delete('/pembimbing-pkl/{id}', [AdminPembimbingPKLController::class, 'destroy'])
+    ->name('pembimbing-pkl.destroy');
+    // routes/web.php
+Route::post('/pembimbing-pkl/store-massal', [AdminPembimbingPKLController::class, 'storeMassal'])
+    ->name('pembimbing-pkl.store-massal');
+
+Route::post('/pembimbing-pkl/store-single', [AdminPembimbingPKLController::class, 'storeSingle'])
+    ->name('pembimbing-pkl.store-single');
 
 
 

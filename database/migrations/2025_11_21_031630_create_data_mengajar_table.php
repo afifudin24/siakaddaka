@@ -28,9 +28,7 @@ return new class extends Migration
                   ->constrained('mapel')
                   ->onDelete('cascade');
 
-            $table->integer('jam_mengajar');             // jumlah jam mengajar
-            $table->integer('pertemuan_per_minggu');     // contoh: 2 kali per minggu
-
+        
             $table->timestamps();
         });
     }

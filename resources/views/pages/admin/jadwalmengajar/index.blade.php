@@ -78,6 +78,7 @@
     @if(request()->filled('kelas_id'))
 <form id="formJadwal">
     @csrf
+<input type="hidden" name="kelas_id" value="{{ request('kelas_id') }}">
 
    <div class="row">
 @foreach($hariAktif as $hari)

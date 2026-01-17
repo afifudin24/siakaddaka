@@ -145,13 +145,13 @@
                 </div>
    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mt-24">
                  <span>
-    Showing 
+    Menampilkan 
     {{ $backup->firstItem() ?? 0 }} 
-    to 
+    sampai 
     {{ $backup->lastItem() ?? 0 }} 
-    of 
+    dari 
     {{ $backup->total() }} 
-    entries
+    data
 </span>
 
                     {{ $backup->links() }}

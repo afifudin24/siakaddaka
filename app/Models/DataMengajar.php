@@ -15,8 +15,7 @@ class DataMengajar extends Model
         'guru_id',
         'mapel_id',
         'kelas_id',
-        'jam_mengajar',
-        'pertemuan_per_minggu',
+      
     ];
 
     /**
@@ -46,4 +45,9 @@ class DataMengajar extends Model
     public function kelas(){
         return $this->belongsTo(Kelas::class);
     }
+    public function jadwalMengajar()
+{
+    return $this->hasMany(JadwalMengajar::class, 'data_mengajar_id');
+}
+
 }

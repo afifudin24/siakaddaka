@@ -48,4 +48,8 @@ class Guru extends Model
     public function wakaKurikulum(){
         return $this->hasOne(WakaKurikulum::class, 'guru_id');
     }
+    public function panitiaPKL()
+{
+        return $this->hasMany(PanitiaPKL::class, 'guru_id');
+    }
 }

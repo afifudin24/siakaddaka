@@ -24,4 +24,10 @@ class TahunPelajaran extends Model
     {
         return $this->hasMany(Tagihan::class);
     }
+     
+    public function panitiaPKL()
+{
+    return $this->hasMany(PanitiaPKL::class);
+}
+
 }

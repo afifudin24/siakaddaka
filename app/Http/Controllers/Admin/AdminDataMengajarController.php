@@ -33,7 +33,12 @@ public function index(Request $request)
             })
             ->when($request->kelas_id, function ($query) use ($request) {
                 $query->where('kelas_id', $request->kelas_id);
-            })
+            })->withCount([
+        'jadwalMengajar as total_jam',
+        'jadwalMengajar as pertemuan_perminggu' => function ($q) {
+            $q->select(DB::raw('COUNT(DISTINCT hari_id)'));
+        }
+    ])
             ->latest()
             ->paginate($perPage)
             ->withQueryString();
