@@ -38,7 +38,7 @@
 
     <input type="text" class="bg-base h-40-px w-auto" 
            name="search" 
-           placeholder="Search"
+           placeholder="Cari Pembimbing PKL"
            value="{{ request('search') }}">
            
     <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
@@ -163,7 +163,7 @@
                                 </span>
                                   <div>
                                   {{-- tampilkan DUDI yang dibimbing --}}
-                                  <div>
+                                  {{-- <div>
 
     <p class="fw-medium">DUDI Bimbingan</p>
 
@@ -174,7 +174,7 @@
     @empty
         <span class="text-muted text-sm">Belum ada DUDI</span>
     @endforelse
-</div>
+</div> --}}
 
 
 

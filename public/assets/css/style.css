@@ -15255,7 +15255,23 @@ td.fc-header-center {
   -ms-border-radius: 0.5rem;
   -o-border-radius: 0.5rem;
   padding-block: 0.3125rem;
-  padding-inline-start: 1rem;
+  padding-inline-start: 2.2rem;
+  padding-inline-end: 1.25rem;
+  color: var(--text-primary-light);
+}
+
+.navbar-search2 input {
+  width: 24.25rem;
+  height: 2.5rem;
+  background-color: var(--neutral-50);
+  border: 1px solid var(--input-form-light);
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  padding-block: 0.3125rem;
+  padding-inline-start: 2.37rem;
   padding-inline-end: 1.25rem;
   color: var(--text-primary-light);
 }
@@ -15264,7 +15280,18 @@ td.fc-header-center {
   border-color: var(--brand);
 }
 
+.navbar-search2 input:focus {
+  border-color: var(--brand);
+}
 .navbar-search .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  inset-inline-start: 0.9375rem;
+  font-size: 1.125rem;
+  color: var(--black);
+}
+.navbar-search2 .icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
