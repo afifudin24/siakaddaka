@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\AdminJadwalMengajarController;
 use App\Http\Controllers\Admin\AdminBackupController;
 use App\Http\Controllers\Admin\AdminPanitiaPKLController;
 use App\Http\Controllers\Admin\AdminPembimbingPKLController;
+use App\Http\Controllers\Admin\AdminPesertaPKLController;
+use App\Http\Controllers\Admin\AdminDudiController;
 
 
 
@@ -188,7 +190,39 @@ Route::post('/pembimbing-pkl/store-massal', [AdminPembimbingPKLController::class
 
 Route::post('/pembimbing-pkl/store-single', [AdminPembimbingPKLController::class, 'storeSingle'])
     ->name('pembimbing-pkl.store-single');
+    Route::put(
+    '/pembimbing-pkl/{id}/toggle-status',
+    [AdminPembimbingPKLController::class, 'toggleStatus']
+);
+Route::delete('/pembimbing-pkl/{id}', [AdminPembimbingPKLController::class, 'destroy'])
+    ->name('pembimbing-pkl.destroy');
 
+    // Peserta PKL
+    Route::get('/peserta-pkl', [AdminPesertaPKLController::class, 'index'])->name('peserta-pkl.index');
+    Route::get('/peserta-pkl/add', [AdminPesertaPKLController::class, 'add'])->name('peserta-pkl.add');
+   Route::post('/peserta-pkl/store-massal', [AdminPesertaPKLController::class, 'storeMassal'])
+    ->name('peserta-pkl.store.massal');
+
+Route::post('/peserta-pkl/store-single', [AdminPesertaPKLController::class, 'storeSingle'])
+    ->name('peserta-pkl.store.single');
+    Route::delete('/peserta-pkl/{id}', [AdminPesertaPKLController::class, 'destroy'])
+    ->name('peserta-pkl.destroy');    
+    Route::put('/peserta-pkl/{id}', [AdminPesertaPKLController::class, 'update'])
+    ->name('peserta-pkl.update');
+
+    // Dudi
+    Route::get('/dudi', [AdminDudiController::class, 'index'])->name('dudi.index');
+    Route::get('/dudi/add', [AdminDudiController::class, 'add'])->name('dudi.add');
+    Route::post('/dudi/store', [AdminDudiController::class, 'store'])
+    ->name('dudi.store');
+    Route::get('/dudi/{id}/edit', [AdminDudiController::class, 'edit'])->name('dudi.edit');
+
+
+    Route::put('/dudi/{id}', [AdminDudiController::class, 'update'])
+    ->name('dudi.update');
+    Route::delete('/dudi/{id}', [AdminDudiController::class, 'destroy'])
+    ->name('dudi.destroy');
+  
 
 
     });

@@ -18,7 +18,11 @@ return new class extends Migration
         ->constrained('siswa')
         ->cascadeOnDelete();
 
-    $table->foreignId('dudi_id')
+    $table->foreignId('tahun_pelajaran_id')
+        ->constrained('tahun_pelajaran')
+        ->cascadeOnDelete();
+
+    $table->foreignId('dudi_id')->nullable()
         ->constrained('dudi')
         ->cascadeOnDelete();
 

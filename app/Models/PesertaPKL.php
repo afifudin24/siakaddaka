@@ -12,6 +12,7 @@ class PesertaPKL extends Model
     protected $fillable = [
         'siswa_id',
         'dudi_id',
+        'tahun_pelajaran_id',
         'status',
     ];
 
@@ -38,5 +39,9 @@ class PesertaPKL extends Model
     public function laporanPKL()
     {
         return $this->hasOne(LaporanPKL::class);
+    }
+    public function tahunPelajaran()
+    {
+        return $this->belongsTo(TahunPelajaran::class);
     }
 }

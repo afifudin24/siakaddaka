@@ -61,5 +61,10 @@ public function pembayaran(){
         return $this->hasMany(Pembayaran::class, 'siswa_id');
     }
 
+    public function pesertaPKL()
+    {
+        return $this->hasOne(PesertaPKL::class, 'siswa_id');
+    }
+
 
 }

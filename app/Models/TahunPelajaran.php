@@ -30,4 +30,9 @@ class TahunPelajaran extends Model
     return $this->hasMany(PanitiaPKL::class);
 }
 
+public function pesertaPKL()
+{
+    return $this->hasMany(PesertaPKL::class);
+
+}
 }

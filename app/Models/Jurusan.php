@@ -26,4 +26,9 @@ class Jurusan extends Model
     {
         return $this->hasMany(Kelas::class);
     }
+
+    public function dudi()
+    {
+        return $this->hasMany(Dudi::class, 'jurusan_id');
+    }
 }

@@ -116,4 +116,47 @@ public function add()
             'message' => 'Pembimbing PKL berhasil ditambahkan'
         ]);
     }
+public function toggleStatus($id)
+{
+    $pembimbingPKL = PembimbingPKL::findOrFail($id);
+
+    // Toggle status string
+    $pembimbingPKL->status =
+        $pembimbingPKL->status === 'aktif'
+            ? 'nonaktif'
+            : 'aktif';
+
+    $pembimbingPKL->save();
+
+    return response()->json([
+        'status' => true,
+        'message' => $pembimbingPKL->status === 'aktif'
+            ? 'Pembimbing PKL berhasil diaktifkan'
+            : 'Pembimbing PKL berhasil dinonaktifkan',
+        'data' => [
+            'status' => $pembimbingPKL->status
+        ]
+    ]);
+}
+
+public function destroy($id)
+{
+    $pembimbingPKL = PembimbingPKL::findOrFail($id);
+
+    // (OPSIONAL) cek relasi dulu
+    if ($pembimbingPKL->dudi()->count() > 0) {
+        return response()->json([
+            'message' => 'Pembimbing masih memiliki DUDI binaan'
+        ], 422);
+    }
+
+    $pembimbingPKL->delete();
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Pembimbing PKL berhasil dihapus'
+    ]);
+}
+
+
 }

@@ -8827,6 +8827,19 @@ svg.radial-progress text {
   border-color: var(--primary-50);
 }
 
+.btn-brand {
+  background-color: var(--brand);
+  color: #fff;
+  border-color: color-mix(in srgb, var(--brand), black 20%);
+}
+
+.btn-brand:hover {
+  background-color: color-mix(in srgb, var(--brand), black 20%);
+  border-color: color-mix(in srgb, var(--brand), black 20%);
+  color: #fff !important;
+}
+
+
 .btn-primary-50:hover {
   background-color: var(--primary-700);
   color: #fff !important;
@@ -15242,7 +15255,7 @@ td.fc-header-center {
   -ms-border-radius: 0.5rem;
   -o-border-radius: 0.5rem;
   padding-block: 0.3125rem;
-  padding-inline-start: 2.625rem;
+  padding-inline-start: 1rem;
   padding-inline-end: 1.25rem;
   color: var(--text-primary-light);
 }
@@ -15913,4 +15926,64 @@ textarea.select2-search__field{
 
 .text-brand{
   color: var(--brand);
+}
+
+
+/* kolom sticky umum */
+.sticky-col {
+    position: sticky;
+    background: #fff;
+    z-index: 2;
+}
+
+/* kolom NO */
+.sticky-no {
+    left: 0;
+    min-width: 60px;
+    text-align: center;
+    z-index: 3;
+}
+
+/* kolom NAMA */
+.sticky-nama {
+  padding-left: 0%;
+    left: 0px; /* HARUS sama dengan lebar kolom NO */
+    min-width: 200px;
+    z-index: 3;
+    box-shadow: 2px 0 5px rgba(0,0,0,.08); /* efek pemisah */
+}
+
+/* biar header juga sticky */
+thead th.sticky-col {
+    z-index: 4;
+    background: #f8f9fa;
+}
+
+/* Pagination */
+.pagination {
+    gap: 4px;
+}
+
+/* Link normal */
+.pagination .page-link {
+    color: var(--brand); /* warna text */
+    border-radius: 6px;
+}
+
+/* Hover */
+.pagination .page-link:hover {
+    background-color: color-mix(in srgb, var(--brand) 20%, transparent);
+}
+
+/* ACTIVE PAGE */
+.pagination .page-item.active .page-link {
+    background-color: var(--brand);
+    border-color: color-mix(in srgb, var(--brand) 20%, transparent);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Disabled */
+.pagination .page-item.disabled .page-link {
+    color: #adb5bd;
 }

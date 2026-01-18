@@ -17,6 +17,9 @@ return new class extends Migration
     $table->foreignId('pembimbing_pkl_id')
         ->constrained('pembimbing_pkl')
         ->cascadeOnDelete();
+            $table->foreignId('jurusan_id')
+        ->constrained('jurusan')
+        ->cascadeOnDelete();
 
     $table->string('nama_dudi');
     $table->string('bidang_usaha')->nullable();

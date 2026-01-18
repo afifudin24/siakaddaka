@@ -15,6 +15,7 @@ class Dudi extends Model
         'pembimbing_pkl_id',
         'nama_dudi',
         'bidang_usaha',
+        'jurusan_id',
         'pimpinan_dudi',
         'pembimbing_dudi',
         'alamat',
@@ -25,6 +26,17 @@ class Dudi extends Model
   public function pembimbingPKL()
 {
     return $this->belongsTo(PembimbingPKL::class, 'pembimbing_pkl_id');
+}
+public function jurusan()
+{
+    return $this->belongsTo(Jurusan::class, 'jurusan_id');
+
+}
+
+public function pesertaPKL()
+{
+    return $this->hasMany(PesertaPKL::class, 'dudi_id');
+
 }
 
 }

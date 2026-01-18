@@ -119,6 +119,22 @@
                                 <ul class="dropdown-menu p-12 border bg-base shadow">
                                    
                                     <li>
+
+                                     <button
+    class="btn btn-sm btn-toggle-status
+        {{ $pp->status == 'aktif' ? 'dropdown-item px-16 py-8 rounded 
+           text-secondary-light bg-hover-danger-100 
+           text-hover-danger-600 d-flex align-items-center gap-10' : 'dropdown-item px-16 py-8 rounded 
+           text-secondary-light bg-hover-success-100 
+           text-hover-success-600 d-flex align-items-center gap-10' }}"
+    data-id="{{ $pp->id }}">
+
+    {{ $pp->status == 'aktif' ? 'Nonaktifkan' : 'Aktifkan' }}
+    <iconify-icon 
+        icon="{{ $pp->status == 'aktif' ? 'solar:close-circle-linear' : 'simple-line-icons:check' }}"
+        class="icon text-xl line-height-1"></iconify-icon>
+</button>
+
                                        <button 
     type="button"
     class="delete-btn dropdown-item px-16 py-8 rounded 
@@ -130,6 +146,7 @@
     <iconify-icon icon="solar:trash-bin-trash-linear"
         class="icon text-xl line-height-1"></iconify-icon>
 </button>
+
                                     </li>
                                 </ul>
                             </div>
@@ -139,12 +156,16 @@
                                 <img src="{{ foto_profil($pp->guru) }}" class="border br-white border-width-2-px w-100-px h-100-px rounded-circle object-fit-cover">
                              
                                 <h6 class="text-lg mb-0 mt-4">{{ $pp->guru->nama }}</h6>
-                                <span class="text-secondary-light mb-16">{{ $pp->guru->email }}</span>
-                                <div>
-                                  
+                             {{-- status --}}
+                                <span class="text-sm    
+                                    {{ $pp->status == 'aktif' ? 'badge bg-success-100 text-success-600' : 'badge bg-danger-100 text-danger-600' }}">
+                                    {{ ucfirst($pp->status) }}
+                                </span>
+                                  <div>
                                   {{-- tampilkan DUDI yang dibimbing --}}
                                   <div>
-    <p class="fw-medium">Data Bimbingan</p>
+
+    <p class="fw-medium">DUDI Bimbingan</p>
 
     @forelse($pp->dudi as $dudi)
         <span class="badge bg-primary-100 text-primary-600 px-12 py-6 radius-8 text-sm mb-8 d-inline-block">
@@ -199,68 +220,85 @@
 
     @push('scripts')
    <script>
-document.addEventListener('click', function (e) {
+$(document).on('click', '.delete-btn', function () {
+    const id = $(this).data('id');
 
-    if (e.target.closest('.delete-btn')) {
-
-        let btn = e.target.closest('.delete-btn');
-        let guruId = btn.dataset.id;
-        let token = document
-            .querySelector('meta[name="csrf-token"]')
-            .getAttribute('content');
-
-        Swal.fire({
-            title: 'Yakin ingin menghapus?',
-            text: 'Data guru akan dihapus permanen',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#6c757d',
-            confirmButtonText: 'Ya, Hapus',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-
-            if (result.isConfirmed) {
-
-                // 🔄 LOADING
-                Swal.fire({
-                    title: 'Menghapus data...',
-                    html: 'Mohon tunggu sebentar',
-                    allowOutsideClick: false,
-                    didOpen: () => {
-                        Swal.showLoading();
-                    }
-                });
-
-                // AJAX DELETE
-                $.ajax({
-                    url: "{{ route('admin.guru.hapus') }}",
-                    type: "POST",
-                    data: {
-                        _token: token,
-                        id: guruId
-                    },
-                    success: function (res) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil',
-                            text: res.message
-                        }).then(() => {
-                            location.reload(); // atau remove row
-                        });
-                    },
-                    error: function (xhr) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal',
-                            text: xhr.responseJSON?.message || 'Terjadi kesalahan'
-                        });
-                    }
-                });
-            }
-        });
-    }
+    Swal.fire({
+        title: 'Yakin ingin menghapus?',
+        text: 'Data pembimbing PKL akan dihapus permanen',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ya, hapus',
+        cancelButtonText: 'Batal',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `/admin/pembimbing-pkl/${id}`,
+                type: 'DELETE',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: () => {
+                    Swal.fire({
+                        title: 'Menghapus...',
+                        allowOutsideClick: false,
+                        didOpen: () => Swal.showLoading()
+                    });
+                },
+                success: function (res) {
+                    Swal.fire(
+                        'Berhasil',
+                        res.message ?? 'Pembimbing PKL berhasil dihapus',
+                        'success'
+                    ).then(() => {
+                        location.reload();
+                    });
+                },
+                error: function (xhr) {
+                    Swal.fire(
+                        'Gagal',
+                        xhr.responseJSON?.message ?? 'Terjadi kesalahan',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
 });
+
+
+
+$('.btn-toggle-status').on('click', function () {
+    let id = $(this).data('id');
+
+    Swal.fire({
+        title: 'Ubah Status?',
+        text: 'Status pembimbing PKL akan diubah',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ya, ubah',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `/admin/pembimbing-pkl/${id}/toggle-status`,
+                type: 'PUT',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (res) {
+                    Swal.fire('Berhasil', res.message, 'success')
+                        .then(() => location.reload());
+                },
+                error: function () {
+                    Swal.fire('Error', 'Gagal mengubah status', 'error');
+                }
+            });
+        }
+    });
+});
+
 </script>
 
 

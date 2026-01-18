@@ -13,7 +13,7 @@
                 <h5 class="card-title mb-0">Tambah Pembimbing PKL</h5>
                 <div>
                     <div class="d-flex gap-2">
-                        <button id="btnpanitiaPKL"
+                        <button id="btnMassal"
                             class="btn btn-success text-sm btn-sm p-1 radius-4 d-flex align-items-center gap-2">
                             <iconify-icon icon="mdi:user-multiple-add" class="text-xl"></iconify-icon>
                             <span class="d-none d-md-inline">Tambah Massal</span>
@@ -138,7 +138,7 @@ tableoke.on('draw', function () {
 </script>
 
 <script>
-$('#btnpanitiaPKL').on('click', function () {
+$('#btnMassal').on('click', function () {
     let guruIds = [];
 
     $('.select-item:checked').each(function () {
