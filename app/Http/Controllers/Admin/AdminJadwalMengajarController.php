@@ -18,9 +18,12 @@ class AdminJadwalMengajarController extends Controller
   public function index(Request $request)
 {
       $kelas = Kelas::orderBy('tingkat')->orderBy('nama_kelas')->get();
+       $hariAktif = HariAktif::with(['jamPelajaran' => function ($q) {
+        $q->orderBy('jam_ke');
+    }])->orderBy('urutan_hari')->get();
 
     if (!$request->filled('kelas_id')) {
-        return view('pages.admin.jadwalmengajar.index', compact('kelas'));
+        return view('pages.admin.jadwalmengajar.index', compact('kelas', 'hariAktif'));
     }
 
     $kelasId = $request->kelas_id;

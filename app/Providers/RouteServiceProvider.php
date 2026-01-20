@@ -50,5 +50,10 @@ class RouteServiceProvider extends ServiceProvider
         ->prefix('siswa')
         ->group(base_path('routes/siswa.php'));
         });
+
+         Route::middleware('web')
+        ->prefix('pembimbingpkl')
+        ->group(base_path('routes/pembimbingpkl.php'));
+       
     }
 }

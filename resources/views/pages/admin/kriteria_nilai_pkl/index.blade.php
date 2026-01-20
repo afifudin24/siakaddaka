@@ -4,19 +4,19 @@
     <div class="dashboard-main-body">
 
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-            <h6 class="fw-semibold mb-0">Dunia Usaha / Dunia Industri</h6>
+            <h6 class="fw-semibold mb-0">Kriteria Nilai PKL</h6>
 
         </div>
 
         <div class="card basic-data-table">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Dunia Usaha / Dunia Industri</h5>
+                <h5 class="card-title mb-0">Kriteria Nilai PKL</h5>
                 <div>
                     <div class="d-flex gap-2">
-                        <a href="{{ route('admin.dudi.add') }}"
+                        <a href="{{ route('admin.peserta-pkl.add') }}"
                             class="btn btn-primary text-sm btn-sm p-1 radius-4 d-flex align-items-center gap-2">
                             <iconify-icon icon="mdi:add" class="text-xl"></iconify-icon>
-                            <span class="d-none d-md-inline">Tambah DUDI</span>
+                            <span class="d-none d-md-inline">Tambah Kriteria Nilai PKL</span>
                         </a>
 
 
@@ -28,129 +28,111 @@
             <div class="card-body">
 
                      <div class="">
-                    <div class="d-flex gap-1">
-
-                        <form method="GET" class="mb-3 col-md-2">
-    @foreach(request()->except('jurusan_id') as $key => $value)
-        <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-    @endforeach
-
-    <select name="jurusan_id" class="form-select" id="select_dudi" onchange="this.form.submit()">
-        <option value="">Pilih Jurusan</option>
-        <option value="all" {{ request('jurusan_id') == 'all' ? 'selected' : '' }}>Semua</option>
-
-        @foreach ($jurusan as $k)
-            <option value="{{ $k->id }}" {{ request('jurusan_id') == $k->id ? 'selected' : '' }}>
-                {{ $k->nama_jurusan }}
-            </option>
-        @endforeach
-    </select>
-</form>
-
-
-                    </div>
-                            <div class="d-flex gap-2">
-                                   <form method="GET">
-    @foreach(request()->except('paginate') as $key => $value)
-        <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-    @endforeach
-
-    <select name="paginate"
-        class="form-select form-select-sm w-auto"
-        onchange="this.form.submit()">
-        @for ($i = 10; $i <= 100; $i += 10)
-            <option value="{{ $i }}" {{ request('paginate', 20) == $i ? 'selected' : '' }}>
-                {{ $i }}
-            </option>
-        @endfor
-    </select>
-</form>
-
-                 <form method="GET" class="navbar-search d-flex justify-content-start gap-2 align-items-center">
-
-   
-
-    <input type="text"
-           class="bg-base h-40 w-auto"
-           name="search"
-           style="padding-inline-start: 1rem !important;"
-           placeholder="Cari Dudi"
-           value="{{ request('search') }}">
-
-    <button class="btn btn-brand btn-sm h-40-px px-12 radius-12">
-        <iconify-icon icon="ion:search-outline"></iconify-icon>
-    </button>
-     @foreach(request()->except('search') as $key => $value)
-        <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-    @endforeach
-</form>
-
-</div>
+                  
+                         
                         </div>
 
-           <div class="row g-3 mt-24">
-    @forelse($dudi as $d)
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="card p-16 shadow-sm border radius-12 h-100">
-                <div class="d-flex flex-column h-100 justify-content-between">
-                    <div>
-                        <h5 class="fw-bold mb-2">{{ $d->nama_dudi }}</h5>
-                        <p class="mb-1 text-muted">Bidang Usaha: {{ $d->bidang_usaha }}</p>
-                        <p class="mb-1  badge bg-brand">
-                            {{ $d->jurusan->nama_jurusan ?? '-' }}
-                        </p>
-                        <p class="mb-2 badge bg-info">
-                            {{ $d->pesertaPKL->count() }} Siswa
-                        </p>
-                    </div>
-                    <div class="d-flex gap-2 mt-3">
-                        <!-- Tombol lihat -->
-                        <button class="btn btn-sm btn-success text-white btn-view"
-                                data-id="{{ $d->id }}">
-                            <iconify-icon icon="mdi:eye-outline" class="text-lg"></iconify-icon>
-                        </button>
+                <div class="mt-24 table-responsive">
 
-                        <!-- Tombol edit -->
-                        <a href="{{ route('admin.dudi.edit', $d->id) }}" class="btn btn-sm btn-warning text-white"
-                                data-id="{{ $d->id }}">
-                            <iconify-icon icon="ic:baseline-edit" class="text-lg"></iconify-icon>
-                        </a>
 
-                        <!-- Tombol hapus -->
-                        <button class="btn btn-sm btn-danger text-white btn-delete"
-                                data-id="{{ $d->id }}">
-                            <iconify-icon icon="bx:trash" class="text-lg"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @empty
-        <div class="col-12">
-            {{-- dalam info --}}
+                    <table id="" class="table basic-border-table" style="width:100%">
+                        <thead>
+                            <tr>
+                              
 
-            <div class="alert alert-info text-center d-flex align-items-center justify-content-center gap-2">
-     <iconify-icon icon="material-symbols:info"></iconify-icon>
-       Belum ada data DUDI.
-    </div>
-        </div>
-    @endforelse
-</div>
-  <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mt-24">
+                                <th scope="col" class="" style="width : 10px !important; padding: 0.9rem 10px; text-align: center">
+
+                                    NO
+
+                                </th>
+                            
+                                <th scope="col" style="padding: 0.9rem 7px; " class="">KRITERIA
+                                </th>
+                                <th scope="col" style="padding: 0.9rem 7px; " class="">BOBOT
+                                </th>
+
+
+                         
+                                <th scope="col" style="padding: 0.9rem 7px; " class="">AKSI</th>
+
+                            </tr>
+                        </thead>
+<tbody>
+@if ($kriterianilaiPKL->count() > 0)
+    @foreach ($kriterianilaiPKL as $s)
+        <tr>
+            <td class="">{{ $loop->iteration }}</td>
+            <td style="padding: 0.9rem 7px !important; " scope="row" class="sticky-col sticky-nama">{{ $s->siswa->nama ?? '-' }}</td>
+          
+            <td>{{ $s->dudi->nama_dudi ?? '-' }}</td>
+            <td class="h-100 gap-1 align-items-center justify-content-start d-none d-md-flex">
+                <button class="btn btn-sm btn-success text-white btn-edit"
+                        data-id="{{ $s->id }}">
+                    <iconify-icon icon="mdi:eye-outline" class="text-lg"></iconify-icon>
+                </button>
+             <button class="btn btn-sm btn-warning text-white btn-edit"
+    data-id="{{ $s->id }}"
+    data-dudi_id="{{ $s->dudi_id }}"
+    data-status="{{ $s->status }}">
+    <iconify-icon icon="ic:baseline-edit" class="text-lg"></iconify-icon>
+</button>
+
+                <button class="btn btn-sm btn-danger text-white btn-edit"
+                        data-id="{{ $s->id }}">
+                    <iconify-icon icon="bx:trash" class="text-lg"></iconify-icon>
+                </button>
+            </td>
+              <td class="h-100 gap-1 align-items-center justify-content-start d-md-none d-flex">
+                <button class="btn btn-sm p-1 btn-success text-white btn-edit"
+                        data-id="{{ $s->id }}">
+                    <iconify-icon icon="mdi:eye-outline" class="text-lg"></iconify-icon>
+                </button>
+                 <button class="btn p-1 btn-sm btn-warning text-white btn-edit"
+    data-id="{{ $s->id }}"
+    data-dudi_id="{{ $s->dudi_id }}"
+    data-status="{{ $s->status }}">
+    <iconify-icon icon="ic:baseline-edit" class="text-lg"></iconify-icon>
+</button>
+                <button class="btn btn-sm p-1 btn-danger text-white btn-edit"
+                        data-id="{{ $s->id }}">
+                    <iconify-icon icon="bx:trash" class="text-lg"></iconify-icon>
+                </button>
+            </td>
+        </tr>
+    @endforeach
+
+    @else
+    <tr>
+        <td colspan="5" class="text-center">Tidak ada data peserta PKL.</td>
+    </tr>
+
+@endif
+</tbody>
+
+                    </table>
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mt-24 mb-8">
                  <span>
     Menampilkan
-    {{ $dudi->firstItem() ?? 0 }} 
+    {{ $pesertaPKL->firstItem() ?? 0 }} 
     sampai
-    {{ $dudi->lastItem() ?? 0 }} 
+    {{ $pesertaPKL->lastItem() ?? 0 }} 
     dari
-    {{ $dudi->total() }} 
+    {{ $pesertaPKL->total() }} 
     data
 </span>
 
-                    {{ $dudi->links() }}
+               {{-- Mobile --}}
+    <div class="d-block d-md-none">
+        {{ $pesertaPKL->onEachSide(0)->links() }}
+    </div>
+
+    {{-- Desktop --}}
+    <div class="d-none d-md-block">
+        {{ $pesertaPKL->onEachSide(2)->links() }}
+    </div>
                 </div>
 
-
+                </div>
              
             </div>
         </div>
@@ -187,7 +169,7 @@ tableoke.on('draw', function () {
    $('#select_dudi').select2({
                 theme: "bootstrap-5",
                 //   closeOnSelect : false,
-                placeholder: "Pilih Jurusan",
+                placeholder: "Pilih DUDI",
                 width: '100%',
                 language: {
                     noResults: function() {

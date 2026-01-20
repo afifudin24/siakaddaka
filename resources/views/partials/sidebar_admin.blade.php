@@ -166,14 +166,16 @@
     {{ Request::is('admin/panitia-pkl*') ||
        Request::is('admin/peserta-pkl*') ||
        Request::is('admin/pembimbing-pkl*') ||
-       Request::is('admin/dudi*')
-       ? 'active open' : '' }}">
+       Request::is('admin/dudi*') || 
+       Request::is('admin/nilai-pkl*') || 
+       Request::is('admin/kriteria-nilai-pkl*') || 
+       Request::is('admin/agenda-monitoring*')
 
+       ? 'active open' : '' }}">
     <a href="javascript:void(0)">
         <iconify-icon icon="mdi:work-outline" class="menu-icon"></iconify-icon>
         <span>Data PKL</span>
     </a>
-
     <ul class="sidebar-submenu">
         <li class="{{ request()->is('admin/panitia-pkl*') ? 'active-page' : '' }}">
             <a href="/admin/panitia-pkl" class="{{ request()->is('admin/panitia-pkl*') ? 'active' : '' }}">
@@ -181,30 +183,38 @@
                 <span>Panitia PKL</span>
             </a>
         </li>
-
         <li class="{{ request()->is('admin/peserta-pkl*') ? 'active-page' : '' }}">
             <a href="/admin/peserta-pkl" class="{{ request()->is('admin/peserta-pkl*') ? 'active' : '' }}">
               <iconify-icon icon="clarity:employee-group-solid" class="menu-icon"></iconify-icon>
                 <span>Peserta PKL</span>
             </a>
         </li>
-
         <li class="{{ request()->is('admin/pembimbing-pkl*') ? 'active-page' : '' }}">
             <a href="/admin/pembimbing-pkl" class="{{ request()->is('admin/pembimbing-pkl*') ? 'active' : '' }}">
               <iconify-icon icon="hugeicons:mentoring" class="menu-icon"></iconify-icon>
                 <span>Pembimbing PKL</span>
             </a>
         </li>
-
         <li class="{{ request()->is('admin/dudi*') ? 'active-page' : '' }}">
             <a href="/admin/dudi" class="{{ request()->is('admin/dudi*') ? 'active' : '' }}">
               <iconify-icon icon="bi:building" class="menu-icon"></iconify-icon>
                 <span>DU/DI</span>
             </a>
         </li>
+        <li class="{{ request()->is('admin/agenda-monitoring*') ? 'active-page' : '' }}">
+            <a href="/admin/agenda-monitoring" class="{{ request()->is('admin/agenda-monitoring*') ? 'active' : '' }}">
+              <iconify-icon icon="akar-icons:schedule" class="menu-icon"></iconify-icon>
+                <span>Agenda Monitoring</span>
+            </a>
+        </li>
+        <li class="{{ request()->is('admin/kriteria-nilai-pkl*') ? 'active-page' : '' }}">
+            <a href="/admin/kriteria-nilai-pkl" class="{{ request()->is('admin/kriteria-nilai-pkl*') ? 'active' : '' }}">
+              <iconify-icon icon="bi:building" class="menu-icon"></iconify-icon>
+                <span>Kriteria Nilai PKL</span>
+            </a>
+        </li>
     </ul>
 </li>
-
 {{-- DATA PKL end --}}
 {{-- Data Sekolah --}}
       <li class="my-1">
@@ -214,7 +224,6 @@
         </a>
       </li>
       {{-- Data Sekolah end --}}
-
       {{-- Managemen user --}}
       <li class="dropdown my-1
     {{ Request::is('admin/users/admin*') ||
@@ -222,12 +231,10 @@
        Request::is('admin/users/siswa*') ||
        Request::is('admin/users/staff*')
        ? 'active open' : '' }}">
-
     <a href="javascript:void(0)">
         <iconify-icon icon="solar:users-group-rounded-outline" class="menu-icon"></iconify-icon>
         <span>Manage User</span>
     </a>
-
     <ul class="sidebar-submenu">
         <li class="{{ request()->is('admin/users/admin*') ? 'active-page' : '' }}">
             <a href="/admin/users/admin" class="{{ request()->is('admin/users/admin*') ? 'active' : '' }}">
@@ -235,21 +242,18 @@
                 <span>Administrator</span>
             </a>
         </li>
-
         <li class="{{ request()->is('admin/users/siswa*') ? 'active-page' : '' }}">
             <a href="/admin/users/siswa" class="{{ request()->is('admin/users/siswa*') ? 'active' : '' }}">
               <iconify-icon icon="ph:student-bold" class="menu-icon"></iconify-icon>
                 <span>Siswa</span>
             </a>
         </li>
-
         <li class="{{ request()->is('admin/users/guru*') ? 'active-page' : '' }}">
             <a href="/admin/users/guru" class="{{ request()->is('admin/users/guru*') ? 'active' : '' }}">
               <iconify-icon icon="fa-solid:chalkboard-teacher" class="menu-icon"></iconify-icon>
                 <span>Guru</span>
             </a>
         </li>
-
         <li class="{{ request()->is('admin/users/staff*') ? 'active-page' : '' }}">
             <a href="/admin/users/staff" class="{{ request()->is('admin/users/staff*') ? 'active' : '' }}">
                   <iconify-icon icon="icon-park-outline:file-staff-one" class="menu-icon"></iconify-icon>
@@ -258,20 +262,16 @@
         </li>
     </ul>
 </li>
-
       {{-- Management User --}}
-
       {{-- Database --}}
       <li class="dropdown my-1
     {{ Request::is('admin/backup*') ||
        Request::is('admin/data-manager*')
        ? 'active open' : '' }}">
-
     <a href="javascript:void(0)">
         <iconify-icon icon="solar:database-outline" class="menu-icon"></iconify-icon>
         <span>Database</span>
     </a>
-
     <ul class="sidebar-submenu">
         <li class="{{ request()->is('admin/backup*') ? 'active-page' : '' }}">
             <a href="/admin/backup" class="{{ request()->is('admin/backup*') ? 'active' : '' }}">
@@ -279,7 +279,6 @@
                 <span>Backup</span>
             </a>
         </li>
-
         <li class="{{ request()->is('admin/data-manager*') ? 'active-page' : '' }}">
             <a href="/admin/data-manager" class="{{ request()->is('admin/data-manager*') ? 'active' : '' }}">
               <iconify-icon icon="tdesign:data" class="menu-icon"></iconify-icon>
@@ -288,7 +287,6 @@
         </li>
     </ul>
 </li>
-
       {{-- Database End --}}
     </ul>
   </div>

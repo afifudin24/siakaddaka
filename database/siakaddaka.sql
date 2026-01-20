@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 18 Jan 2026 pada 13.15
+-- Host: 127.0.0.1:3306
+-- Waktu pembuatan: 20 Jan 2026 pada 08.22
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -102,6 +102,23 @@ INSERT INTO `agenda` (`id`, `judul`, `deskripsi`, `tgl_mulai`, `tgl_selesai`, `w
 (28, 'Consectetur voluptate eveniet.', 'Et vel quo eveniet iusto nesciunt ea nisi. Eligendi dolores dolore aut quae nisi enim. Accusantium dolores repudiandae deleniti earum dolorem officia nostrum rerum.', '2025-10-31', '2025-11-03', '15:52:49', '14:47:39', 'Braunport', 'selesai', '2025-11-21 20:36:25', '2025-11-21 20:36:25'),
 (29, 'Velit alias sunt tempore.', 'Iste corrupti neque quo quis rem. Omnis assumenda officia cumque distinctio. Quasi doloremque debitis iure fugit temporibus autem. Tempore iure beatae aperiam dignissimos quia placeat ea vel.', '2025-11-14', '2025-11-16', '07:06:09', '22:32:23', 'New Kara', 'selesai', '2025-11-21 20:36:25', '2025-11-21 20:36:25'),
 (30, 'Eos occaecati et voluptatibus.', 'Ipsum eos nulla id earum cum harum. Quisquam adipisci non omnis aliquid. Quo recusandae sint repellendus ipsa dolorum impedit illo. Blanditiis at reiciendis aperiam debitis perspiciatis voluptates.', '2025-11-12', '2025-11-15', '14:52:41', '16:39:33', 'Mohrfurt', 'batal', '2025-11-21 20:36:25', '2025-11-21 20:36:25');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `agenda_monitoring_pkls`
+--
+
+CREATE TABLE `agenda_monitoring_pkls` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama_agenda` varchar(255) NOT NULL,
+  `tanggal_mulai` date NOT NULL,
+  `tanggal_selesai` date NOT NULL,
+  `catatan` text DEFAULT NULL,
+  `tahun_pelajaran_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2237,7 +2254,10 @@ INSERT INTO `log_user` (`id`, `user_id`, `action`, `description`, `ip_address`, 
 (1420, 1, 'updated', 'Data mengajar diperbarui: Guru AFIF WALIYUDIN, Mapel Konsentrasi Keahlian TKJ 2, Jam 0, Pertemuan per minggu 0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '2026-01-17 04:44:09', '2026-01-17 04:44:09'),
 (1421, 1, 'created', 'Data mengajar dibuat: Guru AFIF WALIYUDIN, Mapel Bahasa Indonesia, Jam 0, Pertemuan per minggu 0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '2026-01-17 04:44:09', '2026-01-17 04:44:09'),
 (1422, 1, 'deleted', 'Data mengajar dihapus: Guru AFIF WALIYUDIN, Mapel Bahasa Indonesia', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '2026-01-17 04:45:32', '2026-01-17 04:45:32'),
-(1423, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '2026-01-18 02:21:51', '2026-01-18 02:21:51');
+(1423, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', '2026-01-18 02:21:51', '2026-01-18 02:21:51'),
+(1424, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-19 03:13:53', '2026-01-19 03:13:53'),
+(1425, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-20 00:06:06', '2026-01-20 00:06:06'),
+(1426, 1, 'login', 'User login ke sistem', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2026-01-20 06:35:12', '2026-01-20 06:35:12');
 
 -- --------------------------------------------------------
 
@@ -2352,7 +2372,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (44, '2026_01_17_203446_create_kriteria_nilai_p_k_l_s_table', 10),
 (45, '2026_01_17_203630_create_nilai_p_k_l_s_table', 11),
 (46, '2026_01_17_203948_create_nilai_p_k_l_details_table', 12),
-(47, '2026_01_17_204239_create_laporan_p_k_l_s_table', 13);
+(47, '2026_01_17_204239_create_laporan_p_k_l_s_table', 13),
+(48, '2026_01_19_103910_create_agenda_monitoring_p_k_l_s_table', 14);
 
 -- --------------------------------------------------------
 
@@ -5383,6 +5404,13 @@ ALTER TABLE `agenda`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `agenda_monitoring_pkls`
+--
+ALTER TABLE `agenda_monitoring_pkls`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `agenda_monitoring_pkls_tahun_pelajaran_id_foreign` (`tahun_pelajaran_id`);
+
+--
 -- Indeks untuk tabel `backups`
 --
 ALTER TABLE `backups`
@@ -5783,6 +5811,12 @@ ALTER TABLE `agenda`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
+-- AUTO_INCREMENT untuk tabel `agenda_monitoring_pkls`
+--
+ALTER TABLE `agenda_monitoring_pkls`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `backups`
 --
 ALTER TABLE `backups`
@@ -5930,7 +5964,7 @@ ALTER TABLE `log_kehadiran_kelas`
 -- AUTO_INCREMENT untuk tabel `log_user`
 --
 ALTER TABLE `log_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1424;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1427;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapel`
@@ -5948,7 +5982,7 @@ ALTER TABLE `materi`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_pkl`
@@ -6091,6 +6125,12 @@ ALTER TABLE `walikelas`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `admin_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `agenda_monitoring_pkls`
+--
+ALTER TABLE `agenda_monitoring_pkls`
+  ADD CONSTRAINT `agenda_monitoring_pkls_tahun_pelajaran_id_foreign` FOREIGN KEY (`tahun_pelajaran_id`) REFERENCES `tahun_pelajaran` (`id`) ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `data_mengajar`

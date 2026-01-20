@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'walikelas' => \App\Http\Middleware\WaliKelasMiddleware::class,
         'wakakesiswaan' => \App\Http\Middleware\WakaKesiswaanMiddleware::class,
         'wakakurikulum' => \App\Http\Middleware\WakaKurikulumMiddleware::class,
+        'pembimbingpkl' => \App\Http\Middleware\PembimbingPKLMiddleware::class
     ];
 }

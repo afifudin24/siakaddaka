@@ -23,6 +23,8 @@ use App\Http\Controllers\Admin\AdminPanitiaPKLController;
 use App\Http\Controllers\Admin\AdminPembimbingPKLController;
 use App\Http\Controllers\Admin\AdminPesertaPKLController;
 use App\Http\Controllers\Admin\AdminDudiController;
+use App\Http\Controllers\Admin\AdminAgendaMonitoringPKLController;
+use App\Http\Controllers\Admin\AdminKriteriaNilaiPKLController;
 
 
 
@@ -222,6 +224,18 @@ Route::post('/peserta-pkl/store-single', [AdminPesertaPKLController::class, 'sto
     ->name('dudi.update');
     Route::delete('/dudi/{id}', [AdminDudiController::class, 'destroy'])
     ->name('dudi.destroy');
+
+    // agenda monitoring
+    Route::get('/agenda-monitoring', [AdminAgendaMonitoringPKLController::class, 'index'])->name('agenda-monitoring.index');
+    Route::get('/agenda-monitoring/add', [AdminAgendaMonitoringPKLController::class, 'add'])->name('agenda-monitoring.add');
+    Route::post('/agenda-monitoring', [AdminAgendaMonitoringPKLController::class, 'store'])->name('agenda-monitoring.store');
+    Route::put('/agenda-monitoring/{id}', [AdminAgendaMonitoringPKLController::class, 'update'])
+    ->name('agenda-monitoring.update');
+    Route::delete('/agenda-monitoring/{id}', [AdminAgendaMonitoringPKLController::class, 'destroy'])
+    ->name('agenda-monitoring.destroy');
+
+    // Kriteria Nilai PKL
+    Route::get('/kriteria-nilai-pkl', [AdminKriteriaNilaiPKLController::class, 'index'])->name('kriteria-nilai-pkl.index');
   
 
 

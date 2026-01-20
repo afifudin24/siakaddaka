@@ -8838,6 +8838,9 @@ svg.radial-progress text {
   border-color: color-mix(in srgb, var(--brand), black 20%);
   color: #fff !important;
 }
+.bg-brand {
+  background-color: var(--brand);
+}
 
 
 .btn-primary-50:hover {

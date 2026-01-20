@@ -36,6 +36,12 @@
 
             </div>
             <div class="card-body">
+                @if($hariAktif->isEmpty())
+                <div class="alert d-flex gap-2 justify-content-center align-items-center alert-info text-center">
+                  <iconify-icon icon="material-symbols:info-outline-rounded" class="text-xl"></iconify-icon>
+                    Tidak ada hari aktif untuk mengatur jadwal mengajar.
+                </div>
+                @else
                 <form method="GET" id="filterForm" class="mb-3">
                        {{-- PER PAGE (OPSIONAL) --}}
       
@@ -141,7 +147,7 @@
 @endif
 
        
-
+@endif
             </div>
 </div>
   </div>

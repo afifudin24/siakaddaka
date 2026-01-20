@@ -1,17 +1,12 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Guru extends Model
 {
     use HasFactory;
-
     // Nama tabel (opsional)
     protected $table = 'guru';
-
     // Kolom yang dapat diisi
     protected $fillable = [
         'user_id',
@@ -25,7 +20,6 @@ class Guru extends Model
         'tgl_lahir',
         'alamat',
     ];
-
     /**
      * Relasi ke User
      * Satu guru dimiliki oleh satu user
@@ -38,7 +32,6 @@ class Guru extends Model
     {
         return $this->hasMany(DataMengajar::class, 'guru_id');
     }
-
     public function walikelas(){
         return $this->hasOne(WaliKelas::class, 'guru_id');
     }
@@ -51,5 +44,9 @@ class Guru extends Model
     public function panitiaPKL()
 {
         return $this->hasMany(PanitiaPKL::class, 'guru_id');
+    }
+    public function pembimbingPKL()
+    {
+        return $this->hasMany(PembimbingPKL::class, 'guru_id');
     }
 }
